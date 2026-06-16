@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr. Rogers — Principles of American Democracy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    :root {
+      --navy: #1a2e5a;
+      --navy-dark: #0f1c38;
+      --navy-light: #2a4080;
+      --crimson: #B22234;
+      --crimson-dark: #8b1a27;
+      --crimson-light: #d42d42;
+      --cream: #f5f0e8;
+      --cream-dark: #e8e0d0;
+      --white: #ffffff;
+      --gray-100: #f8f8f8;
+      --gray-200: #eeeeee;
+      --gray-400: #aaaaaa;
+      --gray-700: #444444;
+      --text: #1a1a1a;
+      --text-muted: #666666;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+      --radius: 10px;
+      --radius-sm: 6px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--navy-dark);
+      border-bottom: 5px solid var(--crimson);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .stars-stripe {
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--crimson) 0px, var(--crimson) 20px,
+        var(--white) 20px, var(--white) 40px
+      );
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-seal {
+      width: 44px;
+      height: 44px;
+      background: var(--crimson);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: white;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .header-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+    }
+
+    .header-text p {
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .header-year {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 99px;
+      letter-spacing: 0.06em;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    .nav-inner::-webkit-scrollbar { display: none; }
+
+    .nav-tab {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      padding: 13px 16px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+      user-select: none;
+    }
+
+    .nav-tab:hover { color: rgba(255,255,255,0.85); }
+    .nav-tab.active { color: var(--white); border-bottom-color: var(--crimson); }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--cream-dark);
+      overflow: hidden;
+    }
+
+    .card-head {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--cream-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-head i {
+      font-size: 15px;
+      color: var(--crimson);
+    }
+
+    .card-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+    }
+
+    .card-body { padding: 1rem; }
+
+    /* ── HERO BANNER ── */
+    .hero {
+      grid-column: 1 / -1;
+      background: var(--navy);
+      color: white;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: none;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: repeating-linear-gradient(
+        180deg,
+        var(--crimson) 0px, var(--crimson) 14px,
+        var(--white) 14px, var(--white) 28px
+      );
+    }
+
+    .hero-unit-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 5px;
+    }
+
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1.15;
+    }
+
+    .hero-week {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 5px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-badge {
+      background: var(--crimson);
+      color: white;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+      flex-shrink: 0;
+      margin-right: 16px;
+    }
+
+    /* ── MATERIALS ── */
+    .material-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-200);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+    }
+
+    .material-row:last-child { border-bottom: none; }
+    .material-row:hover .material-title { color: var(--crimson); }
+
+    .material-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+
+    .material-icon.slides { background: #fff3cd; color: #856404; }
+    .material-icon.doc { background: #d4edff; color: #0a5a99; }
+    .material-icon.video { background: #fde8e8; color: #8b1a1a; }
+    .material-icon.link { background: #e8f5e9; color: #1a5c2a; }
+
+    .material-title {
+      font-size: 13px;
+      font-weight: 500;
+      flex: 1;
+      transition: color 0.15s;
+    }
+
+    .material-date {
+      font-size: 11px;
+      color: var(--gray-400);
+      flex-shrink: 0;
+    }
+
+    /* ── KEY LINKS ── */
+    .key-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 10px;
+      background: var(--gray-100);
+      border-radius: var(--radius-sm);
+      margin-bottom: 7px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      transition: background 0.15s, color 0.15s;
+      border: 1px solid var(--gray-200);
+    }
+
+    .key-link:last-child { margin-bottom: 0; }
+    .key-link:hover { background: var(--cream-dark); color: var(--navy); }
+    .key-link i { font-size: 16px; color: var(--navy); }
+    .key-link .ext { margin-left: auto; font-size: 12px; color: var(--gray-400); }
+
+    /* ── UPCOMING ── */
+    .upcoming-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 13px;
+    }
+
+    .upcoming-row:last-child { border-bottom: none; }
+
+    .upcoming-title { font-weight: 500; }
+
+    .upcoming-date {
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--cream);
+      color: var(--navy);
+      padding: 2px 9px;
+      border-radius: 99px;
+      border: 1px solid var(--cream-dark);
+      white-space: nowrap;
+    }
+
+    /* ── THIS DAY IN HISTORY ── */
+    .tdih-card {
+      grid-column: 1 / -1;
+    }
+
+    .tdih-body {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .tdih-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--crimson);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .tdih-content p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .tdih-content .tdih-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--crimson);
+      margin-bottom: 4px;
+    }
+
+    .tdih-loading {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ── EXIT TICKET ── */
+    .exit-card {
+      grid-column: span 2;
+    }
+
+    .exit-question {
+      background: var(--cream);
+      border-left: 4px solid var(--crimson);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .exit-selects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    select, textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--cream-dark);
+      border-radius: var(--radius-sm);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      color: var(--text);
+      background: var(--white);
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    select:focus, textarea:focus {
+      border-color: var(--navy);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+      margin-bottom: 10px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 11px;
+      background: var(--crimson);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .submit-btn:hover { background: var(--crimson-dark); }
+    .submit-btn:active { transform: scale(0.99); }
+    .submit-btn:disabled { background: var(--gray-400); cursor: not-allowed; }
+
+    .submit-success {
+      text-align: center;
+      padding: 1rem;
+      color: #1a5c2a;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .submit-success i { font-size: 28px; display: block; margin-bottom: 6px; }
+
+    /* ── TABS CONTENT ── */
+    .tab-content { display: none; }
+    .tab-content.active { display: contents; }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 1100px;
+      margin: 0.5rem auto 2rem;
+      padding: 0 1.5rem;
+      text-align: center;
+      font-size: 11px;
+      color: var(--gray-400);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      main { grid-template-columns: 1fr; padding: 1rem; }
+      .hero { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .hero-badge { margin-right: 0; }
+      .exit-card { grid-column: span 1; }
+      .exit-selects { grid-template-columns: 1fr; }
+      .tdih-card { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars-stripe"></div>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="header-seal">
+          <i class="ti ti-building-community" aria-hidden="true"></i>
+        </div>
+        <div class="header-text">
+          <h1>Mr. Rogers — Principles of American Democracy</h1>
+          <p>San Diego · CP Government</p>
+        </div>
+      </div>
+      <span class="header-year">2025–26</span>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-tab active" data-tab="home">Home</div>
+      <div class="nav-tab" data-tab="units">Units</div>
+      <div class="nav-tab" data-tab="review">Review</div>
+      <div class="nav-tab" data-tab="exit">Exit Ticket</div>
+      <div class="nav-tab" data-tab="links">Key Links</div>
+    </div>
+  </nav>
+
+  <main id="main-grid">
+
+    <!-- HOME TAB -->
+    <div class="tab-content active" id="tab-home">
+
+      <!-- Hero -->
+      <div class="hero card" id="hero-banner">
+        <div>
+          <div class="hero-unit-label">Current Unit</div>
+          <h2 id="hero-unit">Loading...</h2>
+          <div class="hero-week" id="hero-week"></div>
+        </div>
+        <span class="hero-badge">Active</span>
+      </div>
+
+      <!-- This Day in History -->
+      <div class="card tdih-card">
+        <div class="card-head">
+          <i class="ti ti-history" aria-hidden="true"></i>
+          <h2>This Day in Civic History</h2>
+        </div>
+        <div class="card-body">
+          <div class="tdih-body">
+            <div class="tdih-icon"><i class="ti ti-star" aria-hidden="true"></i></div>
+            <div class="tdih-content">
+              <div class="tdih-year" id="tdih-year">Loading...</div>
+              <p id="tdih-text"><span class="tdih-loading">Fetching today's historical event...</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Materials -->
+      <div class="card" style="grid-column: span 2;">
+        <div class="card-head">
+          <i class="ti ti-files" aria-hidden="true"></i>
+          <h2>Recent Materials</h2>
+        </div>
+        <div class="card-body" id="materials-list">
+          <p style="font-size:13px; color: var(--text-muted);">Loading...</p>
+        </div>
+      </div>
+
+      <!-- Upcoming -->
+      <div class="card">
+        <div class="card-head">
+          <i class="ti ti-calendar-event" aria-hidden="true"></i>
+          <h2>Upcoming</h2>
+        </div>
+        <div class="card-body" id="upcoming-list">
+          <p style="font-size:13px; color: var(--text-muted);">Loading...</p>
+        </div>
+      </div>
+
+      <!-- Exit Ticket -->
+      <div class="card exit-card">
+        <div class="card-head">
+          <i class="ti ti-checklist" aria-hidden="true"></i>
+          <h2>Exit Ticket</h2>
+        </div>
+        <div class="card-body">
+          <div class="exit-question" id="exit-question">Loading today's question...</div>
+          <div id="exit-form-wrapper">
+            <div class="exit-selects">
+              <select id="period-select">
+                <option value="">Select your period...</option>
+              </select>
+              <select id="name-select" disabled>
+                <option value="">Select your name...</option>
+              </select>
+            </div>
+            <textarea id="exit-response" placeholder="Type your response here..."></textarea>
+            <button class="submit-btn" id="submit-btn" disabled>
+              <i class="ti ti-send" aria-hidden="true"></i> Submit Exit Ticket
+            </button>
+          </div>
+          <div id="submit-success" style="display:none;" class="submit-success">
+            <i class="ti ti-circle-check"></i>
+            Response submitted — nice work!
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Links -->
+      <div class="card">
+        <div class="card-head">
+          <i class="ti ti-link" aria-hidden="true"></i>
+          <h2>Key Links</h2>
+        </div>
+        <div class="card-body" id="links-list">
+          <p style="font-size:13px; color: var(--text-muted);">Loading...</p>
+        </div>
+      </div>
+
+    </div><!-- end home tab -->
+
+  </main>
+
+  <footer>
+    <p>Mr. Rogers · Principles of American Democracy · Updated weekly</p>
+  </footer>
+
+  <script>
+    // ── LOAD CONTENT ──
+    async function loadContent() {
+      const res = await fetch('content.json');
+      const data = await res.json();
+
+      // Hero
+      document.getElementById('hero-unit').textContent = data.current_unit.toUpperCase();
+      document.getElementById('hero-week').textContent = data.week;
+
+      // Exit ticket question
+      document.getElementById('exit-question').textContent = data.exit_ticket;
+
+      // Materials
+      const matList = document.getElementById('materials-list');
+      const iconMap = { slides: 'ti-presentation', doc: 'ti-file-text', video: 'ti-video', link: 'ti-external-link' };
+      const colorMap = { slides: 'slides', doc: 'doc', video: 'video', link: 'link' };
+      matList.innerHTML = data.materials.map(m => `
+        <a class="material-row" href="${m.url}" target="_blank" rel="noopener">
+          <div class="material-icon ${colorMap[m.type] || 'link'}">
+            <i class="ti ${iconMap[m.type] || 'ti-file'}" aria-hidden="true"></i>
+          </div>
+          <span class="material-title">${m.title}</span>
+          <span class="material-date">${m.date}</span>
+        </a>
+      `).join('');
+
+      // Upcoming
+      const upList = document.getElementById('upcoming-list');
+      upList.innerHTML = data.upcoming.map(u => `
+        <div class="upcoming-row">
+          <span class="upcoming-title">${u.title}</span>
+          <span class="upcoming-date">${u.date}</span>
+        </div>
+      `).join('');
+
+      // Key Links
+      const linksList = document.getElementById('links-list');
+      linksList.innerHTML = data.key_links.map(l => `
+        <a class="key-link" href="${l.url}" target="_blank" rel="noopener">
+          <i class="ti ${l.icon}" aria-hidden="true"></i>
+          ${l.title}
+          <i class="ti ti-external-link ext" aria-hidden="true"></i>
+        </a>
+      `).join('');
+
+      // Period dropdown
+      const periodSelect = document.getElementById('period-select');
+      const nameSelect = document.getElementById('name-select');
+
+      data.periods.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = p.label;
+        periodSelect.appendChild(opt);
+      });
+
+      periodSelect.addEventListener('change', () => {
+        const period = data.periods.find(p => p.id === periodSelect.value);
+        nameSelect.innerHTML = '<option value="">Select your name...</option>';
+        if (period) {
+          period.students.forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s;
+            opt.textContent = s;
+            nameSelect.appendChild(opt);
+          });
+          nameSelect.disabled = false;
+        } else {
+          nameSelect.disabled = true;
+        }
+        checkReady();
+      });
+
+      nameSelect.addEventListener('change', checkReady);
+      document.getElementById('exit-response').addEventListener('input', checkReady);
+    }
+
+    function checkReady() {
+      const period = document.getElementById('period-select').value;
+      const name = document.getElementById('name-select').value;
+      const response = document.getElementById('exit-response').value.trim();
+      document.getElementById('submit-btn').disabled = !(period && name && response.length > 3);
+    }
+
+    // ── SUBMIT EXIT TICKET ──
+    document.getElementById('submit-btn').addEventListener('click', async () => {
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      const period = document.getElementById('period-select').value;
+      const name = document.getElementById('name-select').value;
+      const response = document.getElementById('exit-response').value.trim();
+      const question = document.getElementById('exit-question').textContent;
+      const today = new Date().toLocaleDateString('en-US');
+
+      // ── REPLACE THIS URL with your Google Apps Script deployment URL ──
+      const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ date: today, period, name, question, response })
+        });
+        document.getElementById('exit-form-wrapper').style.display = 'none';
+        document.getElementById('submit-success').style.display = 'block';
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="ti ti-send"></i> Submit Exit Ticket';
+        alert('Something went wrong. Please try again.');
+      }
+    });
+
+    // ── THIS DAY IN HISTORY ──
+    async function loadHistory() {
+      const now = new Date();
+      const month = now.getMonth() + 1;
+      const day = now.getDate();
+
+      const GOV_KEYWORDS = [
+        'congress', 'senate', 'house of representatives', 'president', 'constitution',
+        'amendment', 'supreme court', 'court', 'law', 'act', 'bill', 'signed',
+        'ratified', 'election', 'vote', 'declaration', 'independence', 'rights',
+        'civil', 'government', 'federal', 'republic', 'democracy', 'war', 'treaty',
+        'inaugural', 'white house', 'justice', 'ruling', 'landmark'
+      ];
+
+      try {
+        const res = await fetch(`https://history.muffinlabs.com/date/${month}/${day}`);
+        const data = await res.json();
+        const events = data.data.Events;
+
+        // Score each event by keyword matches
+        const scored = events.map(e => {
+          const text = e.text.toLowerCase();
+          const score = GOV_KEYWORDS.reduce((acc, kw) => acc + (text.includes(kw) ? 1 : 0), 0);
+          return { ...e, score };
+        });
+
+        // Sort by score then pick top result
+        scored.sort((a, b) => b.score - a.score);
+        const best = scored[0];
+
+        document.getElementById('tdih-year').textContent = `On This Day — ${best.year}`;
+        document.getElementById('tdih-text').textContent = best.text;
+
+      } catch (err) {
+        document.getElementById('tdih-year').textContent = 'On This Day';
+        document.getElementById('tdih-text').textContent = 'Could not load today\'s historical event. Check your connection.';
+      }
+    }
+
+    // ── NAV TABS ──
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        // Additional tab content sections can be wired up here
+      });
+    });
+
+    // ── INIT ──
+    loadContent();
+    loadHistory();
+  </script>
+</body>
+</html>
