@@ -32,7 +32,7 @@
       <a href="#home" data-view-link="home">Home</a>
       <a href="#units" data-view-link="units">Units</a>
       <a href="#foundations" data-view-link="foundations">Foundations</a>
-      <a href="#words" data-view-link="words">Visual words</a>
+      <a href="#words" data-view-link="words">Glossary</a>
       <a href="#help" data-view-link="help">Help</a>
     </nav>
   </header>
@@ -133,7 +133,7 @@
         <button type="button" role="tab" aria-selected="true" aria-controls="foundation-documents" data-foundation-tab="documents">DOCUMENTS</button>
         <button type="button" role="tab" aria-selected="false" aria-controls="foundation-amendments" data-foundation-tab="amendments">AMENDMENTS</button>
         <button type="button" role="tab" aria-selected="false" aria-controls="foundation-skills" data-foundation-tab="skills">SKILL BUILDERS</button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="foundation-madison" data-foundation-tab="madison">WHAT WOULD MADISON SAY?</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="foundation-madison" data-foundation-tab="madison">MADISON VS. BRUTUS</button>
       </div>
 
       <section class="foundation-panel" id="foundation-documents" role="tabpanel">
@@ -154,7 +154,7 @@
       </section>
 
       <section class="foundation-panel" id="foundation-madison" role="tabpanel" hidden>
-        <div class="tool-heading"><div><p class="eyebrow">CONSTITUTIONAL DEBATE</p><h2>WHAT WOULD MADISON SAY?</h2></div><p>READ TWO VIEWS. CHOOSE. DEFEND.</p></div>
+        <div class="tool-heading"><div><p class="eyebrow">CONSTITUTIONAL DEBATE</p><h2>MADISON VS. BRUTUS</h2></div><p>READ TWO VIEWS. CHOOSE. DEFEND.</p></div>
         <div class="madison-topics" id="madison-topics"></div>
         <article class="madison-workspace" id="madison-workspace"></article>
       </section>
@@ -162,9 +162,18 @@
 
     <section class="view" id="words" data-view="words" hidden>
       <div class="page-intro">
-        <p class="eyebrow">Visual vocabulary</p>
-        <h1>BIG WORDS, PLAIN LANGUAGE.</h1>
-        <p>Choose a term for a short definition and a concrete example.</p>
+        <p class="eyebrow">COURSE GLOSSARY</p>
+        <h1>GOVERNMENT WORDS, PLAIN LANGUAGE.</h1>
+        <p>Find a short definition and one concrete example. Start with this unit or search every term.</p>
+      </div>
+      <div class="glossary-tools">
+        <label for="glossary-search">SEARCH THE GLOSSARY</label>
+        <input id="glossary-search" type="search" inputmode="search" autocomplete="off" placeholder="TRY: RIGHTS, COURTS, OR POWER">
+        <div class="glossary-filters" id="glossary-filters" aria-label="Filter glossary terms">
+          <button type="button" aria-pressed="true" data-glossary-filter="current">CURRENT UNIT</button>
+          <button type="button" aria-pressed="false" data-glossary-filter="all">ALL TERMS</button>
+        </div>
+        <p id="glossary-status" class="glossary-status" role="status"></p>
       </div>
       <div class="word-grid" id="word-grid"></div>
     </section>
@@ -231,7 +240,7 @@
         </fieldset>
         <fieldset>
           <legend>FOUNDATIONS SKILL LEVELS</legend>
-          <p class="admin-foundation-note">LEVEL 1 IS ALWAYS OPEN. CHOOSE WHICH LATER LEVELS STUDENTS MAY USE.</p>
+          <p class="admin-foundation-note">ALL LEVELS OPEN BY DEFAULT. ADJUST ONLY IF THIS CLASS NEEDS A SMALLER START.</p>
           <div id="admin-foundation-unlocks"></div>
         </fieldset>
       </div>

@@ -18,6 +18,8 @@
   let historyIndex = 0;
   let devKeys = "";
   let amendmentFilter = "current";
+  let glossaryFilter = "current";
+  let glossaryQuery = "";
 
   function showView(name) {
     const isUnit = data.units.some(unit => unit.id === name);
@@ -136,7 +138,12 @@
 
   function renderWords() {
     wordGrid.replaceChildren();
-    data.words.forEach(word => {
+    const matches = data.words.filter(word => {
+      const inUnit = glossaryFilter === "all" || word[4] === currentUnitId;
+      const text = `${word[0]} ${word[2]} ${word[3]}`.toLowerCase();
+      return inUnit && text.includes(glossaryQuery);
+    });
+    matches.forEach(word => {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "word-card";
@@ -147,6 +154,17 @@
       button.addEventListener("click", () => openWord(word, button));
       wordGrid.appendChild(button);
     });
+    const status = document.getElementById("glossary-status");
+    status.textContent = `${matches.length} ${matches.length === 1 ? "TERM" : "TERMS"} SHOWN`;
+    document.querySelectorAll("[data-glossary-filter]").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.glossaryFilter === glossaryFilter));
+    });
+    if (!matches.length) {
+      const empty = document.createElement("p");
+      empty.className = "empty-state";
+      empty.textContent = "NO MATCH YET. TRY A SHORTER WORD OR CHOOSE ALL TERMS.";
+      wordGrid.appendChild(empty);
+    }
   }
 
   function renderDocuments() {
@@ -287,7 +305,7 @@
       summary.textContent = skill.summary;
       const levels = document.createElement("div");
       levels.className = "skill-levels";
-      const unlockedThrough = Number(siteContent.foundationUnlocks?.[skill.id] || 1);
+      const unlockedThrough = Number(siteContent.foundationUnlocks?.[skill.id] || 3);
       skill.levels.forEach((level, index) => {
         const levelNumber = index + 1;
         const button = document.createElement("button");
@@ -353,7 +371,7 @@
     question.textContent = debate.question;
     const sides = document.createElement("div");
     sides.className = "madison-sides";
-    [["FEDERALIST VIEW", debate.federalist, debate.federalistSource], ["ANTI-FEDERALIST VIEW", debate.anti, debate.antiSource]].forEach(([labelText, argument, source]) => {
+    [["MADISON · FEDERALIST VIEW", debate.federalist, debate.federalistSource], ["BRUTUS · ANTI-FEDERALIST VIEW", debate.anti, debate.antiSource]].forEach(([labelText, argument, source]) => {
       const side = document.createElement("section");
       side.className = "madison-side";
       const label = document.createElement("h4");
@@ -452,7 +470,7 @@
       const response = await fetch("site-content.json", { cache: "no-store" });
       if (!response.ok) throw new Error("Site content unavailable");
       siteContent = await response.json();
-      siteContent.foundationUnlocks = siteContent.foundationUnlocks || { source: 1, argument: 1, language: 1 };
+      siteContent.foundationUnlocks = siteContent.foundationUnlocks || { source: 3, argument: 3, language: 3 };
       const local = localStorage.getItem(CONTENT_STORAGE_KEY);
       if (local) siteContent = { ...siteContent, ...JSON.parse(local) };
       if (data.units.some(unit => unit.id === siteContent.currentUnit)) currentUnitId = siteContent.currentUnit;
@@ -466,6 +484,7 @@
     document.getElementById("current-action").firstChild.textContent = `OPEN ${current.number.toUpperCase()} `;
     renderSiteContent();
     renderUnits();
+    renderWords();
     renderAmendments();
     renderSkills();
   }
@@ -552,7 +571,7 @@
         const option = document.createElement("option");
         option.value = level;
         option.textContent = `LEVELS 1–${level} OPEN`;
-        option.selected = level === Number(siteContent.foundationUnlocks?.[skill.id] || 1);
+        option.selected = level === Number(siteContent.foundationUnlocks?.[skill.id] || 3);
         select.appendChild(option);
       });
       row.appendChild(select);
@@ -622,6 +641,16 @@
   adminOverlay.addEventListener("click", event => { if (event.target === adminOverlay) closeAdmin(); });
   dialog.querySelector(".dialog-close").addEventListener("click", closeWord);
   dialog.addEventListener("click", event => { if (event.target === dialog) closeWord(); });
+  document.getElementById("glossary-search").addEventListener("input", event => {
+    glossaryQuery = event.target.value.trim().toLowerCase();
+    renderWords();
+  });
+  document.getElementById("glossary-filters").addEventListener("click", event => {
+    const button = event.target.closest("[data-glossary-filter]");
+    if (!button) return;
+    glossaryFilter = button.dataset.glossaryFilter;
+    renderWords();
+  });
   document.addEventListener("keydown", event => {
     if (event.key === "Escape" && !dialog.hidden) closeWord();
     if (event.key === "Escape" && !foundationDialog.hidden) closeFoundationDialog();

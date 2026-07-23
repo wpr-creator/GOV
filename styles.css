@@ -149,6 +149,13 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .standard-tag { padding: .3rem .55rem; color: var(--black); background: var(--stone); border-radius: 2px; font-size: .72rem; font-weight: 900; }
 
 .word-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.glossary-tools { margin-bottom: 1.25rem; padding: 1rem; border: 1px solid var(--line); background: var(--stone); border-radius: var(--radius); }
+.glossary-tools label { display: block; margin-bottom: .45rem; font-size: .75rem; font-weight: 950; letter-spacing: .06em; }
+.glossary-tools input { width: 100%; min-height: 50px; padding: .75rem .9rem; border: 2px solid var(--black); background: var(--white); color: var(--black); font: inherit; font-weight: 750; }
+.glossary-filters { margin-top: .75rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+.glossary-filters button { min-height: 44px; padding: .6rem .85rem; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-size: .75rem; font-weight: 950; }
+.glossary-filters button[aria-pressed="true"] { color: var(--white); background: var(--black); }
+.glossary-status { min-height: 1.2rem; margin: .65rem 0 0; color: var(--muted); font-size: .75rem; font-weight: 900; }
 .word-card { min-height: 175px; padding: 1.3rem; text-align: left; border: 1px solid var(--line); background: var(--white); border-radius: 18px; cursor: pointer; }
 .word-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 .word-symbol { width: 48px; height: 48px; display: grid; place-items: center; color: var(--white); background: var(--black); border-radius: 2px; font-size: 1.4rem; font-weight: 950; }

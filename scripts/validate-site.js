@@ -33,6 +33,12 @@ for (const fragment of ["<main", "<nav", "Skip to the course", "prefers-reduced-
 if (!Array.isArray(data.units) || data.units.length !== 8) errors.push("Expected 8 Government units.");
 const lessonCount = data.units.reduce((count, unit) => count + unit.lessons.length, 0);
 if (lessonCount !== 38) errors.push(`Expected all 38 pacing entries; found ${lessonCount}.`);
+if (!Array.isArray(data.words) || data.words.length !== 56) errors.push(`Expected 56 plain-language glossary terms; found ${data.words?.length || 0}.`);
+data.words?.forEach((word, index) => {
+  if (word.length !== 5 || word.some(value => !String(value).trim()) || !data.units.some(unit => unit.id === word[4])) {
+    errors.push(`Glossary term ${index + 1} is incomplete or has an unknown unit.`);
+  }
+});
 if (!data.units.some(unit => unit.id === config.currentUnit)) errors.push(`Unknown currentUnit: ${config.currentUnit}`);
 data.units.forEach(unit => {
   for (const key of ["id", "number", "title", "question", "standards", "overview", "lessons"]) {
@@ -68,4 +74,4 @@ if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
-console.log(`Site validation passed: ${data.units.length} units, ${lessonCount} pacing entries, ${foundations.documents.length} documents, ${foundations.amendments.length} amendments, ${foundations.debates.length} debates, and ${foundations.skills.length} skill builders.`);
+console.log(`Site validation passed: ${data.units.length} units, ${lessonCount} pacing entries, ${data.words.length} glossary terms, ${foundations.documents.length} documents, ${foundations.amendments.length} amendments, ${foundations.debates.length} debates, and ${foundations.skills.length} skill builders.`);
