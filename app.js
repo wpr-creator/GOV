@@ -166,7 +166,7 @@
       console.warn("Using the default current unit.", error);
     }
     const current = data.units.find(unit => unit.id === currentUnitId);
-    document.getElementById("current-unit-number").textContent = `${current.number} · Semester 1`;
+    document.getElementById("current-unit-number").textContent = `${current.number} · Principles of Government`;
     document.getElementById("now-title").textContent = current.title;
     document.getElementById("current-question").textContent = current.question;
     document.getElementById("current-action").href = `#${current.id}`;
@@ -179,15 +179,6 @@
     menuButton.setAttribute("aria-expanded", String(open));
   });
   document.getElementById("back-to-units").addEventListener("click", () => { location.hash = "units"; });
-  document.getElementById("government-tab").addEventListener("click", () => switchSemester("government"));
-  document.getElementById("economics-tab").addEventListener("click", () => switchSemester("economics"));
-  function switchSemester(name) {
-    const government = name === "government";
-    document.getElementById("government-tab").setAttribute("aria-selected", String(government));
-    document.getElementById("economics-tab").setAttribute("aria-selected", String(!government));
-    document.getElementById("government-units").hidden = !government;
-    document.getElementById("economics-units").hidden = government;
-  }
   dialog.querySelector(".dialog-close").addEventListener("click", closeWord);
   dialog.addEventListener("click", event => { if (event.target === dialog) closeWord(); });
   document.addEventListener("keydown", event => {

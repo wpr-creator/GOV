@@ -1,9 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title id="title">CP Government and Economics course mark</title>
-  <desc id="desc">Four paths connect to one center point, representing power, rules, rights, and voice.</desc>
-  <rect width="64" height="64" rx="16" fill="#f4b942"/>
-  <circle cx="32" cy="32" r="9" fill="#163f3a"/>
-  <path d="M32 7v16M57 32H41M32 57V41M7 32h16" stroke="#163f3a" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="32" cy="7" r="4" fill="#163f3a"/><circle cx="57" cy="32" r="4" fill="#163f3a"/>
-  <circle cx="32" cy="57" r="4" fill="#163f3a"/><circle cx="7" cy="32" r="4" fill="#163f3a"/>
+  <title id="title">Principles of Government course mark</title>
+  <desc id="desc">A simplified white civic building with three columns on a black field.</desc>
+  <rect width="64" height="64" rx="12" fill="#111"/>
+  <path d="M10 22 32 9l22 13H10Z" fill="#f7f7f5"/>
+  <path d="M13 25h38v5H13zm4 8h6v17h-6zm12 0h6v17h-6zm12 0h6v17h-6zM10 53h44v4H10z" fill="#d4d4d1"/>
 </svg>

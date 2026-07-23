@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#163f3a">
-  <meta name="description" content="CP Government and CP Economics course home: find the current unit, see the big idea, and choose your next step.">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Principles of Government course home: find the current unit, see the big idea, and choose your next step.">
   <link rel="canonical" href="https://wpr-creator.github.io/GOV/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="CP Government & Economics">
+  <meta property="og:title" content="Principles of Government">
   <meta property="og:description" content="Know where you are. See the big idea. Take the next step.">
   <meta property="og:url" content="https://wpr-creator.github.io/GOV/">
-  <title>CP Government & Economics</title>
+  <title>Principles of Government</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script src="course-data.js" defer></script>
@@ -20,9 +20,9 @@
   <a class="skip-link" href="#main">Skip to the course</a>
 
   <header class="site-header">
-    <a class="brand" href="#home" aria-label="CP Government and Economics home">
+    <a class="brand" href="#home" aria-label="Principles of Government home">
       <img src="assets/course-mark.svg" alt="" width="44" height="44">
-      <span><strong>CP Government</strong><small>& CP Economics</small></span>
+      <span><strong>Principles of Government</strong><small>Mr. Rogers</small></span>
     </a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
       <span aria-hidden="true">☰</span> Menu
@@ -41,21 +41,17 @@
         <div class="hero-copy">
           <p class="eyebrow">2026–27 · Your course home</p>
           <h1>Understand the system.<br><span>Use your voice.</span></h1>
-          <p class="hero-intro">One year. Two classes. Start with what is open, then take one clear next step.</p>
-          <div class="course-path" aria-label="Course sequence">
-            <span class="path-stop active">1 <b>Government</b></span>
-            <span class="path-line" aria-hidden="true"></span>
-            <span class="path-stop">2 <b>Economics</b></span>
-          </div>
+          <p class="hero-intro">Learn how power works, how rights are protected, and how people shape public life.</p>
+          <p class="course-line">POWER <span>·</span> RIGHTS <span>·</span> VOICE</p>
         </div>
         <div class="hero-visual" aria-hidden="true">
-          <div class="orbit orbit-one"></div>
-          <div class="orbit orbit-two"></div>
-          <span class="orbit-word power">POWER</span>
-          <span class="orbit-word rules">RULES</span>
-          <span class="orbit-word rights">RIGHTS</span>
-          <span class="orbit-word voice">VOICE</span>
-          <div class="center-mark">YOU</div>
+          <div class="pediment"></div>
+          <div class="entablature"></div>
+          <div class="columns">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="steps"><span></span><span></span><span></span></div>
+          <div class="building-label">THE PEOPLE</div>
         </div>
       </div>
 
@@ -75,19 +71,21 @@
 
       <section class="at-a-glance" aria-labelledby="glance-title">
         <div class="section-heading">
-          <div><p class="eyebrow">Your map</p><h2 id="glance-title">The year at a glance</h2></div>
+          <div><p class="eyebrow">Your map</p><h2 id="glance-title">The course at a glance</h2></div>
           <a href="#units">See all units <span aria-hidden="true">→</span></a>
         </div>
-        <div class="semester-cards">
-          <article class="semester-card government">
-            <div class="semester-icon" aria-hidden="true">⌂</div>
-            <div><p>Semester 1</p><h3>CP Government</h3><p>Power, rights, institutions, participation, and democratic systems.</p></div>
-            <strong>8 units</strong>
+        <div class="semester-cards course-pillars">
+          <article class="semester-card">
+            <div class="semester-icon" aria-hidden="true">I</div>
+            <div><p>Pillar 1</p><h3>Power & Institutions</h3><p>How constitutions, branches, courts, and levels of government organize power.</p></div>
           </article>
-          <article class="semester-card economics">
-            <div class="semester-icon" aria-hidden="true">↗</div>
-            <div><p>Semester 2</p><h3>CP Economics</h3><p>The Economics course path will appear here when its source guide is added.</p></div>
-            <strong class="status-chip"><span aria-hidden="true">◇</span> Preview</strong>
+          <article class="semester-card">
+            <div class="semester-icon" aria-hidden="true">II</div>
+            <div><p>Pillar 2</p><h3>Rights & Responsibilities</h3><p>How liberty, equality, citizenship, and civil society work in real life.</p></div>
+          </article>
+          <article class="semester-card">
+            <div class="semester-icon" aria-hidden="true">III</div>
+            <div><p>Pillar 3</p><h3>Voice & Systems</h3><p>How people participate, shape policy, and protect democracy.</p></div>
           </article>
         </div>
       </section>
@@ -99,19 +97,8 @@
         <h1>Learn in clear stages.</h1>
         <p>Open the current unit. Locked units show what comes next without adding extra work now.</p>
       </div>
-      <div class="semester-switch" role="tablist" aria-label="Choose semester">
-        <button role="tab" aria-selected="true" aria-controls="government-units" id="government-tab">Semester 1 · Government</button>
-        <button role="tab" aria-selected="false" aria-controls="economics-units" id="economics-tab">Semester 2 · Economics</button>
-      </div>
-      <section id="government-units" role="tabpanel" aria-labelledby="government-tab">
+      <section id="government-units" aria-label="Government units">
         <div class="unit-grid" id="unit-grid"></div>
-      </section>
-      <section id="economics-units" role="tabpanel" aria-labelledby="economics-tab" hidden>
-        <div class="source-notice">
-          <span class="notice-icon" aria-hidden="true">↗</span>
-          <div><p class="eyebrow">Semester 2</p><h2>Economics is saved a place.</h2>
-          <p>The supplied pacing and standards files end with Government. Economics units will be added here after the matching source pages are provided—without guessing or borrowing a different sequence.</p></div>
-        </div>
       </section>
     </section>
 
@@ -147,7 +134,7 @@
   </main>
 
   <footer>
-    <p>CP Government & Economics · Mr. Rogers · Built for clear next steps</p>
+    <p>Principles of Government · Mr. Rogers · Built for clear next steps</p>
     <a href="#help">Need help reading an assignment?</a>
   </footer>
 

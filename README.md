@@ -1,6 +1,6 @@
-# CP Government & CP Economics
+# Principles of Government
 
-A mobile-first, static course site for the 2026–27 school year.
+A mobile-first, static Principles of Government course site for the 2026–27 school year.
 
 ## The one teacher setting
 
@@ -16,9 +16,8 @@ Use `gov-0` through `gov-7`. The selected unit and all earlier units open; later
 
 ## Curriculum structure
 
-- Semester 1 contains eight student-facing Government units.
+- The course contains eight student-facing Government units.
 - Every pacing-guide topic, essential question, activity, assessment, and standards mapping is retained inside those units.
-- Semester 2 has a clearly marked Economics space, but no Economics sequence has been invented. The supplied standards and pacing files both end with Government content.
 - School dates, rosters, assignments, and live resource links are intentionally not required for this preseason version.
 
 ## Files
