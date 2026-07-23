@@ -1,70 +1,41 @@
-# Mr. Rogers — Principles of American Democracy Website
-## Repo: https://github.com/wpr-creator/GOV
+# CP Government & CP Economics
 
-This is the CP Government course site. It uses the same structure as the AP Gov site, but it removes AP-specific links and uses a separate course identity.
+A mobile-first, static course site for the 2026–27 school year.
 
-## How to update your site each week
+## The one teacher setting
 
-### THE ONLY FILE YOU NEED TO EDIT WEEKLY: content.json
+Open `course-config.json` and change `currentUnit`:
 
-Open `content.json` on GitHub, click the pencil icon, and change:
-
-- `current_unit` → your current unit name
-- `week` → the week label
-- `exit_ticket` → this week's exit ticket question
-- `materials` → add new materials at the top
-- `upcoming` → update due dates, quizzes, essays, projects, or reminders
-- `periods` → update rosters as needed
-
-Click **Commit changes** and the site should update shortly after GitHub Pages rebuilds.
-
----
-
-## File structure
-
-```text
-GOV/
-├── index.html              ← the website design and code
-├── content.json            ← weekly course updates
-├── exit-ticket-script.gs   ← paste into Google Apps Script one time
-└── README.md               ← this guide
+```json
+{
+  "currentUnit": "gov-0"
+}
 ```
 
----
+Use `gov-0` through `gov-7`. The selected unit and all earlier units open; later units stay locked. This is the only file needed to advance the course.
 
-## First-time setup checklist
+## Curriculum structure
 
-- [ ] Upload `index.html`, `content.json`, `exit-ticket-script.gs`, and `README.md` to the root of the GOV repo
-- [ ] Turn on GitHub Pages: Settings → Pages → Deploy from branch → main → /(root)
-- [ ] Create a Google Sheet for exit tickets
-- [ ] Copy the Sheet URL
-- [ ] Go to script.google.com → New Project
-- [ ] Paste everything from `exit-ticket-script.gs`
-- [ ] Replace `YOUR_GOOGLE_SHEET_URL_HERE` with your Sheet URL
-- [ ] Deploy as a Web App
-- [ ] Copy the Web App URL
-- [ ] In `index.html`, replace `YOUR_GOOGLE_APPS_SCRIPT_URL_HERE` with that Web App URL
+- Semester 1 contains eight student-facing Government units.
+- Every pacing-guide topic, essential question, activity, assessment, and standards mapping is retained inside those units.
+- Semester 2 has a clearly marked Economics space, but no Economics sequence has been invented. The supplied standards and pacing files both end with Government content.
+- School dates, rosters, assignments, and live resource links are intentionally not required for this preseason version.
 
----
+## Files
 
-## Google Sheet columns
+- `index.html` — semantic page structure
+- `styles.css` — visual system and responsive/accessibility behavior
+- `course-data.js` — unit, lesson, standards, and visual-vocabulary content
+- `course-config.json` — current-unit unlock control
+- `app.js` — navigation and interaction
+- `assets/course-mark.svg` — original course mark
+- `scripts/validate-site.js` — local content and reference checks
+- `docs/curriculum-inventory.md` — source-to-site curriculum inventory
 
-Submissions appear automatically with these columns:
+## Check the site
 
-`Date | Period | Student Name | Question | Response | Timestamp`
+```sh
+node scripts/validate-site.js
+```
 
-Use filters in Google Sheets to view one period, one student, or one question at a time.
-
----
-
-## Notes for this CP Government site
-
-This site is for **Principles of American Democracy**, not AP Government. Keep AP-specific resources like AP Classroom and College Board on the AP Gov site only.
-
-Suggested course links:
-
-- Google Classroom
-- Newsela
-- iCivics
-- Bill of Rights Institute
-- USA.gov
+No build step or paid service is required. GitHub Pages can serve the repository root.
