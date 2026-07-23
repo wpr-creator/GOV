@@ -25,7 +25,7 @@ The selected unit and all earlier units open; later units stay locked.
 
 - `index.html` — semantic page structure
 - `styles.css` — visual system and responsive/accessibility behavior
-- `course-data.js` — unit, lesson, standards, and visual-vocabulary content
+- `course-data.js` — unit, lesson, standards, and plain-language glossary content
 - `foundations-data.js` — documents, amendments, skill builders, and Madison debates
 - `site-content.json` — current unit, exit ticket, upcoming assignments, and Classroom link
 - `app.js` — navigation and interaction
@@ -39,9 +39,10 @@ The permanent Foundations section contains:
 - 10 essential documents in short excerpt / plain language / why it matters format
 - all 27 amendments, filtered by current unit, Bill of Rights, voting, or complete list
 - Read the Source, Build the Argument, and Use the Language skill builders
-- four simplified What Would Madison Say? constitutional debates
+- four simplified Madison vs. Brutus constitutional debates
+- a searchable, unit-filtered glossary with 56 short definitions and concrete examples
 
-Skill Builder Level 1 is always open. In `dev` mode, set each skill to open through Level 1, 2, or 3. Those choices are included when `site-content.json` is copied.
+All three Skill Builder levels are open by default. In `dev` mode, a teacher can set each skill to open through Level 1, 2, or 3. Those choices are included when `site-content.json` is copied.
 - `scripts/validate-site.js` — local content and reference checks
 - `docs/curriculum-inventory.md` — source-to-site curriculum inventory
 
