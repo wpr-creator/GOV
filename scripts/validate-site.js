@@ -6,13 +6,13 @@ const vm = require("vm");
 const root = path.resolve(__dirname, "..");
 const errors = [];
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
-const config = JSON.parse(fs.readFileSync(path.join(root, "course-config.json"), "utf8"));
+const config = JSON.parse(fs.readFileSync(path.join(root, "site-content.json"), "utf8"));
 const context = { window: {} };
 vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, "course-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 
-for (const file of ["index.html", "styles.css", "app.js", "course-data.js", "course-config.json", "assets/course-mark.svg"]) {
+for (const file of ["index.html", "styles.css", "app.js", "course-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 

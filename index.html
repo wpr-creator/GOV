@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111111">
-  <meta name="description" content="Principles of Government course home: find the current unit, see the big idea, and choose your next step.">
+  <meta name="description" content="Principles of American Democracy course home: find the current unit, upcoming work, daily political history, and classroom tools.">
   <link rel="canonical" href="https://wpr-creator.github.io/GOV/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Principles of Government">
-  <meta property="og:description" content="Know where you are. See the big idea. Take the next step.">
+  <meta property="og:title" content="Principles of American Democracy">
+  <meta property="og:description" content="Course units, upcoming work, daily political history, and classroom tools.">
   <meta property="og:url" content="https://wpr-creator.github.io/GOV/">
-  <title>Principles of Government</title>
+  <title>Principles of American Democracy</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script src="course-data.js" defer></script>
@@ -20,9 +20,9 @@
   <a class="skip-link" href="#main">Skip to the course</a>
 
   <header class="site-header">
-    <a class="brand" href="#home" aria-label="Principles of Government home">
+    <a class="brand" href="#home" aria-label="Principles of American Democracy home">
       <img src="assets/course-mark.svg" alt="" width="44" height="44">
-      <span><strong>Principles of Government</strong><small>Mr. Rogers</small></span>
+      <span><strong>PRINCIPLES OF AMERICAN DEMOCRACY</strong><small>MR. ROGERS</small></span>
     </a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
       <span aria-hidden="true">☰</span> Menu
@@ -40,9 +40,8 @@
       <div class="hero">
         <div class="hero-copy">
           <p class="eyebrow">2026–27 · Your course home</p>
-          <h1>Understand the system.<br><span>Use your voice.</span></h1>
-          <p class="hero-intro">Learn how power works, how rights are protected, and how people shape public life.</p>
-          <p class="course-line">POWER <span>·</span> RIGHTS <span>·</span> VOICE</p>
+          <h1>PRINCIPLES OF<br><span>AMERICAN DEMOCRACY</span></h1>
+          <p class="hero-intro">COURSE HOME · 2026–27</p>
         </div>
         <div class="hero-visual" aria-hidden="true">
           <div class="pediment"></div>
@@ -65,36 +64,55 @@
         <div class="next-step">
           <p>Do this next</p>
           <a class="primary-action" id="current-action" href="#units">Open the current unit <span aria-hidden="true">→</span></a>
-          <small>No login needed</small>
         </div>
       </section>
 
-      <section class="at-a-glance" aria-labelledby="glance-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">Your map</p><h2 id="glance-title">The course at a glance</h2></div>
-          <a href="#units">See all units <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="semester-cards course-pillars">
-          <article class="semester-card">
-            <div class="semester-icon" aria-hidden="true">I</div>
-            <div><p>Pillar 1</p><h3>Power & Institutions</h3><p>How constitutions, branches, courts, and levels of government organize power.</p></div>
-          </article>
-          <article class="semester-card">
-            <div class="semester-icon" aria-hidden="true">II</div>
-            <div><p>Pillar 2</p><h3>Rights & Responsibilities</h3><p>How liberty, equality, citizenship, and civil society work in real life.</p></div>
-          </article>
-          <article class="semester-card">
-            <div class="semester-icon" aria-hidden="true">III</div>
-            <div><p>Pillar 3</p><h3>Voice & Systems</h3><p>How people participate, shape policy, and protect democracy.</p></div>
-          </article>
-        </div>
+      <section class="home-dashboard" aria-label="Course tools">
+        <article class="dashboard-card history-card">
+          <div class="card-heading">
+            <div><p class="eyebrow">TODAY</p><h2>THIS DAY IN POLITICS</h2></div>
+            <span class="date-badge" id="history-date">TODAY</span>
+          </div>
+          <div class="history-body">
+            <div class="history-year" id="history-year">—</div>
+            <div>
+              <p id="history-text">LOADING TODAY’S POLITICAL HISTORY…</p>
+              <p class="history-connection" id="history-connection"></p>
+              <a class="history-source" id="history-source" href="#" target="_blank" rel="noopener" hidden>SOURCE ↗</a>
+            </div>
+          </div>
+          <div class="history-controls">
+            <button type="button" id="history-prev">← PREVIOUS</button>
+            <button type="button" id="history-next">NEXT →</button>
+          </div>
+        </article>
+
+        <article class="dashboard-card upcoming-card">
+          <div class="card-heading"><div><p class="eyebrow">PLAN AHEAD</p><h2>UPCOMING ASSIGNMENTS</h2></div></div>
+          <div id="upcoming-list" class="upcoming-list"></div>
+        </article>
+
+        <article class="dashboard-card classroom-card">
+          <div class="classroom-mark" aria-hidden="true">G</div>
+          <div><p class="eyebrow">COURSE LINK</p><h2>GOOGLE CLASSROOM</h2><p>OPEN CLASS MATERIALS, ANNOUNCEMENTS, AND ASSIGNMENTS.</p></div>
+          <a class="primary-action" id="classroom-link" href="https://classroom.google.com/c/ODcxMDI4ODY2NDUy" target="_blank" rel="noopener">OPEN CLASSROOM <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <article class="dashboard-card exit-card">
+          <div class="card-heading"><div><p class="eyebrow">CHECK FOR UNDERSTANDING</p><h2>EXIT TICKET</h2></div></div>
+          <p class="exit-question" id="exit-question">EXIT TICKET SYSTEM WILL APPEAR HERE.</p>
+          <label for="exit-response">YOUR RESPONSE</label>
+          <textarea id="exit-response" rows="4" placeholder="TYPE YOUR RESPONSE…" disabled></textarea>
+          <button class="exit-submit" type="button" disabled>SUBMIT EXIT TICKET</button>
+          <p class="system-note">SUBMISSION CONNECTION WILL BE ADDED HERE.</p>
+        </article>
       </section>
     </section>
 
     <section class="view" id="units" data-view="units" hidden>
       <div class="page-intro">
         <p class="eyebrow">Course map</p>
-        <h1>Learn in clear stages.</h1>
+        <h1>LEARN IN CLEAR STAGES.</h1>
         <p>Open the current unit. Locked units show what comes next without adding extra work now.</p>
       </div>
       <section id="government-units" aria-label="Government units">
@@ -110,7 +128,7 @@
     <section class="view" id="words" data-view="words" hidden>
       <div class="page-intro">
         <p class="eyebrow">Visual vocabulary</p>
-        <h1>Big words, plain language.</h1>
+        <h1>BIG WORDS, PLAIN LANGUAGE.</h1>
         <p>Choose a term for a short definition and a concrete example.</p>
       </div>
       <div class="word-grid" id="word-grid"></div>
@@ -119,7 +137,7 @@
     <section class="view" id="help" data-view="help" hidden>
       <div class="page-intro">
         <p class="eyebrow">Reading support</p>
-        <h1>When the work feels stuck.</h1>
+        <h1>WHEN THE WORK FEELS STUCK.</h1>
       </div>
       <div class="help-grid">
         <article><span aria-hidden="true">1</span><h2>Find the verb.</h2><p>Circle the action word: explain, compare, analyze, or defend.</p></article>
@@ -134,7 +152,7 @@
   </main>
 
   <footer>
-    <p>Principles of Government · Mr. Rogers · Built for clear next steps</p>
+    <p>PRINCIPLES OF AMERICAN DEMOCRACY · MR. ROGERS</p>
     <a href="#help">Need help reading an assignment?</a>
   </footer>
 
@@ -145,6 +163,37 @@
       <h2 id="dialog-term"></h2>
       <p id="dialog-definition"></p>
       <div class="example-box"><strong>Picture it</strong><p id="dialog-example"></p></div>
+    </div>
+  </div>
+
+  <div class="admin-overlay" id="admin-overlay" role="dialog" aria-modal="true" aria-labelledby="admin-title" hidden>
+    <div class="admin-panel">
+      <div class="admin-header">
+        <div><p class="eyebrow">TYPE “DEV” TO OPEN OR CLOSE</p><h2 id="admin-title">SITE EDIT MODE</h2></div>
+        <button type="button" id="admin-close" aria-label="Close site edit mode">×</button>
+      </div>
+      <div class="admin-grid">
+        <label>CURRENT UNIT
+          <select id="admin-current-unit"></select>
+        </label>
+        <label>EXIT TICKET QUESTION
+          <textarea id="admin-exit-question" rows="3"></textarea>
+        </label>
+        <label>GOOGLE CLASSROOM LINK
+          <input id="admin-classroom-link" type="url">
+        </label>
+        <fieldset>
+          <legend>UPCOMING ASSIGNMENTS</legend>
+          <div id="admin-upcoming"></div>
+          <button type="button" class="admin-add" id="admin-add-upcoming">+ ADD ASSIGNMENT</button>
+        </fieldset>
+      </div>
+      <div class="admin-actions">
+        <p>PREVIEW CHANGES ARE SAVED IN THIS BROWSER. COPY THE JSON INTO <code>site-content.json</code> TO PUBLISH THEM.</p>
+        <button type="button" id="admin-copy">COPY JSON</button>
+        <button type="button" id="admin-save">SAVE PREVIEW</button>
+      </div>
+      <p class="admin-status" id="admin-status" role="status"></p>
     </div>
   </div>
 </body>

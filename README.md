@@ -1,18 +1,19 @@
-# Principles of Government
+# PRINCIPLES OF AMERICAN DEMOCRACY
 
-A mobile-first, static Principles of Government course site for the 2026–27 school year.
+A mobile-first, static Principles of American Democracy course site for the 2026–27 school year.
 
-## The one teacher setting
+## TEACHER EDIT MODE
 
-Open `course-config.json` and change `currentUnit`:
+Type `dev` anywhere on the page when an input is not selected. The hidden edit panel controls:
 
-```json
-{
-  "currentUnit": "gov-0"
-}
-```
+- the current released unit
+- the exit-ticket question
+- upcoming assignments
+- the Google Classroom link
 
-Use `gov-0` through `gov-7`. The selected unit and all earlier units open; later units stay locked. This is the only file needed to advance the course.
+`SAVE PREVIEW` stores changes only in the current browser. `COPY JSON` copies the finished settings so they can replace `site-content.json` for publication.
+
+The selected unit and all earlier units open; later units stay locked.
 
 ## Curriculum structure
 
@@ -25,9 +26,10 @@ Use `gov-0` through `gov-7`. The selected unit and all earlier units open; later
 - `index.html` — semantic page structure
 - `styles.css` — visual system and responsive/accessibility behavior
 - `course-data.js` — unit, lesson, standards, and visual-vocabulary content
-- `course-config.json` — current-unit unlock control
+- `site-content.json` — current unit, exit ticket, upcoming assignments, and Classroom link
 - `app.js` — navigation and interaction
 - `assets/course-mark.svg` — original course mark
+- `us-politics-events.json` — source-linked daily political-history database
 - `scripts/validate-site.js` — local content and reference checks
 - `docs/curriculum-inventory.md` — source-to-site curriculum inventory
 

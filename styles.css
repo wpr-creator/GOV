@@ -20,6 +20,7 @@ html { scroll-behavior: smooth; }
 body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Arial Black", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif; line-height: 1.5; }
 button, a { font: inherit; }
 p, small, summary, details { font-family: Arial, Helvetica, sans-serif; }
+h1, h2, h3, h4, h5, h6, .brand strong, .unit-state, .primary-action { text-transform: uppercase; }
 a { color: inherit; }
 button { color: inherit; }
 [hidden] { display: none !important; }
@@ -47,8 +48,6 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .hero h1, .page-intro h1 { margin: 0; font-size: clamp(2.6rem, 6vw, 5.6rem); line-height: .98; letter-spacing: -.055em; }
 .hero h1 span { color: var(--stone); }
 .hero-intro { max-width: 590px; margin: 1.5rem 0 2.25rem; color: #dedede; font-family: Arial, sans-serif; font-size: 1.12rem; font-weight: 600; }
-.course-line { margin: 0; color: var(--white); font-size: .82rem; letter-spacing: .18em; }
-.course-line span { padding: 0 .7rem; color: var(--stone-dark); }
 .hero-visual { width: min(420px, 100%); aspect-ratio: 1.05; justify-self: center; position: relative; display: flex; flex-direction: column; justify-content: flex-end; filter: drop-shadow(0 22px 20px rgba(0,0,0,.55)); }
 .pediment { width: 90%; height: 31%; margin: 0 auto -1px; background: var(--white); clip-path: polygon(50% 0, 100% 100%, 0 100%); position: relative; }
 .pediment::after { content: ""; position: absolute; inset: 24% 9% 8%; background: var(--black); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
@@ -70,6 +69,39 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .next-step small { display: block; margin-top: .45rem; color: var(--muted); }
 .primary-action { min-height: 52px; padding: .8rem 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--white); background: var(--black); border-radius: 3px; text-decoration: none; font-weight: 900; }
 .primary-action:hover { background: var(--charcoal); }
+
+.home-dashboard { display: grid; grid-template-columns: 1.25fr .75fr; gap: 1.2rem; }
+.dashboard-card { padding: 1.5rem; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0,0,0,.05); }
+.card-heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 2px solid var(--black); }
+.card-heading h2 { margin: 0; font-size: 1.35rem; }
+.date-badge { padding: .35rem .6rem; color: var(--white); background: var(--black); font-size: .72rem; letter-spacing: .08em; }
+.history-card { grid-column: 1 / -1; }
+.history-body { min-height: 160px; padding: 1.5rem 0; display: grid; grid-template-columns: 190px 1fr; gap: 1.5rem; align-items: start; }
+.history-year { color: var(--stone-dark); font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1; font-weight: 950; }
+.history-body p { margin: 0 0 .8rem; max-width: 850px; font-size: 1.05rem; font-weight: 650; }
+.history-connection { color: var(--muted); font-size: .78rem !important; letter-spacing: .05em; text-transform: uppercase; }
+.history-source { font-size: .78rem; font-weight: 900; text-transform: uppercase; }
+.history-controls { display: flex; gap: .6rem; }
+.history-controls button { min-height: 44px; padding: .65rem .85rem; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-size: .75rem; font-weight: 900; }
+.history-controls button:hover { color: var(--white); background: var(--black); }
+.upcoming-list { display: grid; }
+.upcoming-row { padding: 1rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--line); }
+.upcoming-row:last-child { border-bottom: 0; }
+.upcoming-row strong { text-transform: uppercase; }
+.upcoming-row span { padding: .3rem .55rem; background: var(--stone); font-size: .72rem; font-weight: 900; white-space: nowrap; }
+.empty-state { color: var(--muted); font-weight: 700; }
+.classroom-card { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; }
+.classroom-mark { width: 54px; height: 54px; display: grid; place-items: center; color: var(--white); background: var(--black); font-size: 1.5rem; font-weight: 950; }
+.classroom-card h2 { margin: 0 0 .35rem; }
+.classroom-card p:last-child { margin: 0; color: var(--muted); font-size: .85rem; font-weight: 650; }
+.classroom-card .primary-action { grid-column: 1 / -1; }
+.exit-card { grid-column: 1 / -1; }
+.exit-question { padding: 1rem; background: var(--stone); font-weight: 750; }
+.exit-card label { display: block; margin: 1rem 0 .4rem; font-size: .76rem; font-weight: 900; }
+.exit-card textarea, .admin-panel textarea, .admin-panel input, .admin-panel select { width: 100%; padding: .8rem; border: 1px solid var(--stone-dark); background: var(--white); color: var(--black); font: 700 .95rem Arial, sans-serif; }
+.exit-submit { min-height: 48px; margin-top: .7rem; padding: .7rem 1rem; border: 0; color: var(--white); background: var(--black); font-weight: 900; }
+.exit-submit:disabled { color: #777; background: var(--stone); }
+.system-note { margin: .55rem 0 0; color: var(--muted); font-size: .72rem; font-weight: 700; }
 
 .section-heading { margin-bottom: 1.4rem; display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
 .section-heading h2 { margin: 0; font-size: clamp(1.8rem, 3.5vw, 3rem); letter-spacing: -.04em; }
@@ -138,6 +170,24 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .sentence-tool blockquote { margin: 0; font-size: clamp(1.2rem, 2.5vw, 1.7rem); }
 footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); border-top: 1px solid var(--line); font-size: .85rem; }
 
+.admin-overlay { position: fixed; z-index: 900; inset: 0; padding: 1rem; display: grid; place-items: center; background: rgba(0,0,0,.82); }
+.admin-panel { width: min(780px, 100%); max-height: calc(100vh - 2rem); overflow: auto; background: var(--paper); border: 6px solid var(--white); box-shadow: 0 24px 80px rgba(0,0,0,.55); }
+.admin-header { padding: 1.2rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--white); background: var(--black); }
+.admin-header h2 { margin: 0; }
+.admin-header .eyebrow { color: var(--stone); }
+.admin-header button { width: 46px; height: 46px; border: 1px solid var(--white); color: var(--white); background: transparent; cursor: pointer; font-size: 1.6rem; }
+.admin-grid { padding: 1.2rem; display: grid; gap: 1rem; }
+.admin-grid label, .admin-grid legend { display: grid; gap: .4rem; font-size: .75rem; font-weight: 950; letter-spacing: .06em; }
+.admin-grid fieldset { margin: 0; padding: 1rem; border: 1px solid var(--stone-dark); }
+.admin-upcoming-row { margin-top: .6rem; display: grid; grid-template-columns: 1fr 150px 44px; gap: .5rem; }
+.admin-upcoming-row button, .admin-add { border: 1px solid var(--black); background: var(--white); cursor: pointer; font-weight: 900; }
+.admin-add { min-height: 44px; margin-top: .7rem; padding: .5rem .8rem; }
+.admin-actions { padding: 1.2rem; display: flex; align-items: center; justify-content: flex-end; gap: .6rem; border-top: 1px solid var(--line); background: var(--white); }
+.admin-actions p { margin: 0 auto 0 0; max-width: 390px; color: var(--muted); font-size: .72rem; font-weight: 700; }
+.admin-actions button { min-height: 44px; padding: .6rem .8rem; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-weight: 900; }
+#admin-save { color: var(--white); background: var(--black); }
+.admin-status { min-height: 1.5rem; margin: 0; padding: 0 1.2rem 1rem; font-size: .78rem; font-weight: 900; }
+
 @keyframes reveal { from { opacity: 0; transform: translateY(5px); } }
 @media (max-width: 800px) {
   .site-header { flex-wrap: wrap; padding: 10px 16px; }
@@ -157,7 +207,11 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .overview-flow { grid-template-columns: 1fr 1fr; }
   .lesson { grid-template-columns: 46px 1fr; }
   .standard-tag { grid-column: 2; width: max-content; }
-  .source-notice { grid-template-columns: 1fr; }
+  .home-dashboard { grid-template-columns: 1fr; }
+  .history-card, .exit-card { grid-column: 1; }
+  .history-body { grid-template-columns: 1fr; gap: .8rem; }
+  .admin-actions { align-items: stretch; flex-direction: column; }
+  .admin-upcoming-row { grid-template-columns: 1fr 100px 44px; }
   footer { flex-direction: column; }
 }
 @media (max-width: 420px) {
