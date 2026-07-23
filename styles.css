@@ -170,6 +170,75 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .sentence-tool blockquote { margin: 0; font-size: clamp(1.2rem, 2.5vw, 1.7rem); }
 footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); border-top: 1px solid var(--line); font-size: .85rem; }
 
+.foundations-intro { max-width: 920px; }
+.foundation-tabs { position: sticky; top: 0; z-index: 20; margin-bottom: 1.5rem; padding: .5rem; display: flex; gap: .4rem; overflow-x: auto; background: var(--black); border: 1px solid var(--charcoal); }
+.foundation-tabs button { min-height: 48px; padding: .7rem 1rem; flex: 1; border: 1px solid #555; color: #cfcfcd; background: transparent; cursor: pointer; font-size: .76rem; font-weight: 950; white-space: nowrap; }
+.foundation-tabs button[aria-selected="true"] { color: var(--black); background: var(--white); border-color: var(--white); }
+.foundation-panel { padding: clamp(1rem, 3vw, 2rem); background: #dededb; border: 1px solid var(--line); }
+.tool-heading { margin-bottom: 1.4rem; padding-bottom: 1rem; display: flex; align-items: end; justify-content: space-between; gap: 1rem; border-bottom: 3px solid var(--black); }
+.tool-heading h2 { margin: 0; font-size: clamp(1.65rem, 4vw, 2.8rem); }
+.tool-heading > p { max-width: 300px; margin: 0; color: var(--muted); text-align: right; font-size: .74rem; font-weight: 850; letter-spacing: .06em; }
+.document-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.document-card { min-height: 280px; padding: 1.3rem; display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--stone-dark); border-top: 7px solid var(--black); }
+.document-meta { margin: 0; color: var(--muted); font-size: .72rem; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+.document-card h3 { margin: .7rem 0; font-size: 1.35rem; }
+.document-card > p:not(.document-meta) { margin: 0 0 1rem; color: var(--muted); font-weight: 650; }
+.document-card .standard-tag { width: max-content; margin-top: auto; }
+.document-card button { min-height: 46px; margin-top: 1rem; border: 0; color: var(--white); background: var(--black); cursor: pointer; font-size: .76rem; font-weight: 950; }
+.foundation-dialog { position: fixed; z-index: 800; inset: 0; padding: 1rem; display: grid; place-items: center; background: rgba(0,0,0,.82); }
+.foundation-dialog-card { width: min(760px, 100%); max-height: calc(100vh - 2rem); padding: clamp(1.4rem, 4vw, 2.5rem); overflow: auto; background: var(--paper); border: 6px solid var(--white); position: relative; }
+.foundation-dialog-close { position: absolute; top: .7rem; right: .7rem; width: 46px; height: 46px; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-size: 1.7rem; }
+.foundation-dialog-card h2 { max-width: calc(100% - 50px); margin: 0 0 1.3rem; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; }
+.document-detail-block { padding: 1rem 0; border-top: 1px solid var(--stone-dark); }
+.document-detail-block h3 { margin: 0 0 .35rem; font-size: .78rem; letter-spacing: .08em; }
+.document-detail-block p { margin: 0; font-weight: 650; }
+.document-detail-block:nth-of-type(2) p { padding-left: 1rem; border-left: 5px solid var(--black); font-size: 1.08rem; font-weight: 750; }
+.amendment-filters, .madison-topics { margin-bottom: 1rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+.amendment-filters button, .madison-topics button { min-height: 44px; padding: .6rem .8rem; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-size: .72rem; font-weight: 950; }
+.amendment-filters button[aria-pressed="true"], .madison-topics button[aria-pressed="true"] { color: var(--white); background: var(--black); }
+.amendment-grid { display: grid; gap: .7rem; }
+.amendment-card { padding: 1rem; display: grid; grid-template-columns: 70px 1fr; gap: 1rem; background: var(--white); border: 1px solid var(--stone-dark); }
+.amendment-number { width: 64px; height: 64px; display: grid; place-items: center; color: var(--white); background: var(--black); font-size: 1.6rem; font-weight: 950; }
+.amendment-card h3 { margin: 0 0 .3rem; font-size: 1rem; }
+.amendment-card p { margin: 0; color: var(--muted); font-weight: 650; }
+.amendment-card details { margin-top: .7rem; }
+.amendment-card summary { width: max-content; cursor: pointer; font-size: .74rem; font-weight: 950; }
+.amendment-card details p { padding: .6rem 0; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.skill-card { padding: 1.2rem; background: var(--white); border: 1px solid var(--stone-dark); border-top: 7px solid var(--black); }
+.skill-card h3 { margin: 0 0 .5rem; }
+.skill-card > p { min-height: 48px; margin: 0 0 1rem; color: var(--muted); font-weight: 650; }
+.skill-levels { display: grid; gap: .5rem; }
+.skill-levels button { min-height: 58px; padding: .7rem; text-align: left; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-size: .72rem; font-weight: 900; }
+.skill-levels button:hover:not(:disabled) { color: var(--white); background: var(--black); }
+.skill-levels button:disabled { color: #777; background: var(--stone); cursor: not-allowed; }
+.skill-workspace { margin-top: 1rem; padding: clamp(1.2rem, 3vw, 2rem); background: var(--white); border: 4px solid var(--black); }
+.skill-workspace h3 { margin: 0 0 .6rem; font-size: 1.6rem; }
+.skill-prompt { font-weight: 750; }
+.skill-options { display: grid; gap: .6rem; }
+.skill-options button { min-height: 50px; padding: .7rem 1rem; text-align: left; border: 1px solid var(--black); background: var(--white); cursor: pointer; font: 700 .9rem Arial, sans-serif; }
+.skill-options button:hover:not(:disabled) { background: var(--stone); }
+.skill-options button[data-result="correct"] { color: var(--white); background: #202020; }
+.skill-options button[data-result="incorrect"] { text-decoration: line-through; background: var(--stone); }
+.skill-feedback { min-height: 1.5rem; font-weight: 800; }
+.madison-workspace { background: var(--white); border: 1px solid var(--stone-dark); }
+.madison-workspace > h3 { margin: 0; padding: 1.2rem; color: var(--white); background: var(--black); font-size: clamp(1.3rem, 3vw, 2rem); }
+.madison-sides { padding: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.madison-side { padding: 1.2rem; border: 2px solid var(--black); }
+.madison-side:nth-child(2) { background: var(--stone); }
+.madison-side h4 { margin: 0 0 .6rem; }
+.madison-side p { min-height: 120px; margin: 0 0 .8rem; font-weight: 650; }
+.madison-side strong { font-size: .72rem; letter-spacing: .06em; }
+.madison-connection, .madison-turn { margin: 0 1rem 1rem; padding: 1.2rem; border: 1px solid var(--stone-dark); }
+.madison-connection h4, .madison-turn h4 { margin: 0 0 .5rem; }
+.madison-connection p, .madison-turn p { font-weight: 650; }
+.madison-choices { display: flex; gap: .6rem; flex-wrap: wrap; }
+.madison-choices button { min-height: 46px; padding: .6rem .8rem; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-size: .72rem; font-weight: 950; }
+.madison-choices button[aria-pressed="true"] { color: var(--white); background: var(--black); }
+.madison-turn textarea { width: 100%; margin-top: .8rem; padding: 1rem; border: 1px solid var(--stone-dark); font: 700 1rem Arial, sans-serif; }
+.admin-foundation-note { margin: 0; color: var(--muted); font-size: .72rem; font-weight: 650; }
+.admin-unlock-row { margin-top: .7rem; grid-template-columns: 1fr 190px; align-items: center; }
+
 .admin-overlay { position: fixed; z-index: 900; inset: 0; padding: 1rem; display: grid; place-items: center; background: rgba(0,0,0,.82); }
 .admin-panel { width: min(780px, 100%); max-height: calc(100vh - 2rem); overflow: auto; background: var(--paper); border: 6px solid var(--white); box-shadow: 0 24px 80px rgba(0,0,0,.55); }
 .admin-header { padding: 1.2rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--white); background: var(--black); }
@@ -212,6 +281,12 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .history-body { grid-template-columns: 1fr; gap: .8rem; }
   .admin-actions { align-items: stretch; flex-direction: column; }
   .admin-upcoming-row { grid-template-columns: 1fr 100px 44px; }
+  .foundation-tabs button { flex: 0 0 auto; }
+  .tool-heading { align-items: start; flex-direction: column; }
+  .tool-heading > p { text-align: left; }
+  .document-grid, .skills-grid, .madison-sides { grid-template-columns: 1fr; }
+  .madison-side p { min-height: auto; }
+  .admin-unlock-row { grid-template-columns: 1fr; }
   footer { flex-direction: column; }
 }
 @media (max-width: 420px) {

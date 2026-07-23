@@ -7,5 +7,10 @@
       "date": "AUGUST"
     }
   ],
-  "classroomUrl": "https://classroom.google.com/c/ODcxMDI4ODY2NDUy"
+  "classroomUrl": "https://classroom.google.com/c/ODcxMDI4ODY2NDUy",
+  "foundationUnlocks": {
+    "source": 1,
+    "argument": 1,
+    "language": 1
+  }
 }

@@ -26,10 +26,22 @@ The selected unit and all earlier units open; later units stay locked.
 - `index.html` — semantic page structure
 - `styles.css` — visual system and responsive/accessibility behavior
 - `course-data.js` — unit, lesson, standards, and visual-vocabulary content
+- `foundations-data.js` — documents, amendments, skill builders, and Madison debates
 - `site-content.json` — current unit, exit ticket, upcoming assignments, and Classroom link
 - `app.js` — navigation and interaction
 - `assets/course-mark.svg` — original course mark
 - `us-politics-events.json` — source-linked daily political-history database
+
+## FOUNDATIONS
+
+The permanent Foundations section contains:
+
+- 10 essential documents in short excerpt / plain language / why it matters format
+- all 27 amendments, filtered by current unit, Bill of Rights, voting, or complete list
+- Read the Source, Build the Argument, and Use the Language skill builders
+- four simplified What Would Madison Say? constitutional debates
+
+Skill Builder Level 1 is always open. In `dev` mode, set each skill to open through Level 1, 2, or 3. Those choices are included when `site-content.json` is copied.
 - `scripts/validate-site.js` — local content and reference checks
 - `docs/curriculum-inventory.md` — source-to-site curriculum inventory
 
