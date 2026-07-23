@@ -1,70 +1,54 @@
-# Mr. Rogers — Principles of American Democracy Website
-## Repo: https://github.com/wpr-creator/GOV
+# PRINCIPLES OF AMERICAN DEMOCRACY
 
-This is the CP Government course site. It uses the same structure as the AP Gov site, but it removes AP-specific links and uses a separate course identity.
+A mobile-first, static Principles of American Democracy course site for the 2026–27 school year.
 
-## How to update your site each week
+## TEACHER EDIT MODE
 
-### THE ONLY FILE YOU NEED TO EDIT WEEKLY: content.json
+Type `dev` anywhere on the page when an input is not selected. The hidden edit panel controls:
 
-Open `content.json` on GitHub, click the pencil icon, and change:
+- the current released unit
+- the exit-ticket question
+- upcoming assignments
+- the Google Classroom link
 
-- `current_unit` → your current unit name
-- `week` → the week label
-- `exit_ticket` → this week's exit ticket question
-- `materials` → add new materials at the top
-- `upcoming` → update due dates, quizzes, essays, projects, or reminders
-- `periods` → update rosters as needed
+`SAVE PREVIEW` stores changes only in the current browser. `COPY JSON` copies the finished settings so they can replace `site-content.json` for publication.
 
-Click **Commit changes** and the site should update shortly after GitHub Pages rebuilds.
+The selected unit and all earlier units open; later units stay locked.
 
----
+## Curriculum structure
 
-## File structure
+- The course contains eight student-facing Government units.
+- Every pacing-guide topic, essential question, activity, assessment, and standards mapping is retained inside those units.
+- School dates, rosters, assignments, and live resource links are intentionally not required for this preseason version.
 
-```text
-GOV/
-├── index.html              ← the website design and code
-├── content.json            ← weekly course updates
-├── exit-ticket-script.gs   ← paste into Google Apps Script one time
-└── README.md               ← this guide
+## Files
+
+- `index.html` — semantic page structure
+- `styles.css` — visual system and responsive/accessibility behavior
+- `course-data.js` — unit, lesson, standards, and visual-vocabulary content
+- `foundations-data.js` — documents, amendments, skill builders, and Madison debates
+- `site-content.json` — current unit, exit ticket, upcoming assignments, and Classroom link
+- `app.js` — navigation and interaction
+- `assets/course-mark.svg` — original course mark
+- `us-politics-events.json` — source-linked daily political-history database
+
+## FOUNDATIONS
+
+The permanent Foundations section contains:
+
+- 10 essential documents in short excerpt / plain language / why it matters format
+- all 27 amendments, filtered by current unit, Bill of Rights, voting, or complete list
+- Read the Source, Build the Argument, and Use the Language skill builders
+- four simplified What Would Madison Say? constitutional debates
+
+Skill Builder Level 1 is always open. In `dev` mode, set each skill to open through Level 1, 2, or 3. Those choices are included when `site-content.json` is copied.
+- `scripts/validate-site.js` — local content and reference checks
+- `docs/curriculum-inventory.md` — source-to-site curriculum inventory
+
+## Check the site
+
+```sh
+node scripts/validate-site.js
 ```
 
----
-
-## First-time setup checklist
-
-- [ ] Upload `index.html`, `content.json`, `exit-ticket-script.gs`, and `README.md` to the root of the GOV repo
-- [ ] Turn on GitHub Pages: Settings → Pages → Deploy from branch → main → /(root)
-- [ ] Create a Google Sheet for exit tickets
-- [ ] Copy the Sheet URL
-- [ ] Go to script.google.com → New Project
-- [ ] Paste everything from `exit-ticket-script.gs`
-- [ ] Replace `YOUR_GOOGLE_SHEET_URL_HERE` with your Sheet URL
-- [ ] Deploy as a Web App
-- [ ] Copy the Web App URL
-- [ ] In `index.html`, replace `YOUR_GOOGLE_APPS_SCRIPT_URL_HERE` with that Web App URL
-
----
-
-## Google Sheet columns
-
-Submissions appear automatically with these columns:
-
-`Date | Period | Student Name | Question | Response | Timestamp`
-
-Use filters in Google Sheets to view one period, one student, or one question at a time.
-
----
-
-## Notes for this CP Government site
-
-This site is for **Principles of American Democracy**, not AP Government. Keep AP-specific resources like AP Classroom and College Board on the AP Gov site only.
-
-Suggested course links:
-
-- Google Classroom
-- Newsela
-- iCivics
-- Bill of Rights Institute
-- USA.gov
+No build step or paid service is required. GitHub Pages can serve the repository root.
