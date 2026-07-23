@@ -202,8 +202,8 @@
     const current = data.units.find(unit => unit.id === currentUnitId);
     document.getElementById("current-unit-number").textContent = `${current.number} · PRINCIPLES OF AMERICAN DEMOCRACY`;
     document.getElementById("now-title").textContent = current.title.toUpperCase();
-    document.getElementById("current-question").textContent = current.question;
     document.getElementById("current-action").href = `#${current.id}`;
+    document.getElementById("current-action").firstChild.textContent = `OPEN ${current.number.toUpperCase()} `;
     renderSiteContent();
     renderUnits();
   }

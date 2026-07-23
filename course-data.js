@@ -1,7 +1,7 @@
 window.COURSE_DATA = {
   units: [
     {
-      id: "gov-0", number: "Unit 0", title: "Enter the System",
+      id: "gov-0", number: "Unit 0", title: "First Bell",
       question: "What makes government legitimate?",
       standards: "Gov 12.1; 12.10",
       overview: ["Ask a civic question", "Find democratic values", "Trace founding ideas", "Defend a claim"],

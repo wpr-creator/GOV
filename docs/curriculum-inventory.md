@@ -9,7 +9,7 @@ The pacing guide controls order. Its 38 Government entries are grouped into eigh
 
 | Site unit | Pacing-guide entries | Standards |
 |---|---|---|
-| Unit 0 · Enter the System | Civic Inquiry & Course Launch; Democratic Principles; Roots of American Government; Democracy’s Promise and Perils | 12.1; 12.10 |
+| Unit 0 · First Bell | Civic Inquiry & Course Launch; Democratic Principles; Roots of American Government; Democracy’s Promise and Perils | 12.1; 12.10 |
 | Unit 1 · Power by Design | Constitutional Design; Limited Government; Federalism; State, Tribal & Local Government | 12.1.4–.6; 12.7.1–.4 |
 | Unit 2 · Inside the Institutions | Congress; Lawmaking; The Presidency; Executive Power & Policy; Federal Judiciary; Judicial Review; Civil Liberties in the Courts; Civil Rights & Equal Protection | 12.4; 12.5; 12.7.5–.8 |
 | Unit 3 · Rights in Real Life | Bill of Rights; Due Process & Equal Protection; Rights & Responsibilities; Citizenship & Naturalization; Civil Society; Religion, Diversity & Government | 12.1.6; 12.2; 12.3; 12.5.1; 12.10 |
