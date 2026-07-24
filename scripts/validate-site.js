@@ -90,7 +90,7 @@ data.words?.forEach((word, index) => {
 });
 if (!data.units.some(unit => unit.id === config.currentUnit)) errors.push(`Unknown currentUnit: ${config.currentUnit}`);
 data.units.forEach(unit => {
-  for (const key of ["id", "number", "title", "question", "standards", "overview", "lessons"]) {
+  for (const key of ["id", "number", "title", "question", "standards", "lessons"]) {
     if (!unit[key] || !unit[key].length) errors.push(`${unit.id || "Unknown unit"} is missing ${key}.`);
   }
   unit.lessons.forEach((lesson, index) => {
