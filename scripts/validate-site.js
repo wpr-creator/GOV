@@ -58,7 +58,20 @@ for (const fragment of ["<main", "<nav", "Skip to the course", "prefers-reduced-
 
 if (!Array.isArray(data.units) || data.units.length !== 8) errors.push("Expected 8 Government units.");
 const lessonCount = data.units.reduce((count, unit) => count + unit.lessons.length, 0);
-if (lessonCount !== 38) errors.push(`Expected all 38 pacing entries; found ${lessonCount}.`);
+if (lessonCount !== 38) errors.push(`Expected 38 focused Government topics; found ${lessonCount}.`);
+const expectedUnitTitles = ["First Bell", "Why Government?", "Power by Design", "Election Season", "The Three Branches", "Rights in Real Life", "Democracy Under Pressure", "Make the Case"];
+if (data.units.some((unit, index) => unit.title !== expectedUnitTitles[index])) {
+  errors.push("Government units are missing or out of the approved sequence.");
+}
+if (data.units.find(unit => unit.id === "gov-3")?.timing !== "October") {
+  errors.push("Election Season must remain marked for October.");
+}
+const teacherFacingLessonTerms = /\b(CER|retrieval check|constructed response|targeted reteach|reassessment evidence|assessed content|supplied information)\b/i;
+data.units.forEach(unit => unit.lessons.forEach(lesson => {
+  if (lesson.some(value => teacherFacingLessonTerms.test(String(value)))) {
+    errors.push(`${unit.number} contains teacher-facing lesson language.`);
+  }
+}));
 if (!Array.isArray(data.words) || data.words.length !== 51) errors.push(`Expected 51 plain-language glossary terms; found ${data.words?.length || 0}.`);
 data.words?.forEach((word, index) => {
   if (word.length !== 5 || word.some(value => !String(value).trim()) || !data.units.some(unit => unit.id === word[4])) {
@@ -100,4 +113,4 @@ if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
-console.log(`Site validation passed: ${data.units.length} units, ${lessonCount} pacing entries, ${data.words.length} glossary terms, ${foundations.documents.length} documents, ${foundations.amendments.length} amendments, ${foundations.debates.length} debates, and ${foundations.skills.length} skill builders.`);
+console.log(`Site validation passed: ${data.units.length} units, ${lessonCount} focused topics, ${data.words.length} glossary terms, ${foundations.documents.length} documents, ${foundations.amendments.length} amendments, ${foundations.debates.length} debates, and ${foundations.skills.length} skill builders.`);

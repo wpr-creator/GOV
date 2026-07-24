@@ -95,21 +95,21 @@
         </article>
 
         <article class="dashboard-card exit-card">
-          <div class="card-heading"><div><p class="eyebrow">CHECK FOR UNDERSTANDING</p><h2>EXIT TICKET</h2></div></div>
-          <p class="exit-question" id="exit-question">EXIT TICKET SYSTEM WILL APPEAR HERE.</p>
-          <label for="exit-response">YOUR RESPONSE</label>
-          <textarea id="exit-response" rows="4" placeholder="TYPE YOUR RESPONSE…" disabled></textarea>
-          <button class="exit-submit" type="button" disabled>SUBMIT EXIT TICKET</button>
-          <p class="system-note">SUBMISSION CONNECTION WILL BE ADDED HERE.</p>
+          <div class="card-heading"><div><p class="eyebrow">END OF CLASS</p><h2>EXIT TICKET</h2></div></div>
+          <p class="exit-question" id="exit-question">NO EXIT TICKET TODAY.</p>
+          <label for="exit-response" hidden>YOUR RESPONSE</label>
+          <textarea id="exit-response" rows="4" placeholder="TYPE YOUR RESPONSE…" disabled hidden></textarea>
+          <button class="exit-submit" type="button" disabled hidden>SUBMIT EXIT TICKET</button>
+          <p class="system-note" hidden></p>
         </article>
       </section>
     </section>
 
     <section class="view" id="units" data-view="units" hidden>
       <div class="page-intro">
-        <p class="eyebrow">Course map</p>
-        <h1>LEARN IN CLEAR STAGES.</h1>
-        <p>Open the current unit. Locked units show what comes next without adding extra work now.</p>
+        <p class="eyebrow">COURSE UNITS</p>
+        <h1>COURSE OUTLINE</h1>
+        <p>Your current unit is open. Future units will open later.</p>
       </div>
       <section id="government-units" aria-label="Government units">
         <div class="unit-grid" id="unit-grid"></div>
@@ -123,9 +123,9 @@
 
     <section class="view" id="foundations" data-view="foundations" hidden>
       <div class="page-intro foundations-intro">
-        <p class="eyebrow">PERMANENT COURSE TOOLS</p>
+        <p class="eyebrow">USE ANYTIME</p>
         <h1>FOUNDATIONS</h1>
-        <p>Read the essential texts, find the amendment that matters, practice one core skill, or test a constitutional argument.</p>
+        <p>Read a key document, find an amendment, or practice a government skill.</p>
       </div>
       <div class="foundation-tabs" role="tablist" aria-label="Foundations tools">
         <button type="button" role="tab" aria-selected="true" aria-controls="foundation-documents" data-foundation-tab="documents">DOCUMENTS</button>
@@ -140,7 +140,7 @@
       </section>
 
       <section class="foundation-panel" id="foundation-amendments" role="tabpanel" hidden>
-        <div class="tool-heading"><div><p class="eyebrow">CONSTITUTIONAL CHANGE</p><h2>AMENDMENTS THAT MATTER HERE</h2></div><p>START WITH THE CURRENT UNIT OR VIEW ALL 27.</p></div>
+        <div class="tool-heading"><div><p class="eyebrow">CONSTITUTIONAL CHANGE</p><h2>AMENDMENTS</h2></div><p>START WITH THIS UNIT OR VIEW ALL 27.</p></div>
         <div class="amendment-filters" id="amendment-filters" aria-label="Filter amendments"></div>
         <div class="amendment-grid" id="amendment-grid"></div>
       </section>
