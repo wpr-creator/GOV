@@ -21,6 +21,11 @@ window.COURSE_DATA = {
           title: "TYPOLOGY REFLECTION",
           note: "GOOGLE FORM WILL BE ADDED HERE.",
           url: ""
+        },
+        {
+          title: "PRESIDENT FACT CARDS",
+          note: "CHOOSE YOUR ASSIGNED PRESIDENT.",
+          url: "#presidents"
         }
       ]
     },

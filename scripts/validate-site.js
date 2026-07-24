@@ -14,6 +14,7 @@ vm.runInContext(fs.readFileSync(path.join(root, "foundations-data.js"), "utf8"),
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
+const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
 for (const file of ["index.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
@@ -29,6 +30,15 @@ portraitManifest.portraits?.forEach(portrait => {
   if (!portrait.file || !fs.existsSync(path.join(root, "assets", "presidents", portrait.file))) {
     errors.push(`Missing local portrait for ${portrait.name || "Unknown president"}.`);
   }
+});
+if (presidentFacts.count !== 45 || presidentFacts.presidents?.length !== 45) {
+  errors.push("Expected 45 complete president fact cards.");
+}
+presidentFacts.presidents?.forEach(president => {
+  for (const key of ["name", "order", "yearsInOffice", "portrait", "birthplace", "religion", "education", "careerBeforePresidency", "importantQuote"]) {
+    if (!president[key]) errors.push(`${president.name || "Unknown president"} is missing ${key}.`);
+  }
+  if (president.keyAccomplishments?.length < 3) errors.push(`${president.name} needs at least three key accomplishments or actions.`);
 });
 
 for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {

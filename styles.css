@@ -146,6 +146,27 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .unit-resource span { color: var(--stone); font-size: .75rem; font-weight: 850; letter-spacing: .04em; }
 .unit-resource.placeholder { color: var(--black); background: var(--stone); border: 1px dashed var(--stone-dark); }
 .unit-resource.placeholder span { color: var(--muted); }
+.president-tools { margin-bottom: 1rem; padding: 1rem; background: var(--stone); border-radius: var(--radius); }
+.president-tools label { display: block; margin-bottom: .4rem; font-size: .75rem; font-weight: 950; letter-spacing: .08em; }
+.president-tools input { width: 100%; min-height: 50px; padding: .75rem .9rem; border: 2px solid var(--black); background: var(--white); font: inherit; font-weight: 750; }
+.president-tools p { margin: .6rem 0 0; color: var(--muted); font-size: .75rem; font-weight: 900; }
+.president-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: start; }
+.president-card { overflow: hidden; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
+.president-card img { width: 100%; aspect-ratio: 4 / 5; display: block; object-fit: cover; object-position: top center; background: var(--stone); }
+.president-card-heading { padding: 1rem; border-top: 6px solid var(--black); }
+.president-card-heading h2 { margin: 0 0 .25rem; font-size: 1.3rem; }
+.president-card-heading strong { color: var(--muted); }
+.president-card details { border-top: 1px solid var(--line); }
+.president-card summary { min-height: 48px; padding: .85rem 1rem; cursor: pointer; font-weight: 950; }
+.president-facts { padding: 0 1rem 1rem; }
+.president-facts p { margin: 0; padding: .7rem 0; border-bottom: 1px solid var(--line); }
+.president-facts p b, .president-facts p span { display: block; }
+.president-facts p b { margin-bottom: .2rem; font-size: .7rem; letter-spacing: .06em; }
+.president-facts p span, .president-facts li { color: var(--muted); font-weight: 650; }
+.president-facts h3 { margin: 1rem 0 .5rem; font-size: .85rem; }
+.president-facts ul { margin: 0; padding-left: 1.2rem; }
+.president-facts blockquote { margin: 0; padding: .8rem; background: var(--stone); font-weight: 750; }
+.president-facts a { margin-top: .8rem; display: inline-block; color: var(--black); font-size: .72rem; font-weight: 900; }
 .lesson-list { display: grid; gap: .75rem; }
 .lesson { padding: 1rem 1.1rem; display: grid; grid-template-columns: 50px 1fr auto; gap: 1rem; align-items: start; background: var(--white); border: 1px solid var(--line); border-radius: 16px; }
 .lesson-num { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 2px; color: var(--white); background: var(--black); font-weight: 950; }
@@ -285,7 +306,7 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .course-path { font-size: .85rem; }
   .now-panel { width: calc(100% - 18px); margin-top: -35px; grid-template-columns: 1fr; gap: 1rem; }
   .next-step { padding: 0; border: 0; }
-  .semester-cards, .unit-grid, .word-grid, .help-grid { grid-template-columns: 1fr; }
+  .semester-cards, .unit-grid, .word-grid, .president-grid, .help-grid { grid-template-columns: 1fr; }
   .semester-card { grid-template-columns: auto 1fr; }
   .overview-flow { grid-template-columns: 1fr 1fr; }
   .unit-resource-grid { grid-template-columns: 1fr; }
