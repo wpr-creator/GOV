@@ -9,7 +9,7 @@ window.COURSE_DATA = {
         ["0.1 — It’s on the Schedule", "Where does government already appear in my everyday life?", "Course launch", "Connect government to school, work, transportation, safety, rights, technology, and your future. Join the course spaces and bookmark this site.", "Name one way government affects your life"],
         ["0.2 — Read the Fine Print", "What kind of class do we need in order to study government well?", "Course launch", "Learn how the class works, practice civic discussion expectations, and begin your Civic Selfie.", "Take home the syllabus and continue your Civic Selfie"],
         ["0.3 — Pack Your Field Guides", "What is my starting point, and what tools will help me succeed?", "Course launch", "Complete the PEW Political Typology activity, reflect privately, preview the course, and begin using your paper Field Guide.", "Complete the reflection and begin preparing for the first assessment"],
-        ["0.4 — Portrait Day", "Who has shaped the institution of the American presidency?", "Prepares for Gov 12.4.4", "Research an assigned president and begin a portrait or word-cloud profile for our shared classroom display.", "Begin an accurate plan for your assigned president"]
+        ["0.4 — Portrait Day", "Who has shaped the institution of the American presidency?", "Prepares for Gov 12.4.4", "Use the provided president facts to design a portrait or word-cloud profile for our shared classroom display.", "Choose a design and begin arranging the supplied information"]
       ],
       resources: [
         {
