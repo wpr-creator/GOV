@@ -14,7 +14,7 @@ window.COURSE_DATA = {
         {
           title: "PEW POLITICAL TYPOLOGY",
           note: "TAKE THE OFFICIAL 2026 QUIZ.",
-          url: "https://www.pewresearch.org/politics/quiz/political-typology/"
+          url: "https://www.pewresearch.org/politics/quiz/political-typology/group/99e1939eab70f1619bde23fadf282d77"
         },
         {
           title: "TYPOLOGY REFLECTION",
