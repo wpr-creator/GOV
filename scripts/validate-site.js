@@ -59,7 +59,7 @@ for (const fragment of ["<main", "<nav", "Skip to the course", "prefers-reduced-
 if (!Array.isArray(data.units) || data.units.length !== 8) errors.push("Expected 8 Government units.");
 const lessonCount = data.units.reduce((count, unit) => count + unit.lessons.length, 0);
 if (lessonCount !== 38) errors.push(`Expected 38 focused Government topics; found ${lessonCount}.`);
-const expectedUnitTitles = ["First Bell", "Why Government?", "Power by Design", "Election Season", "The Three Branches", "Rights in Real Life", "Democracy Under Pressure", "Make the Case"];
+const expectedUnitTitles = ["First Bell", "Foundations of American Democracy", "Building the Constitution", "Election Season", "Checks and Balances", "Rights in Real Life", "Government Around the World", "Constitutional Tensions"];
 if (data.units.some((unit, index) => unit.title !== expectedUnitTitles[index])) {
   errors.push("Government units are missing or out of the approved sequence.");
 }
@@ -72,7 +72,7 @@ data.units.forEach(unit => unit.lessons.forEach(lesson => {
     errors.push(`${unit.number} contains teacher-facing lesson language.`);
   }
 }));
-if (!Array.isArray(data.words) || data.words.length !== 51) errors.push(`Expected 51 plain-language glossary terms; found ${data.words?.length || 0}.`);
+if (!Array.isArray(data.words) || data.words.length !== 54) errors.push(`Expected 54 plain-language glossary terms; found ${data.words?.length || 0}.`);
 data.words?.forEach((word, index) => {
   if (word.length !== 5 || word.some(value => !String(value).trim()) || !data.units.some(unit => unit.id === word[4])) {
     errors.push(`Glossary term ${index + 1} is incomplete or has an unknown unit.`);
