@@ -7,17 +7,52 @@ const portraitManifest = JSON.parse(await fs.readFile(path.join(root, "assets", 
 const outputPath = path.join(root, "assets", "presidents", "president-facts.json");
 const pewReligionSource = "https://www.pewresearch.org/religion/2009/01/15/the-religious-affiliations-of-us-presidents/";
 const millerSource = "https://millercenter.org/president";
-const nameAliases = new Map([["Franklin Delano Roosevelt", "Franklin D. Roosevelt"]]);
-const birthplaceOverrides = {
-  "James Monroe": "Westmoreland County, Virginia",
-  "John Tyler": "Charles City County, Virginia",
-  "James Buchanan": "Cove Gap, Pennsylvania",
-  "Abraham Lincoln": "Hodgenville, Kentucky",
-  "Grover Cleveland": "Caldwell, New Jersey",
-  "Jimmy Carter": "Plains, Georgia",
-  "Ronald Reagan": "Tampico, Illinois",
-  "Barack Obama": "Honolulu, Hawaii",
-  "Donald Trump": "Queens, New York"
+const birthStates = {
+  "George Washington": "Virginia",
+  "John Adams": "Massachusetts",
+  "Thomas Jefferson": "Virginia",
+  "James Madison": "Virginia",
+  "James Monroe": "Virginia",
+  "John Quincy Adams": "Massachusetts",
+  "Andrew Jackson": "South Carolina",
+  "Martin Van Buren": "New York",
+  "William Henry Harrison": "Virginia",
+  "John Tyler": "Virginia",
+  "James K. Polk": "North Carolina",
+  "Zachary Taylor": "Virginia",
+  "Millard Fillmore": "New York",
+  "Franklin Pierce": "New Hampshire",
+  "James Buchanan": "Pennsylvania",
+  "Abraham Lincoln": "Kentucky",
+  "Andrew Johnson": "North Carolina",
+  "Ulysses S. Grant": "Ohio",
+  "Rutherford B. Hayes": "Ohio",
+  "James A. Garfield": "Ohio",
+  "Chester A. Arthur": "Vermont",
+  "Grover Cleveland": "New Jersey",
+  "Benjamin Harrison": "Ohio",
+  "William McKinley": "Ohio",
+  "Theodore Roosevelt": "New York",
+  "William Howard Taft": "Ohio",
+  "Woodrow Wilson": "Virginia",
+  "Warren G. Harding": "Ohio",
+  "Calvin Coolidge": "Vermont",
+  "Herbert Hoover": "Iowa",
+  "Franklin D. Roosevelt": "New York",
+  "Harry S. Truman": "Missouri",
+  "Dwight D. Eisenhower": "Texas",
+  "John F. Kennedy": "Massachusetts",
+  "Lyndon B. Johnson": "Texas",
+  "Richard Nixon": "California",
+  "Gerald Ford": "Nebraska",
+  "Jimmy Carter": "Georgia",
+  "Ronald Reagan": "Illinois",
+  "George H. W. Bush": "Massachusetts",
+  "Bill Clinton": "Arkansas",
+  "George W. Bush": "Connecticut",
+  "Barack Obama": "Hawaii",
+  "Donald Trump": "New York",
+  "Joe Biden": "Pennsylvania"
 };
 
 const supplementalText = `
@@ -101,16 +136,27 @@ const profileOverrides = {
   "Joe Biden": "joseph-r-biden"
 };
 const verifiedQuoteFallbacks = {
-  "John Tyler": "I can never consent to being dictated to.",
-  "Zachary Taylor": "I have no private purpose to accomplish, no party objectives to build up, no enemies to punish.",
-  "Rutherford B. Hayes": "He serves his party best who serves the country best.",
-  "Richard Nixon": "The greatest honor history can bestow is the title of peacemaker.",
-  "Jimmy Carter": "We must adjust to changing times and still hold to unchanging principles.",
-  "Ronald Reagan": "Government is not the solution to our problem; government is the problem.",
-  "George H. W. Bush": "We can find meaning and reward by serving some purpose higher than ourselves.",
-  "Barack Obama": "Yes, we can.",
-  "Donald Trump": "We will make America great again.",
-  "Joe Biden": "This is America’s day. This is democracy’s day."
+  "John Quincy Adams": ["America does not go abroad in search of monsters to destroy."],
+  "Andrew Jackson": ["Our Federal Union—it must be preserved."],
+  "William Henry Harrison": ["The people are the only legitimate fountain of power."],
+  "John Tyler": ["I can never consent to being dictated to.", "The Constitution will be my guide."],
+  "Zachary Taylor": ["I have no private purpose to accomplish, no party objectives to build up, no enemies to punish.", "Let us always be just, and in our magnanimity never forget to be vigilant."],
+  "Franklin Pierce": ["You have summoned me in my weakness; you must sustain me by your strength."],
+  "James Buchanan": ["The ballot box is the surest arbiter of disputes among free men."],
+  "Andrew Johnson": ["The goal to strive for is a poor government but a rich people."],
+  "Rutherford B. Hayes": ["He serves his party best who serves the country best.", "The President of the United States of necessity owes his election to office to the suffrage and zealous labors of a political party."],
+  "Chester A. Arthur": ["Men may die, but the fabrics of our free institutions remain unshaken."],
+  "Benjamin Harrison": ["The ballot is the only safety."],
+  "Woodrow Wilson": ["The world must be made safe for democracy."],
+  "Franklin D. Roosevelt": ["The only limit to our realization of tomorrow will be our doubts of today."],
+  "Richard Nixon": ["The greatest honor history can bestow is the title of peacemaker."],
+  "Jimmy Carter": ["We must adjust to changing times and still hold to unchanging principles.", "We are a purely idealistic nation, but let no one confuse our idealism with weakness."],
+  "Ronald Reagan": ["Government is not the solution to our problem; government is the problem."],
+  "George H. W. Bush": ["We can find meaning and reward by serving some purpose higher than ourselves."],
+  "Bill Clinton": ["Our democracy must be not only the envy of the world but the engine of our own renewal."],
+  "Barack Obama": ["Yes, we can.", "We reject as false the choice between our safety and our ideals."],
+  "Donald Trump": ["We will make America great again.", "The forgotten men and women of our country will be forgotten no longer."],
+  "Joe Biden": ["This is America’s day. This is democracy’s day.", "We must end this uncivil war that pits red against blue."]
 };
 
 async function fetchProfile(url) {
@@ -131,41 +177,65 @@ async function fetchProfile(url) {
   throw lastError;
 }
 
-async function loadWikidataBirthplaces() {
-  const query = `SELECT ?personLabel ?birthplaceLabel WHERE {
-    ?person wdt:P39 wd:Q11696; wdt:P19 ?birthplace.
-    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-  }`;
-  const params = new URLSearchParams({ query });
-  const response = await fetch(`https://query.wikidata.org/sparql?${params}`, {
-    headers: {
-      Accept: "application/sparql-results+json",
-      "User-Agent": "PrinciplesOfAmericanDemocracyCourseSite/1.0"
-    },
-    signal: AbortSignal.timeout(20000)
-  });
-  if (!response.ok) throw new Error(`Wikidata birthplace query failed: ${response.status}`);
-  const payload = await response.json();
-  return new Map(payload.results.bindings.map(binding => [
-    nameAliases.get(binding.personLabel.value) || binding.personLabel.value,
-    binding.birthplaceLabel.value
-  ]));
-}
-
 function section(html, heading) {
   const match = html.match(new RegExp(`<h3>${heading}<\\/h3>([\\s\\S]*?)(?:<hr\\s*\\/?>|<h3>)`, "i"));
   return match?.[1] || "";
 }
 
-function chooseQuote(html) {
+function chooseQuotes(html) {
   const paragraphs = [...section(html, "Quotes").matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
     .map(match => clean(match[1]))
     .filter(Boolean);
+  const quotes = [];
   for (const paragraph of paragraphs) {
-    const direct = paragraph.match(/[“"]([^”"]{12,180})[”"]/);
-    if (direct && direct[1].split(/\s+/).length <= 28 && !/can.?t tell a lie/i.test(direct[1])) return direct[1];
+    for (const direct of paragraph.matchAll(/[“"]([^”"]{12,180})[”"]/g)) {
+      const quote = direct[1].trim();
+      if (quote.split(/\s+/).length <= 32 && !/can.?t tell a lie/i.test(quote) && !quotes.includes(quote)) {
+        quotes.push(quote);
+      }
+      if (quotes.length === 3) return quotes;
+    }
   }
-  return "";
+  return quotes;
+}
+
+function studentReligionLabel(value) {
+  if (value === "No formal affiliation; influenced by Deism and Unitarianism") {
+    return "No official church; influenced by Deism and Unitarian Christianity";
+  }
+  if (value === "No formal affiliation") return "No official church membership";
+  if (value === "Nondenominational Christian; formerly Presbyterian") {
+    return "Nondenominational Christian; formerly Presbyterian (Christian)";
+  }
+  if (value === "Protestant") return "Protestant (Christian)";
+  const christianBranches = /^(Episcopalian|Unitarian|Presbyterian|Dutch Reformed|Methodist|Disciples of Christ|Baptist|Congregationalist|Quaker|Roman Catholic)$/;
+  return christianBranches.test(value) ? `${value} (Christian)` : value;
+}
+
+function studentActionLabel(value) {
+  const replacements = [
+    ["presidential cabinet", "presidential Cabinet, the president’s group of top advisers"],
+    ["two-term precedent", "two-term example that later presidents followed"],
+    ["nation neutral", "nation out of the European war"],
+    ["national finances", "national money and banking system"],
+    ["presidential succession", "rules for replacing a president"],
+    ["Texas annexation", "adding Texas to the United States"],
+    ["sectional violence", "violent conflict between the North and South"],
+    ["secession crisis", "crisis over states leaving the United States"],
+    ["seven states seceded", "seven states left the United States"],
+    ["during Reconstruction", "during Reconstruction, the effort to rebuild after the Civil War"],
+    ["civil-service reform", "civil-service reform, or government hiring based on skill"],
+    ["patronage system", "patronage system of giving government jobs to political supporters"],
+    ["antitrust", "antitrust, or anti-monopoly"],
+    ["powerful trusts", "powerful business monopolies"],
+    ["Federal Reserve", "Federal Reserve, the nation’s central banking system"],
+    ["segregating federal offices", "separating federal workers by race"],
+    ["postwar arms-limitation treaties", "treaties that limited weapons after World War I"],
+    ["Interstate Highway System", "Interstate Highway System, the national network of major highways"],
+    ["military-industrial complex", "close relationship between the military, government, and defense companies"],
+    ["Was impeached and acquitted", "Was impeached by the House but not removed by the Senate"]
+  ];
+  return replacements.reduce((text, [from, to]) => text.replace(from, to), value);
 }
 
 function tableValues(html) {
@@ -191,12 +261,15 @@ async function buildCard(portrait) {
     order: extra.order,
     yearsInOffice: portrait.name === "Donald Trump" ? "2017–2021; 2025–present" : table.term.replaceAll("-", "–"),
     portrait: `assets/presidents/${portrait.file}`,
-    birthplace: birthplaceOverrides[portrait.name] || wikidataBirthplaces.get(portrait.name) || table.born.replace(/^.*?,? in /, ""),
-    religion: extra.religion,
+    birthplace: birthStates[portrait.name],
+    religion: studentReligionLabel(extra.religion),
     education: extra.education,
     careerBeforePresidency: table.career,
-    keyAccomplishments: extra.accomplishments,
-    importantQuote: chooseQuote(html) || verifiedQuoteFallbacks[portrait.name] || "",
+    keyAccomplishments: extra.accomplishments.map(studentActionLabel),
+    importantQuotes: [...new Set([
+      ...chooseQuotes(html),
+      ...(verifiedQuoteFallbacks[portrait.name] || [])
+    ].filter(Boolean))].slice(0, 3),
     sources: {
       biographyAndQuote: profileUrl,
       lifeBeforePresidency: millerSource,
@@ -208,7 +281,6 @@ async function buildCard(portrait) {
   return card;
 }
 
-const wikidataBirthplaces = await loadWikidataBirthplaces();
 const cards = [];
 for (let start = 0; start < portraitManifest.portraits.length; start += 5) {
   const batch = portraitManifest.portraits.slice(start, start + 5);
@@ -216,7 +288,7 @@ for (let start = 0; start < portraitManifest.portraits.length; start += 5) {
 }
 
 await fs.writeFile(outputPath, `${JSON.stringify({
-  note: "Student-ready facts for the Portrait Day design activity. Accomplishment lists include major achievements, consequential actions, and important controversies when needed for historical accuracy.",
+  note: "Student-ready key facts for the Portrait Day design activity. Action lists include major achievements, consequential choices, and important controversies when needed for historical accuracy.",
   generated: new Date().toISOString(),
   count: cards.length,
   presidents: cards

@@ -166,6 +166,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .president-facts h3 { margin: 1rem 0 .5rem; font-size: .85rem; }
 .president-facts ul { margin: 0; padding-left: 1.2rem; }
 .president-facts blockquote { margin: 0; padding: .8rem; background: var(--stone); font-weight: 750; }
+.president-quotes { display: grid; gap: .55rem; }
 .president-facts a { margin-top: .8rem; display: inline-block; color: var(--black); font-size: .72rem; font-weight: 900; }
 .lesson-list { display: grid; gap: .75rem; }
 .lesson { padding: 1rem 1.1rem; display: grid; grid-template-columns: 50px 1fr auto; gap: 1rem; align-items: start; background: var(--white); border: 1px solid var(--line); border-radius: 16px; }

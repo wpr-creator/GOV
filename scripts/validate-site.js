@@ -35,10 +35,13 @@ if (presidentFacts.count !== 45 || presidentFacts.presidents?.length !== 45) {
   errors.push("Expected 45 complete president fact cards.");
 }
 presidentFacts.presidents?.forEach(president => {
-  for (const key of ["name", "order", "yearsInOffice", "portrait", "birthplace", "religion", "education", "careerBeforePresidency", "importantQuote"]) {
+  for (const key of ["name", "order", "yearsInOffice", "portrait", "birthplace", "religion", "education", "careerBeforePresidency"]) {
     if (!president[key]) errors.push(`${president.name || "Unknown president"} is missing ${key}.`);
   }
   if (president.keyAccomplishments?.length < 3) errors.push(`${president.name} needs at least three key accomplishments or actions.`);
+  if (president.importantQuotes?.length < 2 || president.importantQuotes.length > 3) {
+    errors.push(`${president.name} needs two or three quote choices.`);
+  }
 });
 
 for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
