@@ -2,14 +2,26 @@ window.COURSE_DATA = {
   units: [
     {
       id: "gov-0", number: "Unit 0", title: "First Bell",
-      question: "What makes government legitimate?",
-      standards: "Gov 12.1; 12.10",
-      overview: ["Ask a civic question", "Find democratic values", "Trace founding ideas", "Defend a claim"],
+      question: "How does government already shape my life—and how will this course help me understand it?",
+      standards: "Course launch · Prepares for Gov 12.1–12.10",
+      overview: ["Notice government", "Learn the routines", "Find your starting point", "Build our classroom story"],
       lessons: [
-        ["Civic Inquiry & Course Launch", "What makes government legitimate?", "Gov 12.1; 12.10", "Set discussion norms; complete a civic-literacy diagnostic; analyze a public dilemma.", "Diagnostic CER and vocabulary check"],
-        ["Democratic Principles", "Which values anchor U.S. democracy?", "Gov 12.1.3; 12.10", "Annotate Declaration and Constitution excerpts; sort liberty and equality tensions.", "Source annotation exit ticket"],
-        ["Roots of American Government", "How did earlier ideas shape the founding?", "Gov 12.1.1", "Connect Greek, Roman, English, Locke, Montesquieu, Machiavelli, and Blackstone ideas.", "Influence matrix and quick write"],
-        ["Democracy's Promise and Perils", "How did thinkers balance rights and the public good?", "Gov 12.1.2–12.1.4", "Compare Tocqueville, classical liberalism, classical republicanism, and Federalist excerpts.", "Claim-evidence paragraph"]
+        ["0.1 — It’s on the Schedule", "Where does government already appear in my everyday life?", "Course launch", "Connect government to school, work, transportation, safety, rights, technology, and your future. Join the course spaces and bookmark this site.", "Name one way government affects your life"],
+        ["0.2 — Read the Fine Print", "What kind of class do we need in order to study government well?", "Course launch", "Learn how the class works, practice civic discussion expectations, and begin your Civic Selfie.", "Take home the syllabus and continue your Civic Selfie"],
+        ["0.3 — Pack Your Field Guides", "What is my starting point, and what tools will help me succeed?", "Course launch", "Complete the PEW Political Typology activity, reflect privately, preview the course, and begin using your paper Field Guide.", "Complete the reflection and begin preparing for the first assessment"],
+        ["0.4 — Portrait Day", "Who has shaped the institution of the American presidency?", "Prepares for Gov 12.4.4", "Research an assigned president and begin a portrait or word-cloud profile for our shared classroom display.", "Begin an accurate plan for your assigned president"]
+      ],
+      resources: [
+        {
+          title: "PEW POLITICAL TYPOLOGY",
+          note: "TAKE THE OFFICIAL 2026 QUIZ.",
+          url: "https://www.pewresearch.org/politics/quiz/political-typology/"
+        },
+        {
+          title: "TYPOLOGY REFLECTION",
+          note: "GOOGLE FORM WILL BE ADDED HERE.",
+          url: ""
+        }
       ]
     },
     {
@@ -104,14 +116,9 @@ window.COURSE_DATA = {
     }
   ],
   words: [
-    ["Power", "⚡", "The ability to make something happen or stop it.", "A city council uses power when it changes a local rule.", "gov-0"],
-    ["Legitimacy", "✓", "The belief that a government has a valid right to rule.", "People may accept a decision they dislike when they trust the process.", "gov-0"],
-    ["Democracy", "●", "A system in which the people have political power.", "Voters use political power when they choose representatives.", "gov-0"],
-    ["Consent", "✓", "Permission or agreement.", "Voting is one way people give consent to a government.", "gov-0"],
-    ["Liberty", "↗", "Freedom to think, speak, choose, or act without unfair control.", "The First Amendment protects several kinds of liberty.", "gov-0"],
-    ["Equality", "=", "The idea that people deserve equal status and treatment under law.", "Equal protection asks whether government treats groups fairly.", "gov-0"],
-    ["Republic", "R", "A government in which people choose representatives.", "Voters elect members of Congress to act for them.", "gov-0"],
-    ["Public good", "◎", "Something that benefits a community as a whole.", "Clean drinking water supports the public good.", "gov-0"],
+    ["Government", "G", "The people and institutions authorized to make and carry out public decisions.", "A city government decides how to provide local services.", "gov-1"],
+    ["Politics", "P", "The process people use to influence public decisions and government action.", "Residents use politics when they organize support for a new law.", "gov-1"],
+    ["Civics", "C", "The study of citizenship, government, rights, and participation.", "Learning how to contact a representative is part of civics.", "gov-1"],
     ["Constitution", "▤", "The basic rules and structure of a government.", "The U.S. Constitution creates three branches.", "gov-1"],
     ["Limited government", "▢", "Government may use only the power the law gives it.", "A president cannot create a new power just by claiming it.", "gov-1"],
     ["Checks and balances", "⇆", "Each branch can limit the power of the other branches.", "A president may veto a bill passed by Congress.", "gov-1"],

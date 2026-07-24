@@ -33,7 +33,7 @@ for (const fragment of ["<main", "<nav", "Skip to the course", "prefers-reduced-
 if (!Array.isArray(data.units) || data.units.length !== 8) errors.push("Expected 8 Government units.");
 const lessonCount = data.units.reduce((count, unit) => count + unit.lessons.length, 0);
 if (lessonCount !== 38) errors.push(`Expected all 38 pacing entries; found ${lessonCount}.`);
-if (!Array.isArray(data.words) || data.words.length !== 56) errors.push(`Expected 56 plain-language glossary terms; found ${data.words?.length || 0}.`);
+if (!Array.isArray(data.words) || data.words.length !== 51) errors.push(`Expected 51 plain-language glossary terms; found ${data.words?.length || 0}.`);
 data.words?.forEach((word, index) => {
   if (word.length !== 5 || word.some(value => !String(value).trim()) || !data.units.some(unit => unit.id === word[4])) {
     errors.push(`Glossary term ${index + 1} is incomplete or has an unknown unit.`);

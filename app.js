@@ -103,6 +103,35 @@
       flow.appendChild(item);
     });
 
+    const resources = document.createElement("section");
+    resources.className = "unit-resources";
+    if (unit.resources?.length) {
+      const resourceHeading = document.createElement("div");
+      resourceHeading.className = "section-heading";
+      resourceHeading.innerHTML = "<div><p class=\"eyebrow\">UNIT LINKS</p><h2>OPEN WHAT YOU NEED.</h2></div>";
+      const resourceGrid = document.createElement("div");
+      resourceGrid.className = "unit-resource-grid";
+      unit.resources.forEach(resource => {
+        const card = document.createElement(resource.url ? "a" : "div");
+        card.className = "unit-resource";
+        if (resource.url) {
+          card.href = resource.url;
+          card.target = "_blank";
+          card.rel = "noopener";
+        } else {
+          card.classList.add("placeholder");
+          card.setAttribute("aria-disabled", "true");
+        }
+        const resourceTitle = document.createElement("strong");
+        resourceTitle.textContent = resource.title;
+        const resourceNote = document.createElement("span");
+        resourceNote.textContent = resource.note;
+        card.append(resourceTitle, resourceNote);
+        resourceGrid.appendChild(card);
+      });
+      resources.append(resourceHeading, resourceGrid);
+    }
+
     const list = document.createElement("section");
     list.className = "lesson-list";
     const heading = document.createElement("div");
@@ -133,7 +162,9 @@
       article.append(num, copy, standard, details);
       list.appendChild(article);
     });
-    container.append(header, flow, list);
+    container.append(header, flow);
+    if (unit.resources?.length) container.append(resources);
+    container.append(list);
   }
 
   function renderWords() {
@@ -474,6 +505,7 @@
       const local = localStorage.getItem(CONTENT_STORAGE_KEY);
       if (local) siteContent = { ...siteContent, ...JSON.parse(local) };
       if (data.units.some(unit => unit.id === siteContent.currentUnit)) currentUnitId = siteContent.currentUnit;
+      if (!data.words.some(word => word[4] === currentUnitId)) glossaryFilter = "all";
     } catch (error) {
       console.warn("Using default course content.", error);
     }
