@@ -11,13 +11,13 @@ The site groups all California Government standards into eight student-facing un
 | SITE UNIT | ESSENTIAL QUESTION | STANDARDS |
 |---|---|---|
 | Unit 0 · First Bell | Where does government show up in my life? | Course launch |
-| Unit 1 · Why Government? | Why do people create governments? | 12.1.1–12.1.3 |
-| Unit 2 · Power by Design | How does the Constitution divide and limit power? | 12.1.4–12.1.6; 12.7.1–12.7.4 |
+| Unit 1 · Foundations of American Democracy | Where did American ideas about government and rights come from? | 12.1.1–12.1.3 |
+| Unit 2 · Building the Constitution | How was American government designed to keep power under control? | 12.1.4–12.1.6; 12.7.1–12.7.4 |
 | Unit 3 · Election Season | How do people win elections and influence government? | 12.6; 12.8 |
-| Unit 4 · The Three Branches | How do the three branches use—and limit—power? | 12.4; 12.5.2–12.5.4; 12.7.5–12.7.8 |
+| Unit 4 · Checks and Balances | How do the three branches use their powers and check one another? | 12.4; 12.5.2–12.5.4; 12.7.5–12.7.8 |
 | Unit 5 · Rights in Real Life | When can government limit a person’s rights? | 12.2; 12.3; 12.5.1; 12.10 |
-| Unit 6 · Democracy Under Pressure | Why do some democracies survive while others fail? | 12.9; 12.10 |
-| Unit 7 · Make the Case | How can I make a strong argument about government? | Cumulative 12.1–12.10 |
+| Unit 6 · Government Around the World | Why do some political systems protect freedom while others do not? | 12.9.1–12.9.8 |
+| Unit 7 · Constitutional Tensions | How should democracy balance rights, equality, and power? | 12.10 |
 
 ## OCTOBER ELECTION SEQUENCE
 

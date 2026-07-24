@@ -30,8 +30,8 @@ window.COURSE_DATA = {
       ]
     },
     {
-      id: "gov-1", number: "Unit 1", title: "Why Government?",
-      question: "Why do people create governments?",
+      id: "gov-1", number: "Unit 1", title: "Foundations of American Democracy",
+      question: "Where did American ideas about government and rights come from?",
       standards: "Gov 12.1.1–12.1.3",
       overview: ["Trace the ideas", "Name the promise", "Find the risks", "Define legitimate power"],
       lessons: [
@@ -42,15 +42,15 @@ window.COURSE_DATA = {
       ]
     },
     {
-      id: "gov-2", number: "Unit 2", title: "Power by Design",
-      question: "How does the Constitution divide and limit power?",
+      id: "gov-2", number: "Unit 2", title: "Building the Constitution",
+      question: "How was American government designed to keep power under control?",
       standards: "Gov 12.1.4–12.1.6; 12.7.1–12.7.4",
       overview: ["Divide power", "Check power", "Share power", "Protect rights"],
       lessons: [
         ["From the Articles to the Constitution", "Why did the United States replace its first government?", "Gov 12.1.4", "Compare the weak national government under the Articles with the stronger Constitution.", "Explain one problem the Constitution tried to solve"],
         ["Checks and Balances", "How can government control itself?", "Gov 12.1.4–12.1.5", "Use Federalist 51 to see how the branches limit one another.", "Apply one check to a government action"],
         ["Factions and Shared Power", "How can the Constitution prevent one group from taking control?", "Gov 12.1.5", "Use Federalist 10 to examine competing groups, shared powers, and the rule of law.", "Explain how competition can limit power"],
-        ["Federalism", "Who should decide: the nation, a state, a tribe, or a local government?", "Gov 12.7.1–12.7.4", "Sort national, state, tribal, local, reserved, and shared powers. Use the Ninth and Tenth Amendments to resolve conflicts.", "Choose the right level of government for a real problem"],
+        ["Federalism", "Who should decide: the nation, a state, a tribe, or a local government?", "Gov 12.7.1–12.7.4", "Compare the powers, services, and sources of money at each level of government. Use the Ninth and Tenth Amendments to resolve conflicts.", "Choose the right level of government for a real problem"],
         ["The Bill of Rights", "How do written rights limit government?", "Gov 12.1.6", "Examine how the Bill of Rights limits both national and state governments.", "Use a right to evaluate a government action"]
       ]
     },
@@ -70,8 +70,8 @@ window.COURSE_DATA = {
       ]
     },
     {
-      id: "gov-4", number: "Unit 4", title: "The Three Branches",
-      question: "How do the three branches use—and limit—power?",
+      id: "gov-4", number: "Unit 4", title: "Checks and Balances",
+      question: "How do the three branches use their powers and check one another?",
       standards: "Gov 12.4; 12.5.2–12.5.4; 12.7.5–12.7.8",
       overview: ["Make laws", "Carry out laws", "Interpret laws", "Check power"],
       lessons: [
@@ -98,26 +98,26 @@ window.COURSE_DATA = {
       ]
     },
     {
-      id: "gov-6", number: "Unit 6", title: "Democracy Under Pressure",
-      question: "Why do some democracies survive while others fail?",
-      standards: "Gov 12.9; 12.10",
-      overview: ["Compare systems", "Trace dictatorship", "Study resistance", "Protect democracy"],
+      id: "gov-6", number: "Unit 6", title: "Government Around the World",
+      question: "Why do some political systems protect freedom while others do not?",
+      standards: "Gov 12.9.1–12.9.8",
+      overview: ["Compare systems", "Trace dictatorship", "Study resistance", "Explain democracy"],
       lessons: [
         ["Ways to Organize Government", "How do different systems divide power?", "Gov 12.9.1–12.9.3", "Compare presidential, parliamentary, federal, confederal, unitary, monarchical, socialist, fascist, communist, and liberal democratic systems.", "Compare two systems using the same three questions"],
         ["How Tyranny Grows", "What conditions allow dictators to gain power?", "Gov 12.9.4–12.9.5", "Study at least two countries to connect crisis, ideology, supporters, and methods of control.", "Build a cause-and-effect chain"],
         ["Dictatorship and Human Rights", "How do dictators keep control?", "Gov 12.9.4–12.9.5", "Compare propaganda, censorship, force, party control, and attacks on independent groups in Africa, Asia, and Latin America.", "Explain how one method weakens freedom"],
         ["Revolution and Resistance", "Why do people challenge a political system?", "Gov 12.9.6–12.9.7", "Examine revolutions in Latin America and movements against Communist governments in Eastern Europe.", "Compare the goals and results of two movements"],
-        ["Building Democracy", "What helps a new democracy last?", "Gov 12.9.8; 12.10", "Compare newer democracies in Africa, Asia, and Latin America and identify the people, ideas, and conditions that helped or hurt them.", "Name one condition a democracy needs to survive"]
+        ["Building Democracy", "What helps a new democracy last?", "Gov 12.9.8", "Compare newer democracies in Africa, Asia, and Latin America and identify the people, ideas, and conditions that helped or hurt them.", "Name one condition a democracy needs to survive"]
       ]
     },
     {
-      id: "gov-7", number: "Unit 7", title: "Make the Case",
-      question: "How can I make a strong argument about government?",
-      standards: "Gov 12.1–12.10",
-      overview: ["Retrieve", "Apply", "Defend", "Reflect"],
+      id: "gov-7", number: "Unit 7", title: "Constitutional Tensions",
+      question: "How should democracy balance rights, equality, and power?",
+      standards: "Gov 12.10",
+      overview: ["Identify the conflict", "Compare the values", "Choose a balance", "Defend your answer"],
       lessons: [
-        ["Balance the Constitution", "How should democracy balance values that conflict?", "Gov 12.10", "Use evidence to examine majority rule and individual rights, liberty and equality, state and national power, civil disobedience and law, a free press and a fair trial, or religion and government.", "Defend a position on one constitutional tension"],
-        ["Make the Case", "What makes a government argument convincing?", "Gov 12.1–12.10", "Answer a civic question with a clear claim, accurate evidence, and reasoning that explains the connection.", "Present your strongest government argument"]
+        ["Values in Conflict", "What happens when two democratic values conflict?", "Gov 12.10", "Compare majority rule with individual rights, liberty with equality, state power with national power, civil disobedience with the rule of law, a free press with a fair trial, and religion with government.", "Identify the two values in a constitutional conflict"],
+        ["Defend a Balance", "How should government balance two important values?", "Gov 12.10", "Choose one constitutional tension. Make a clear claim, use accurate evidence, and explain why your balance is fair.", "Present and defend your answer"]
       ]
     }
   ],
@@ -125,6 +125,9 @@ window.COURSE_DATA = {
     ["Government", "G", "The people and institutions authorized to make and carry out public decisions.", "A city government decides how to provide local services.", "gov-1"],
     ["Politics", "P", "The process people use to influence public decisions and government action.", "Residents use politics when they organize support for a new law.", "gov-1"],
     ["Civics", "C", "The study of citizenship, government, rights, and participation.", "Learning how to contact a representative is part of civics.", "gov-1"],
+    ["Natural rights", "N", "Basic rights every person has simply because they are human.", "The Declaration names life and liberty as natural rights.", "gov-1"],
+    ["Consent of the governed", "✓", "The idea that government receives its power from the people.", "Voting is one way people give or withdraw consent.", "gov-1"],
+    ["Public good", "◎", "A benefit shared by the whole community.", "Clean water and public safety serve the public good.", "gov-1"],
     ["Constitution", "▤", "The basic rules and structure of a government.", "The U.S. Constitution creates three branches.", "gov-2"],
     ["Limited government", "▢", "Government may use only the power the law gives it.", "A president cannot create a new power just by claiming it.", "gov-2"],
     ["Checks and balances", "⇆", "Each branch can limit the power of the other branches.", "A president may veto a bill passed by Congress.", "gov-2"],
@@ -172,6 +175,6 @@ window.COURSE_DATA = {
     ["Claim", "C", "A clear answer that can be supported.", "A student claims that a policy is constitutional.", "gov-7"],
     ["Evidence", "E", "Facts, examples, data, or text that support a claim.", "A sentence from the Constitution can be evidence.", "gov-7"],
     ["Reasoning", "R", "The explanation that connects evidence to a claim.", "Reasoning tells why a fact proves the answer.", "gov-7"],
-    ["Civic action", "→", "Something a person does to improve or influence public life.", "Speaking at a city council meeting is civic action.", "gov-7"]
+    ["Constitutional tension", "⇄", "A conflict between two important democratic values.", "A free press and a fair trial can sometimes pull in different directions.", "gov-7"]
   ]
 };

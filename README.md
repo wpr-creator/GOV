@@ -42,7 +42,7 @@ The permanent Foundations section contains:
 - all 27 amendments, filtered by current unit, Bill of Rights, voting, or complete list
 - Read the Source, Build the Argument, and Use the Language skill builders
 - four simplified Madison vs. Brutus constitutional debates
-- a searchable, unit-filtered glossary with 51 short definitions and concrete examples
+- a searchable glossary with short definitions and concrete examples
 
 All three Skill Builder levels are open by default. In `dev` mode, a teacher can set each skill to open through Level 1, 2, or 3. Those choices are included when `site-content.json` is copied.
 - `scripts/validate-site.js` — local content and reference checks
