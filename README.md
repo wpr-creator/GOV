@@ -1,6 +1,6 @@
 # PRINCIPLES OF AMERICAN DEMOCRACY
 
-A mobile-first, static Principles of American Democracy course site for the 2026–27 school year.
+A mobile-first, static Principles of American Democracy course site.
 
 ## TEACHER EDIT MODE
 
@@ -18,7 +18,9 @@ The selected unit and all earlier units open; later units stay locked.
 ## Curriculum structure
 
 - The course contains eight student-facing Government units.
-- Every pacing-guide topic, essential question, activity, assessment, and standards mapping is retained inside those units.
+- The California Grade Twelve Principles of American Democracy standards control the curriculum.
+- Unit 3, Election Season, is placed in October before the November election.
+- Standards codes appear in a compact unit-level location while lesson directions stay student-facing.
 - School dates, rosters, assignments, and live resource links are intentionally not required for this preseason version.
 
 ## Files

@@ -67,7 +67,7 @@
       question.textContent = unit.question;
       const standards = document.createElement("p");
       standards.className = "standards";
-      standards.textContent = unit.standards;
+      standards.textContent = `${unit.timing ? `${unit.timing.toUpperCase()} · ` : ""}${unit.standards}`;
       const button = document.createElement("button");
       button.type = "button";
       button.disabled = state === "locked";
@@ -87,12 +87,15 @@
     header.className = "unit-detail-header";
     const eyebrow = document.createElement("p");
     eyebrow.className = "eyebrow";
-    eyebrow.textContent = `${unit.number} · ${unit.standards}`;
+    eyebrow.textContent = `${unit.number}${unit.timing ? ` · ${unit.timing.toUpperCase()}` : ""}`;
     const title = document.createElement("h1");
     title.textContent = unit.title.toUpperCase();
     const question = document.createElement("p");
     question.textContent = unit.question;
-    header.append(eyebrow, title, question);
+    const standards = document.createElement("p");
+    standards.className = "standards";
+    standards.textContent = `CALIFORNIA STANDARDS · ${unit.standards}`;
+    header.append(eyebrow, title, question, standards);
 
     const flow = document.createElement("div");
     flow.className = "overview-flow";
@@ -154,16 +157,17 @@
       const lessonQuestion = document.createElement("p");
       lessonQuestion.textContent = lesson[1];
       copy.append(lessonTitle, lessonQuestion);
-      const standard = document.createElement("span");
-      standard.className = "standard-tag";
-      standard.textContent = lesson[2];
       const details = document.createElement("details");
       const summary = document.createElement("summary");
       summary.textContent = "WHAT WILL I DO?";
       const activity = document.createElement("p");
-      activity.textContent = `${lesson[3]} Check: ${lesson[4]}.`;
-      details.append(summary, activity);
-      article.append(num, copy, standard, details);
+      activity.textContent = lesson[3];
+      const finish = document.createElement("p");
+      const finishLabel = document.createElement("strong");
+      finishLabel.textContent = "FINISH WITH: ";
+      finish.append(finishLabel, lesson[4]);
+      details.append(summary, activity, finish);
+      article.append(num, copy, details);
       list.appendChild(article);
     });
     container.append(header, flow);
@@ -302,14 +306,11 @@
       title.textContent = documentData.title.toUpperCase();
       const idea = document.createElement("p");
       idea.textContent = documentData.bigIdea;
-      const standard = document.createElement("span");
-      standard.className = "standard-tag";
-      standard.textContent = documentData.standards;
       const button = document.createElement("button");
       button.type = "button";
       button.textContent = "OPEN DOCUMENT GUIDE →";
       button.addEventListener("click", () => openDocument(documentData, button));
-      card.append(meta, title, idea, standard, button);
+      card.append(meta, title, idea, button);
       grid.appendChild(card);
     });
   }
@@ -320,7 +321,7 @@
     content.replaceChildren();
     const eyebrow = document.createElement("p");
     eyebrow.className = "eyebrow";
-    eyebrow.textContent = `${documentData.year} · ${documentData.author} · ${documentData.standards}`;
+    eyebrow.textContent = `${documentData.year} · ${documentData.author}`;
     const title = document.createElement("h2");
     title.id = "foundation-dialog-title";
     title.textContent = documentData.title.toUpperCase();
@@ -377,7 +378,7 @@
     grid.replaceChildren();
     const matches = foundations.amendments.filter(amendmentMatches);
     matches.forEach(amendment => {
-      const [number, titleText, plain, why, , standards] = amendment;
+      const [number, titleText, plain, why] = amendment;
       const card = document.createElement("article");
       card.className = "amendment-card";
       const numberEl = document.createElement("div");
@@ -393,10 +394,7 @@
       summary.textContent = "WHY IT MATTERS";
       const whyText = document.createElement("p");
       whyText.textContent = why;
-      const tag = document.createElement("span");
-      tag.className = "standard-tag";
-      tag.textContent = standards;
-      details.append(summary, whyText, tag);
+      details.append(summary, whyText);
       content.append(title, description, details);
       card.append(numberEl, content);
       grid.appendChild(card);
@@ -510,10 +508,7 @@
     connection.innerHTML = "<h4>CONSTITUTIONAL CONNECTION</h4>";
     const connectionText = document.createElement("p");
     connectionText.textContent = debate.connection;
-    const standard = document.createElement("span");
-    standard.className = "standard-tag";
-    standard.textContent = debate.standards;
-    connection.append(connectionText, standard);
+    connection.append(connectionText);
     const turn = document.createElement("div");
     turn.className = "madison-turn";
     const turnTitle = document.createElement("h4");
@@ -562,7 +557,7 @@
   }
 
   function renderSiteContent() {
-    document.getElementById("exit-question").textContent = siteContent.exitQuestion || "EXIT TICKET SYSTEM WILL APPEAR HERE.";
+    document.getElementById("exit-question").textContent = siteContent.exitQuestion || "NO EXIT TICKET TODAY.";
     const classroom = document.getElementById("classroom-link");
     classroom.href = siteContent.classroomUrl || "https://classroom.google.com/c/ODcxMDI4ODY2NDUy";
     const list = document.getElementById("upcoming-list");
@@ -621,7 +616,8 @@
     }
     document.getElementById("history-year").textContent = String(event.year || "CIVIC MOMENT");
     document.getElementById("history-text").textContent = event.text || "";
-    document.getElementById("history-connection").textContent = event.ap_connection ? `COURSE CONNECTION: ${event.ap_connection}` : "";
+    const historyConnection = plainHistoryConnection(event.ap_connection || "");
+    document.getElementById("history-connection").textContent = historyConnection ? `WHY IT MATTERS: ${historyConnection}` : "";
     const source = document.getElementById("history-source");
     if (event.source_url) {
       source.href = event.source_url;
@@ -630,6 +626,32 @@
     } else {
       source.hidden = true;
     }
+  }
+
+  function plainHistoryConnection(connection) {
+    const replacements = new Map([
+      ["constitutional foundations", "the Constitution"],
+      ["founding ideals", "ideas behind American government"],
+      ["national policymaking", "how national policy is made"],
+      ["agenda setting", "choosing which issues government acts on"],
+      ["linkage institutions", "groups that connect people and government"],
+      ["federal bureaucracy", "federal agencies"],
+      ["implementation", "putting policy into action"],
+      ["administrative power", "power of government agencies"],
+      ["american political development", "how American government changed"],
+      ["institutions", "government institutions"],
+      ["selective incorporation", "applying Bill of Rights protections to states"],
+      ["continuity of government", "keeping government working during a crisis"],
+      ["collective action", "people working together"],
+      ["political culture", "public beliefs about government"],
+      ["suffrage", "voting rights"]
+    ]);
+    return connection
+      .split(";")
+      .map(item => item.trim())
+      .filter(item => item && !/^Unit \d+$/i.test(item))
+      .map(item => replacements.get(item.toLowerCase()) || item)
+      .join(" · ");
   }
 
   async function loadHistory() {
