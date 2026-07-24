@@ -167,6 +167,13 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .president-facts ul { margin: 0; padding-left: 1.2rem; }
 .president-facts blockquote { margin: 0; padding: .8rem; background: var(--stone); font-weight: 750; }
 .president-quotes { display: grid; gap: .55rem; }
+.president-quote { padding-bottom: .35rem; border: 1px solid var(--line); background: var(--stone); }
+.president-quote blockquote { border: 0; }
+.president-quote a { margin: 0; padding: 0 .8rem .55rem; }
+.president-connection { margin-top: 1rem; padding: .85rem; border-left: 6px solid var(--black); background: var(--stone); }
+.president-connection h3 { margin-top: 0; }
+.president-connection p { padding: 0; border: 0; color: var(--black); }
+.president-connection a + a { margin-left: .75rem; }
 .president-facts a { margin-top: .8rem; display: inline-block; color: var(--black); font-size: .72rem; font-weight: 900; }
 .lesson-list { display: grid; gap: .75rem; }
 .lesson { padding: 1rem 1.1rem; display: grid; grid-template-columns: 50px 1fr auto; gap: 1rem; align-items: start; background: var(--white); border: 1px solid var(--line); border-radius: 16px; }

@@ -263,17 +263,53 @@
       quoteTitle.textContent = "CHOOSE A QUOTE";
       const quotes = document.createElement("div");
       quotes.className = "president-quotes";
-      (president.importantQuotes || [president.importantQuote]).forEach(quoteText => {
+      (president.importantQuotes || [president.importantQuote]).forEach(quoteData => {
+        const quoteText = typeof quoteData === "string" ? quoteData : quoteData.text;
+        const quoteWrap = document.createElement("div");
+        quoteWrap.className = "president-quote";
         const quote = document.createElement("blockquote");
         quote.textContent = `“${quoteText}”`;
-        quotes.appendChild(quote);
+        quoteWrap.appendChild(quote);
+        if (quoteData?.sourceUrl) {
+          const quoteSource = document.createElement("a");
+          quoteSource.href = quoteData.sourceUrl;
+          quoteSource.target = "_blank";
+          quoteSource.rel = "noopener";
+          quoteSource.textContent = `${quoteData.sourceLabel || "QUOTE SOURCE"} ↗`;
+          quoteWrap.appendChild(quoteSource);
+        }
+        quotes.appendChild(quoteWrap);
       });
+      facts.append(accomplishmentsTitle, accomplishments, quoteTitle, quotes);
+      if (president.presentDayConnection) {
+        const connection = document.createElement("aside");
+        connection.className = "president-connection";
+        const connectionTitle = document.createElement("h3");
+        connectionTitle.textContent = "WHY THIS STILL MATTERS";
+        const connectionText = document.createElement("p");
+        connectionText.textContent = `* ${president.presentDayConnection.text}`;
+        const connectionSource = document.createElement("a");
+        connectionSource.href = president.presentDayConnection.sourceUrl;
+        connectionSource.target = "_blank";
+        connectionSource.rel = "noopener";
+        connectionSource.textContent = `${president.presentDayConnection.sourceLabel} ↗`;
+        connection.append(connectionTitle, connectionText, connectionSource);
+        if (president.presentDayConnection.secondSourceUrl) {
+          const secondSource = document.createElement("a");
+          secondSource.href = president.presentDayConnection.secondSourceUrl;
+          secondSource.target = "_blank";
+          secondSource.rel = "noopener";
+          secondSource.textContent = `${president.presentDayConnection.secondSourceLabel} ↗`;
+          connection.appendChild(secondSource);
+        }
+        facts.appendChild(connection);
+      }
       const source = document.createElement("a");
       source.href = president.sources.biographyAndQuote;
       source.target = "_blank";
       source.rel = "noopener";
       source.textContent = "READ THE PRESIDENT’S BIOGRAPHY ↗";
-      facts.append(accomplishmentsTitle, accomplishments, quoteTitle, quotes, source);
+      facts.appendChild(source);
       details.append(summary, facts);
       card.append(image, heading, details);
       grid.appendChild(card);
