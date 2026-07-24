@@ -1,6 +1,6 @@
 {
   "note": "Student-ready key facts for the Portrait Day design activity. Action lists include major achievements, consequential choices, and important controversies when needed for historical accuracy.",
-  "generated": "2026-07-24T20:01:30.719Z",
+  "generated": "2026-07-24T20:58:27.497Z",
   "count": 45,
   "presidents": [
     {
@@ -18,9 +18,22 @@
         "Kept the nation out of the European war in the European war"
       ],
       "importantQuotes": [
-        "I hope I shall always possess firmness and virtue enough to maintain the character of an Honest Man.",
-        "The proposed Constitution . . . is provided with more checks and barriers against the introduction of Tyranny . . . than any Government hitherto instituted among mortals."
+        {
+          "text": "I hope I shall always possess firmness and virtue enough to maintain the character of an Honest Man.",
+          "sourceUrl": "https://ourwhitehouse.org/george-washington/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "The proposed Constitution . . . is provided with more checks and barriers against the introduction of Tyranny . . . than any Government hitherto instituted among mortals.",
+          "sourceUrl": "https://ourwhitehouse.org/george-washington/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": {
+        "text": "Washington stepped down after two terms. The Twenty-Second Amendment later made a two-election limit part of the Constitution.",
+        "sourceLabel": "NATIONAL ARCHIVES",
+        "sourceUrl": "https://www.archives.gov/founding-docs/amendments-11-27"
+      },
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/george-washington/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -43,10 +56,29 @@
         "Signed the controversial Alien and Sedition Acts"
       ],
       "importantQuotes": [
-        "Swim or sink, live or die, survive or perish with my country was my unalterable determination.",
-        "The institutions now made in America will not wholly wear out for thousands of years. It is of the last importance, then, that they should begin right.",
-        "People and nations are forged in the fires of adversity."
+        {
+          "text": "Swim or sink, live or die, survive or perish with my country was my unalterable determination.",
+          "sourceUrl": "https://ourwhitehouse.org/john-adams/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "The institutions now made in America will not wholly wear out for thousands of years. It is of the last importance, then, that they should begin right.",
+          "sourceUrl": "https://ourwhitehouse.org/john-adams/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "People and nations are forged in the fires of adversity.",
+          "sourceUrl": "https://ourwhitehouse.org/john-adams/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": {
+        "text": "PAST → PRESENT (AS OF JULY 2026): President Trump invoked the Alien Enemies Act—one of four laws known together as the Alien and Sedition Acts. Courts have considered how that 1798 wartime law may be used today.",
+        "sourceLabel": "READ THE 2025 PROCLAMATION",
+        "sourceUrl": "https://www.whitehouse.gov/presidential-actions/2025/03/invocation-of-the-alien-enemies-act-regarding-the-invasion-of-the-united-states-by-tren-de-aragua/",
+        "secondSourceLabel": "READ THE 2025 SUPREME COURT ORDER",
+        "secondSourceUrl": "https://www.supremecourt.gov/opinions/24pdf/24a931_2c83.pdf"
+      },
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/john-adams/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -69,10 +101,23 @@
         "Used the controversial Embargo Act"
       ],
       "importantQuotes": [
-        "I have sworn upon the altar of God eternal hostility against every form of tyranny over the mind of man.",
-        "The care of human life and happiness, and not their destructions, is the first and only legitimate object of good government.",
-        "A little rebellion now and then is a good thing, and as necessary in the political world as storms in the physical."
+        {
+          "text": "I have sworn upon the altar of God eternal hostility against every form of tyranny over the mind of man.",
+          "sourceUrl": "https://ourwhitehouse.org/thomas-jefferson/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "The care of human life and happiness, and not their destructions, is the first and only legitimate object of good government.",
+          "sourceUrl": "https://ourwhitehouse.org/thomas-jefferson/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "A little rebellion now and then is a good thing, and as necessary in the political world as storms in the physical.",
+          "sourceUrl": "https://ourwhitehouse.org/thomas-jefferson/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/thomas-jefferson/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -95,10 +140,23 @@
         "Approved the Second Bank of the United States"
       ],
       "importantQuotes": [
-        "There never was an assembly of men who were more pure in their motives, or more . . . devoted to the object committed to them.",
-        "To have shrunk [from war], would have acknowledged . . . [that] the American people were not an independent people, but colonists and vassals.",
-        "Justice is the end of government. It ever has been, and ever will be pursued, until it be obtained, or until liberty be lost in the pursuit."
+        {
+          "text": "There never was an assembly of men who were more pure in their motives, or more . . . devoted to the object committed to them.",
+          "sourceUrl": "https://ourwhitehouse.org/james-madison/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "To have shrunk [from war], would have acknowledged . . . [that] the American people were not an independent people, but colonists and vassals.",
+          "sourceUrl": "https://ourwhitehouse.org/james-madison/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "Justice is the end of government. It ever has been, and ever will be pursued, until it be obtained, or until liberty be lost in the pursuit.",
+          "sourceUrl": "https://ourwhitehouse.org/james-madison/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-madison/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -121,10 +179,18 @@
         "Oversaw the acquisition of Florida"
       ],
       "importantQuotes": [
-        "The American continents . . . are henceforth not to be considered as subjects for future colonization by any European powers.",
-        "Yes, papa, but we haven’t any roads like this.",
-        "That’s true. Our country may be likened to a new house. We lack many things, but we possess the most precious of all – liberty!"
+        {
+          "text": "National honor is national property of the highest value.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-23",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "Let us by all wise and constitutional measures promote intelligence among the people as the best means of preserving our liberties.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-23",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-monroe/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -147,9 +213,18 @@
         "Faced strong congressional opposition"
       ],
       "importantQuotes": [
-        "Make no mistake about it, the four most miserable years of my life were my four years in the Presidency.",
-        "America does not go abroad in search of monsters to destroy."
+        {
+          "text": "But she goes not abroad, in search of monsters to destroy.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-secretary-state-john-quincy-adams-the-occasion-reading-the-declaration",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "She is the well-wisher to the freedom and independence of all.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-secretary-state-john-quincy-adams-the-occasion-reading-the-declaration",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/john-quincy-adams/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -162,7 +237,7 @@
       "order": "7",
       "yearsInOffice": "1829–1837",
       "portrait": "assets/presidents/andrew-jackson.jpg",
-      "birthplace": "South Carolina",
+      "birthplace": "South Carolina (claimed; the exact state is disputed)",
       "religion": "Presbyterian (Christian)",
       "education": "Limited formal schooling; studied law",
       "careerBeforePresidency": "Lawyer, Soldier",
@@ -172,9 +247,18 @@
         "Enforced the destructive Indian Removal policy"
       ],
       "importantQuotes": [
-        "The great can protect themselves, but the poor and humble require the arm and shield of the law.",
-        "Our Federal Union—it must be preserved."
+        {
+          "text": "Our Federal Union: It must be preserved.",
+          "sourceUrl": "https://millercenter.org/president/jackson/domestic-affairs",
+          "sourceLabel": "MILLER CENTER"
+        },
+        {
+          "text": "That this was intended to be a government of limited and specific, and not general, powers must be admitted by all.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/first-annual-message-3",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/andrew-jackson/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -197,9 +281,18 @@
         "Struggled with the Panic of 1837"
       ],
       "importantQuotes": [
-        "I cannot expect to perform the task with equal ability and success.",
-        "As to the Presidency, the two happiest days of my life were those of my entrance upon the office and my surrender of it."
+        {
+          "text": "I cannot expect to perform the task with equal ability and success.",
+          "sourceUrl": "https://ourwhitehouse.org/martin-van-buren/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "As to the Presidency, the two happiest days of my life were those of my entrance upon the office and my surrender of it.",
+          "sourceUrl": "https://ourwhitehouse.org/martin-van-buren/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/martin-van-buren/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -215,16 +308,25 @@
       "birthplace": "Virginia",
       "religion": "Episcopalian (Christian)",
       "education": "Hampden-Sydney College and medical study at Pennsylvania; no degree",
-      "careerBeforePresidency": "Doctor, Soldier",
+      "careerBeforePresidency": "Army officer, territorial governor, and U.S. senator",
       "keyAccomplishments": [
         "Delivered the longest inaugural address",
         "Served only 31 days",
         "His death tested rules for replacing a president"
       ],
       "importantQuotes": [
-        "The job seekers pack the White House every day. They pursue me so closely that I can not even attend to the necessary functions of nature.",
-        "The people are the only legitimate fountain of power."
+        {
+          "text": "The only legitimate right to govern is an express grant of power from the governed.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-29",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "The Constitution of the United States is the instrument containing this grant of power to the several departments composing the Government.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-29",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/william-henry-harrison/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -247,9 +349,18 @@
         "Broke with his own Whig Party"
       ],
       "importantQuotes": [
-        "I can never consent to being dictated to.",
-        "The Constitution will be my guide."
+        {
+          "text": "This same occurrence has subjected the wisdom and sufficiency of our institutions to a new test.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "I shall place in the intelligence and patriotism of the people my only sure reliance.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/john-tyler/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -272,10 +383,23 @@
         "Created an independent treasury"
       ],
       "importantQuotes": [
-        "In truth, though I occupy a very high position, I am the hardest working man in this country.",
-        "I prefer to supervise the whole operations of the Government myself rather than entrust the public business to subordinates and this makes my duties very great.",
-        "No President who performs his duties faithfully and conscientiously can have any leisure."
+        {
+          "text": "In truth, though I occupy a very high position, I am the hardest working man in this country.",
+          "sourceUrl": "https://ourwhitehouse.org/james-knox-polk/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "I prefer to supervise the whole operations of the Government myself rather than entrust the public business to subordinates and this makes my duties very great.",
+          "sourceUrl": "https://ourwhitehouse.org/james-knox-polk/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "No President who performs his duties faithfully and conscientiously can have any leisure.",
+          "sourceUrl": "https://ourwhitehouse.org/james-knox-polk/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-knox-polk/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -298,9 +422,18 @@
         "Died after 16 months"
       ],
       "importantQuotes": [
-        "I have no private purpose to accomplish, no party objectives to build up, no enemies to punish.",
-        "Let us always be just, and in our magnanimity never forget to be vigilant."
+        {
+          "text": "In the discharge of these duties my guide will be the Constitution.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-31",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "To exhaust every resort of honorable diplomacy before appealing to arms.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-31",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/zachary-taylor/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -323,9 +456,18 @@
         "Sent the expedition that opened relations with Japan"
       ],
       "importantQuotes": [
-        "The Constitution has made it the duty of the President to take care that the laws be faithfully executed.",
-        "An honorable defeat is better than a dishonorable victory."
+        {
+          "text": "The Constitution has made it the duty of the President to take care that the laws be faithfully executed.",
+          "sourceUrl": "https://ourwhitehouse.org/millard-fillmore/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "An honorable defeat is better than a dishonorable victory.",
+          "sourceUrl": "https://ourwhitehouse.org/millard-fillmore/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/millard-fillmore/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -348,9 +490,18 @@
         "Saw violent conflict between the North and South intensify"
       ],
       "importantQuotes": [
-        "I believe that involuntary servitude, as it exists in different States of this Confederacy, is recognized by the Constitution.",
-        "You have summoned me in my weakness; you must sustain me by your strength."
+        {
+          "text": "The dangers of a concentration of all power in the general government of a confederacy so vast as ours are too obvious to be disregarded.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-32",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "Beautiful as our fabric is, no earthly power or wisdom could ever reunite its broken fragments.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-32",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/franklin-pierce/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -373,9 +524,18 @@
         "Remained in office as seven states left the United States"
       ],
       "importantQuotes": [
-        "If you are as happy on entering the White House as I on leaving, you are a very happy man indeed.",
-        "The ballot box is the surest arbiter of disputes among free men."
+        {
+          "text": "Our own country could alone have exhibited so grand and striking a spectacle of the capacity of man for self-government.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-33",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "May we not, then, hope that the long agitation on this subject is approaching its end?",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-33",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-buchanan/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -398,10 +558,18 @@
         "Advanced the Thirteenth Amendment"
       ],
       "importantQuotes": [
-        "Abraham Lincoln his hand and pen he will be good but god knows When.",
-        "House Divided",
-        "Somewhat like the boy in Kentucky who stubbed his toe while running to see his sweetheart. The boy said he was too big to cry, and far too badly hurt to laugh."
+        {
+          "text": "A house divided against itself cannot stand.",
+          "sourceUrl": "https://www.loc.gov/exhibits/lincoln/ext/al0030.html",
+          "sourceLabel": "LIBRARY OF CONGRESS"
+        },
+        {
+          "text": "With malice toward none, with charity for all.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-35",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/abraham-lincoln/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -424,9 +592,18 @@
         "Became the first impeached president"
       ],
       "importantQuotes": [
-        "I voted against Lincoln. I spoke against him. I spent my money to defeat him. But still I love my country.",
-        "The goal to strive for is a poor government but a rich people."
+        {
+          "text": "The message or declaration must be made by the acts as they transpire.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states-0",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "Duties have been mine; consequences are God's.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states-0",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/andrew-johnson/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -442,16 +619,25 @@
       "birthplace": "Ohio",
       "religion": "Methodist (Christian)",
       "education": "United States Military Academy at West Point",
-      "careerBeforePresidency": "Tanner, Soldier",
+      "careerBeforePresidency": "Army officer and commanding general of the U.S. Army",
       "keyAccomplishments": [
         "Enforced civil rights during Reconstruction, the effort to rebuild after the Civil War",
         "Suppressed the Ku Klux Klan",
         "Signed the law creating Yellowstone"
       ],
       "importantQuotes": [
-        "No terms except an unconditional and immediate surrender can be accepted.",
-        "Mistakes have been made . . and I admit [them. But] failures have been errors of judgment, not of intent."
+        {
+          "text": "No terms except an unconditional and immediate surrender can be accepted.",
+          "sourceUrl": "https://ourwhitehouse.org/ulysses-s-grant/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "Mistakes have been made . . and I admit [them. But] failures have been errors of judgment, not of intent.",
+          "sourceUrl": "https://ourwhitehouse.org/ulysses-s-grant/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/ulysses-s-grant/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -474,9 +660,18 @@
         "Tried to reconcile postwar divisions"
       ],
       "importantQuotes": [
-        "He serves his party best who serves the country best.",
-        "The President of the United States of necessity owes his election to office to the suffrage and zealous labors of a political party."
+        {
+          "text": "He serves his party best who serves the country best.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-38",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "The permanent pacification of the country upon such principles and by such measures as will secure the complete protection of all its citizens.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-38",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/rutherford-b-hayes/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -499,9 +694,18 @@
         "Was assassinated months after taking office"
       ],
       "importantQuotes": [
-        "My God, what is there in this place that a man should ever want to get in it?",
-        "We shall never know why slavery dies so hard in this Republic . . . till we know why Sin is long-lived and Satan is immortal."
+        {
+          "text": "My God, what is there in this place that a man should ever want to get in it?",
+          "sourceUrl": "https://ourwhitehouse.org/james-abram-garfield/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "We shall never know why slavery dies so hard in this Republic . . . till we know why Sin is long-lived and Satan is immortal.",
+          "sourceUrl": "https://ourwhitehouse.org/james-abram-garfield/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-abram-garfield/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -524,9 +728,18 @@
         "Signed the Chinese Exclusion Act"
       ],
       "importantQuotes": [
-        "I may be President of the United States, but my private life is nobody’s damned business.",
-        "Men may die, but the fabrics of our free institutions remain unshaken."
+        {
+          "text": "The wisdom of our fathers, foreseeing even the most dire possibilities, made sure that the Government should never be imperiled because of the uncertainty of human life.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states-1",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "Men may die, but the fabrics of our free institutions remain unshaken.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states-1",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/chester-alan-arthur/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -549,10 +762,23 @@
         "Used the veto more than earlier presidents"
       ],
       "importantQuotes": [
-        "The truly American sentiment recognizes the dignity of labor and the fact that honor lies in natural toil.",
-        "He mocks the people who proposes that the government shall protect the rich and that they in turn will care for the laboring poor.",
-        "Federal aid in such cases encourages the expectation of paternal care on the part of the Government and weakens the sturdiness of our national character."
+        {
+          "text": "The truly American sentiment recognizes the dignity of labor and the fact that honor lies in natural toil.",
+          "sourceUrl": "https://ourwhitehouse.org/grover-cleveland/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "He mocks the people who proposes that the government shall protect the rich and that they in turn will care for the laboring poor.",
+          "sourceUrl": "https://ourwhitehouse.org/grover-cleveland/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "Federal aid in such cases encourages the expectation of paternal care on the part of the Government and weakens the sturdiness of our national character.",
+          "sourceUrl": "https://ourwhitehouse.org/grover-cleveland/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/grover-cleveland/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -575,9 +801,18 @@
         "Expanded protected national forests"
       ],
       "importantQuotes": [
-        "We Americans have no commission from God to police the world.",
-        "The ballot is the only safety."
+        {
+          "text": "The oath taken in the presence of the people becomes a mutual covenant.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-41",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "The whole body of the people covenant with me and with each other to-day to support and defend the Constitution and the Union of the States.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-41",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/benjamin-harrison/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -600,10 +835,23 @@
         "Oversaw overseas expansion"
       ],
       "importantQuotes": [
-        "I have never been in doubt since I was old enough to think intelligently that I would someday be made President.",
-        "That’s all a man can hope for during his lifetime––to set an example––and when he is dead, to be an inspiration to history.",
-        "Illiteracy must be banished from the land if we shall attain that high destiny as the foremost of the enlightened nations of the world which, under Providence, we ought to achieve."
+        {
+          "text": "I have never been in doubt since I was old enough to think intelligently that I would someday be made President.",
+          "sourceUrl": "https://ourwhitehouse.org/william-mckinley/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "That’s all a man can hope for during his lifetime––to set an example––and when he is dead, to be an inspiration to history.",
+          "sourceUrl": "https://ourwhitehouse.org/william-mckinley/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "Illiteracy must be banished from the land if we shall attain that high destiny as the foremost of the enlightened nations of the world which, under Providence, we ought to achieve.",
+          "sourceUrl": "https://ourwhitehouse.org/william-mckinley/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/william-mckinley/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -626,10 +874,23 @@
         "Advanced construction of the Panama Canal"
       ],
       "importantQuotes": [
-        "Get action. Do things; be sane; don’t fritter away your time; create, act, take a place wherever you are and be somebody; get action.",
-        "The joy of living is his who has the heart to demand it. Life is a great adventure, and I want to say to you, accept it in such a spirit.",
-        "The first requisite of a good citizen in this Republic of ours is that he shall be able and willing to pull his weight."
+        {
+          "text": "Get action. Do things; be sane; don’t fritter away your time; create, act, take a place wherever you are and be somebody; get action.",
+          "sourceUrl": "https://ourwhitehouse.org/theodore-roosevelt/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "The joy of living is his who has the heart to demand it. Life is a great adventure, and I want to say to you, accept it in such a spirit.",
+          "sourceUrl": "https://ourwhitehouse.org/theodore-roosevelt/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "The first requisite of a good citizen in this Republic of ours is that he shall be able and willing to pull his weight.",
+          "sourceUrl": "https://ourwhitehouse.org/theodore-roosevelt/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/theodore-roosevelt/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -652,10 +913,23 @@
         "Later became chief justice"
       ],
       "importantQuotes": [
-        "Our international policy is always to promote peace.",
-        "Machine politics and the spoils system are as much an enemy of a proper and efficient government system of civil service as the boll weevil is of the cotton crop.",
-        "Anti-semitism is a noxious weed that should be cut out. It has no place in America."
+        {
+          "text": "Our international policy is always to promote peace.",
+          "sourceUrl": "https://ourwhitehouse.org/william-howard-taft/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "Machine politics and the spoils system are as much an enemy of a proper and efficient government system of civil service as the boll weevil is of the cotton crop.",
+          "sourceUrl": "https://ourwhitehouse.org/william-howard-taft/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "Anti-semitism is a noxious weed that should be cut out. It has no place in America.",
+          "sourceUrl": "https://ourwhitehouse.org/william-howard-taft/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/william-howard-taft/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -678,9 +952,18 @@
         "Promoted the League of Nations while separating federal workers by race"
       ],
       "importantQuotes": [
-        "No one but the President seems to be expected . . . to look out for the general interests of the country.",
-        "The world must be made safe for democracy."
+        {
+          "text": "Justice, and only justice, shall always be our motto.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-47",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "The firm basis of government is justice, not pity.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-47",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/woodrow-wilson/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -703,10 +986,23 @@
         "His administration was damaged by major scandals"
       ],
       "importantQuotes": [
-        "In the great fulfillment we must have a citizenship less concerned about what the government can do for it and more anxious about what it can do for the nation.",
-        "We must stabilize and strive for normalcy.",
-        "I am just beginning to realize what a job I have taken over. God help me, for I need it."
+        {
+          "text": "In the great fulfillment we must have a citizenship less concerned about what the government can do for it and more anxious about what it can do for the nation.",
+          "sourceUrl": "https://ourwhitehouse.org/warren-g-harding/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "We must stabilize and strive for normalcy.",
+          "sourceUrl": "https://ourwhitehouse.org/warren-g-harding/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "I am just beginning to realize what a job I have taken over. God help me, for I need it.",
+          "sourceUrl": "https://ourwhitehouse.org/warren-g-harding/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/warren-g-harding/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -729,10 +1025,23 @@
         "Signed restrictive immigration legislation"
       ],
       "importantQuotes": [
-        "The business of America is business.",
-        "There is no dignity quite so impressive, and no independence quite so important, as living within your means.",
-        "It is the duty of a citizen not only to observe the law but to let it be known that he is opposed to its violation."
+        {
+          "text": "The business of America is business.",
+          "sourceUrl": "https://ourwhitehouse.org/calvin-coolidge/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "There is no dignity quite so impressive, and no independence quite so important, as living within your means.",
+          "sourceUrl": "https://ourwhitehouse.org/calvin-coolidge/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "It is the duty of a citizen not only to observe the law but to let it be known that he is opposed to its violation.",
+          "sourceUrl": "https://ourwhitehouse.org/calvin-coolidge/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/calvin-coolidge/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -755,9 +1064,18 @@
         "Failed to stop the economic collapse"
       ],
       "importantQuotes": [
-        "We in America today are nearer to the final triumph over poverty than ever before in the history of any land.",
-        "Every time the government is forced to act, we lose something in self-reliance, character and initiative."
+        {
+          "text": "We in America today are nearer to the final triumph over poverty than ever before in the history of any land.",
+          "sourceUrl": "https://ourwhitehouse.org/herbert-clark-hoover/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "Every time the government is forced to act, we lose something in self-reliance, character and initiative.",
+          "sourceUrl": "https://ourwhitehouse.org/herbert-clark-hoover/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/herbert-clark-hoover/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -780,9 +1098,22 @@
         "Ordered the incarceration of Japanese Americans"
       ],
       "importantQuotes": [
-        "The only thing we have to fear is fear itself.",
-        "The only limit to our realization of tomorrow will be our doubts of today."
+        {
+          "text": "The only thing we have to fear is fear itself.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-8",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "The measure of the restoration lies in the extent to which we apply social values more noble than mere monetary profit.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-8",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": {
+        "text": "Roosevelt’s order incarcerating Japanese Americans remains a warning about civil liberties during a crisis. In 2018, the Supreme Court said Korematsu was gravely wrong.",
+        "sourceLabel": "SUPREME COURT",
+        "sourceUrl": "https://www.supremecourt.gov/opinions/17pdf/17-965_h315.pdf"
+      },
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/franklin-d-roosevelt/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -805,10 +1136,23 @@
         "Authorized atomic bombs against Japan"
       ],
       "importantQuotes": [
-        "The menace of communism lies primarily in those areas of American life where the promise of democracy remains unfulfilled.",
-        "Every segment of our population, and every individual, has a right to expect from his government a fair deal.",
-        "It’s a recession when your neighbor loses his job. It’s a depression when you lose yours."
+        {
+          "text": "The menace of communism lies primarily in those areas of American life where the promise of democracy remains unfulfilled.",
+          "sourceUrl": "https://ourwhitehouse.org/harry-s-truman/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "Every segment of our population, and every individual, has a right to expect from his government a fair deal.",
+          "sourceUrl": "https://ourwhitehouse.org/harry-s-truman/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "It’s a recession when your neighbor loses his job. It’s a depression when you lose yours.",
+          "sourceUrl": "https://ourwhitehouse.org/harry-s-truman/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/harry-s-truman/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -831,10 +1175,23 @@
         "Warned about the close relationship between the military, government, and defense companies"
       ],
       "importantQuotes": [
-        "Well, not at the time. But I was scared stiff three weeks later when I got around to reading the newspaper accounts.",
-        "military-industrial complex,",
-        "The middle of the road is all of the usable surface. The extremes, right and left, are in the gutters."
+        {
+          "text": "Well, not at the time. But I was scared stiff three weeks later when I got around to reading the newspaper accounts.",
+          "sourceUrl": "https://ourwhitehouse.org/dwight-d-eisenhower/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "military-industrial complex,",
+          "sourceUrl": "https://ourwhitehouse.org/dwight-d-eisenhower/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "The middle of the road is all of the usable surface. The extremes, right and left, are in the gutters.",
+          "sourceUrl": "https://ourwhitehouse.org/dwight-d-eisenhower/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/dwight-d-eisenhower/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -857,9 +1214,18 @@
         "Committed the nation to a Moon landing"
       ],
       "importantQuotes": [
-        "New Frontier",
-        "All free men, wherever they may live, are citizens of Berlin, and, therefore, as a free man, I take pride in the words––Ich bin ein Berliner (I am a Berliner)!’"
+        {
+          "text": "New Frontier",
+          "sourceUrl": "https://ourwhitehouse.org/john-fitzgerald-kennedy/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "All free men, wherever they may live, are citizens of Berlin, and, therefore, as a free man, I take pride in the words––Ich bin ein Berliner (I am a Berliner)!’",
+          "sourceUrl": "https://ourwhitehouse.org/john-fitzgerald-kennedy/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/john-fitzgerald-kennedy/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -882,9 +1248,18 @@
         "Escalated the Vietnam War"
       ],
       "importantQuotes": [
-        "This administration, today, here and now, declares unconditional war on poverty.",
-        "The women of America represent a reservoir of talent that is still underused. It is too often underpaid, and almost always underpromoted."
+        {
+          "text": "This administration, today, here and now, declares unconditional war on poverty.",
+          "sourceUrl": "https://ourwhitehouse.org/lyndon-b-johnson/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "The women of America represent a reservoir of talent that is still underused. It is too often underpaid, and almost always underpromoted.",
+          "sourceUrl": "https://ourwhitehouse.org/lyndon-b-johnson/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/lyndon-b-johnson/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -907,9 +1282,18 @@
         "Resigned because of Watergate"
       ],
       "importantQuotes": [
-        "Let us begin by committing ourselves to the truth––to see it like it is, and tell it like it is––to find the truth, to speak the truth, and to live the truth.",
-        "The greatest honor history can bestow is the title of peacemaker."
+        {
+          "text": "The greatest honor history can bestow is the title of peacemaker.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-1",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "We cannot learn from one another until we stop shouting at one another.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-1",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/richard-m-nixon/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -932,9 +1316,18 @@
         "Pardoned Richard Nixon"
       ],
       "importantQuotes": [
-        "It can go on and on, or someone must write ‘The End’ to it. I have concluded that only I can do that. And if I can, I must.",
-        "I hope historians will write that the Ford administration healed the land, that I restored public confidence in the White House and in the government."
+        {
+          "text": "It can go on and on, or someone must write ‘The End’ to it. I have concluded that only I can do that. And if I can, I must.",
+          "sourceUrl": "https://ourwhitehouse.org/gerald-r-ford/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "I hope historians will write that the Ford administration healed the land, that I restored public confidence in the White House and in the government.",
+          "sourceUrl": "https://ourwhitehouse.org/gerald-r-ford/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/gerald-r-ford/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -957,9 +1350,18 @@
         "Made human rights central to foreign policy"
       ],
       "importantQuotes": [
-        "We must adjust to changing times and still hold to unchanging principles.",
-        "We are a purely idealistic nation, but let no one confuse our idealism with weakness."
+        {
+          "text": "Our Government must at the same time be both competent and compassionate.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-0",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "The powerful must not persecute the weak, and human dignity must be enhanced.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-0",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-earl-carter/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -982,9 +1384,18 @@
         "Negotiated arms reductions with the Soviet Union"
       ],
       "importantQuotes": [
-        "to believe that together with God’s help we can and will resolve the problems which now confront us. And, after all, why shouldn’t we believe that? We are Americans.",
-        "Government is not the solution to our problem; government is the problem."
+        {
+          "text": "In this present crisis, government is not the solution to our problem; government is the problem.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-11",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "Government can and must provide opportunity, not smother it.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-11",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/ronald-w-reagan/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -1007,9 +1418,18 @@
         "Managed the end of the Cold War"
       ],
       "importantQuotes": [
-        "Make no mistake, a new breeze is blowing across the steps and the cities of the Soviet Union. Why not, then, let this spirit of openness grow, let more barriers come down.",
-        "We can find meaning and reward by serving some purpose higher than ourselves."
+        {
+          "text": "There is but one just use of power, and it is to serve people.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "A new breeze is blowing, and a world refreshed by freedom seems reborn.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/george-h-w-bush/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -1032,9 +1452,18 @@
         "Was impeached by the House but not removed by the Senate"
       ],
       "importantQuotes": [
-        "There is nothing wrong with America that cannot be cured by what is right with America.",
-        "Our democracy must be not only the envy of the world but the engine of our own renewal."
+        {
+          "text": "Our democracy must be not only the envy of the world but the engine of our own renewal.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-51",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "There is nothing wrong with America that cannot be cured by what is right with America.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-51",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/william-j-clinton/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -1045,7 +1474,7 @@
     {
       "name": "George W. Bush",
       "order": "43",
-      "yearsInOffice": "2001–2008",
+      "yearsInOffice": "2001–2009",
       "portrait": "assets/presidents/george-w-bush.jpg",
       "birthplace": "Connecticut",
       "religion": "Methodist (Christian)",
@@ -1057,10 +1486,23 @@
         "Created PEPFAR and expanded Medicare"
       ],
       "importantQuotes": [
-        "I kind of figure life is going to work its way out somehow.",
-        "Today, we affirm a new commitment to live out our nation’s promise through civility, courage, compassion and character.",
-        "We will pass through this time of peril and carry on the work of peace. We will defend our freedom. We will bring freedom to others, and we will prevail."
+        {
+          "text": "I kind of figure life is going to work its way out somehow.",
+          "sourceUrl": "https://ourwhitehouse.org/george-w-bush/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "Today, we affirm a new commitment to live out our nation’s promise through civility, courage, compassion and character.",
+          "sourceUrl": "https://ourwhitehouse.org/george-w-bush/",
+          "sourceLabel": "QUOTE SOURCE"
+        },
+        {
+          "text": "We will pass through this time of peril and carry on the work of peace. We will defend our freedom. We will bring freedom to others, and we will prevail.",
+          "sourceUrl": "https://ourwhitehouse.org/george-w-bush/",
+          "sourceLabel": "QUOTE SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/george-w-bush/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -1071,7 +1513,7 @@
     {
       "name": "Barack Obama",
       "order": "44",
-      "yearsInOffice": "2009–2016",
+      "yearsInOffice": "2009–2017",
       "portrait": "assets/presidents/barack-obama.jpg",
       "birthplace": "Hawaii",
       "religion": "Protestant (Christian)",
@@ -1083,9 +1525,18 @@
         "Signed financial-reform legislation"
       ],
       "importantQuotes": [
-        "Yes, we can.",
-        "We reject as false the choice between our safety and our ideals."
+        {
+          "text": "On this day, we gather because we have chosen hope over fear, unity of purpose over conflict and discord.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-5",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "We reject as false the choice between our safety and our ideals.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-5",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/barack-obama/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -1109,9 +1560,18 @@
         "Second term remains ongoing"
       ],
       "importantQuotes": [
-        "We will make America great again.",
-        "The forgotten men and women of our country will be forgotten no longer."
+        {
+          "text": "The forgotten men and women of our country will be forgotten no longer.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-14",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "What truly matters is not which party controls our government, but whether our government is controlled by the people.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-14",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/donald-j-trump/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -1134,9 +1594,18 @@
         "Led U.S. support for Ukraine"
       ],
       "importantQuotes": [
-        "This is America’s day. This is democracy’s day.",
-        "We must end this uncivil war that pits red against blue."
+        {
+          "text": "This is America’s day. This is democracy’s day.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-53",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "We must end this uncivil war that pits red against blue.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-53",
+          "sourceLabel": "PRIMARY SOURCE"
+        }
       ],
+      "presentDayConnection": null,
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/joseph-r-biden/",
         "lifeBeforePresidency": "https://millercenter.org/president",

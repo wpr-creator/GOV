@@ -42,6 +42,16 @@ presidentFacts.presidents?.forEach(president => {
   if (president.importantQuotes?.length < 2 || president.importantQuotes.length > 3) {
     errors.push(`${president.name} needs two or three quote choices.`);
   }
+  president.importantQuotes?.forEach((quote, index) => {
+    if (!quote?.text || !quote?.sourceLabel || !/^https:\/\//.test(quote?.sourceUrl || "")) {
+      errors.push(`${president.name} quote ${index + 1} needs text and a secure, labeled source.`);
+    }
+  });
+  if (president.presentDayConnection) {
+    if (!president.presentDayConnection.text || !president.presentDayConnection.sourceLabel || !/^https:\/\//.test(president.presentDayConnection.sourceUrl || "")) {
+      errors.push(`${president.name} has an incomplete present-day connection.`);
+    }
+  }
 });
 
 for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {

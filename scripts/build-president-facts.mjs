@@ -7,6 +7,7 @@ const portraitManifest = JSON.parse(await fs.readFile(path.join(root, "assets", 
 const outputPath = path.join(root, "assets", "presidents", "president-facts.json");
 const pewReligionSource = "https://www.pewresearch.org/religion/2009/01/15/the-religious-affiliations-of-us-presidents/";
 const millerSource = "https://millercenter.org/president";
+const inauguralArchive = "https://www.presidency.ucsb.edu/documents/presidential-documents-archive-guidebook/inaugural-addresses";
 const birthStates = {
   "George Washington": "Virginia",
   "John Adams": "Massachusetts",
@@ -14,7 +15,7 @@ const birthStates = {
   "James Madison": "Virginia",
   "James Monroe": "Virginia",
   "John Quincy Adams": "Massachusetts",
-  "Andrew Jackson": "South Carolina",
+  "Andrew Jackson": "South Carolina (claimed; the exact state is disputed)",
   "Martin Van Buren": "New York",
   "William Henry Harrison": "Virginia",
   "John Tyler": "Virginia",
@@ -135,28 +136,128 @@ const profileOverrides = {
   "Donald Trump": "donald-j-trump",
   "Joe Biden": "joseph-r-biden"
 };
-const verifiedQuoteFallbacks = {
-  "John Quincy Adams": ["America does not go abroad in search of monsters to destroy."],
-  "Andrew Jackson": ["Our Federal Union—it must be preserved."],
-  "William Henry Harrison": ["The people are the only legitimate fountain of power."],
-  "John Tyler": ["I can never consent to being dictated to.", "The Constitution will be my guide."],
-  "Zachary Taylor": ["I have no private purpose to accomplish, no party objectives to build up, no enemies to punish.", "Let us always be just, and in our magnanimity never forget to be vigilant."],
-  "Franklin Pierce": ["You have summoned me in my weakness; you must sustain me by your strength."],
-  "James Buchanan": ["The ballot box is the surest arbiter of disputes among free men."],
-  "Andrew Johnson": ["The goal to strive for is a poor government but a rich people."],
-  "Rutherford B. Hayes": ["He serves his party best who serves the country best.", "The President of the United States of necessity owes his election to office to the suffrage and zealous labors of a political party."],
-  "Chester A. Arthur": ["Men may die, but the fabrics of our free institutions remain unshaken."],
-  "Benjamin Harrison": ["The ballot is the only safety."],
-  "Woodrow Wilson": ["The world must be made safe for democracy."],
-  "Franklin D. Roosevelt": ["The only limit to our realization of tomorrow will be our doubts of today."],
-  "Richard Nixon": ["The greatest honor history can bestow is the title of peacemaker."],
-  "Jimmy Carter": ["We must adjust to changing times and still hold to unchanging principles.", "We are a purely idealistic nation, but let no one confuse our idealism with weakness."],
-  "Ronald Reagan": ["Government is not the solution to our problem; government is the problem."],
-  "George H. W. Bush": ["We can find meaning and reward by serving some purpose higher than ourselves."],
-  "Bill Clinton": ["Our democracy must be not only the envy of the world but the engine of our own renewal."],
-  "Barack Obama": ["Yes, we can.", "We reject as false the choice between our safety and our ideals."],
-  "Donald Trump": ["We will make America great again.", "The forgotten men and women of our country will be forgotten no longer."],
-  "Joe Biden": ["This is America’s day. This is democracy’s day.", "We must end this uncivil war that pits red against blue."]
+const quote = (text, sourceUrl = inauguralArchive, sourceLabel = "PRIMARY SOURCE") => ({
+  text,
+  sourceUrl,
+  sourceLabel
+});
+
+// These replace quotations that could not be located on the linked profile page,
+// plus a few profile quotations that were too weak or misleading for students.
+// Wording is preserved from the cited presidential document.
+const curatedQuoteOverrides = {
+  "James Monroe": [
+    quote("National honor is national property of the highest value.", "https://www.presidency.ucsb.edu/documents/inaugural-address-23"),
+    quote("Let us by all wise and constitutional measures promote intelligence among the people as the best means of preserving our liberties.", "https://www.presidency.ucsb.edu/documents/inaugural-address-23")
+  ],
+  "John Quincy Adams": [
+    quote("But she goes not abroad, in search of monsters to destroy.", "https://www.presidency.ucsb.edu/documents/address-secretary-state-john-quincy-adams-the-occasion-reading-the-declaration"),
+    quote("She is the well-wisher to the freedom and independence of all.", "https://www.presidency.ucsb.edu/documents/address-secretary-state-john-quincy-adams-the-occasion-reading-the-declaration")
+  ],
+  "Andrew Jackson": [
+    quote("Our Federal Union: It must be preserved.", "https://millercenter.org/president/jackson/domestic-affairs", "MILLER CENTER"),
+    quote("That this was intended to be a government of limited and specific, and not general, powers must be admitted by all.", "https://www.presidency.ucsb.edu/documents/first-annual-message-3")
+  ],
+  "William Henry Harrison": [
+    quote("The only legitimate right to govern is an express grant of power from the governed.", "https://www.presidency.ucsb.edu/documents/inaugural-address-29"),
+    quote("The Constitution of the United States is the instrument containing this grant of power to the several departments composing the Government.", "https://www.presidency.ucsb.edu/documents/inaugural-address-29")
+  ],
+  "John Tyler": [
+    quote("This same occurrence has subjected the wisdom and sufficiency of our institutions to a new test.", "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states"),
+    quote("I shall place in the intelligence and patriotism of the people my only sure reliance.", "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states")
+  ],
+  "Zachary Taylor": [
+    quote("In the discharge of these duties my guide will be the Constitution.", "https://www.presidency.ucsb.edu/documents/inaugural-address-31"),
+    quote("To exhaust every resort of honorable diplomacy before appealing to arms.", "https://www.presidency.ucsb.edu/documents/inaugural-address-31")
+  ],
+  "Franklin Pierce": [
+    quote("The dangers of a concentration of all power in the general government of a confederacy so vast as ours are too obvious to be disregarded.", "https://www.presidency.ucsb.edu/documents/inaugural-address-32"),
+    quote("Beautiful as our fabric is, no earthly power or wisdom could ever reunite its broken fragments.", "https://www.presidency.ucsb.edu/documents/inaugural-address-32")
+  ],
+  "James Buchanan": [
+    quote("Our own country could alone have exhibited so grand and striking a spectacle of the capacity of man for self-government.", "https://www.presidency.ucsb.edu/documents/inaugural-address-33"),
+    quote("May we not, then, hope that the long agitation on this subject is approaching its end?", "https://www.presidency.ucsb.edu/documents/inaugural-address-33")
+  ],
+  "Abraham Lincoln": [
+    quote("A house divided against itself cannot stand.", "https://www.loc.gov/exhibits/lincoln/ext/al0030.html", "LIBRARY OF CONGRESS"),
+    quote("With malice toward none, with charity for all.", "https://www.presidency.ucsb.edu/documents/inaugural-address-35")
+  ],
+  "Andrew Johnson": [
+    quote("The message or declaration must be made by the acts as they transpire.", "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states-0"),
+    quote("Duties have been mine; consequences are God's.", "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states-0")
+  ],
+  "Chester A. Arthur": [
+    quote("The wisdom of our fathers, foreseeing even the most dire possibilities, made sure that the Government should never be imperiled because of the uncertainty of human life.", "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states-1"),
+    quote("Men may die, but the fabrics of our free institutions remain unshaken.", "https://www.presidency.ucsb.edu/documents/address-upon-assuming-the-office-president-the-united-states-1")
+  ],
+  "Rutherford B. Hayes": [
+    quote("He serves his party best who serves the country best.", "https://www.presidency.ucsb.edu/documents/inaugural-address-38"),
+    quote("The permanent pacification of the country upon such principles and by such measures as will secure the complete protection of all its citizens.", "https://www.presidency.ucsb.edu/documents/inaugural-address-38")
+  ],
+  "Benjamin Harrison": [
+    quote("The oath taken in the presence of the people becomes a mutual covenant.", "https://www.presidency.ucsb.edu/documents/inaugural-address-41"),
+    quote("The whole body of the people covenant with me and with each other to-day to support and defend the Constitution and the Union of the States.", "https://www.presidency.ucsb.edu/documents/inaugural-address-41")
+  ],
+  "Franklin D. Roosevelt": [
+    quote("The only thing we have to fear is fear itself.", "https://www.presidency.ucsb.edu/documents/inaugural-address-8"),
+    quote("The measure of the restoration lies in the extent to which we apply social values more noble than mere monetary profit.", "https://www.presidency.ucsb.edu/documents/inaugural-address-8")
+  ],
+  "Richard Nixon": [
+    quote("The greatest honor history can bestow is the title of peacemaker.", "https://www.presidency.ucsb.edu/documents/inaugural-address-1"),
+    quote("We cannot learn from one another until we stop shouting at one another.", "https://www.presidency.ucsb.edu/documents/inaugural-address-1")
+  ],
+  "Jimmy Carter": [
+    quote("Our Government must at the same time be both competent and compassionate.", "https://www.presidency.ucsb.edu/documents/inaugural-address-0"),
+    quote("The powerful must not persecute the weak, and human dignity must be enhanced.", "https://www.presidency.ucsb.edu/documents/inaugural-address-0")
+  ],
+  "Ronald Reagan": [
+    quote("In this present crisis, government is not the solution to our problem; government is the problem.", "https://www.presidency.ucsb.edu/documents/inaugural-address-11"),
+    quote("Government can and must provide opportunity, not smother it.", "https://www.presidency.ucsb.edu/documents/inaugural-address-11")
+  ],
+  "George H. W. Bush": [
+    quote("There is but one just use of power, and it is to serve people.", "https://www.presidency.ucsb.edu/documents/inaugural-address"),
+    quote("A new breeze is blowing, and a world refreshed by freedom seems reborn.", "https://www.presidency.ucsb.edu/documents/inaugural-address")
+  ],
+  "Bill Clinton": [
+    quote("Our democracy must be not only the envy of the world but the engine of our own renewal.", "https://www.presidency.ucsb.edu/documents/inaugural-address-51"),
+    quote("There is nothing wrong with America that cannot be cured by what is right with America.", "https://www.presidency.ucsb.edu/documents/inaugural-address-51")
+  ],
+  "Woodrow Wilson": [
+    quote("Justice, and only justice, shall always be our motto.", "https://www.presidency.ucsb.edu/documents/inaugural-address-47"),
+    quote("The firm basis of government is justice, not pity.", "https://www.presidency.ucsb.edu/documents/inaugural-address-47")
+  ],
+  "Barack Obama": [
+    quote("On this day, we gather because we have chosen hope over fear, unity of purpose over conflict and discord.", "https://www.presidency.ucsb.edu/documents/inaugural-address-5"),
+    quote("We reject as false the choice between our safety and our ideals.", "https://www.presidency.ucsb.edu/documents/inaugural-address-5")
+  ],
+  "Donald Trump": [
+    quote("The forgotten men and women of our country will be forgotten no longer.", "https://www.presidency.ucsb.edu/documents/inaugural-address-14"),
+    quote("What truly matters is not which party controls our government, but whether our government is controlled by the people.", "https://www.presidency.ucsb.edu/documents/inaugural-address-14")
+  ],
+  "Joe Biden": [
+    quote("This is America’s day. This is democracy’s day.", "https://www.presidency.ucsb.edu/documents/inaugural-address-53"),
+    quote("We must end this uncivil war that pits red against blue.", "https://www.presidency.ucsb.edu/documents/inaugural-address-53")
+  ]
+};
+
+const presentDayConnections = {
+  "George Washington": {
+    text: "Washington stepped down after two terms. The Twenty-Second Amendment later made a two-election limit part of the Constitution.",
+    sourceLabel: "NATIONAL ARCHIVES",
+    sourceUrl: "https://www.archives.gov/founding-docs/amendments-11-27"
+  },
+  "John Adams": {
+    text: "PAST → PRESENT (AS OF JULY 2026): President Trump invoked the Alien Enemies Act—one of four laws known together as the Alien and Sedition Acts. Courts have considered how that 1798 wartime law may be used today.",
+    sourceLabel: "READ THE 2025 PROCLAMATION",
+    sourceUrl: "https://www.whitehouse.gov/presidential-actions/2025/03/invocation-of-the-alien-enemies-act-regarding-the-invasion-of-the-united-states-by-tren-de-aragua/",
+    secondSourceLabel: "READ THE 2025 SUPREME COURT ORDER",
+    secondSourceUrl: "https://www.supremecourt.gov/opinions/24pdf/24a931_2c83.pdf"
+  },
+  "Franklin D. Roosevelt": {
+    text: "Roosevelt’s order incarcerating Japanese Americans remains a warning about civil liberties during a crisis. In 2018, the Supreme Court said Korematsu was gravely wrong.",
+    sourceLabel: "SUPREME COURT",
+    sourceUrl: "https://www.supremecourt.gov/opinions/17pdf/17-965_h315.pdf"
+  }
 };
 
 async function fetchProfile(url) {
@@ -256,20 +357,28 @@ async function buildCard(portrait) {
   const profileUrl = `https://ourwhitehouse.org/${profileSlug}/`;
   const html = await fetchProfile(profileUrl);
   const table = tableValues(html);
+  const profileQuotes = chooseQuotes(html).map(text => quote(text, profileUrl, "QUOTE SOURCE"));
+  const termOverrides = {
+    "George W. Bush": "2001–2009",
+    "Barack Obama": "2009–2017",
+    "Donald Trump": "2017–2021; 2025–present"
+  };
+  const careerOverrides = {
+    "William Henry Harrison": "Army officer, territorial governor, and U.S. senator",
+    "Ulysses S. Grant": "Army officer and commanding general of the U.S. Army"
+  };
   const card = {
     name: portrait.name,
     order: extra.order,
-    yearsInOffice: portrait.name === "Donald Trump" ? "2017–2021; 2025–present" : table.term.replaceAll("-", "–"),
+    yearsInOffice: termOverrides[portrait.name] || table.term.replaceAll("-", "–"),
     portrait: `assets/presidents/${portrait.file}`,
     birthplace: birthStates[portrait.name],
     religion: studentReligionLabel(extra.religion),
     education: extra.education,
-    careerBeforePresidency: table.career,
+    careerBeforePresidency: careerOverrides[portrait.name] || table.career,
     keyAccomplishments: extra.accomplishments.map(studentActionLabel),
-    importantQuotes: [...new Set([
-      ...chooseQuotes(html),
-      ...(verifiedQuoteFallbacks[portrait.name] || [])
-    ].filter(Boolean))].slice(0, 3),
+    importantQuotes: curatedQuoteOverrides[portrait.name] || profileQuotes,
+    presentDayConnection: presentDayConnections[portrait.name] || null,
     sources: {
       biographyAndQuote: profileUrl,
       lifeBeforePresidency: millerSource,
