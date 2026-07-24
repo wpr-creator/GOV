@@ -4,7 +4,6 @@ window.COURSE_DATA = {
       id: "gov-0", number: "Unit 0", title: "First Bell",
       question: "Where does government show up in my life?",
       standards: "Course launch",
-      overview: ["Notice government", "Learn the class", "Find your starting point", "Build our classroom display"],
       lessons: [
         ["0.1 — It’s on the Schedule", "Where does government appear in everyday life?", "Course launch", "Connect government to school, work, transportation, safety, rights, and technology. Join the class spaces and bookmark this site.", "Name one way government affects your life"],
         ["0.2 — Read the Fine Print", "What will help our class work well?", "Course launch", "Learn how the class works, practice discussion routines, and begin your Civic Selfie.", "Take home the syllabus and continue your Civic Selfie"],
@@ -33,7 +32,6 @@ window.COURSE_DATA = {
       id: "gov-1", number: "Unit 1", title: "Foundations of American Democracy",
       question: "Where did American ideas about government and rights come from?",
       standards: "Gov 12.1.1–12.1.3",
-      overview: ["Trace the ideas", "Name the promise", "Find the risks", "Define legitimate power"],
       lessons: [
         ["Ideas Behind American Government", "Which older ideas shaped American government?", "Gov 12.1.1", "Connect ideas from Greece, Rome, England, Locke, Montesquieu, Machiavelli, and Blackstone to American government.", "Match each idea to an American example"],
         ["Democracy’s Promise and Risks", "What can democracy do well—and what can go wrong?", "Gov 12.1.2", "Use Tocqueville’s observations to examine equality, majority power, and participation.", "Explain one promise and one risk"],
@@ -45,7 +43,6 @@ window.COURSE_DATA = {
       id: "gov-2", number: "Unit 2", title: "Building the Constitution",
       question: "How was American government designed to keep power under control?",
       standards: "Gov 12.1.4–12.1.6; 12.7.1–12.7.4",
-      overview: ["Divide power", "Check power", "Share power", "Protect rights"],
       lessons: [
         ["From the Articles to the Constitution", "Why did the United States replace its first government?", "Gov 12.1.4", "Compare the weak national government under the Articles with the stronger Constitution.", "Explain one problem the Constitution tried to solve"],
         ["Checks and Balances", "How can government control itself?", "Gov 12.1.4–12.1.5", "Use Federalist 51 to see how the branches limit one another.", "Apply one check to a government action"],
@@ -59,7 +56,6 @@ window.COURSE_DATA = {
       timing: "October",
       question: "How do people win elections and influence government?",
       standards: "Gov 12.6; 12.8",
-      overview: ["Choose candidates", "Evaluate messages", "Participate", "Count every voice"],
       lessons: [
         ["Parties and Nominations", "How do political parties choose candidates?", "Gov 12.6.1–12.6.2", "Trace political parties, primaries, caucuses, and conventions.", "Compare two ways candidates are chosen"],
         ["Campaign Messages and Money", "How do campaigns try to win support?", "Gov 12.6.3", "Evaluate polls, advertisements, campaign funding, and the claims candidates make.", "Check one campaign claim"],
@@ -73,7 +69,6 @@ window.COURSE_DATA = {
       id: "gov-4", number: "Unit 4", title: "Checks and Balances",
       question: "How do the three branches use their powers and check one another?",
       standards: "Gov 12.4; 12.5.2–12.5.4; 12.7.5–12.7.8",
-      overview: ["Make laws", "Carry out laws", "Interpret laws", "Check power"],
       lessons: [
         ["Congress", "Who represents me in Congress, and what can Congress do?", "Gov 12.4.1; 12.4.3", "Compare the House and Senate, identify your representatives, and examine the powers of Congress.", "Explain one important difference between the House and Senate"],
         ["From Bill to Law", "Why is passing a law difficult?", "Gov 12.4.1–12.4.2; 12.7.6", "Move a bill through Congress and compare lawmaking at national, state, and local levels. Examine how the Constitution is amended.", "Show where a proposal can pass, change, or stop"],
@@ -88,7 +83,6 @@ window.COURSE_DATA = {
       id: "gov-5", number: "Unit 5", title: "Rights in Real Life",
       question: "When can government limit a person’s rights?",
       standards: "Gov 12.2; 12.3; 12.5.1; 12.10",
-      overview: ["Know the right", "Test the limit", "Respect others", "Take civic action"],
       lessons: [
         ["The Bill of Rights Today", "How have the meanings of our rights changed?", "Gov 12.2.1; 12.5.1", "Apply freedoms of religion, speech, press, assembly, petition, and privacy to modern situations. Use the Fourteenth Amendment to see why states must protect these rights.", "Decide whether a government action respects a right"],
         ["Economic Rights and Legal Duties", "What may people do—and what must citizens do?", "Gov 12.2.2–12.2.3", "Examine property, work, unions, copyright, patents, taxes, jury service, and the duty to obey the law.", "Sort examples into rights and legal duties"],
@@ -101,7 +95,6 @@ window.COURSE_DATA = {
       id: "gov-6", number: "Unit 6", title: "Government Around the World",
       question: "Why do some political systems protect freedom while others do not?",
       standards: "Gov 12.9.1–12.9.8",
-      overview: ["Compare systems", "Trace dictatorship", "Study resistance", "Explain democracy"],
       lessons: [
         ["Ways to Organize Government", "How do different systems divide power?", "Gov 12.9.1–12.9.3", "Compare presidential, parliamentary, federal, confederal, unitary, monarchical, socialist, fascist, communist, and liberal democratic systems.", "Compare two systems using the same three questions"],
         ["How Tyranny Grows", "What conditions allow dictators to gain power?", "Gov 12.9.4–12.9.5", "Study at least two countries to connect crisis, ideology, supporters, and methods of control.", "Build a cause-and-effect chain"],
@@ -114,7 +107,6 @@ window.COURSE_DATA = {
       id: "gov-7", number: "Unit 7", title: "Constitutional Tensions",
       question: "How should democracy balance rights, equality, and power?",
       standards: "Gov 12.10",
-      overview: ["Identify the conflict", "Compare the values", "Choose a balance", "Defend your answer"],
       lessons: [
         ["Values in Conflict", "What happens when two democratic values conflict?", "Gov 12.10", "Compare majority rule with individual rights, liberty with equality, state power with national power, civil disobedience with the rule of law, a free press with a fair trial, and religion with government.", "Identify the two values in a constitutional conflict"],
         ["Defend a Balance", "How should government balance two important values?", "Gov 12.10", "Choose one constitutional tension. Make a clear claim, use accurate evidence, and explain why your balance is fair.", "Present and defend your answer"]

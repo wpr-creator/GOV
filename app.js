@@ -97,17 +97,6 @@
     standards.textContent = `CALIFORNIA STANDARDS · ${unit.standards}`;
     header.append(eyebrow, title, question, standards);
 
-    const flow = document.createElement("div");
-    flow.className = "overview-flow";
-    flow.setAttribute("aria-label", "Unit overview");
-    unit.overview.forEach((step, index) => {
-      const item = document.createElement("div");
-      item.className = "overview-step";
-      item.innerHTML = `<b>Step ${index + 1}</b><span></span>`;
-      item.querySelector("span").textContent = step;
-      flow.appendChild(item);
-    });
-
     const resources = document.createElement("section");
     resources.className = "unit-resources";
     if (unit.resources?.length) {
@@ -170,7 +159,7 @@
       article.append(num, copy, details);
       list.appendChild(article);
     });
-    container.append(header, flow);
+    container.appendChild(header);
     if (unit.resources?.length) container.append(resources);
     container.append(list);
   }
