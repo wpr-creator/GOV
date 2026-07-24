@@ -13,10 +13,23 @@ vm.runInContext(fs.readFileSync(path.join(root, "course-data.js"), "utf8"), cont
 vm.runInContext(fs.readFileSync(path.join(root, "foundations-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
+const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 
 for (const file of ["index.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
+
+if (portraitManifest.count !== 45 || portraitManifest.portraits?.length !== 45 || portraitManifest.failures?.length) {
+  errors.push("Expected 45 verified presidential portraits with no sourcing failures.");
+}
+portraitManifest.portraits?.forEach(portrait => {
+  if (!/public domain|cc0|pd-usgov/i.test(portrait.license || "")) {
+    errors.push(`${portrait.name || "Unknown president"} does not have a verified public-domain license.`);
+  }
+  if (!portrait.file || !fs.existsSync(path.join(root, "assets", "presidents", portrait.file))) {
+    errors.push(`Missing local portrait for ${portrait.name || "Unknown president"}.`);
+  }
+});
 
 for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
   const ref = match[1];
