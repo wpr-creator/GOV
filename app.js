@@ -230,14 +230,14 @@
       heading.append(order, name, years);
       const details = document.createElement("details");
       const summary = document.createElement("summary");
-      summary.textContent = "OPEN SUPPLIED FACTS";
+      summary.textContent = "OPEN KEY FACTS";
       const facts = document.createElement("div");
       facts.className = "president-facts";
       [
-        ["PLACE OF BIRTH", president.birthplace],
-        ["RELIGIOUS AFFILIATION", president.religion],
+        ["BORN IN", president.birthplace],
+        ["RELIGION OR TRADITION", president.religion],
         ["EDUCATION", president.education],
-        ["CAREER BEFORE PRESIDENCY", president.careerBeforePresidency]
+        ["WORK BEFORE BECOMING PRESIDENT", president.careerBeforePresidency]
       ].forEach(([labelText, value]) => {
         const fact = document.createElement("p");
         const label = document.createElement("b");
@@ -248,7 +248,7 @@
         facts.appendChild(fact);
       });
       const accomplishmentsTitle = document.createElement("h3");
-      accomplishmentsTitle.textContent = "KEY ACCOMPLISHMENTS AND ACTIONS";
+      accomplishmentsTitle.textContent = "KEY ACTIONS AS PRESIDENT";
       const accomplishments = document.createElement("ul");
       president.keyAccomplishments.forEach(item => {
         const bullet = document.createElement("li");
@@ -256,15 +256,20 @@
         accomplishments.appendChild(bullet);
       });
       const quoteTitle = document.createElement("h3");
-      quoteTitle.textContent = "IMPORTANT QUOTE";
-      const quote = document.createElement("blockquote");
-      quote.textContent = `“${president.importantQuote}”`;
+      quoteTitle.textContent = "CHOOSE A QUOTE";
+      const quotes = document.createElement("div");
+      quotes.className = "president-quotes";
+      (president.importantQuotes || [president.importantQuote]).forEach(quoteText => {
+        const quote = document.createElement("blockquote");
+        quote.textContent = `“${quoteText}”`;
+        quotes.appendChild(quote);
+      });
       const source = document.createElement("a");
       source.href = president.sources.biographyAndQuote;
       source.target = "_blank";
       source.rel = "noopener";
-      source.textContent = "CHECK BIOGRAPHY AND QUOTE SOURCE ↗";
-      facts.append(accomplishmentsTitle, accomplishments, quoteTitle, quote, source);
+      source.textContent = "READ THE PRESIDENT’S BIOGRAPHY ↗";
+      facts.append(accomplishmentsTitle, accomplishments, quoteTitle, quotes, source);
       details.append(summary, facts);
       card.append(image, heading, details);
       grid.appendChild(card);

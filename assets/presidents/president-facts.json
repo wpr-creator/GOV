@@ -1,6 +1,6 @@
 {
-  "note": "Student-ready facts for the Portrait Day design activity. Accomplishment lists include major achievements, consequential actions, and important controversies when needed for historical accuracy.",
-  "generated": "2026-07-24T19:26:43.696Z",
+  "note": "Student-ready key facts for the Portrait Day design activity. Action lists include major achievements, consequential choices, and important controversies when needed for historical accuracy.",
+  "generated": "2026-07-24T20:01:30.719Z",
   "count": 45,
   "presidents": [
     {
@@ -8,16 +8,19 @@
       "order": "1",
       "yearsInOffice": "1789–1797",
       "portrait": "assets/presidents/george-washington.jpg",
-      "birthplace": "Westmoreland County",
-      "religion": "Episcopalian",
+      "birthplace": "Virginia",
+      "religion": "Episcopalian (Christian)",
       "education": "No college degree; trained as a surveyor",
       "careerBeforePresidency": "Surveyor, Soldier, Planter",
       "keyAccomplishments": [
-        "Created the presidential cabinet",
-        "Set the two-term precedent",
-        "Kept the nation neutral in the European war"
+        "Created the presidential Cabinet, the president’s group of top advisers",
+        "Set the two-term example that later presidents followed",
+        "Kept the nation out of the European war in the European war"
       ],
-      "importantQuote": "I hope I shall always possess firmness and virtue enough to maintain the character of an Honest Man.",
+      "importantQuotes": [
+        "I hope I shall always possess firmness and virtue enough to maintain the character of an Honest Man.",
+        "The proposed Constitution . . . is provided with more checks and barriers against the introduction of Tyranny . . . than any Government hitherto instituted among mortals."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/george-washington/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -30,8 +33,8 @@
       "order": "2",
       "yearsInOffice": "1797–1801",
       "portrait": "assets/presidents/john-adams.jpg",
-      "birthplace": "Braintree",
-      "religion": "Unitarian",
+      "birthplace": "Massachusetts",
+      "religion": "Unitarian (Christian)",
       "education": "Harvard College",
       "careerBeforePresidency": "Teacher, Lawyer",
       "keyAccomplishments": [
@@ -39,7 +42,11 @@
         "Avoided full war with France",
         "Signed the controversial Alien and Sedition Acts"
       ],
-      "importantQuote": "Swim or sink, live or die, survive or perish with my country was my unalterable determination.",
+      "importantQuotes": [
+        "Swim or sink, live or die, survive or perish with my country was my unalterable determination.",
+        "The institutions now made in America will not wholly wear out for thousands of years. It is of the last importance, then, that they should begin right.",
+        "People and nations are forged in the fires of adversity."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/john-adams/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -52,8 +59,8 @@
       "order": "3",
       "yearsInOffice": "1801–1809",
       "portrait": "assets/presidents/thomas-jefferson.jpg",
-      "birthplace": "Shadwell",
-      "religion": "No formal affiliation; influenced by Deism and Unitarianism",
+      "birthplace": "Virginia",
+      "religion": "No official church; influenced by Deism and Unitarian Christianity",
       "education": "College of William and Mary",
       "careerBeforePresidency": "Lawyer, Planter",
       "keyAccomplishments": [
@@ -61,7 +68,11 @@
         "Sponsored the Lewis and Clark expedition",
         "Used the controversial Embargo Act"
       ],
-      "importantQuote": "I have sworn upon the altar of God eternal hostility against every form of tyranny over the mind of man.",
+      "importantQuotes": [
+        "I have sworn upon the altar of God eternal hostility against every form of tyranny over the mind of man.",
+        "The care of human life and happiness, and not their destructions, is the first and only legitimate object of good government.",
+        "A little rebellion now and then is a good thing, and as necessary in the political world as storms in the physical."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/thomas-jefferson/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -74,16 +85,20 @@
       "order": "4",
       "yearsInOffice": "1809–1817",
       "portrait": "assets/presidents/james-madison.jpg",
-      "birthplace": "Port Conway",
-      "religion": "Episcopalian",
+      "birthplace": "Virginia",
+      "religion": "Episcopalian (Christian)",
       "education": "College of New Jersey, now Princeton",
       "careerBeforePresidency": "Lawyer",
       "keyAccomplishments": [
         "Led the country during the War of 1812",
-        "Supported rebuilding national finances",
+        "Supported rebuilding national money and banking system",
         "Approved the Second Bank of the United States"
       ],
-      "importantQuote": "There never was an assembly of men who were more pure in their motives, or more . . . devoted to the object committed to them.",
+      "importantQuotes": [
+        "There never was an assembly of men who were more pure in their motives, or more . . . devoted to the object committed to them.",
+        "To have shrunk [from war], would have acknowledged . . . [that] the American people were not an independent people, but colonists and vassals.",
+        "Justice is the end of government. It ever has been, and ever will be pursued, until it be obtained, or until liberty be lost in the pursuit."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-madison/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -96,8 +111,8 @@
       "order": "5",
       "yearsInOffice": "1817–1825",
       "portrait": "assets/presidents/james-monroe.jpg",
-      "birthplace": "Westmoreland County, Virginia",
-      "religion": "Episcopalian",
+      "birthplace": "Virginia",
+      "religion": "Episcopalian (Christian)",
       "education": "College of William and Mary; studied law under Jefferson",
       "careerBeforePresidency": "Lawyer, Soldier",
       "keyAccomplishments": [
@@ -105,7 +120,11 @@
         "Signed the Missouri Compromise",
         "Oversaw the acquisition of Florida"
       ],
-      "importantQuote": "The American continents . . . are henceforth not to be considered as subjects for future colonization by any European powers.",
+      "importantQuotes": [
+        "The American continents . . . are henceforth not to be considered as subjects for future colonization by any European powers.",
+        "Yes, papa, but we haven’t any roads like this.",
+        "That’s true. Our country may be likened to a new house. We lack many things, but we possess the most precious of all – liberty!"
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-monroe/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -118,8 +137,8 @@
       "order": "6",
       "yearsInOffice": "1825–1829",
       "portrait": "assets/presidents/john-quincy-adams.jpg",
-      "birthplace": "Braintree",
-      "religion": "Unitarian",
+      "birthplace": "Massachusetts",
+      "religion": "Unitarian (Christian)",
       "education": "Harvard College",
       "careerBeforePresidency": "Lawyer, Senator, Diplomat",
       "keyAccomplishments": [
@@ -127,7 +146,10 @@
         "Supported a national observatory",
         "Faced strong congressional opposition"
       ],
-      "importantQuote": "Make no mistake about it, the four most miserable years of my life were my four years in the Presidency.",
+      "importantQuotes": [
+        "Make no mistake about it, the four most miserable years of my life were my four years in the Presidency.",
+        "America does not go abroad in search of monsters to destroy."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/john-quincy-adams/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -140,8 +162,8 @@
       "order": "7",
       "yearsInOffice": "1829–1837",
       "portrait": "assets/presidents/andrew-jackson.jpg",
-      "birthplace": "Waxhaws",
-      "religion": "Presbyterian",
+      "birthplace": "South Carolina",
+      "religion": "Presbyterian (Christian)",
       "education": "Limited formal schooling; studied law",
       "careerBeforePresidency": "Lawyer, Soldier",
       "keyAccomplishments": [
@@ -149,7 +171,10 @@
         "Vetoed the national bank",
         "Enforced the destructive Indian Removal policy"
       ],
-      "importantQuote": "The great can protect themselves, but the poor and humble require the arm and shield of the law.",
+      "importantQuotes": [
+        "The great can protect themselves, but the poor and humble require the arm and shield of the law.",
+        "Our Federal Union—it must be preserved."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/andrew-jackson/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -162,8 +187,8 @@
       "order": "8",
       "yearsInOffice": "1837–1841",
       "portrait": "assets/presidents/martin-van-buren.jpg",
-      "birthplace": "Kinderhook",
-      "religion": "Dutch Reformed",
+      "birthplace": "New York",
+      "religion": "Dutch Reformed (Christian)",
       "education": "Local schools; legal apprenticeship",
       "careerBeforePresidency": "Lawyer",
       "keyAccomplishments": [
@@ -171,7 +196,10 @@
         "Defended party organization",
         "Struggled with the Panic of 1837"
       ],
-      "importantQuote": "I cannot expect to perform the task with equal ability and success.",
+      "importantQuotes": [
+        "I cannot expect to perform the task with equal ability and success.",
+        "As to the Presidency, the two happiest days of my life were those of my entrance upon the office and my surrender of it."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/martin-van-buren/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -184,16 +212,19 @@
       "order": "9",
       "yearsInOffice": "1841",
       "portrait": "assets/presidents/william-henry-harrison.jpg",
-      "birthplace": "Charles City County",
-      "religion": "Episcopalian",
+      "birthplace": "Virginia",
+      "religion": "Episcopalian (Christian)",
       "education": "Hampden-Sydney College and medical study at Pennsylvania; no degree",
       "careerBeforePresidency": "Doctor, Soldier",
       "keyAccomplishments": [
         "Delivered the longest inaugural address",
         "Served only 31 days",
-        "His death tested presidential succession"
+        "His death tested rules for replacing a president"
       ],
-      "importantQuote": "The job seekers pack the White House every day. They pursue me so closely that I can not even attend to the necessary functions of nature.",
+      "importantQuotes": [
+        "The job seekers pack the White House every day. They pursue me so closely that I can not even attend to the necessary functions of nature.",
+        "The people are the only legitimate fountain of power."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/william-henry-harrison/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -206,16 +237,19 @@
       "order": "10",
       "yearsInOffice": "1841–1845",
       "portrait": "assets/presidents/john-tyler.jpg",
-      "birthplace": "Charles City County, Virginia",
-      "religion": "Episcopalian",
+      "birthplace": "Virginia",
+      "religion": "Episcopalian (Christian)",
       "education": "College of William and Mary",
       "careerBeforePresidency": "Lawyer",
       "keyAccomplishments": [
         "Established that the vice president fully becomes president",
-        "Supported Texas annexation",
+        "Supported adding Texas to the United States",
         "Broke with his own Whig Party"
       ],
-      "importantQuote": "I can never consent to being dictated to.",
+      "importantQuotes": [
+        "I can never consent to being dictated to.",
+        "The Constitution will be my guide."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/john-tyler/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -228,8 +262,8 @@
       "order": "11",
       "yearsInOffice": "1845–1849",
       "portrait": "assets/presidents/james-k-polk.jpg",
-      "birthplace": "Pineville",
-      "religion": "Presbyterian",
+      "birthplace": "North Carolina",
+      "religion": "Presbyterian (Christian)",
       "education": "University of North Carolina",
       "careerBeforePresidency": "Lawyer",
       "keyAccomplishments": [
@@ -237,7 +271,11 @@
         "Expanded U.S. territory after the Mexican-American War",
         "Created an independent treasury"
       ],
-      "importantQuote": "In truth, though I occupy a very high position, I am the hardest working man in this country.",
+      "importantQuotes": [
+        "In truth, though I occupy a very high position, I am the hardest working man in this country.",
+        "I prefer to supervise the whole operations of the Government myself rather than entrust the public business to subordinates and this makes my duties very great.",
+        "No President who performs his duties faithfully and conscientiously can have any leisure."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-knox-polk/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -250,8 +288,8 @@
       "order": "12",
       "yearsInOffice": "1849–1850",
       "portrait": "assets/presidents/zachary-taylor.jpg",
-      "birthplace": "Barboursville",
-      "religion": "Episcopalian",
+      "birthplace": "Virginia",
+      "religion": "Episcopalian (Christian)",
       "education": "Limited formal schooling; career military training",
       "careerBeforePresidency": "Soldier",
       "keyAccomplishments": [
@@ -259,7 +297,10 @@
         "Threatened force against secession",
         "Died after 16 months"
       ],
-      "importantQuote": "I have no private purpose to accomplish, no party objectives to build up, no enemies to punish.",
+      "importantQuotes": [
+        "I have no private purpose to accomplish, no party objectives to build up, no enemies to punish.",
+        "Let us always be just, and in our magnanimity never forget to be vigilant."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/zachary-taylor/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -272,8 +313,8 @@
       "order": "13",
       "yearsInOffice": "1850–1853",
       "portrait": "assets/presidents/millard-fillmore.jpg",
-      "birthplace": "Summerhill",
-      "religion": "Unitarian",
+      "birthplace": "New York",
+      "religion": "Unitarian (Christian)",
       "education": "Limited formal schooling; legal apprenticeship",
       "careerBeforePresidency": "Woolcarder, Lawyer",
       "keyAccomplishments": [
@@ -281,7 +322,10 @@
         "Enforced the Fugitive Slave Act",
         "Sent the expedition that opened relations with Japan"
       ],
-      "importantQuote": "The Constitution has made it the duty of the President to take care that the laws be faithfully executed.",
+      "importantQuotes": [
+        "The Constitution has made it the duty of the President to take care that the laws be faithfully executed.",
+        "An honorable defeat is better than a dishonorable victory."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/millard-fillmore/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -294,16 +338,19 @@
       "order": "14",
       "yearsInOffice": "1853–1857",
       "portrait": "assets/presidents/franklin-pierce.jpg",
-      "birthplace": "Hillsborough",
-      "religion": "Episcopalian",
+      "birthplace": "New Hampshire",
+      "religion": "Episcopalian (Christian)",
       "education": "Bowdoin College",
       "careerBeforePresidency": "Lawyer, Public Official",
       "keyAccomplishments": [
         "Signed the Gadsden Purchase",
         "Signed the Kansas-Nebraska Act",
-        "Saw sectional violence intensify"
+        "Saw violent conflict between the North and South intensify"
       ],
-      "importantQuote": "I believe that involuntary servitude, as it exists in different States of this Confederacy, is recognized by the Constitution.",
+      "importantQuotes": [
+        "I believe that involuntary servitude, as it exists in different States of this Confederacy, is recognized by the Constitution.",
+        "You have summoned me in my weakness; you must sustain me by your strength."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/franklin-pierce/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -316,16 +363,19 @@
       "order": "15",
       "yearsInOffice": "1857–1861",
       "portrait": "assets/presidents/james-buchanan.jpg",
-      "birthplace": "Cove Gap, Pennsylvania",
-      "religion": "Presbyterian",
+      "birthplace": "Pennsylvania",
+      "religion": "Presbyterian (Christian)",
       "education": "Dickinson College",
       "careerBeforePresidency": "Lawyer",
       "keyAccomplishments": [
         "Supported the proslavery Lecompton Constitution",
-        "Failed to stop the secession crisis",
-        "Remained in office as seven states seceded"
+        "Failed to stop the crisis over states leaving the United States",
+        "Remained in office as seven states left the United States"
       ],
-      "importantQuote": "If you are as happy on entering the White House as I on leaving, you are a very happy man indeed.",
+      "importantQuotes": [
+        "If you are as happy on entering the White House as I on leaving, you are a very happy man indeed.",
+        "The ballot box is the surest arbiter of disputes among free men."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-buchanan/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -338,8 +388,8 @@
       "order": "16",
       "yearsInOffice": "1861–1865",
       "portrait": "assets/presidents/abraham-lincoln.jpg",
-      "birthplace": "Hodgenville, Kentucky",
-      "religion": "No formal affiliation",
+      "birthplace": "Kentucky",
+      "religion": "No official church membership",
       "education": "About one year of formal schooling; self-educated in law",
       "careerBeforePresidency": "Farmer, Lawyer",
       "keyAccomplishments": [
@@ -347,7 +397,11 @@
         "Issued the Emancipation Proclamation",
         "Advanced the Thirteenth Amendment"
       ],
-      "importantQuote": "Abraham Lincoln his hand and pen he will be good but god knows When.",
+      "importantQuotes": [
+        "Abraham Lincoln his hand and pen he will be good but god knows When.",
+        "House Divided",
+        "Somewhat like the boy in Kentucky who stubbed his toe while running to see his sweetheart. The boy said he was too big to cry, and far too badly hurt to laugh."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/abraham-lincoln/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -360,8 +414,8 @@
       "order": "17",
       "yearsInOffice": "1865–1869",
       "portrait": "assets/presidents/andrew-johnson.jpg",
-      "birthplace": "Raleigh",
-      "religion": "No formal affiliation",
+      "birthplace": "North Carolina",
+      "religion": "No official church membership",
       "education": "No formal schooling; self-educated",
       "careerBeforePresidency": "Tailor, Public Official",
       "keyAccomplishments": [
@@ -369,7 +423,10 @@
         "Clashed with Congress over Reconstruction",
         "Became the first impeached president"
       ],
-      "importantQuote": "I voted against Lincoln. I spoke against him. I spent my money to defeat him. But still I love my country.",
+      "importantQuotes": [
+        "I voted against Lincoln. I spoke against him. I spent my money to defeat him. But still I love my country.",
+        "The goal to strive for is a poor government but a rich people."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/andrew-johnson/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -382,16 +439,19 @@
       "order": "18",
       "yearsInOffice": "1869–1877",
       "portrait": "assets/presidents/ulysses-s-grant.jpg",
-      "birthplace": "Point Pleasant",
-      "religion": "Methodist",
+      "birthplace": "Ohio",
+      "religion": "Methodist (Christian)",
       "education": "United States Military Academy at West Point",
       "careerBeforePresidency": "Tanner, Soldier",
       "keyAccomplishments": [
-        "Enforced civil rights during Reconstruction",
+        "Enforced civil rights during Reconstruction, the effort to rebuild after the Civil War",
         "Suppressed the Ku Klux Klan",
         "Signed the law creating Yellowstone"
       ],
-      "importantQuote": "No terms except an unconditional and immediate surrender can be accepted.",
+      "importantQuotes": [
+        "No terms except an unconditional and immediate surrender can be accepted.",
+        "Mistakes have been made . . and I admit [them. But] failures have been errors of judgment, not of intent."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/ulysses-s-grant/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -404,16 +464,19 @@
       "order": "19",
       "yearsInOffice": "1877–1881",
       "portrait": "assets/presidents/rutherford-b-hayes.jpg",
-      "birthplace": "Delaware",
-      "religion": "Methodist",
+      "birthplace": "Ohio",
+      "religion": "Methodist (Christian)",
       "education": "Kenyon College and Harvard Law School",
       "careerBeforePresidency": "Lawyer",
       "keyAccomplishments": [
-        "Promoted civil-service reform",
+        "Promoted civil-service reform, or government hiring based on skill",
         "Withdrew federal troops from the South",
         "Tried to reconcile postwar divisions"
       ],
-      "importantQuote": "He serves his party best who serves the country best.",
+      "importantQuotes": [
+        "He serves his party best who serves the country best.",
+        "The President of the United States of necessity owes his election to office to the suffrage and zealous labors of a political party."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/rutherford-b-hayes/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -426,16 +489,19 @@
       "order": "20",
       "yearsInOffice": "1881",
       "portrait": "assets/presidents/james-a-garfield.jpg",
-      "birthplace": "Moreland Hills",
-      "religion": "Disciples of Christ",
+      "birthplace": "Ohio",
+      "religion": "Disciples of Christ (Christian)",
       "education": "Williams College",
       "careerBeforePresidency": "Teacher, Soldier, Public Official",
       "keyAccomplishments": [
-        "Challenged the patronage system",
+        "Challenged the patronage system of giving government jobs to political supporters",
         "Defended federal education and civil rights",
         "Was assassinated months after taking office"
       ],
-      "importantQuote": "My God, what is there in this place that a man should ever want to get in it?",
+      "importantQuotes": [
+        "My God, what is there in this place that a man should ever want to get in it?",
+        "We shall never know why slavery dies so hard in this Republic . . . till we know why Sin is long-lived and Satan is immortal."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-abram-garfield/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -448,8 +514,8 @@
       "order": "21",
       "yearsInOffice": "1881–1885",
       "portrait": "assets/presidents/chester-a-arthur.jpg",
-      "birthplace": "Fairfield",
-      "religion": "Episcopalian",
+      "birthplace": "Vermont",
+      "religion": "Episcopalian (Christian)",
       "education": "Union College; studied law",
       "careerBeforePresidency": "Teacher, Lawyer",
       "keyAccomplishments": [
@@ -457,7 +523,10 @@
         "Modernized the Navy",
         "Signed the Chinese Exclusion Act"
       ],
-      "importantQuote": "I may be President of the United States, but my private life is nobody’s damned business.",
+      "importantQuotes": [
+        "I may be President of the United States, but my private life is nobody’s damned business.",
+        "Men may die, but the fabrics of our free institutions remain unshaken."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/chester-alan-arthur/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -470,8 +539,8 @@
       "order": "22 and 24",
       "yearsInOffice": "1885–1889",
       "portrait": "assets/presidents/grover-cleveland.jpg",
-      "birthplace": "Caldwell, New Jersey",
-      "religion": "Presbyterian",
+      "birthplace": "New Jersey",
+      "religion": "Presbyterian (Christian)",
       "education": "No college degree; studied law",
       "careerBeforePresidency": "Teacher, Lawyer",
       "keyAccomplishments": [
@@ -479,7 +548,11 @@
         "Expanded federal regulation of railroads",
         "Used the veto more than earlier presidents"
       ],
-      "importantQuote": "The truly American sentiment recognizes the dignity of labor and the fact that honor lies in natural toil.",
+      "importantQuotes": [
+        "The truly American sentiment recognizes the dignity of labor and the fact that honor lies in natural toil.",
+        "He mocks the people who proposes that the government shall protect the rich and that they in turn will care for the laboring poor.",
+        "Federal aid in such cases encourages the expectation of paternal care on the part of the Government and weakens the sturdiness of our national character."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/grover-cleveland/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -492,8 +565,8 @@
       "order": "23",
       "yearsInOffice": "1889–1893",
       "portrait": "assets/presidents/benjamin-harrison.jpg",
-      "birthplace": "North Bend",
-      "religion": "Presbyterian",
+      "birthplace": "Ohio",
+      "religion": "Presbyterian (Christian)",
       "education": "Miami University; studied law",
       "careerBeforePresidency": "Lawyer",
       "keyAccomplishments": [
@@ -501,7 +574,10 @@
         "Admitted six new states",
         "Expanded protected national forests"
       ],
-      "importantQuote": "We Americans have no commission from God to police the world.",
+      "importantQuotes": [
+        "We Americans have no commission from God to police the world.",
+        "The ballot is the only safety."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/benjamin-harrison/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -514,8 +590,8 @@
       "order": "25",
       "yearsInOffice": "1897–1901",
       "portrait": "assets/presidents/william-mckinley.jpg",
-      "birthplace": "Niles",
-      "religion": "Methodist",
+      "birthplace": "Ohio",
+      "religion": "Methodist (Christian)",
       "education": "Allegheny College and Albany Law School; no degree",
       "careerBeforePresidency": "Teacher, Lawyer",
       "keyAccomplishments": [
@@ -523,7 +599,11 @@
         "Signed the Gold Standard Act",
         "Oversaw overseas expansion"
       ],
-      "importantQuote": "I have never been in doubt since I was old enough to think intelligently that I would someday be made President.",
+      "importantQuotes": [
+        "I have never been in doubt since I was old enough to think intelligently that I would someday be made President.",
+        "That’s all a man can hope for during his lifetime––to set an example––and when he is dead, to be an inspiration to history.",
+        "Illiteracy must be banished from the land if we shall attain that high destiny as the foremost of the enlightened nations of the world which, under Providence, we ought to achieve."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/william-mckinley/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -536,16 +616,20 @@
       "order": "26",
       "yearsInOffice": "1901–1909",
       "portrait": "assets/presidents/theodore-roosevelt.jpg",
-      "birthplace": "Manhattan",
-      "religion": "Dutch Reformed",
+      "birthplace": "New York",
+      "religion": "Dutch Reformed (Christian)",
       "education": "Harvard College; attended Columbia Law School",
       "careerBeforePresidency": "Writer, Lawyer, Public Official",
       "keyAccomplishments": [
-        "Broke up powerful trusts",
+        "Broke up powerful business monopolies",
         "Expanded conservation and national parks",
         "Advanced construction of the Panama Canal"
       ],
-      "importantQuote": "Get action. Do things; be sane; don’t fritter away your time; create, act, take a place wherever you are and be somebody; get action.",
+      "importantQuotes": [
+        "Get action. Do things; be sane; don’t fritter away your time; create, act, take a place wherever you are and be somebody; get action.",
+        "The joy of living is his who has the heart to demand it. Life is a great adventure, and I want to say to you, accept it in such a spirit.",
+        "The first requisite of a good citizen in this Republic of ours is that he shall be able and willing to pull his weight."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/theodore-roosevelt/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -558,16 +642,20 @@
       "order": "27",
       "yearsInOffice": "1909–1913",
       "portrait": "assets/presidents/william-howard-taft.jpg",
-      "birthplace": "Cincinnati",
-      "religion": "Unitarian",
+      "birthplace": "Ohio",
+      "religion": "Unitarian (Christian)",
       "education": "Yale College and Cincinnati Law School",
       "careerBeforePresidency": "Lawyer, Public Official",
       "keyAccomplishments": [
-        "Filed major antitrust cases",
+        "Filed major antitrust, or anti-monopoly cases",
         "Supported the income-tax amendment",
         "Later became chief justice"
       ],
-      "importantQuote": "Our international policy is always to promote peace.",
+      "importantQuotes": [
+        "Our international policy is always to promote peace.",
+        "Machine politics and the spoils system are as much an enemy of a proper and efficient government system of civil service as the boll weevil is of the cotton crop.",
+        "Anti-semitism is a noxious weed that should be cut out. It has no place in America."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/william-howard-taft/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -580,16 +668,19 @@
       "order": "28",
       "yearsInOffice": "1913–1921",
       "portrait": "assets/presidents/woodrow-wilson.jpg",
-      "birthplace": "Staunton",
-      "religion": "Presbyterian",
+      "birthplace": "Virginia",
+      "religion": "Presbyterian (Christian)",
       "education": "Princeton University and Johns Hopkins University; attended Virginia Law",
       "careerBeforePresidency": "Lawyer, Professor, College Administrator, Public Official",
       "keyAccomplishments": [
-        "Created the Federal Reserve",
+        "Created the Federal Reserve, the nation’s central banking system",
         "Led the nation during World War I",
-        "Promoted the League of Nations while segregating federal offices"
+        "Promoted the League of Nations while separating federal workers by race"
       ],
-      "importantQuote": "No one but the President seems to be expected . . . to look out for the general interests of the country.",
+      "importantQuotes": [
+        "No one but the President seems to be expected . . . to look out for the general interests of the country.",
+        "The world must be made safe for democracy."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/woodrow-wilson/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -602,16 +693,20 @@
       "order": "29",
       "yearsInOffice": "1921–1923",
       "portrait": "assets/presidents/warren-g-harding.jpg",
-      "birthplace": "Blooming Grove",
-      "religion": "Baptist",
+      "birthplace": "Ohio",
+      "religion": "Baptist (Christian)",
       "education": "Ohio Central College",
       "careerBeforePresidency": "Editor-Publisher",
       "keyAccomplishments": [
         "Created the federal Budget Bureau",
-        "Supported postwar arms-limitation treaties",
+        "Supported treaties that limited weapons after World War I",
         "His administration was damaged by major scandals"
       ],
-      "importantQuote": "We must stabilize and strive for normalcy.",
+      "importantQuotes": [
+        "In the great fulfillment we must have a citizenship less concerned about what the government can do for it and more anxious about what it can do for the nation.",
+        "We must stabilize and strive for normalcy.",
+        "I am just beginning to realize what a job I have taken over. God help me, for I need it."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/warren-g-harding/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -624,8 +719,8 @@
       "order": "30",
       "yearsInOffice": "1923–1929",
       "portrait": "assets/presidents/calvin-coolidge.jpg",
-      "birthplace": "Plymouth Notch",
-      "religion": "Congregationalist",
+      "birthplace": "Vermont",
+      "religion": "Congregationalist (Christian)",
       "education": "Amherst College; studied law",
       "careerBeforePresidency": "Lawyer",
       "keyAccomplishments": [
@@ -633,7 +728,11 @@
         "Supported the Kellogg-Briand Pact",
         "Signed restrictive immigration legislation"
       ],
-      "importantQuote": "The business of America is business.",
+      "importantQuotes": [
+        "The business of America is business.",
+        "There is no dignity quite so impressive, and no independence quite so important, as living within your means.",
+        "It is the duty of a citizen not only to observe the law but to let it be known that he is opposed to its violation."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/calvin-coolidge/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -646,8 +745,8 @@
       "order": "31",
       "yearsInOffice": "1929–1933",
       "portrait": "assets/presidents/herbert-hoover.jpg",
-      "birthplace": "West Branch",
-      "religion": "Quaker",
+      "birthplace": "Iowa",
+      "religion": "Quaker (Christian)",
       "education": "Stanford University",
       "careerBeforePresidency": "Engineer",
       "keyAccomplishments": [
@@ -655,7 +754,10 @@
         "Created the Reconstruction Finance Corporation",
         "Failed to stop the economic collapse"
       ],
-      "importantQuote": "We in America today are nearer to the final triumph over poverty than ever before in the history of any land.",
+      "importantQuotes": [
+        "We in America today are nearer to the final triumph over poverty than ever before in the history of any land.",
+        "Every time the government is forced to act, we lose something in self-reliance, character and initiative."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/herbert-clark-hoover/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -668,8 +770,8 @@
       "order": "32",
       "yearsInOffice": "1933–1945",
       "portrait": "assets/presidents/franklin-d-roosevelt.jpg",
-      "birthplace": "Hyde Park",
-      "religion": "Episcopalian",
+      "birthplace": "New York",
+      "religion": "Episcopalian (Christian)",
       "education": "Harvard College; attended Columbia Law School",
       "careerBeforePresidency": "Public Official, Lawyer",
       "keyAccomplishments": [
@@ -677,7 +779,10 @@
         "Led the nation through most of World War II",
         "Ordered the incarceration of Japanese Americans"
       ],
-      "importantQuote": "The only thing we have to fear is fear itself.",
+      "importantQuotes": [
+        "The only thing we have to fear is fear itself.",
+        "The only limit to our realization of tomorrow will be our doubts of today."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/franklin-d-roosevelt/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -690,8 +795,8 @@
       "order": "33",
       "yearsInOffice": "1945–1953",
       "portrait": "assets/presidents/harry-s-truman.jpg",
-      "birthplace": "Lamar",
-      "religion": "Baptist",
+      "birthplace": "Missouri",
+      "religion": "Baptist (Christian)",
       "education": "High school; attended business and law courses without a degree",
       "careerBeforePresidency": "Farmer, Businessman, Public Official",
       "keyAccomplishments": [
@@ -699,7 +804,11 @@
         "Desegregated the armed forces",
         "Authorized atomic bombs against Japan"
       ],
-      "importantQuote": "The menace of communism lies primarily in those areas of American life where the promise of democracy remains unfulfilled.",
+      "importantQuotes": [
+        "The menace of communism lies primarily in those areas of American life where the promise of democracy remains unfulfilled.",
+        "Every segment of our population, and every individual, has a right to expect from his government a fair deal.",
+        "It’s a recession when your neighbor loses his job. It’s a depression when you lose yours."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/harry-s-truman/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -712,16 +821,20 @@
       "order": "34",
       "yearsInOffice": "1953–1961",
       "portrait": "assets/presidents/dwight-d-eisenhower.jpg",
-      "birthplace": "Denison",
-      "religion": "Presbyterian",
+      "birthplace": "Texas",
+      "religion": "Presbyterian (Christian)",
       "education": "United States Military Academy at West Point",
       "careerBeforePresidency": "Soldier",
       "keyAccomplishments": [
-        "Created the Interstate Highway System",
+        "Created the Interstate Highway System, the national network of major highways",
         "Enforced school desegregation in Little Rock",
-        "Warned about the military-industrial complex"
+        "Warned about the close relationship between the military, government, and defense companies"
       ],
-      "importantQuote": "Well, not at the time. But I was scared stiff three weeks later when I got around to reading the newspaper accounts.",
+      "importantQuotes": [
+        "Well, not at the time. But I was scared stiff three weeks later when I got around to reading the newspaper accounts.",
+        "military-industrial complex,",
+        "The middle of the road is all of the usable surface. The extremes, right and left, are in the gutters."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/dwight-d-eisenhower/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -734,8 +847,8 @@
       "order": "35",
       "yearsInOffice": "1961–1963",
       "portrait": "assets/presidents/john-f-kennedy.jpg",
-      "birthplace": "Brookline",
-      "religion": "Roman Catholic",
+      "birthplace": "Massachusetts",
+      "religion": "Roman Catholic (Christian)",
       "education": "Harvard College",
       "careerBeforePresidency": "Writer, Navy Officer, Journalist, Public Official",
       "keyAccomplishments": [
@@ -743,7 +856,10 @@
         "Managed the Cuban Missile Crisis",
         "Committed the nation to a Moon landing"
       ],
-      "importantQuote": "New Frontier",
+      "importantQuotes": [
+        "New Frontier",
+        "All free men, wherever they may live, are citizens of Berlin, and, therefore, as a free man, I take pride in the words––Ich bin ein Berliner (I am a Berliner)!’"
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/john-fitzgerald-kennedy/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -756,8 +872,8 @@
       "order": "36",
       "yearsInOffice": "1963–1969",
       "portrait": "assets/presidents/lyndon-b-johnson.jpg",
-      "birthplace": "Stonewall",
-      "religion": "Disciples of Christ",
+      "birthplace": "Texas",
+      "religion": "Disciples of Christ (Christian)",
       "education": "Southwest Texas State Teachers College",
       "careerBeforePresidency": "Teacher, Public Official",
       "keyAccomplishments": [
@@ -765,7 +881,10 @@
         "Created Medicare and Medicaid",
         "Escalated the Vietnam War"
       ],
-      "importantQuote": "This administration, today, here and now, declares unconditional war on poverty.",
+      "importantQuotes": [
+        "This administration, today, here and now, declares unconditional war on poverty.",
+        "The women of America represent a reservoir of talent that is still underused. It is too often underpaid, and almost always underpromoted."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/lyndon-b-johnson/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -778,8 +897,8 @@
       "order": "37",
       "yearsInOffice": "1969–1974",
       "portrait": "assets/presidents/richard-nixon.jpg",
-      "birthplace": "Yorba Linda",
-      "religion": "Quaker",
+      "birthplace": "California",
+      "religion": "Quaker (Christian)",
       "education": "Whittier College and Duke Law School",
       "careerBeforePresidency": "Lawyer, Public Official",
       "keyAccomplishments": [
@@ -787,7 +906,10 @@
         "Created the Environmental Protection Agency",
         "Resigned because of Watergate"
       ],
-      "importantQuote": "The greatest honor history can bestow is the title of peacemaker.",
+      "importantQuotes": [
+        "Let us begin by committing ourselves to the truth––to see it like it is, and tell it like it is––to find the truth, to speak the truth, and to live the truth.",
+        "The greatest honor history can bestow is the title of peacemaker."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/richard-m-nixon/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -800,8 +922,8 @@
       "order": "38",
       "yearsInOffice": "1974–1977",
       "portrait": "assets/presidents/gerald-ford.jpg",
-      "birthplace": "Omaha",
-      "religion": "Episcopalian",
+      "birthplace": "Nebraska",
+      "religion": "Episcopalian (Christian)",
       "education": "University of Michigan and Yale Law School",
       "careerBeforePresidency": "Lawyer, Public Official",
       "keyAccomplishments": [
@@ -809,7 +931,10 @@
         "Signed the Helsinki Accords",
         "Pardoned Richard Nixon"
       ],
-      "importantQuote": "I hope historians will write that the Ford administration healed the land, that I restored public confidence in the White House and in the government.",
+      "importantQuotes": [
+        "It can go on and on, or someone must write ‘The End’ to it. I have concluded that only I can do that. And if I can, I must.",
+        "I hope historians will write that the Ford administration healed the land, that I restored public confidence in the White House and in the government."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/gerald-r-ford/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -822,8 +947,8 @@
       "order": "39",
       "yearsInOffice": "1977–1981",
       "portrait": "assets/presidents/jimmy-carter.jpg",
-      "birthplace": "Plains, Georgia",
-      "religion": "Baptist",
+      "birthplace": "Georgia",
+      "religion": "Baptist (Christian)",
       "education": "United States Naval Academy",
       "careerBeforePresidency": "Farmer, Navy Officer, Public Official, Professor",
       "keyAccomplishments": [
@@ -831,7 +956,10 @@
         "Signed the Panama Canal treaties",
         "Made human rights central to foreign policy"
       ],
-      "importantQuote": "We must adjust to changing times and still hold to unchanging principles.",
+      "importantQuotes": [
+        "We must adjust to changing times and still hold to unchanging principles.",
+        "We are a purely idealistic nation, but let no one confuse our idealism with weakness."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/james-earl-carter/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -844,8 +972,8 @@
       "order": "40",
       "yearsInOffice": "1981–1989",
       "portrait": "assets/presidents/ronald-reagan.jpg",
-      "birthplace": "Tampico, Illinois",
-      "religion": "Presbyterian",
+      "birthplace": "Illinois",
+      "religion": "Presbyterian (Christian)",
       "education": "Eureka College",
       "careerBeforePresidency": "Actor, Public Official",
       "keyAccomplishments": [
@@ -853,7 +981,10 @@
         "Increased military spending",
         "Negotiated arms reductions with the Soviet Union"
       ],
-      "importantQuote": "Government is not the solution to our problem; government is the problem.",
+      "importantQuotes": [
+        "to believe that together with God’s help we can and will resolve the problems which now confront us. And, after all, why shouldn’t we believe that? We are Americans.",
+        "Government is not the solution to our problem; government is the problem."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/ronald-w-reagan/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -866,8 +997,8 @@
       "order": "41",
       "yearsInOffice": "1989–1993",
       "portrait": "assets/presidents/george-h-w-bush.jpg",
-      "birthplace": "Milton",
-      "religion": "Episcopalian",
+      "birthplace": "Massachusetts",
+      "religion": "Episcopalian (Christian)",
       "education": "Yale University",
       "careerBeforePresidency": "Navy Pilot, Businessman, Public Official",
       "keyAccomplishments": [
@@ -875,7 +1006,10 @@
         "Signed the Americans with Disabilities Act",
         "Managed the end of the Cold War"
       ],
-      "importantQuote": "We can find meaning and reward by serving some purpose higher than ourselves.",
+      "importantQuotes": [
+        "Make no mistake, a new breeze is blowing across the steps and the cities of the Soviet Union. Why not, then, let this spirit of openness grow, let more barriers come down.",
+        "We can find meaning and reward by serving some purpose higher than ourselves."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/george-h-w-bush/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -888,16 +1022,19 @@
       "order": "42",
       "yearsInOffice": "1993–2001",
       "portrait": "assets/presidents/bill-clinton.jpg",
-      "birthplace": "Hope",
-      "religion": "Baptist",
+      "birthplace": "Arkansas",
+      "religion": "Baptist (Christian)",
       "education": "Georgetown University, Oxford University, and Yale Law School",
       "careerBeforePresidency": "Lawyer, Professor, Public Official",
       "keyAccomplishments": [
         "Presided over economic growth and budget surpluses",
         "Signed NAFTA and welfare reform",
-        "Was impeached and acquitted"
+        "Was impeached by the House but not removed by the Senate"
       ],
-      "importantQuote": "There is nothing wrong with America that cannot be cured by what is right with America.",
+      "importantQuotes": [
+        "There is nothing wrong with America that cannot be cured by what is right with America.",
+        "Our democracy must be not only the envy of the world but the engine of our own renewal."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/william-j-clinton/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -910,8 +1047,8 @@
       "order": "43",
       "yearsInOffice": "2001–2008",
       "portrait": "assets/presidents/george-w-bush.jpg",
-      "birthplace": "New Haven",
-      "religion": "Methodist",
+      "birthplace": "Connecticut",
+      "religion": "Methodist (Christian)",
       "education": "Yale University and Harvard Business School",
       "careerBeforePresidency": "Businessman, Public Official",
       "keyAccomplishments": [
@@ -919,7 +1056,11 @@
         "Launched wars in Afghanistan and Iraq",
         "Created PEPFAR and expanded Medicare"
       ],
-      "importantQuote": "I kind of figure life is going to work its way out somehow.",
+      "importantQuotes": [
+        "I kind of figure life is going to work its way out somehow.",
+        "Today, we affirm a new commitment to live out our nation’s promise through civility, courage, compassion and character.",
+        "We will pass through this time of peril and carry on the work of peace. We will defend our freedom. We will bring freedom to others, and we will prevail."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/george-w-bush/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -932,8 +1073,8 @@
       "order": "44",
       "yearsInOffice": "2009–2016",
       "portrait": "assets/presidents/barack-obama.jpg",
-      "birthplace": "Honolulu, Hawaii",
-      "religion": "Protestant",
+      "birthplace": "Hawaii",
+      "religion": "Protestant (Christian)",
       "education": "Occidental College, Columbia University, and Harvard Law School",
       "careerBeforePresidency": "Lawyer, Public Official",
       "keyAccomplishments": [
@@ -941,7 +1082,10 @@
         "Led recovery from the Great Recession",
         "Signed financial-reform legislation"
       ],
-      "importantQuote": "Yes, we can.",
+      "importantQuotes": [
+        "Yes, we can.",
+        "We reject as false the choice between our safety and our ideals."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/barack-obama/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -954,8 +1098,8 @@
       "order": "45 and 47",
       "yearsInOffice": "2017–2021; 2025–present",
       "portrait": "assets/presidents/donald-trump.jpg",
-      "birthplace": "Queens, New York",
-      "religion": "Nondenominational Christian; formerly Presbyterian",
+      "birthplace": "New York",
+      "religion": "Nondenominational Christian; formerly Presbyterian (Christian)",
       "education": "Fordham University and University of Pennsylvania",
       "careerBeforePresidency": "Real Estate Businessman and Reality TV Personality",
       "keyAccomplishments": [
@@ -964,7 +1108,10 @@
         "Brokered the Abraham Accords",
         "Second term remains ongoing"
       ],
-      "importantQuote": "We will make America great again.",
+      "importantQuotes": [
+        "We will make America great again.",
+        "The forgotten men and women of our country will be forgotten no longer."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/donald-j-trump/",
         "lifeBeforePresidency": "https://millercenter.org/president",
@@ -977,8 +1124,8 @@
       "order": "46",
       "yearsInOffice": "2021–2025",
       "portrait": "assets/presidents/joe-biden.jpg",
-      "birthplace": "Scranton",
-      "religion": "Roman Catholic",
+      "birthplace": "Pennsylvania",
+      "religion": "Roman Catholic (Christian)",
       "education": "University of Delaware and Syracuse University College of Law",
       "careerBeforePresidency": "Lawyer, Senator, Vice President",
       "keyAccomplishments": [
@@ -986,7 +1133,10 @@
         "Signed the CHIPS and Science Act",
         "Led U.S. support for Ukraine"
       ],
-      "importantQuote": "This is America’s day. This is democracy’s day.",
+      "importantQuotes": [
+        "This is America’s day. This is democracy’s day.",
+        "We must end this uncivil war that pits red against blue."
+      ],
       "sources": {
         "biographyAndQuote": "https://ourwhitehouse.org/joseph-r-biden/",
         "lifeBeforePresidency": "https://millercenter.org/president",
