@@ -13,10 +13,33 @@ vm.runInContext(fs.readFileSync(path.join(root, "course-data.js"), "utf8"), cont
 vm.runInContext(fs.readFileSync(path.join(root, "foundations-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
+const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
+const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
 for (const file of ["index.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
+
+if (portraitManifest.count !== 45 || portraitManifest.portraits?.length !== 45 || portraitManifest.failures?.length) {
+  errors.push("Expected 45 verified presidential portraits with no sourcing failures.");
+}
+portraitManifest.portraits?.forEach(portrait => {
+  if (!/public domain|cc0|pd-usgov/i.test(portrait.license || "")) {
+    errors.push(`${portrait.name || "Unknown president"} does not have a verified public-domain license.`);
+  }
+  if (!portrait.file || !fs.existsSync(path.join(root, "assets", "presidents", portrait.file))) {
+    errors.push(`Missing local portrait for ${portrait.name || "Unknown president"}.`);
+  }
+});
+if (presidentFacts.count !== 45 || presidentFacts.presidents?.length !== 45) {
+  errors.push("Expected 45 complete president fact cards.");
+}
+presidentFacts.presidents?.forEach(president => {
+  for (const key of ["name", "order", "yearsInOffice", "portrait", "birthplace", "religion", "education", "careerBeforePresidency", "importantQuote"]) {
+    if (!president[key]) errors.push(`${president.name || "Unknown president"} is missing ${key}.`);
+  }
+  if (president.keyAccomplishments?.length < 3) errors.push(`${president.name} needs at least three key accomplishments or actions.`);
+});
 
 for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
   const ref = match[1];
@@ -33,7 +56,7 @@ for (const fragment of ["<main", "<nav", "Skip to the course", "prefers-reduced-
 if (!Array.isArray(data.units) || data.units.length !== 8) errors.push("Expected 8 Government units.");
 const lessonCount = data.units.reduce((count, unit) => count + unit.lessons.length, 0);
 if (lessonCount !== 38) errors.push(`Expected all 38 pacing entries; found ${lessonCount}.`);
-if (!Array.isArray(data.words) || data.words.length !== 56) errors.push(`Expected 56 plain-language glossary terms; found ${data.words?.length || 0}.`);
+if (!Array.isArray(data.words) || data.words.length !== 51) errors.push(`Expected 51 plain-language glossary terms; found ${data.words?.length || 0}.`);
 data.words?.forEach((word, index) => {
   if (word.length !== 5 || word.some(value => !String(value).trim()) || !data.units.some(unit => unit.id === word[4])) {
     errors.push(`Glossary term ${index + 1} is incomplete or has an unknown unit.`);

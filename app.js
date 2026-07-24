@@ -20,6 +20,8 @@
   let amendmentFilter = "current";
   let glossaryFilter = "current";
   let glossaryQuery = "";
+  let presidentFacts = [];
+  let presidentQuery = "";
 
   function showView(name) {
     const isUnit = data.units.some(unit => unit.id === name);
@@ -38,7 +40,7 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "units", "foundations", "words", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "units", "foundations", "words", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     showView(valid ? routeName : "home");
   }
 
@@ -103,6 +105,37 @@
       flow.appendChild(item);
     });
 
+    const resources = document.createElement("section");
+    resources.className = "unit-resources";
+    if (unit.resources?.length) {
+      const resourceHeading = document.createElement("div");
+      resourceHeading.className = "section-heading";
+      resourceHeading.innerHTML = "<div><p class=\"eyebrow\">UNIT LINKS</p><h2>OPEN WHAT YOU NEED.</h2></div>";
+      const resourceGrid = document.createElement("div");
+      resourceGrid.className = "unit-resource-grid";
+      unit.resources.forEach(resource => {
+        const card = document.createElement(resource.url ? "a" : "div");
+        card.className = "unit-resource";
+        if (resource.url) {
+          card.href = resource.url;
+          if (!resource.url.startsWith("#")) {
+            card.target = "_blank";
+            card.rel = "noopener";
+          }
+        } else {
+          card.classList.add("placeholder");
+          card.setAttribute("aria-disabled", "true");
+        }
+        const resourceTitle = document.createElement("strong");
+        resourceTitle.textContent = resource.title;
+        const resourceNote = document.createElement("span");
+        resourceNote.textContent = resource.note;
+        card.append(resourceTitle, resourceNote);
+        resourceGrid.appendChild(card);
+      });
+      resources.append(resourceHeading, resourceGrid);
+    }
+
     const list = document.createElement("section");
     list.className = "lesson-list";
     const heading = document.createElement("div");
@@ -133,7 +166,9 @@
       article.append(num, copy, standard, details);
       list.appendChild(article);
     });
-    container.append(header, flow, list);
+    container.append(header, flow);
+    if (unit.resources?.length) container.append(resources);
+    container.append(list);
   }
 
   function renderWords() {
@@ -164,6 +199,88 @@
       empty.className = "empty-state";
       empty.textContent = "NO MATCH YET. TRY A SHORTER WORD OR CHOOSE ALL TERMS.";
       wordGrid.appendChild(empty);
+    }
+  }
+
+  function renderPresidents() {
+    const grid = document.getElementById("president-grid");
+    grid.replaceChildren();
+    const matches = presidentFacts.filter(president =>
+      `${president.name} ${president.order} ${president.yearsInOffice}`.toLowerCase().includes(presidentQuery)
+    );
+    document.getElementById("president-status").textContent = `${matches.length} ${matches.length === 1 ? "PRESIDENT" : "PRESIDENTS"} SHOWN`;
+    matches.forEach(president => {
+      const card = document.createElement("article");
+      card.className = "president-card";
+      const image = document.createElement("img");
+      image.src = president.portrait;
+      image.alt = `Portrait of ${president.name}`;
+      image.loading = "lazy";
+      image.width = 450;
+      image.height = 540;
+      const heading = document.createElement("div");
+      heading.className = "president-card-heading";
+      const order = document.createElement("p");
+      order.className = "eyebrow";
+      order.textContent = `PRESIDENT ${president.order}`;
+      const name = document.createElement("h2");
+      name.textContent = president.name.toUpperCase();
+      const years = document.createElement("strong");
+      years.textContent = president.yearsInOffice;
+      heading.append(order, name, years);
+      const details = document.createElement("details");
+      const summary = document.createElement("summary");
+      summary.textContent = "OPEN SUPPLIED FACTS";
+      const facts = document.createElement("div");
+      facts.className = "president-facts";
+      [
+        ["PLACE OF BIRTH", president.birthplace],
+        ["RELIGIOUS AFFILIATION", president.religion],
+        ["EDUCATION", president.education],
+        ["CAREER BEFORE PRESIDENCY", president.careerBeforePresidency]
+      ].forEach(([labelText, value]) => {
+        const fact = document.createElement("p");
+        const label = document.createElement("b");
+        label.textContent = labelText;
+        const text = document.createElement("span");
+        text.textContent = value;
+        fact.append(label, text);
+        facts.appendChild(fact);
+      });
+      const accomplishmentsTitle = document.createElement("h3");
+      accomplishmentsTitle.textContent = "KEY ACCOMPLISHMENTS AND ACTIONS";
+      const accomplishments = document.createElement("ul");
+      president.keyAccomplishments.forEach(item => {
+        const bullet = document.createElement("li");
+        bullet.textContent = item;
+        accomplishments.appendChild(bullet);
+      });
+      const quoteTitle = document.createElement("h3");
+      quoteTitle.textContent = "IMPORTANT QUOTE";
+      const quote = document.createElement("blockquote");
+      quote.textContent = `“${president.importantQuote}”`;
+      const source = document.createElement("a");
+      source.href = president.sources.biographyAndQuote;
+      source.target = "_blank";
+      source.rel = "noopener";
+      source.textContent = "CHECK BIOGRAPHY AND QUOTE SOURCE ↗";
+      facts.append(accomplishmentsTitle, accomplishments, quoteTitle, quote, source);
+      details.append(summary, facts);
+      card.append(image, heading, details);
+      grid.appendChild(card);
+    });
+  }
+
+  async function loadPresidentFacts() {
+    try {
+      const response = await fetch("assets/presidents/president-facts.json");
+      if (!response.ok) throw new Error("President facts unavailable");
+      const payload = await response.json();
+      presidentFacts = payload.presidents || [];
+      renderPresidents();
+    } catch (error) {
+      document.getElementById("president-status").textContent = "PRESIDENT FACT CARDS ARE TEMPORARILY UNAVAILABLE.";
+      console.warn(error);
     }
   }
 
@@ -474,6 +591,7 @@
       const local = localStorage.getItem(CONTENT_STORAGE_KEY);
       if (local) siteContent = { ...siteContent, ...JSON.parse(local) };
       if (data.units.some(unit => unit.id === siteContent.currentUnit)) currentUnitId = siteContent.currentUnit;
+      if (!data.words.some(word => word[4] === currentUnitId)) glossaryFilter = "all";
     } catch (error) {
       console.warn("Using default course content.", error);
     }
@@ -651,6 +769,10 @@
     glossaryFilter = button.dataset.glossaryFilter;
     renderWords();
   });
+  document.getElementById("president-search").addEventListener("input", event => {
+    presidentQuery = event.target.value.trim().toLowerCase();
+    renderPresidents();
+  });
   document.addEventListener("keydown", event => {
     if (event.key === "Escape" && !dialog.hidden) closeWord();
     if (event.key === "Escape" && !foundationDialog.hidden) closeFoundationDialog();
@@ -679,5 +801,6 @@
   renderMadison();
   loadConfig();
   loadHistory();
+  loadPresidentFacts();
   route();
 })();
