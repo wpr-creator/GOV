@@ -202,41 +202,9 @@
       });
     }
 
-    const list = document.createElement("section");
-    list.className = "lesson-list";
-    const heading = document.createElement("div");
-    heading.className = "section-heading";
-    heading.innerHTML = `<div><p class="eyebrow">LEARNING PATH</p><h2>${unit.lessons.length} FOCUSED TOPICS</h2></div>`;
-    list.appendChild(heading);
-    unit.lessons.forEach((lesson, index) => {
-      const article = document.createElement("article");
-      article.className = "lesson";
-      const num = document.createElement("span");
-      num.className = "lesson-num";
-      num.textContent = index + 1;
-      const copy = document.createElement("div");
-      const lessonTitle = document.createElement("h3");
-      lessonTitle.textContent = lesson[0].toUpperCase();
-      const lessonQuestion = document.createElement("p");
-      lessonQuestion.textContent = lesson[1];
-      copy.append(lessonTitle, lessonQuestion);
-      const details = document.createElement("details");
-      const summary = document.createElement("summary");
-      summary.textContent = "WHAT WILL I DO?";
-      const activity = document.createElement("p");
-      activity.textContent = lesson[3];
-      const finish = document.createElement("p");
-      const finishLabel = document.createElement("strong");
-      finishLabel.textContent = "FINISH WITH: ";
-      finish.append(finishLabel, lesson[4]);
-      details.append(summary, activity, finish);
-      article.append(num, copy, details);
-      list.appendChild(article);
-    });
     container.appendChild(header);
     if (unit.id !== "gov-0" && sourceGrid.children.length) container.append(unitSources);
     if (unit.resources?.length) container.append(resources);
-    if (unit.id !== "gov-0") container.append(list);
   }
 
   function renderWords() {
