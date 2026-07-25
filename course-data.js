@@ -17,9 +17,9 @@ window.COURSE_DATA = {
           url: "https://www.pewresearch.org/politics/quiz/political-typology/group/99e1939eab70f1619bde23fadf282d77"
         },
         {
-          title: "TYPOLOGY REFLECTION",
-          note: "GOOGLE FORM WILL BE ADDED HERE.",
-          url: ""
+          title: "TYPOLOGY REFLECTION: BETWEEN THE LINES",
+          note: "COMPLETE THE REFLECTION AFTER THE TYPOLOGY QUIZ.",
+          url: "https://docs.google.com/forms/d/e/1FAIpQLSe_BuUT-XX1ZFlTxXcSIsflQ__3H6Gc-p-tUZz4pDCrYKLMSw/viewform?usp=dialog"
         },
         {
           title: "PRESIDENTIAL LIBRARY",
