@@ -1004,56 +1004,83 @@
   function renderFoundingPower() {
     const workspace = document.getElementById("founding-power-workspace");
     workspace.replaceChildren();
+    const context = document.createElement("div");
+    context.className = "founding-context";
+    const historyContext = document.createElement("section");
+    historyContext.innerHTML = "<h2>WHY THESE IDEAS WERE RADICAL</h2><p>In the 1600s and 1700s, most people lived under rulers they did not choose. Some of these ideas had older roots, but putting them together made a powerful new argument: people have rights, and government needs their permission. That argument challenged the power of kings and helped colonists justify a revolution.</p>";
+    const trustContext = document.createElement("section");
+    trustContext.innerHTML = "<h2>A WAY TO JUDGE GOVERNMENT</h2><p>You do not have to trust every leader or institution. These ideas give you questions to ask: Does government protect people’s rights? Does its power come from the people? Are its leaders following the law?</p>";
+    context.append(historyContext, trustContext);
     const map = document.createElement("div");
     map.className = "founding-map";
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    path.setAttribute("class", "founding-map-lines");
-    path.setAttribute("viewBox", "0 0 900 480");
-    path.setAttribute("aria-hidden", "true");
-    path.innerHTML = '<path d="M150 285V365H450V425M450 285V425M750 285V365H450"/><circle cx="450" cy="425" r="12"/>';
-    map.appendChild(path);
-    const phaseNames = ["EARLIER IDEAS", "THE DECLARATION", "LIMITS ON POWER"];
-    phaseNames.forEach((phaseName, phaseIndex) => {
-      const phase = document.createElement("section");
-      phase.className = `founding-phase phase-${phaseIndex + 1}`;
-      const heading = document.createElement("h2");
-      heading.textContent = phaseName;
-      phase.appendChild(heading);
-      foundingPowerIdeas.forEach((item, itemIndex) => {
-        if (item.phase !== phaseName) return;
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "founding-artifact";
-        button.dataset.foundingIndex = String(itemIndex);
-        button.setAttribute("aria-controls", "founding-detail");
-        button.setAttribute("aria-pressed", "false");
-        if (item.image) {
-          const image = document.createElement("img");
-          image.src = item.image;
-          image.alt = "";
-          button.appendChild(image);
-        } else {
-          const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-          icon.setAttribute("viewBox", "0 0 160 120");
-          icon.setAttribute("aria-hidden", "true");
-          const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-          use.setAttribute("href", `assets/foundations/founding-power-icons.svg#${item.icon}`);
-          icon.appendChild(use);
-          button.appendChild(icon);
-        }
-        const label = document.createElement("span");
-        label.innerHTML = `<b>${item.idea}</b><small>${item.year} · ${item.document}</small>`;
-        button.appendChild(label);
-        button.addEventListener("click", () => showFoundingDetail(itemIndex, true));
-        phase.appendChild(button);
-      });
-      map.appendChild(phase);
+    const sourceColumn = document.createElement("section");
+    sourceColumn.className = "founding-column founding-sources";
+    sourceColumn.innerHTML = "<h2>WHERE THE IDEAS CAME FROM</h2>";
+    foundingPowerIdeas.forEach((item, itemIndex) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "founding-artifact";
+      button.dataset.foundingIndex = String(itemIndex);
+      button.setAttribute("aria-controls", "founding-detail");
+      button.setAttribute("aria-pressed", "false");
+      if (item.image) {
+        const image = document.createElement("img");
+        image.src = item.image;
+        image.alt = "";
+        button.appendChild(image);
+      } else {
+        const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        icon.setAttribute("viewBox", "0 0 160 120");
+        icon.setAttribute("aria-hidden", "true");
+        const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        use.setAttribute("href", `assets/foundations/founding-power-icons.svg#${item.icon}`);
+        icon.appendChild(use);
+        button.appendChild(icon);
+      }
+      const label = document.createElement("span");
+      label.innerHTML = `<b>${item.thinker}</b><small>${item.year} · ${item.document}</small>`;
+      button.appendChild(label);
+      button.addEventListener("click", () => showFoundingDetail(itemIndex, true));
+      sourceColumn.appendChild(button);
     });
+    const firstArrow = document.createElement("div");
+    firstArrow.className = "founding-flow-arrow";
+    firstArrow.innerHTML = '<span aria-hidden="true">→</span><b>SHAPED THESE IDEALS</b>';
 
-    const center = document.createElement("div");
-    center.className = "founding-center";
-    center.innerHTML = "<b>WE THE PEOPLE</b><span>RIGHTS · CONSENT · LIMITS</span>";
-    map.appendChild(center);
+    const ideals = [
+      ["NATURAL RIGHTS", "RIGHTS YOU ARE BORN WITH", "Every person is born with basic rights. Government does not create these rights and should not take them away."],
+      ["SOCIAL CONTRACT", "AN AGREEMENT ABOUT POWER", "People agree to live under shared rules. In return, government protects their safety and rights."],
+      ["POPULAR SOVEREIGNTY", "POWER BEGINS WITH THE PEOPLE", "The people are the source of government power. Leaders govern only with the people’s consent, or permission."],
+      ["LIMITED GOVERNMENT", "GOVERNMENT HAS BOUNDARIES", "Government must follow the Constitution and the law. No leader or branch has unlimited power."]
+    ];
+    const idealColumn = document.createElement("section");
+    idealColumn.className = "founding-column founding-ideals";
+    idealColumn.innerHTML = "<h2>DEMOCRATIC IDEALS</h2>";
+    ideals.forEach(([name, bridge, definition]) => {
+      const card = document.createElement("article");
+      card.innerHTML = `<h3>${name}</h3><span>${bridge}</span><p>${definition}</p>`;
+      idealColumn.appendChild(card);
+    });
+    const secondArrow = document.createElement("div");
+    secondArrow.className = "founding-flow-arrow";
+    secondArrow.innerHTML = '<span aria-hidden="true">→</span><b>PUT INTO PRACTICE THROUGH</b>';
+
+    const designs = [
+      ["SEPARATION OF POWERS", "DIFFERENT PARTS HAVE DIFFERENT JOBS", "The Constitution gives different responsibilities to Congress, the president, and the courts."],
+      ["CHECKS AND BALANCES", "BRANCHES CAN LIMIT ONE ANOTHER", "Each branch can limit actions taken by the other branches. This makes it harder for one branch to control the government."],
+      ["FEDERALISM", "POWER IS SHARED ACROSS LEVELS", "The national government and state governments share power. Each level has its own responsibilities."],
+      ["REPUBLICANISM", "PEOPLE CHOOSE REPRESENTATIVES", "Voters choose representatives to make laws and govern on their behalf."]
+    ];
+    const designColumn = document.createElement("section");
+    designColumn.className = "founding-column founding-designs";
+    designColumn.innerHTML = "<h2>HOW POWER IS LIMITED</h2>";
+    designs.forEach(([name, bridge, definition]) => {
+      const card = document.createElement("article");
+      card.innerHTML = `<h3>${name}</h3><span>${bridge}</span><p>${definition}</p>`;
+      designColumn.appendChild(card);
+    });
+    map.append(sourceColumn, firstArrow, idealColumn, secondArrow, designColumn);
+
     const detail = document.createElement("article");
     detail.className = "founding-detail";
     detail.id = "founding-detail";
@@ -1070,15 +1097,17 @@
     const help = document.createElement("p");
     help.className = "founding-word-help";
     const explanation = document.createElement("p");
-    const today = document.createElement("p");
-    today.className = "founding-today";
+    const connections = document.createElement("div");
+    connections.className = "founding-connections";
+    const caution = document.createElement("p");
+    caution.className = "founding-caution";
     const source = document.createElement("a");
     source.target = "_blank";
     source.rel = "noopener";
-    detailCopy.append(excerpt, help, explanation, today, source);
+    detailCopy.append(excerpt, help, explanation, connections, caution, source);
     detailBody.append(detailVisual, detailCopy);
     detail.append(detailsMeta, detailsHeading, detailBody);
-    workspace.append(map, detail);
+    workspace.append(context, map, detail);
 
     function showFoundingDetail(index, moveFocus) {
       const item = foundingPowerIdeas[index];
@@ -1086,8 +1115,8 @@
         const active = Number(button.dataset.foundingIndex) === index;
         button.setAttribute("aria-pressed", String(active));
       });
-      detailsMeta.textContent = `${item.year} · ${item.document}`;
-      detailsHeading.textContent = item.idea;
+      detailsMeta.textContent = `${item.thinker} · ${item.year}`;
+      detailsHeading.textContent = item.document;
       detailVisual.replaceChildren();
       if (item.image) {
         const image = document.createElement("img");
@@ -1107,13 +1136,37 @@
       excerpt.textContent = item.excerpt;
       help.textContent = item.wordHelp;
       explanation.textContent = item.explanation;
-      today.innerHTML = "<b>WHERE IT SHOWS UP NOW</b>";
-      today.append(document.createTextNode(item.today));
+      connections.replaceChildren();
+      const ideaGroup = document.createElement("div");
+      const ideaLabel = document.createElement("b");
+      ideaLabel.textContent = "IDEAS IT HELPED SHAPE";
+      const ideaList = document.createElement("p");
+      ideaList.textContent = `This source helps explain ${formatConceptList(item.ideas)}.`;
+      ideaGroup.append(ideaLabel, ideaList);
+      connections.appendChild(ideaGroup);
+      if (item.designs?.length) {
+        const designGroup = document.createElement("div");
+        const designLabel = document.createElement("b");
+        designLabel.textContent = "HOW THE IDEA APPEARS IN GOVERNMENT";
+        const designList = document.createElement("p");
+        designList.textContent = `The Constitution puts this idea into practice through ${formatConceptList(item.designs)}.`;
+        designGroup.append(designLabel, designList);
+        connections.appendChild(designGroup);
+      }
+      caution.textContent = item.caution || "";
+      caution.hidden = !item.caution;
       source.href = item.source;
       source.textContent = `${item.sourceLabel} · VIEW THE SOURCE ↗`;
       if (moveFocus) detail.focus({ preventScroll: true });
     }
     showFoundingDetail(0, false);
+
+    function formatConceptList(items) {
+      const readable = items.map(item => item.toLowerCase());
+      if (readable.length === 1) return readable[0];
+      if (readable.length === 2) return `${readable[0]} and ${readable[1]}`;
+      return `${readable.slice(0, -1).join(", ")}, and ${readable.at(-1)}`;
+    }
   }
 
   function switchFoundationTab(tabName) {
