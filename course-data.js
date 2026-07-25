@@ -2,38 +2,67 @@ window.COURSE_DATA = {
   units: [
     {
       id: "gov-0", number: "Unit 0", title: "First Bell",
-      question: "Where does government show up in my life?",
+      question: "Who makes the rules—and what changes when we start paying attention?",
       standards: "Course launch",
       lessons: [
-        ["0.1 — It’s on the Schedule", "Where does government appear in everyday life?", "Course launch", "Connect government to school, work, transportation, safety, rights, and technology. Join the class spaces and bookmark this site.", "Name one way government affects your life"],
-        ["0.2 — Read the Fine Print", "What will help our class work well?", "Course launch", "Learn how the class works, practice discussion routines, and begin your Civic Selfie.", "Take home the syllabus and continue your Civic Selfie"],
-        ["0.3 — Pack Your Field Guides", "What tools will help me succeed?", "Course launch", "Take the PEW Political Typology quiz, reflect privately, and begin using your paper Field Guide.", "Complete the reflection"],
-        ["0.4 — Portrait Day", "Who are the people who have served as president?", "Prepares for Gov 12.4.4", "Use the Presidential Library to design a portrait for our classroom display.", "Choose facts and quotes that tell your president’s story"]
+        ["0.1 — Already in Session", "Why does government already matter?", "Course launch", "Compare government and politics, connect both to everyday life, and get connected to the course.", "Join Google Classroom and bookmark the course website"],
+        ["0.2 — Read the Fine Print", "How will this class work?", "Course launch", "Review the syllabus and classroom expectations, then learn how to navigate course resources.", "Complete the signed syllabus, Self-Guided Tour, and Civic Selfie"],
+        ["0.3 — Pack Your Field Guides", "What do I already believe and know about government?", "Course launch", "Complete the PEW Political Typology, reflect on the result, review the course outline, and check essential government knowledge.", "Complete Between the Lines and begin the Civics Field Guide"],
+        ["0.4 — Portrait Day", "What can presidents reveal about American government?", "Prepares for Gov 12.4.4", "Explore the presidency through research, art, and a shared classroom display.", "Complete The Presidential Yearbook"]
       ],
       resources: [
         {
+          id: "classroom",
+          lesson: "0.1 — ALREADY IN SESSION",
+          title: "JOIN GOOGLE CLASSROOM",
+          url: "https://classroom.google.com/c/ODcxMDI4ODY2NDUy"
+        },
+        {
+          id: "course-site",
+          lesson: "0.1 — ALREADY IN SESSION",
+          title: "COURSE WEBSITE",
+          url: "#home"
+        },
+        {
+          id: "syllabus",
+          lesson: "0.2 — READ THE FINE PRINT",
           title: "CLASS SYLLABUS",
-          note: "READ THE CLASS GUIDE.",
           url: "https://docs.google.com/document/d/1JRS7wb7qTVWhNokfK924OkKO34TbEF1a99Q9Mzh9Iug/edit?usp=sharing"
         },
         {
-          title: "CIVIC SELFIE",
-          note: "LINK COMING SOON.",
+          id: "self-guided-tour",
+          lesson: "0.2 — READ THE FINE PRINT",
+          title: "SELF-GUIDED TOUR",
           url: ""
         },
         {
+          id: "civic-selfie",
+          lesson: "0.2 — READ THE FINE PRINT",
+          title: "CIVIC SELFIE",
+          url: ""
+        },
+        {
+          id: "pew-typology",
+          lesson: "0.3 — PACK YOUR FIELD GUIDES",
           title: "PEW POLITICAL TYPOLOGY",
-          note: "TAKE THE OFFICIAL 2026 QUIZ.",
           url: "https://www.pewresearch.org/politics/quiz/political-typology/group/99e1939eab70f1619bde23fadf282d77"
         },
         {
+          id: "typology-reflection",
+          lesson: "0.3 — PACK YOUR FIELD GUIDES",
           title: "TYPOLOGY REFLECTION: BETWEEN THE LINES",
-          note: "COMPLETE THE REFLECTION AFTER THE TYPOLOGY QUIZ.",
           url: "https://docs.google.com/forms/d/e/1FAIpQLSe_BuUT-XX1ZFlTxXcSIsflQ__3H6Gc-p-tUZz4pDCrYKLMSw/viewform?usp=dialog"
         },
         {
-          title: "PRESIDENTIAL LIBRARY",
-          note: "FIND EVERY UNITED STATES PRESIDENT.",
+          id: "civics-field-guide",
+          lesson: "0.3 — PACK YOUR FIELD GUIDES",
+          title: "CIVICS FIELD GUIDE",
+          url: ""
+        },
+        {
+          id: "presidential-yearbook",
+          lesson: "0.4 — PORTRAIT DAY",
+          title: "THE PRESIDENTIAL YEARBOOK",
           url: "#presidents"
         }
       ]

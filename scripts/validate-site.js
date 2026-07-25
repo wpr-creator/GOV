@@ -141,6 +141,41 @@ if (data.units.some((unit, index) => unit.title !== expectedUnitTitles[index])) 
 if (data.units.find(unit => unit.id === "gov-3")?.timing !== "October") {
   errors.push("Election Season must remain marked for October.");
 }
+const firstBell = data.units.find(unit => unit.id === "gov-0");
+if (firstBell?.question !== "Who makes the rules—and what changes when we start paying attention?") {
+  errors.push("First Bell has the wrong essential question.");
+}
+const expectedFirstBellLessons = [
+  "0.1 — Already in Session",
+  "0.2 — Read the Fine Print",
+  "0.3 — Pack Your Field Guides",
+  "0.4 — Portrait Day"
+];
+if (firstBell?.lessons.some((lesson, index) => lesson[0] !== expectedFirstBellLessons[index])) {
+  errors.push("First Bell lessons are missing or out of order.");
+}
+const expectedFirstBellAssignments = [
+  "classroom|0.1 — ALREADY IN SESSION|JOIN GOOGLE CLASSROOM",
+  "course-site|0.1 — ALREADY IN SESSION|COURSE WEBSITE",
+  "syllabus|0.2 — READ THE FINE PRINT|CLASS SYLLABUS",
+  "self-guided-tour|0.2 — READ THE FINE PRINT|SELF-GUIDED TOUR",
+  "civic-selfie|0.2 — READ THE FINE PRINT|CIVIC SELFIE",
+  "pew-typology|0.3 — PACK YOUR FIELD GUIDES|PEW POLITICAL TYPOLOGY",
+  "typology-reflection|0.3 — PACK YOUR FIELD GUIDES|TYPOLOGY REFLECTION: BETWEEN THE LINES",
+  "civics-field-guide|0.3 — PACK YOUR FIELD GUIDES|CIVICS FIELD GUIDE",
+  "presidential-yearbook|0.4 — PORTRAIT DAY|THE PRESIDENTIAL YEARBOOK"
+];
+if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${resource.title}`).join("\n") !== expectedFirstBellAssignments.join("\n")) {
+  errors.push("First Bell assignments are missing, mislabeled, or out of lesson order.");
+}
+firstBell?.resources?.forEach(resource => {
+  if (typeof config.assignmentUnlocks?.[resource.id] !== "boolean") {
+    errors.push(`First Bell assignment ${resource.id} needs a true or false unlock setting.`);
+  }
+  if (!resource.url && config.assignmentUnlocks?.[resource.id]) {
+    errors.push(`First Bell assignment ${resource.id} cannot be open without a link.`);
+  }
+});
 const teacherFacingLessonTerms = /\b(CER|retrieval check|constructed response|targeted reteach|reassessment evidence|assessed content|supplied information)\b/i;
 data.units.forEach(unit => unit.lessons.forEach(lesson => {
   if (lesson.some(value => teacherFacingLessonTerms.test(String(value)))) {

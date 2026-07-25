@@ -10,6 +10,7 @@ Type `dev` anywhere on the page when an input is not selected. The hidden edit p
 - the exit-ticket question
 - upcoming assignments
 - the Google Classroom link
+- which linked First Bell assignment cards are open
 
 `SAVE PREVIEW` stores changes only in the current browser. `COPY JSON` copies the finished settings so they can replace `site-content.json` for publication.
 
@@ -29,7 +30,7 @@ The selected unit and all earlier units open; later units stay locked.
 - `styles.css` — visual system and responsive/accessibility behavior
 - `course-data.js` — unit, lesson, standards, and plain-language glossary content
 - `foundations-data.js` — documents, amendments, skill builders, and Madison debates
-- `site-content.json` — current unit, exit ticket, upcoming assignments, and Classroom link
+- `site-content.json` — current unit, exit ticket, upcoming assignments, Classroom link, and assignment-card unlocks
 - `app.js` — navigation and interaction
 - `assets/course-mark.svg` — original course mark
 - `us-politics-events.json` — source-linked daily political-history database
