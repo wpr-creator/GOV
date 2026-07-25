@@ -92,17 +92,12 @@
     title.textContent = unit.title.toUpperCase();
     const question = document.createElement("p");
     question.textContent = unit.question;
-    const standards = document.createElement("p");
-    standards.className = "standards";
-    standards.textContent = `CALIFORNIA STANDARDS · ${unit.standards}`;
-    header.append(eyebrow, title, question, standards);
+    header.append(eyebrow, title, question);
 
     const resources = document.createElement("section");
     resources.className = "unit-resources";
+    resources.setAttribute("aria-label", "Unit links");
     if (unit.resources?.length) {
-      const resourceHeading = document.createElement("div");
-      resourceHeading.className = "section-heading";
-      resourceHeading.innerHTML = "<div><p class=\"eyebrow\">UNIT LINKS</p><h2>OPEN WHAT YOU NEED.</h2></div>";
       const resourceGrid = document.createElement("div");
       resourceGrid.className = "unit-resource-grid";
       unit.resources.forEach(resource => {
@@ -125,7 +120,7 @@
         card.append(resourceTitle, resourceNote);
         resourceGrid.appendChild(card);
       });
-      resources.append(resourceHeading, resourceGrid);
+      resources.append(resourceGrid);
     }
 
     const list = document.createElement("section");
