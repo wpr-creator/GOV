@@ -32,7 +32,6 @@
   let explorerIndex = 0;
   let rightsIndex = 0;
   let presidentialPowerIndex = 0;
-  let foundingPowerIndex = 0;
 
   function showView(name) {
     const isUnit = data.units.some(unit => unit.id === name);
@@ -1004,101 +1003,117 @@
 
   function renderFoundingPower() {
     const workspace = document.getElementById("founding-power-workspace");
-    const progress = document.getElementById("founding-power-progress");
     workspace.replaceChildren();
-    if (foundingPowerIndex >= foundingPowerIdeas.length) {
-      progress.textContent = `${foundingPowerIdeas.length} OF ${foundingPowerIdeas.length}`;
-      const finish = document.createElement("div");
-      finish.className = "explorer-finish";
+    const map = document.createElement("div");
+    map.className = "founding-map";
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    path.setAttribute("class", "founding-map-lines");
+    path.setAttribute("viewBox", "0 0 900 480");
+    path.setAttribute("aria-hidden", "true");
+    path.innerHTML = '<path d="M150 285V365H450V425M450 285V425M750 285V365H450"/><circle cx="450" cy="425" r="12"/>';
+    map.appendChild(path);
+    const phaseNames = ["EARLIER IDEAS", "THE DECLARATION", "LIMITS ON POWER"];
+    phaseNames.forEach((phaseName, phaseIndex) => {
+      const phase = document.createElement("section");
+      phase.className = `founding-phase phase-${phaseIndex + 1}`;
       const heading = document.createElement("h2");
-      heading.id = "founding-power-question";
-      heading.textContent = "THE PEOPLE ARE THE SOURCE";
-      const summary = document.createElement("p");
-      summary.textContent = "American democracy begins with people who have rights, agree to be governed, and can hold government accountable.";
-      const restart = document.createElement("button");
-      restart.type = "button";
-      restart.textContent = "START AGAIN";
-      restart.addEventListener("click", () => {
-        foundingPowerIndex = 0;
-        renderFoundingPower();
+      heading.textContent = phaseName;
+      phase.appendChild(heading);
+      foundingPowerIdeas.forEach((item, itemIndex) => {
+        if (item.phase !== phaseName) return;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "founding-artifact";
+        button.dataset.foundingIndex = String(itemIndex);
+        button.setAttribute("aria-controls", "founding-detail");
+        button.setAttribute("aria-pressed", "false");
+        if (item.image) {
+          const image = document.createElement("img");
+          image.src = item.image;
+          image.alt = "";
+          button.appendChild(image);
+        } else {
+          const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          icon.setAttribute("viewBox", "0 0 160 120");
+          icon.setAttribute("aria-hidden", "true");
+          const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+          use.setAttribute("href", `assets/foundations/founding-power-icons.svg#${item.icon}`);
+          icon.appendChild(use);
+          button.appendChild(icon);
+        }
+        const label = document.createElement("span");
+        label.innerHTML = `<b>${item.idea}</b><small>${item.year} · ${item.document}</small>`;
+        button.appendChild(label);
+        button.addEventListener("click", () => showFoundingDetail(itemIndex, true));
+        phase.appendChild(button);
       });
-      finish.append(heading, summary, restart);
-      workspace.appendChild(finish);
-      restart.focus();
-      return;
-    }
+      map.appendChild(phase);
+    });
 
-    const item = foundingPowerIdeas[foundingPowerIndex];
-    progress.textContent = `${foundingPowerIndex + 1} OF ${foundingPowerIdeas.length}`;
-    const card = document.createElement("article");
-    card.className = "founding-power-card";
-    const visual = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    visual.setAttribute("viewBox", "0 0 160 120");
-    visual.setAttribute("role", "img");
-    visual.setAttribute("aria-label", item.iconAlt);
-    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    use.setAttribute("href", `assets/foundations/founding-power-icons.svg#${item.icon}`);
-    visual.appendChild(use);
-    const copy = document.createElement("div");
-    const meta = document.createElement("p");
-    meta.className = "eyebrow";
-    meta.textContent = `${item.document} · ${item.year}`;
+    const center = document.createElement("div");
+    center.className = "founding-center";
+    center.innerHTML = "<b>WE THE PEOPLE</b><span>RIGHTS · CONSENT · LIMITS</span>";
+    map.appendChild(center);
+    const detail = document.createElement("article");
+    detail.className = "founding-detail";
+    detail.id = "founding-detail";
+    detail.tabIndex = -1;
+    const detailsHeading = document.createElement("h2");
+    const detailsMeta = document.createElement("p");
+    detailsMeta.className = "eyebrow";
+    const detailBody = document.createElement("div");
+    detailBody.className = "founding-detail-body";
+    const detailVisual = document.createElement("div");
+    detailVisual.className = "founding-detail-visual";
+    const detailCopy = document.createElement("div");
     const excerpt = document.createElement("blockquote");
-    excerpt.textContent = item.excerpt;
     const help = document.createElement("p");
     help.className = "founding-word-help";
-    help.textContent = item.wordHelp;
-    const question = document.createElement("h2");
-    question.id = "founding-power-question";
-    question.tabIndex = -1;
-    question.textContent = item.question;
-    const options = document.createElement("div");
-    options.className = "founding-power-options";
-    const feedback = document.createElement("div");
-    feedback.className = "founding-power-feedback";
-    feedback.setAttribute("role", "status");
-    feedback.hidden = true;
-    const next = document.createElement("button");
-    next.type = "button";
-    next.className = "explorer-next";
-    next.textContent = foundingPowerIndex === foundingPowerIdeas.length - 1 ? "FINISH" : "NEXT IDEA →";
-    next.hidden = true;
-    next.addEventListener("click", () => {
-      foundingPowerIndex += 1;
-      renderFoundingPower();
-      document.getElementById("founding-power-question").focus({ preventScroll: true });
-    });
-    item.options.forEach((optionText, optionIndex) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = optionText;
-      button.addEventListener("click", () => {
-        options.querySelectorAll("button").forEach((optionButton, index) => {
-          optionButton.disabled = true;
-          if (index === item.answer) optionButton.dataset.answer = "correct";
-          if (index === optionIndex && index !== item.answer) optionButton.dataset.answer = "selected";
-        });
-        const result = document.createElement("strong");
-        result.textContent = optionIndex === item.answer ? "YOU FOUND THE IDEA." : `THE STRONGER ANSWER IS ${item.options[item.answer]}.`;
-        const idea = document.createElement("p");
-        const ideaLabel = document.createElement("b");
-        ideaLabel.textContent = `${item.idea}: `;
-        idea.append(ideaLabel, item.explanation);
-        const source = document.createElement("a");
-        source.href = item.source;
-        source.target = "_blank";
-        source.rel = "noopener";
-        source.textContent = `${item.sourceLabel} · READ THE SOURCE ↗`;
-        feedback.replaceChildren(result, idea, source);
-        feedback.hidden = false;
-        next.hidden = false;
-        next.focus();
+    const explanation = document.createElement("p");
+    const today = document.createElement("p");
+    today.className = "founding-today";
+    const source = document.createElement("a");
+    source.target = "_blank";
+    source.rel = "noopener";
+    detailCopy.append(excerpt, help, explanation, today, source);
+    detailBody.append(detailVisual, detailCopy);
+    detail.append(detailsMeta, detailsHeading, detailBody);
+    workspace.append(map, detail);
+
+    function showFoundingDetail(index, moveFocus) {
+      const item = foundingPowerIdeas[index];
+      map.querySelectorAll(".founding-artifact").forEach((button, buttonIndex) => {
+        const active = Number(button.dataset.foundingIndex) === index;
+        button.setAttribute("aria-pressed", String(active));
       });
-      options.appendChild(button);
-    });
-    copy.append(meta, excerpt, help, question, options);
-    card.append(visual, copy);
-    workspace.append(card, feedback, next);
+      detailsMeta.textContent = `${item.year} · ${item.document}`;
+      detailsHeading.textContent = item.idea;
+      detailVisual.replaceChildren();
+      if (item.image) {
+        const image = document.createElement("img");
+        image.src = item.image;
+        image.alt = item.imageAlt;
+        detailVisual.appendChild(image);
+      } else {
+        const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        icon.setAttribute("viewBox", "0 0 160 120");
+        icon.setAttribute("role", "img");
+        icon.setAttribute("aria-label", item.iconAlt);
+        const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        use.setAttribute("href", `assets/foundations/founding-power-icons.svg#${item.icon}`);
+        icon.appendChild(use);
+        detailVisual.appendChild(icon);
+      }
+      excerpt.textContent = item.excerpt;
+      help.textContent = item.wordHelp;
+      explanation.textContent = item.explanation;
+      today.innerHTML = "<b>WHERE IT SHOWS UP NOW</b>";
+      today.append(document.createTextNode(item.today));
+      source.href = item.source;
+      source.textContent = `${item.sourceLabel} · VIEW THE SOURCE ↗`;
+      if (moveFocus) detail.focus({ preventScroll: true });
+    }
+    showFoundingDetail(0, false);
   }
 
   function switchFoundationTab(tabName) {
