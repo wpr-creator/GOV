@@ -31,52 +31,6 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
-    button, .upload-label, .course-link {
-      min-height: 48px;
-      padding: .75rem 1rem;
-      border: 2px solid var(--white);
-      border-radius: 2px;
-      color: var(--white);
-      background: var(--black);
-      font: 900 .78rem/1 Arial, Helvetica, sans-serif;
-      letter-spacing: .045em;
-      text-decoration: none;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-
-    button:hover, .upload-label:hover, .course-link:hover {
-      color: var(--black);
-      background: var(--white);
-    }
-
-    button:focus-visible, .upload-label:focus-within, .course-link:focus-visible,
-    [contenteditable="true"]:focus-visible {
-      outline: 4px solid var(--focus);
-      outline-offset: 3px;
-    }
-
-    .toolbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: .55rem;
-      padding: .7rem;
-      background: var(--black);
-      border-bottom: 5px solid var(--slate);
-    }
-
-    #portrait-upload {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-    }
-
     main {
       width: min(100% - 1.25rem, 980px);
       margin: 1.25rem auto 2rem;
@@ -321,12 +275,6 @@
       text-transform: uppercase;
     }
 
-    [contenteditable="true"] {
-      outline: 3px dashed var(--slate);
-      outline-offset: 4px;
-      cursor: text;
-    }
-
     @media (max-width: 720px) {
       .steps, .examples { grid-template-columns: 1fr; }
       .card { width: 100%; min-height: 0; }
@@ -341,7 +289,6 @@
 
     @media print {
       body { background: var(--white); }
-      .toolbar { display: none; }
       main { width: auto; margin: 0; border: 0; box-shadow: none; }
       .hero { padding: .25in; border-bottom-width: 6px; }
       .hero::after { display: none; }
@@ -356,19 +303,10 @@
       .side-label { padding: .06in; font-size: 12pt; border-bottom-width: 4px; }
       .card { min-height: 0; height: 2.25in; border-width: 6px; }
       .closing { margin-top: .1in; padding-top: .08in; font-size: 12pt; }
-      [contenteditable="true"] { outline: 0; }
     }
   </style>
 </head>
 <body>
-  <nav class="toolbar" aria-label="Civic Selfie controls">
-    <a class="course-link" href="./#gov-0">Back to First Bell</a>
-    <button id="edit-toggle" type="button" aria-pressed="false">Edit the example</button>
-    <label class="upload-label" for="portrait-upload">Replace portrait</label>
-    <input id="portrait-upload" type="file" accept="image/*">
-    <button type="button" id="print-button">Print or save PDF</button>
-  </nav>
-
   <main>
     <header class="hero">
       <p class="eyebrow">First Bell · Lesson 0.2</p>
@@ -392,8 +330,8 @@
           <div class="side-label">Front</div>
           <div class="card front-card">
             <div class="front-copy">
-              <p class="student-name editable">Mr. Rogers</p>
-              <p class="period editable">Period 3A</p>
+              <p class="student-name">Mr. Rogers</p>
+              <p class="period">Period 3A</p>
             </div>
             <img id="portrait" class="portrait" src="assets/assignments/civic-selfie-example.png" alt="Crayon-style stick-figure portrait of a bald, bearded teacher wearing sunglasses and a suit">
           </div>
@@ -405,8 +343,8 @@
             <h2 class="back-title">Two uninteresting things about me</h2>
             <div class="back-content">
               <div class="facts">
-                <p class="fact editable">1. I am left-handed.</p>
-                <p class="fact editable">2. I like pizza.</p>
+                <p class="fact">1. I am left-handed.</p>
+                <p class="fact">2. I like pizza.</p>
               </div>
               <div class="result-block">
                 <p class="result-title">My Pew typology result</p>
@@ -422,28 +360,5 @@
     </section>
   </main>
 
-  <script>
-    const toggle = document.querySelector("#edit-toggle");
-    const editableItems = document.querySelectorAll(".editable");
-    let editing = false;
-
-    toggle.addEventListener("click", () => {
-      editing = !editing;
-      editableItems.forEach(item => {
-        item.contentEditable = editing ? "true" : "false";
-      });
-      toggle.textContent = editing ? "Finish editing" : "Edit the example";
-      toggle.setAttribute("aria-pressed", String(editing));
-      if (editing) editableItems[0].focus();
-    });
-
-    document.querySelector("#portrait-upload").addEventListener("change", event => {
-      const file = event.target.files?.[0];
-      if (!file) return;
-      document.querySelector("#portrait").src = URL.createObjectURL(file);
-    });
-
-    document.querySelector("#print-button").addEventListener("click", () => window.print());
-  </script>
 </body>
 </html>
