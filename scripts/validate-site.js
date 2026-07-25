@@ -6,6 +6,7 @@ const vm = require("vm");
 const root = path.resolve(__dirname, "..");
 const errors = [];
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
+const civicSelfieHtml = fs.readFileSync(path.join(root, "civic-selfie.html"), "utf8");
 const config = JSON.parse(fs.readFileSync(path.join(root, "site-content.json"), "utf8"));
 const context = { window: {} };
 vm.createContext(context);
@@ -16,7 +17,7 @@ const foundations = context.window.FOUNDATIONS_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg"]) {
+for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -119,11 +120,16 @@ presidentFacts.presidents?.forEach(president => {
   }
 });
 
-for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
-  const ref = match[1];
-  if (/^(https?:|#|mailto:|tel:)/.test(ref)) continue;
-  const target = path.join(root, ref.split(/[?#]/)[0]);
-  if (!fs.existsSync(target)) errors.push(`Broken local reference: ${ref}`);
+[html, civicSelfieHtml].forEach(pageHtml => {
+  for (const match of pageHtml.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    const ref = match[1];
+    if (/^(https?:|#|mailto:|tel:)/.test(ref)) continue;
+    const target = path.join(root, ref.split(/[?#]/)[0]);
+    if (!fs.existsSync(target)) errors.push(`Broken local reference: ${ref}`);
+  }
+});
+for (const civicSelfieFeature of ["Civic Selfie", "Edit the example", "Replace portrait", "Print or save PDF", "prefers-reduced-motion"]) {
+  if (!civicSelfieHtml.includes(civicSelfieFeature)) errors.push(`Civic Selfie page is missing: ${civicSelfieFeature}`);
 }
 
 for (const fragment of ["<main", "<nav", "Skip to the course", "prefers-reduced-motion"]) {
