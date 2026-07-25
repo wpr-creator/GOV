@@ -12,6 +12,16 @@ window.COURSE_DATA = {
       ],
       resources: [
         {
+          title: "CLASS SYLLABUS",
+          note: "READ THE CLASS GUIDE.",
+          url: "https://docs.google.com/document/d/1JRS7wb7qTVWhNokfK924OkKO34TbEF1a99Q9Mzh9Iug/edit?usp=sharing"
+        },
+        {
+          title: "CIVIC SELFIE",
+          note: "LINK COMING SOON.",
+          url: ""
+        },
+        {
           title: "PEW POLITICAL TYPOLOGY",
           note: "TAKE THE OFFICIAL 2026 QUIZ.",
           url: "https://www.pewresearch.org/politics/quiz/political-typology/group/99e1939eab70f1619bde23fadf282d77"
