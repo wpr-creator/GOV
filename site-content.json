@@ -30,12 +30,28 @@
     "presidential-yearbook": true,
     "civics-field-test": false,
     "unit-0-synthesis": false,
-    "madison-vs-brutus": true,
     "constitution-explorer": true,
-    "rights-referee": true,
-    "california-ballot-2026": true
+    "madison-vs-brutus": true,
+    "california-ballot-2026": true,
+    "rights-referee": true
   },
-  "assignmentUrls": {},
+  "assignmentUrls": {
+    "classroom": "https://classroom.google.com/c/ODcxMDI4ODY2NDUy",
+    "course-site": "#home",
+    "syllabus": "https://docs.google.com/document/d/1JRS7wb7qTVWhNokfK924OkKO34TbEF1a99Q9Mzh9Iug/edit?usp=sharing",
+    "self-guided-tour": "",
+    "civic-selfie": "civic-selfie.html",
+    "pew-typology": "https://www.pewresearch.org/politics/quiz/political-typology/group/99e1939eab70f1619bde23fadf282d77",
+    "typology-reflection": "https://docs.google.com/forms/d/e/1FAIpQLSe_BuUT-XX1ZFlTxXcSIsflQ__3H6Gc-p-tUZz4pDCrYKLMSw/viewform?usp=dialog",
+    "civics-field-guide": "",
+    "presidential-yearbook": "#presidents",
+    "civics-field-test": "",
+    "unit-0-synthesis": "",
+    "constitution-explorer": "#constitution-explorer",
+    "madison-vs-brutus": "#madison",
+    "california-ballot-2026": "#election-2026",
+    "rights-referee": "#rights-referee"
+  },
   "foundationUnlocks": {
     "source": 3,
     "argument": 3,
