@@ -212,22 +212,25 @@ const unitOne = data.units.find(unit => unit.id === "gov-1");
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== "founding-power") {
   errors.push("Where Does Power Come From? must be a Unit 1 resource.");
 }
-if (!Array.isArray(foundingPowerIdeas) || foundingPowerIdeas.length !== 6) {
-  errors.push(`Expected 6 founding-power ideas; found ${foundingPowerIdeas?.length || 0}.`);
+if (!Array.isArray(foundingPowerIdeas) || foundingPowerIdeas.length !== 7) {
+  errors.push(`Expected 7 founding-power sources; found ${foundingPowerIdeas?.length || 0}.`);
 }
 foundingPowerIdeas?.forEach((idea, index) => {
-  for (const key of ["document", "year", "phase", "icon", "iconAlt", "excerpt", "wordHelp", "idea", "explanation", "today", "sourceLabel", "source"]) {
-    if (!idea[key]) errors.push(`Founding-power idea ${index + 1} is missing ${key}.`);
+  for (const key of ["document", "thinker", "year", "excerpt", "wordHelp", "ideas", "explanation", "sourceLabel", "source"]) {
+    if (!idea[key] || (Array.isArray(idea[key]) && !idea[key].length)) errors.push(`Founding-power source ${index + 1} is missing ${key}.`);
   }
+  if (!idea.image && !idea.icon) errors.push(`Founding-power source ${index + 1} needs an image or icon.`);
+  if (idea.image && !idea.imageAlt) errors.push(`Founding-power source ${index + 1} needs image alt text.`);
+  if (idea.icon && !idea.iconAlt) errors.push(`Founding-power source ${index + 1} needs icon alt text.`);
   if (!/^https:\/\//.test(idea.source || "")) {
-    errors.push(`Founding-power idea ${index + 1} has an incomplete source.`);
+    errors.push(`Founding-power source ${index + 1} has an incomplete source.`);
   }
   if (idea.image && !fs.existsSync(path.join(root, idea.image))) {
-    errors.push(`Founding-power idea ${index + 1} is missing its local artifact image.`);
+    errors.push(`Founding-power source ${index + 1} is missing its local artifact image.`);
   }
 });
-for (const foundingFeature of ['id="founding-power" data-view="founding-power"', "WHERE DOES POWER COME FROM?", "founding-power-icons.svg", "founding-map", "WHERE IT SHOWS UP NOW"]) {
-  const source = ["founding-power-icons.svg", "founding-map", "WHERE IT SHOWS UP NOW"].includes(foundingFeature) ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
+for (const foundingFeature of ['id="founding-power" data-view="founding-power"', "WHERE DOES POWER COME FROM?", "founding-power-icons.svg", "founding-map", "DEMOCRATIC IDEALS", "HOW POWER IS LIMITED"]) {
+  const source = ["founding-power-icons.svg", "founding-map", "DEMOCRATIC IDEALS", "HOW POWER IS LIMITED"].includes(foundingFeature) ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
   if (!source.includes(foundingFeature)) errors.push(`The founding-power activity is missing: ${foundingFeature}`);
 }
 for (const fragment of ['data-view-link="skills"', 'id="skills" data-view="skills"', 'href="#presidents"', 'id="madison" data-view="madison"']) {
