@@ -135,6 +135,8 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .unit-detail-header h1 { margin: 0 0 1rem; max-width: 800px; font-size: clamp(2.3rem, 5vw, 4.5rem); line-height: 1; letter-spacing: -.045em; }
 .unit-detail-header > p { max-width: 700px; margin: 0; color: #dedede; font-family: Arial, sans-serif; font-size: 1.2rem; font-weight: 600; }
 .unit-resources { margin: 0 0 2rem; }
+.unit-resource-group { margin: 0 0 1.4rem; }
+.unit-resource-group > h2 { margin: 0 0 .65rem; padding-bottom: .45rem; border-bottom: 3px solid var(--black); font-size: 1rem; letter-spacing: .025em; }
 .unit-resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
 .unit-resource { min-height: 92px; padding: 1rem; display: flex; flex-direction: column; justify-content: center; gap: .3rem; color: var(--white); background: var(--black); border-radius: 4px; text-decoration: none; }
 .unit-resource:hover { background: var(--charcoal); }
@@ -278,6 +280,9 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .madison-turn textarea { width: 100%; margin-top: .8rem; padding: 1rem; border: 1px solid var(--stone-dark); font: 700 1rem Arial, sans-serif; }
 .admin-foundation-note { margin: 0; color: var(--muted); font-size: .72rem; font-weight: 650; }
 .admin-unlock-row { margin-top: .7rem; grid-template-columns: 1fr 190px; align-items: center; }
+.admin-assignment-unlock-row { grid-template-columns: auto 1fr; }
+.admin-assignment-unlock-row input { width: 22px; height: 22px; }
+.admin-assignment-unlock-row input:disabled + span { color: var(--muted); }
 
 .admin-overlay { position: fixed; z-index: 900; inset: 0; padding: 1rem; display: grid; place-items: center; background: rgba(0,0,0,.82); }
 .admin-panel { width: min(780px, 100%); max-height: calc(100vh - 2rem); overflow: auto; background: var(--paper); border: 6px solid var(--white); box-shadow: 0 24px 80px rgba(0,0,0,.55); }

@@ -13,7 +13,7 @@
   const CONTENT_STORAGE_KEY = "pad-site-content-v1";
   let currentUnitId = "gov-0";
   let lastFocused = null;
-  let siteContent = { currentUnit: "gov-0", exitQuestion: "", upcoming: [], classroomUrl: "" };
+  let siteContent = { currentUnit: "gov-0", exitQuestion: "", upcoming: [], classroomUrl: "", assignmentUnlocks: {} };
   let historyEvents = [];
   let historyIndex = 0;
   let devKeys = "";
@@ -96,31 +96,48 @@
 
     const resources = document.createElement("section");
     resources.className = "unit-resources";
-    resources.setAttribute("aria-label", "Unit links");
+    resources.setAttribute("aria-label", "Assignments by lesson");
     if (unit.resources?.length) {
-      const resourceGrid = document.createElement("div");
-      resourceGrid.className = "unit-resource-grid";
+      const resourceGroups = new Map();
       unit.resources.forEach(resource => {
-        const card = document.createElement(resource.url ? "a" : "div");
-        card.className = "unit-resource";
-        if (resource.url) {
-          card.href = resource.url;
-          if (!resource.url.startsWith("#")) {
-            card.target = "_blank";
-            card.rel = "noopener";
-          }
-        } else {
-          card.classList.add("placeholder");
-          card.setAttribute("aria-disabled", "true");
-        }
-        const resourceTitle = document.createElement("strong");
-        resourceTitle.textContent = resource.title;
-        const resourceNote = document.createElement("span");
-        resourceNote.textContent = resource.note;
-        card.append(resourceTitle, resourceNote);
-        resourceGrid.appendChild(card);
+        const lesson = resource.lesson || "ASSIGNMENTS";
+        if (!resourceGroups.has(lesson)) resourceGroups.set(lesson, []);
+        resourceGroups.get(lesson).push(resource);
       });
-      resources.append(resourceGrid);
+      resourceGroups.forEach((lessonResources, lesson) => {
+        const group = document.createElement("section");
+        group.className = "unit-resource-group";
+        const lessonTitle = document.createElement("h2");
+        lessonTitle.textContent = lesson;
+        const resourceGrid = document.createElement("div");
+        resourceGrid.className = "unit-resource-grid";
+        lessonResources.forEach(resource => {
+          const unlocked = Boolean(resource.url && siteContent.assignmentUnlocks?.[resource.id]);
+          const card = document.createElement(unlocked ? "a" : "div");
+          card.className = "unit-resource";
+          if (unlocked) {
+            card.href = resource.url;
+            if (!resource.url.startsWith("#")) {
+              card.target = "_blank";
+              card.rel = "noopener";
+            }
+          } else {
+            card.classList.add("placeholder");
+            card.setAttribute("aria-disabled", "true");
+          }
+          const resourceTitle = document.createElement("strong");
+          resourceTitle.textContent = resource.title;
+          card.append(resourceTitle);
+          if (!unlocked) {
+            const resourceStatus = document.createElement("span");
+            resourceStatus.textContent = "COMING SOON";
+            card.append(resourceStatus);
+          }
+          resourceGrid.appendChild(card);
+        });
+        group.append(lessonTitle, resourceGrid);
+        resources.append(group);
+      });
     }
 
     const list = document.createElement("section");
@@ -156,7 +173,7 @@
     });
     container.appendChild(header);
     if (unit.resources?.length) container.append(resources);
-    container.append(list);
+    if (unit.id !== "gov-0") container.append(list);
   }
 
   function renderWords() {
@@ -608,6 +625,7 @@
       if (!response.ok) throw new Error("Site content unavailable");
       siteContent = await response.json();
       siteContent.foundationUnlocks = siteContent.foundationUnlocks || { source: 3, argument: 3, language: 3 };
+      siteContent.assignmentUnlocks = siteContent.assignmentUnlocks || {};
       const local = localStorage.getItem(CONTENT_STORAGE_KEY);
       if (local) siteContent = { ...siteContent, ...JSON.parse(local) };
       if (data.units.some(unit => unit.id === siteContent.currentUnit)) currentUnitId = siteContent.currentUnit;
@@ -625,6 +643,7 @@
     renderWords();
     renderAmendments();
     renderSkills();
+    route();
   }
 
   function renderHistory() {
@@ -724,6 +743,22 @@
     document.getElementById("admin-classroom-link").value = siteContent.classroomUrl || "";
     document.getElementById("admin-upcoming").replaceChildren();
     (siteContent.upcoming || []).forEach(addAdminUpcoming);
+    const assignmentUnlockContainer = document.getElementById("admin-assignment-unlocks");
+    assignmentUnlockContainer.replaceChildren();
+    const firstBell = data.units.find(unit => unit.id === "gov-0");
+    (firstBell?.resources || []).forEach(resource => {
+      const row = document.createElement("label");
+      row.className = "admin-unlock-row admin-assignment-unlock-row";
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.dataset.assignmentUnlock = resource.id;
+      checkbox.checked = Boolean(resource.url && siteContent.assignmentUnlocks?.[resource.id]);
+      checkbox.disabled = !resource.url;
+      const labelText = document.createElement("span");
+      labelText.textContent = resource.url ? resource.title : `${resource.title} · NO LINK YET`;
+      row.append(checkbox, labelText);
+      assignmentUnlockContainer.appendChild(row);
+    });
     const unlockContainer = document.getElementById("admin-foundation-unlocks");
     unlockContainer.replaceChildren();
     foundations.skills.forEach(skill => {
@@ -759,11 +794,16 @@
     })).filter(item => item.title);
     const foundationUnlocks = {};
     document.querySelectorAll("[data-skill-unlock]").forEach(select => { foundationUnlocks[select.dataset.skillUnlock] = Number(select.value); });
+    const assignmentUnlocks = {};
+    document.querySelectorAll("[data-assignment-unlock]").forEach(checkbox => {
+      assignmentUnlocks[checkbox.dataset.assignmentUnlock] = checkbox.checked && !checkbox.disabled;
+    });
     return {
       currentUnit: document.getElementById("admin-current-unit").value,
       exitQuestion: document.getElementById("admin-exit-question").value.trim(),
       upcoming,
       classroomUrl: document.getElementById("admin-classroom-link").value.trim(),
+      assignmentUnlocks,
       foundationUnlocks
     };
   }

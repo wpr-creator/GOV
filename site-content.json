@@ -8,6 +8,17 @@
     }
   ],
   "classroomUrl": "https://classroom.google.com/c/ODcxMDI4ODY2NDUy",
+  "assignmentUnlocks": {
+    "classroom": true,
+    "course-site": true,
+    "syllabus": true,
+    "self-guided-tour": false,
+    "civic-selfie": false,
+    "pew-typology": true,
+    "typology-reflection": true,
+    "civics-field-guide": false,
+    "presidential-yearbook": true
+  },
   "foundationUnlocks": {
     "source": 3,
     "argument": 3,
