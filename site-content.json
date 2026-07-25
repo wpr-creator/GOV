@@ -21,7 +21,8 @@
     "civics-field-test": false,
     "unit-0-synthesis": false,
     "madison-vs-brutus": true,
-    "constitution-explorer": true
+    "constitution-explorer": true,
+    "rights-referee": true
   },
   "foundationUnlocks": {
     "source": 3,

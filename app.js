@@ -3,6 +3,7 @@
   const data = window.COURSE_DATA;
   const foundations = window.FOUNDATIONS_DATA;
   const explorerSituations = window.CONSTITUTION_EXPLORER_DATA;
+  const rightsCases = window.RIGHTS_REFEREE_DATA;
   const views = Array.from(document.querySelectorAll("[data-view]"));
   const nav = document.getElementById("site-nav");
   const menuButton = document.querySelector(".menu-button");
@@ -24,6 +25,7 @@
   let presidentFacts = [];
   let presidentQuery = "";
   let explorerIndex = 0;
+  let rightsIndex = 0;
 
   function showView(name) {
     const isUnit = data.units.some(unit => unit.id === name);
@@ -42,8 +44,12 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     if (["madison", "constitution-explorer"].includes(routeName) && unitState(data.units.find(unit => unit.id === "gov-2")) === "locked") {
+      location.hash = "units";
+      return;
+    }
+    if (routeName === "rights-referee" && unitState(data.units.find(unit => unit.id === "gov-5")) === "locked") {
       location.hash = "units";
       return;
     }
@@ -707,6 +713,101 @@
     question.tabIndex = -1;
   }
 
+  function renderRightsReferee() {
+    const workspace = document.getElementById("rights-workspace");
+    const progress = document.getElementById("rights-progress");
+    workspace.replaceChildren();
+    if (rightsIndex >= rightsCases.length) {
+      progress.textContent = `${rightsCases.length} OF ${rightsCases.length}`;
+      const finish = document.createElement("div");
+      finish.className = "explorer-finish";
+      const heading = document.createElement("h2");
+      heading.id = "rights-question";
+      heading.textContent = "WHAT THE CASES SHOW";
+      const summary = document.createElement("p");
+      summary.textContent = "Rights protect people, but the result often depends on where an action happened, who acted, and what government could prove.";
+      const restart = document.createElement("button");
+      restart.type = "button";
+      restart.textContent = "START AGAIN";
+      restart.addEventListener("click", () => { rightsIndex = 0; renderRightsReferee(); });
+      finish.append(heading, summary, restart);
+      workspace.appendChild(finish);
+      restart.focus();
+      return;
+    }
+    const item = rightsCases[rightsIndex];
+    progress.textContent = `${rightsIndex + 1} OF ${rightsCases.length}`;
+    const card = document.createElement("article");
+    card.className = "rights-case";
+    const visual = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    visual.setAttribute("viewBox", "0 0 160 120");
+    visual.setAttribute("role", "img");
+    visual.setAttribute("aria-label", item.iconAlt);
+    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", `assets/cases/rights-referee-icons.svg#${item.icon}`);
+    visual.appendChild(use);
+    const copy = document.createElement("div");
+    const meta = document.createElement("p");
+    meta.className = "eyebrow";
+    meta.textContent = `${item.caseName} · ${item.year}`;
+    const facts = document.createElement("p");
+    facts.className = "rights-facts";
+    facts.textContent = item.facts;
+    const question = document.createElement("h2");
+    question.id = "rights-question";
+    question.tabIndex = -1;
+    question.textContent = item.question;
+    const options = document.createElement("div");
+    options.className = "rights-options";
+    const feedback = document.createElement("div");
+    feedback.className = "explorer-feedback";
+    feedback.setAttribute("role", "status");
+    feedback.hidden = true;
+    const next = document.createElement("button");
+    next.type = "button";
+    next.className = "explorer-next";
+    next.textContent = rightsIndex === rightsCases.length - 1 ? "FINISH" : "NEXT CASE →";
+    next.hidden = true;
+    next.addEventListener("click", () => {
+      rightsIndex += 1;
+      renderRightsReferee();
+      document.getElementById("rights-question").focus({ preventScroll: true });
+    });
+    item.options.forEach((optionText, optionIndex) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = optionText;
+      button.addEventListener("click", () => {
+        options.querySelectorAll("button").forEach((optionButton, index) => {
+          optionButton.disabled = true;
+          if (index === item.answer) optionButton.dataset.answer = "correct";
+          if (index === optionIndex && index !== item.answer) optionButton.dataset.answer = "selected";
+        });
+        const result = document.createElement("strong");
+        result.textContent = optionIndex === item.answer ? "YOUR RULING MATCHES THE COURT." : "YOUR RULING DIFFERS FROM THE COURT.";
+        const ruling = document.createElement("p");
+        ruling.textContent = item.ruling;
+        const fact = document.createElement("p");
+        const factLabel = document.createElement("strong");
+        factLabel.textContent = "FACT THAT MATTERED: ";
+        fact.append(factLabel, item.keyFact);
+        const source = document.createElement("a");
+        source.href = item.source;
+        source.target = "_blank";
+        source.rel = "noopener";
+        source.textContent = `${item.amendment} · READ THE CASE SOURCE ↗`;
+        feedback.replaceChildren(result, ruling, fact, source);
+        feedback.hidden = false;
+        next.hidden = false;
+        next.focus();
+      });
+      options.appendChild(button);
+    });
+    copy.append(meta, facts, question, options);
+    card.append(visual, copy);
+    workspace.append(card, feedback, next);
+  }
+
   function switchFoundationTab(tabName) {
     document.querySelectorAll("[data-foundation-tab]").forEach(button => button.setAttribute("aria-selected", String(button.dataset.foundationTab === tabName)));
     document.querySelectorAll(".foundation-panel").forEach(panel => { panel.hidden = panel.id !== `foundation-${tabName}`; });
@@ -1021,6 +1122,7 @@
   renderDocuments();
   renderMadison();
   renderExplorer();
+  renderRightsReferee();
   loadConfig();
   loadHistory();
   loadPresidentFacts();

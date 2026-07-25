@@ -155,6 +155,14 @@ window.COURSE_DATA = {
         ["Rights and Responsibilities", "Why do my rights depend on respecting the rights of others?", "Gov 12.2.4–12.2.5", "Connect voting, staying informed, volunteering, public service, and military or alternative service to civic responsibility.", "Explain how one right creates a responsibility"],
         ["Citizenship and Naturalization", "How does a person become a United States citizen?", "Gov 12.2.6", "Examine citizenship and the steps and requirements of naturalization.", "Put the naturalization process in order"],
         ["Civil Society, Religion, and Government", "How do groups outside government strengthen a free society?", "Gov 12.3.1–12.3.4; 12.10", "Examine social, cultural, religious, economic, and political groups. Compare their freedom in democracies and dictatorships.", "Use evidence to balance religious freedom and government power"]
+      ],
+      resources: [
+        {
+          id: "rights-referee",
+          lesson: "UNIT 5 EXTENSION",
+          title: "RIGHTS REFEREE",
+          url: "#rights-referee"
+        }
       ]
     },
     {
