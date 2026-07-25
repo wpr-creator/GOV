@@ -40,7 +40,7 @@ window.COURSE_DATA = {
           id: "civic-selfie",
           lesson: "0.2 — READ THE FINE PRINT",
           title: "CIVIC SELFIE",
-          url: ""
+          url: "civic-selfie.html"
         },
         {
           id: "pew-typology",
