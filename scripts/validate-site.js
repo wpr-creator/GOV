@@ -146,6 +146,11 @@ for (const fragment of ["<main", "<nav", "Skip to the course", "prefers-reduced-
   const source = fragment === "prefers-reduced-motion" ? fs.readFileSync(path.join(root, "styles.css"), "utf8") : html;
   if (!source.includes(fragment)) errors.push(`Missing accessibility feature: ${fragment}`);
 }
+for (const removedUnitOutline of ["LEARNING PATH", "FOCUSED TOPICS", "WHAT WILL I DO?", "FINISH WITH:"]) {
+  if (fs.readFileSync(path.join(root, "app.js"), "utf8").includes(removedUnitOutline)) {
+    errors.push(`Unit pages still contain the removed lesson outline: ${removedUnitOutline}`);
+  }
+}
 
 if (!Array.isArray(data.units) || data.units.length !== 8) errors.push("Expected 8 Government units.");
 const lessonCount = data.units.reduce((count, unit) => count + unit.lessons.length, 0);
