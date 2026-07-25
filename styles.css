@@ -358,9 +358,11 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .ballot-sources p { width: 100%; margin: 0; font-size: .74rem; }
 .admin-foundation-note { margin: 0; color: var(--muted); font-size: .72rem; font-weight: 650; }
 .admin-unlock-row { margin-top: .7rem; grid-template-columns: 1fr 190px; align-items: center; }
-.admin-assignment-unlock-row { grid-template-columns: auto 1fr; }
-.admin-assignment-unlock-row input { width: 22px; height: 22px; }
-.admin-assignment-unlock-row input:disabled + span { color: var(--muted); }
+.admin-unit-unlock-row, .admin-assignment-unlock-row { display: grid; grid-template-columns: auto 1fr; gap: .65rem; }
+.admin-unit-unlock-row input, .admin-assignment-unlock-row > input:first-child { width: 22px; height: 22px; }
+.admin-assignment-unlock-row { grid-template-columns: auto minmax(180px, .7fr) minmax(260px, 1.3fr); padding-bottom: .7rem; border-bottom: 1px solid var(--line); }
+.admin-assignment-unlock-row > input:last-child { min-height: 44px; }
+.admin-assignment-unlock-row > input:disabled + span { color: var(--muted); }
 
 .admin-overlay { position: fixed; z-index: 900; inset: 0; padding: 1rem; display: grid; place-items: center; background: rgba(0,0,0,.82); }
 .admin-panel { width: min(780px, 100%); max-height: calc(100vh - 2rem); overflow: auto; background: var(--paper); border: 6px solid var(--white); box-shadow: 0 24px 80px rgba(0,0,0,.55); }
@@ -414,6 +416,9 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .ballot-location { align-items: flex-start; flex-direction: column; }
   .madison-side p { min-height: auto; }
   .admin-unlock-row { grid-template-columns: 1fr; }
+  .admin-unit-unlock-row { grid-template-columns: auto 1fr; }
+  .admin-assignment-unlock-row { grid-template-columns: auto 1fr; }
+  .admin-assignment-unlock-row > input:last-child { grid-column: 1 / -1; }
   footer { flex-direction: column; }
 }
 @media (max-width: 420px) {

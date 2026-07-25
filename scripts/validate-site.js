@@ -271,6 +271,11 @@ data.words?.forEach((word, index) => {
 });
 if (!data.units.some(unit => unit.id === config.currentUnit)) errors.push(`Unknown currentUnit: ${config.currentUnit}`);
 data.units.forEach(unit => {
+  if (typeof config.unitUnlocks?.[unit.id] !== "boolean") errors.push(`Unit ${unit.id} needs a true or false unlock setting.`);
+});
+if (!config.unitUnlocks?.[config.currentUnit]) errors.push("The current unit must also be open in unitUnlocks.");
+if (!config.assignmentUrls || typeof config.assignmentUrls !== "object") errors.push("assignmentUrls must be an object.");
+data.units.forEach(unit => {
   for (const key of ["id", "number", "title", "question", "standards", "lessons"]) {
     if (!unit[key] || !unit[key].length) errors.push(`${unit.id || "Unknown unit"} is missing ${key}.`);
   }
