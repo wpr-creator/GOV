@@ -333,12 +333,26 @@
           <p class="admin-foundation-note">ALL LEVELS OPEN BY DEFAULT. ADJUST ONLY IF THIS CLASS NEEDS A SMALLER START.</p>
           <div id="admin-foundation-unlocks"></div>
         </fieldset>
+        <fieldset>
+          <legend>GITHUB CONNECTION</legend>
+          <p class="admin-foundation-note">ENTER A FINE-GRAINED TOKEN ONCE. IT STAYS IN THIS BROWSER AND IS NOT ADDED TO THE SITE FILES.</p>
+          <a class="admin-token-help" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">CREATE A FINE-GRAINED TOKEN ↗</a>
+          <div class="admin-token-row">
+            <label>GITHUB TOKEN
+              <input id="admin-github-token" type="password" autocomplete="off" spellcheck="false" placeholder="PASTE TOKEN">
+            </label>
+            <button type="button" id="admin-token-save">SAVE TOKEN</button>
+            <button type="button" id="admin-token-remove">REMOVE TOKEN</button>
+          </div>
+          <p class="admin-connection-status" id="admin-connection-status"></p>
+        </fieldset>
       </div>
       <div class="admin-actions">
-        <p><strong>PREVIEW ONLY:</strong> SAVE CHANGES TO TEST THEM IN THIS BROWSER. COPY THE JSON INTO <code>site-content.json</code> AND PUBLISH TO CHANGE THE LIVE SITE.</p>
+        <p><strong>SAVE PREVIEW</strong> TESTS IN THIS BROWSER. <strong>SAVE &amp; PUBLISH</strong> UPDATES THE LIVE SITE WHEN GITHUB IS CONNECTED.</p>
         <button type="button" id="admin-reset">RESET TO LIVE</button>
         <button type="button" id="admin-copy">COPY JSON</button>
-        <button type="button" id="admin-save">SAVE PREVIEW</button>
+        <button type="button" id="admin-save-preview">SAVE PREVIEW</button>
+        <button type="button" id="admin-publish">SAVE &amp; PUBLISH</button>
       </div>
       <p class="admin-status" id="admin-status" role="status"></p>
     </div>

@@ -14,6 +14,8 @@
   const foundationDialog = document.getElementById("foundation-dialog");
   const adminOverlay = document.getElementById("admin-overlay");
   const CONTENT_STORAGE_KEY = "pad-site-content-v2";
+  const GITHUB_TOKEN_STORAGE_KEY = "pad-github-token-v1";
+  const GITHUB_CONTENT_URL = "https://api.github.com/repos/wpr-creator/GOV/contents/site-content.json";
   let currentUnitId = "gov-0";
   let lastFocused = null;
   let siteContent = { currentUnit: "gov-0", unitUnlocks: {}, exitQuestion: "", upcoming: [], classroomUrl: "", assignmentUnlocks: {}, assignmentUrls: {} };
@@ -1163,6 +1165,8 @@
       row.appendChild(select);
       unlockContainer.appendChild(row);
     });
+    document.getElementById("admin-github-token").value = "";
+    renderGitHubConnection();
     adminOverlay.hidden = false;
     document.body.style.overflow = "hidden";
     document.getElementById("admin-close").focus();
@@ -1212,6 +1216,79 @@
     document.getElementById("admin-status").textContent = "PREVIEW SAVED IN THIS BROWSER.";
   }
 
+  function renderGitHubConnection(message = "") {
+    const connected = Boolean(localStorage.getItem(GITHUB_TOKEN_STORAGE_KEY));
+    const status = document.getElementById("admin-connection-status");
+    status.textContent = message || (connected ? "GITHUB CONNECTED ON THIS DEVICE." : "GITHUB IS NOT CONNECTED.");
+    status.dataset.connected = String(connected);
+    document.getElementById("admin-token-remove").disabled = !connected;
+    document.getElementById("admin-publish").disabled = !connected;
+    document.getElementById("admin-github-token").placeholder = connected ? "TOKEN SAVED ON THIS DEVICE" : "PASTE TOKEN";
+  }
+
+  function encodeBase64(text) {
+    const bytes = new TextEncoder().encode(text);
+    let binary = "";
+    bytes.forEach(byte => { binary += String.fromCharCode(byte); });
+    return btoa(binary);
+  }
+
+  async function publishAdminContent() {
+    const token = localStorage.getItem(GITHUB_TOKEN_STORAGE_KEY);
+    if (!token) {
+      renderGitHubConnection("ADD AND SAVE A GITHUB TOKEN FIRST.");
+      document.getElementById("admin-github-token").focus();
+      return;
+    }
+    const publishButton = document.getElementById("admin-publish");
+    const status = document.getElementById("admin-status");
+    publishButton.disabled = true;
+    publishButton.textContent = "PUBLISHING…";
+    status.textContent = "CONNECTING TO GITHUB…";
+    try {
+      const headers = {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${token}`,
+        "X-GitHub-Api-Version": "2026-03-10"
+      };
+      const currentResponse = await fetch(`${GITHUB_CONTENT_URL}?ref=main`, { headers, cache: "no-store" });
+      if (!currentResponse.ok) {
+        if (currentResponse.status === 401) throw new Error("TOKEN NOT ACCEPTED. CHECK OR REPLACE THE SAVED TOKEN.");
+        if (currentResponse.status === 403) throw new Error("TOKEN NEEDS CONTENTS: READ AND WRITE ACCESS TO THE GOV REPOSITORY.");
+        throw new Error(`GITHUB COULD NOT READ THE SETTINGS FILE (${currentResponse.status}).`);
+      }
+      const currentFile = await currentResponse.json();
+      const nextContent = buildAdminContent();
+      const output = `${JSON.stringify(nextContent, null, 2)}\n`;
+      const updateResponse = await fetch(GITHUB_CONTENT_URL, {
+        method: "PUT",
+        headers: { ...headers, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: "Update course settings",
+          content: encodeBase64(output),
+          sha: currentFile.sha,
+          branch: "main"
+        })
+      });
+      if (!updateResponse.ok) {
+        if (updateResponse.status === 401) throw new Error("TOKEN NOT ACCEPTED. CHECK OR REPLACE THE SAVED TOKEN.");
+        if (updateResponse.status === 403) throw new Error("TOKEN NEEDS CONTENTS: READ AND WRITE ACCESS TO THE GOV REPOSITORY.");
+        if (updateResponse.status === 409) throw new Error("THE SETTINGS CHANGED ON GITHUB. RESET TO LIVE, REOPEN DEV MODE, AND TRY AGAIN.");
+        throw new Error(`GITHUB COULD NOT PUBLISH THE SETTINGS (${updateResponse.status}).`);
+      }
+      siteContent = nextContent;
+      currentUnitId = siteContent.currentUnit;
+      localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(siteContent));
+      status.textContent = "PUBLISHED. GITHUB PAGES SHOULD UPDATE IN ABOUT A MINUTE.";
+      loadConfig();
+    } catch (error) {
+      status.textContent = error.message || "THE SETTINGS COULD NOT BE PUBLISHED.";
+    } finally {
+      publishButton.textContent = "SAVE & PUBLISH";
+      publishButton.disabled = !localStorage.getItem(GITHUB_TOKEN_STORAGE_KEY);
+    }
+  }
+
   menuButton.addEventListener("click", () => {
     const open = !nav.classList.contains("open");
     nav.classList.toggle("open", open);
@@ -1233,7 +1310,25 @@
   });
   document.getElementById("admin-close").addEventListener("click", closeAdmin);
   document.getElementById("admin-add-upcoming").addEventListener("click", () => addAdminUpcoming());
-  document.getElementById("admin-save").addEventListener("click", saveAdminPreview);
+  document.getElementById("admin-save-preview").addEventListener("click", saveAdminPreview);
+  document.getElementById("admin-publish").addEventListener("click", publishAdminContent);
+  document.getElementById("admin-token-save").addEventListener("click", () => {
+    const tokenInput = document.getElementById("admin-github-token");
+    const token = tokenInput.value.trim();
+    if (!token) {
+      renderGitHubConnection("PASTE A TOKEN BEFORE SAVING.");
+      tokenInput.focus();
+      return;
+    }
+    localStorage.setItem(GITHUB_TOKEN_STORAGE_KEY, token);
+    tokenInput.value = "";
+    renderGitHubConnection("TOKEN SAVED. SAVE & PUBLISH IS READY.");
+  });
+  document.getElementById("admin-token-remove").addEventListener("click", () => {
+    localStorage.removeItem(GITHUB_TOKEN_STORAGE_KEY);
+    document.getElementById("admin-github-token").value = "";
+    renderGitHubConnection("TOKEN REMOVED FROM THIS DEVICE.");
+  });
   document.getElementById("admin-reset").addEventListener("click", () => {
     localStorage.removeItem(CONTENT_STORAGE_KEY);
     location.reload();

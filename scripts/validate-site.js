@@ -202,6 +202,10 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "constitution
 for (const fragment of ['data-view-link="skills"', 'id="skills" data-view="skills"', 'href="#presidents"', 'id="madison" data-view="madison"']) {
   if (!html.includes(fragment)) errors.push(`Course navigation is missing: ${fragment}`);
 }
+for (const adminPublishFeature of ["admin-github-token", "admin-publish", "GITHUB_TOKEN_STORAGE_KEY", "GITHUB_CONTENT_URL", "SAVE & PUBLISH"]) {
+  const source = adminPublishFeature === "admin-github-token" || adminPublishFeature === "admin-publish" ? html : fs.readFileSync(path.join(root, "app.js"), "utf8");
+  if (!source.includes(adminPublishFeature)) errors.push(`Direct settings publishing is missing: ${adminPublishFeature}`);
+}
 for (const removedFoundationTab of ['data-foundation-tab="skills"', 'data-foundation-tab="madison"']) {
   if (html.includes(removedFoundationTab)) errors.push(`Foundations still contains the removed tab: ${removedFoundationTab}`);
 }
