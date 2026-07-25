@@ -89,14 +89,6 @@ window.COURSE_DATA = {
         ["Democracy’s Promise and Risks", "What can democracy do well—and what can go wrong?", "Gov 12.1.2", "Use Tocqueville’s observations to examine equality, majority power, and participation.", "Explain one promise and one risk"],
         ["Rights and the Public Good", "Should government protect individual freedom or serve the common good?", "Gov 12.1.3", "Compare the public good with individual rights.", "Explain how a democracy needs both"],
         ["The Declaration of Independence", "What makes government legitimate?", "Gov 12.1.3", "Connect natural rights, equality, and consent of the governed to the Declaration of Independence.", "Use the Declaration to answer the unit question"]
-      ],
-      resources: [
-        {
-          id: "madison-vs-brutus",
-          lesson: "UNIT 1 RESOURCE",
-          title: "MADISON VS. BRUTUS",
-          url: "#madison"
-        }
       ]
     },
     {
@@ -109,6 +101,20 @@ window.COURSE_DATA = {
         ["Factions and Shared Power", "How can the Constitution prevent one group from taking control?", "Gov 12.1.5", "Use Federalist 10 to examine competing groups, shared powers, and the rule of law.", "Explain how competition can limit power"],
         ["Federalism", "Who should decide: the nation, a state, a tribe, or a local government?", "Gov 12.7.1–12.7.4", "Compare the powers, services, and sources of money at each level of government. Use the Ninth and Tenth Amendments to resolve conflicts.", "Choose the right level of government for a real problem"],
         ["The Bill of Rights", "How do written rights limit government?", "Gov 12.1.6", "Examine how the Bill of Rights limits both national and state governments.", "Use a right to evaluate a government action"]
+      ],
+      resources: [
+        {
+          id: "constitution-explorer",
+          lesson: "UNIT 2 EXTENSION",
+          title: "CONSTITUTION EXPLORER",
+          url: "#constitution-explorer"
+        },
+        {
+          id: "madison-vs-brutus",
+          lesson: "UNIT 2 EXTENSION",
+          title: "MADISON VS. BRUTUS",
+          url: "#madison"
+        }
       ]
     },
     {

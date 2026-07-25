@@ -2,6 +2,7 @@
   "use strict";
   const data = window.COURSE_DATA;
   const foundations = window.FOUNDATIONS_DATA;
+  const explorerSituations = window.CONSTITUTION_EXPLORER_DATA;
   const views = Array.from(document.querySelectorAll("[data-view]"));
   const nav = document.getElementById("site-nav");
   const menuButton = document.querySelector(".menu-button");
@@ -22,6 +23,7 @@
   let glossaryQuery = "";
   let presidentFacts = [];
   let presidentQuery = "";
+  let explorerIndex = 0;
 
   function showView(name) {
     const isUnit = data.units.some(unit => unit.id === name);
@@ -40,8 +42,8 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "units", "foundations", "words", "skills", "madison", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
-    if (routeName === "madison" && unitState(data.units.find(unit => unit.id === "gov-1")) === "locked") {
+    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    if (["madison", "constitution-explorer"].includes(routeName) && unitState(data.units.find(unit => unit.id === "gov-2")) === "locked") {
       location.hash = "units";
       return;
     }
@@ -97,6 +99,45 @@
     const question = document.createElement("p");
     question.textContent = unit.question;
     header.append(eyebrow, title, question);
+
+    const unitSources = document.createElement("section");
+    unitSources.className = "unit-sources";
+    unitSources.setAttribute("aria-label", "Sources for this unit");
+    const sourceHeading = document.createElement("div");
+    sourceHeading.className = "section-heading";
+    sourceHeading.innerHTML = "<div><p class=\"eyebrow\">OPEN AS YOU NEED THEM</p><h2>UNIT SOURCES</h2></div>";
+    const sourceGrid = document.createElement("div");
+    sourceGrid.className = "unit-source-grid";
+    foundations.documents.filter(documentData => documentData.units.includes(unit.id)).forEach(documentData => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "unit-source";
+      const label = document.createElement("strong");
+      label.textContent = documentData.title.toUpperCase();
+      const meta = document.createElement("span");
+      meta.textContent = `${documentData.year} · DOCUMENT GUIDE`;
+      button.append(label, meta);
+      button.addEventListener("click", () => openDocument(documentData, button));
+      sourceGrid.appendChild(button);
+    });
+    if (foundations.amendments.some(amendment => amendment[4].includes(unit.id))) {
+      const amendmentsButton = document.createElement("button");
+      amendmentsButton.type = "button";
+      amendmentsButton.className = "unit-source";
+      const label = document.createElement("strong");
+      label.textContent = unit.id === "gov-2" ? "BILL OF RIGHTS · AMENDMENTS 1–10" : "AMENDMENTS FOR THIS UNIT";
+      const meta = document.createElement("span");
+      meta.textContent = "OPEN AMENDMENT GUIDE";
+      amendmentsButton.append(label, meta);
+      amendmentsButton.addEventListener("click", () => {
+        amendmentFilter = unit.id === "gov-2" ? "rights" : `unit:${unit.id}`;
+        renderAmendments();
+        switchFoundationTab("amendments");
+        location.hash = "foundations";
+      });
+      sourceGrid.appendChild(amendmentsButton);
+    }
+    unitSources.append(sourceHeading, sourceGrid);
 
     const resources = document.createElement("section");
     resources.className = "unit-resources";
@@ -176,6 +217,7 @@
       list.appendChild(article);
     });
     container.appendChild(header);
+    if (unit.id !== "gov-0" && sourceGrid.children.length) container.append(unitSources);
     if (unit.resources?.length) container.append(resources);
     if (unit.id !== "gov-0") container.append(list);
   }
@@ -399,6 +441,7 @@
     const number = amendment[0];
     if (amendmentFilter === "all") return true;
     if (amendmentFilter === "current") return amendment[4].includes(currentUnitId);
+    if (amendmentFilter.startsWith("unit:")) return amendment[4].includes(amendmentFilter.slice(5));
     if (amendmentFilter === "rights") return number >= 1 && number <= 10;
     if (amendmentFilter === "voting") return [12, 15, 17, 19, 23, 24, 26].includes(number);
     return true;
@@ -407,7 +450,11 @@
   function renderAmendments() {
     const filterContainer = document.getElementById("amendment-filters");
     filterContainer.replaceChildren();
-    [["current", "CURRENT UNIT"], ["rights", "BILL OF RIGHTS"], ["voting", "VOTING"], ["all", "ALL 27"]].forEach(([id, label]) => {
+    const unitFilterId = amendmentFilter.startsWith("unit:") ? amendmentFilter : null;
+    const unitFilter = unitFilterId ? data.units.find(unit => unit.id === unitFilterId.slice(5)) : null;
+    const filters = unitFilter ? [[unitFilterId, `${unitFilter.number.toUpperCase()} AMENDMENTS`]] : [["current", "CURRENT UNIT"]];
+    filters.push(["rights", "BILL OF RIGHTS"], ["voting", "VOTING"], ["all", "ALL 27"]);
+    filters.forEach(([id, label]) => {
       const button = document.createElement("button");
       button.type = "button";
       button.textContent = label;
@@ -574,6 +621,90 @@
     });
     turn.append(turnTitle, turnPrompt, choiceRow, response);
     workspace.append(question, sides, connection, turn);
+  }
+
+  function renderExplorer() {
+    const workspace = document.getElementById("explorer-workspace");
+    const progress = document.getElementById("explorer-progress");
+    workspace.replaceChildren();
+    if (explorerIndex >= explorerSituations.length) {
+      progress.textContent = `${explorerSituations.length} OF ${explorerSituations.length}`;
+      const finish = document.createElement("div");
+      finish.className = "explorer-finish";
+      const heading = document.createElement("h2");
+      heading.id = "explorer-question";
+      heading.textContent = "WHAT THESE SITUATIONS SHOW";
+      const summary = document.createElement("p");
+      summary.textContent = "The Constitution gives government power, divides that power, and creates ways to stop its misuse.";
+      const restart = document.createElement("button");
+      restart.type = "button";
+      restart.textContent = "START AGAIN";
+      restart.addEventListener("click", () => {
+        explorerIndex = 0;
+        renderExplorer();
+      });
+      finish.append(heading, summary, restart);
+      workspace.appendChild(finish);
+      restart.focus();
+      return;
+    }
+
+    const item = explorerSituations[explorerIndex];
+    progress.textContent = `${explorerIndex + 1} OF ${explorerSituations.length}`;
+    const scenario = document.createElement("p");
+    scenario.className = "explorer-situation";
+    scenario.textContent = item.situation;
+    const question = document.createElement("h2");
+    question.id = "explorer-question";
+    question.textContent = item.question;
+    const options = document.createElement("div");
+    options.className = "explorer-options";
+    options.setAttribute("aria-label", "Answer choices");
+    const feedback = document.createElement("div");
+    feedback.className = "explorer-feedback";
+    feedback.setAttribute("role", "status");
+    feedback.hidden = true;
+    const next = document.createElement("button");
+    next.type = "button";
+    next.className = "explorer-next";
+    next.textContent = explorerIndex === explorerSituations.length - 1 ? "FINISH" : "NEXT SITUATION →";
+    next.hidden = true;
+    next.addEventListener("click", () => {
+      explorerIndex += 1;
+      renderExplorer();
+      document.getElementById("explorer-question").focus({ preventScroll: true });
+    });
+
+    item.options.forEach((optionText, optionIndex) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = optionText;
+      button.addEventListener("click", () => {
+        options.querySelectorAll("button").forEach((optionButton, index) => {
+          optionButton.disabled = true;
+          if (index === item.answer) optionButton.dataset.answer = "correct";
+          if (index === optionIndex && index !== item.answer) optionButton.dataset.answer = "selected";
+        });
+        const result = document.createElement("strong");
+        result.textContent = optionIndex === item.answer ? "CORRECT." : `THE ANSWER IS ${item.options[item.answer]}.`;
+        const power = document.createElement("p");
+        power.textContent = item.power;
+        const check = document.createElement("p");
+        check.innerHTML = "<strong>WHAT LIMITS IT?</strong> ";
+        check.append(item.check);
+        const source = document.createElement("p");
+        source.className = "explorer-source";
+        source.textContent = item.source;
+        feedback.replaceChildren(result, power, check, source);
+        feedback.hidden = false;
+        next.hidden = false;
+        next.focus();
+      });
+      options.appendChild(button);
+    });
+
+    workspace.append(scenario, question, options, feedback, next);
+    question.tabIndex = -1;
   }
 
   function switchFoundationTab(tabName) {
@@ -889,6 +1020,7 @@
   renderWords();
   renderDocuments();
   renderMadison();
+  renderExplorer();
   loadConfig();
   loadHistory();
   loadPresidentFacts();
