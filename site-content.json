@@ -17,7 +17,9 @@
     "pew-typology": true,
     "typology-reflection": true,
     "civics-field-guide": false,
-    "presidential-yearbook": true
+    "presidential-yearbook": true,
+    "civics-field-test": false,
+    "unit-0-synthesis": false
   },
   "foundationUnlocks": {
     "source": 3,
