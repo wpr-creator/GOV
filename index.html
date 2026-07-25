@@ -307,6 +307,11 @@
         <label>CURRENT UNIT
           <select id="admin-current-unit"></select>
         </label>
+        <fieldset>
+          <legend>UNIT ACCESS</legend>
+          <p class="admin-foundation-note">CHOOSE EACH UNIT STUDENTS MAY OPEN. THE CURRENT UNIT IS ALWAYS OPEN.</p>
+          <div id="admin-unit-unlocks"></div>
+        </fieldset>
         <label>EXIT TICKET QUESTION
           <textarea id="admin-exit-question" rows="3"></textarea>
         </label>
@@ -320,7 +325,7 @@
         </fieldset>
         <fieldset>
           <legend>UNIT RESOURCE CARDS</legend>
-          <p class="admin-foundation-note">CHECK A LINKED CARD TO OPEN IT FOR STUDENTS.</p>
+          <p class="admin-foundation-note">ADD OR CHANGE A LINK, THEN CHECK THE CARD TO OPEN IT FOR STUDENTS.</p>
           <div id="admin-assignment-unlocks"></div>
         </fieldset>
         <fieldset>
@@ -330,7 +335,8 @@
         </fieldset>
       </div>
       <div class="admin-actions">
-        <p>PREVIEW CHANGES ARE SAVED IN THIS BROWSER. COPY THE JSON INTO <code>site-content.json</code> TO PUBLISH THEM.</p>
+        <p><strong>PREVIEW ONLY:</strong> SAVE CHANGES TO TEST THEM IN THIS BROWSER. COPY THE JSON INTO <code>site-content.json</code> AND PUBLISH TO CHANGE THE LIVE SITE.</p>
+        <button type="button" id="admin-reset">RESET TO LIVE</button>
         <button type="button" id="admin-copy">COPY JSON</button>
         <button type="button" id="admin-save">SAVE PREVIEW</button>
       </div>

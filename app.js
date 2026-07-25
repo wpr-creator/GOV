@@ -13,10 +13,10 @@
   const dialog = document.getElementById("word-dialog");
   const foundationDialog = document.getElementById("foundation-dialog");
   const adminOverlay = document.getElementById("admin-overlay");
-  const CONTENT_STORAGE_KEY = "pad-site-content-v1";
+  const CONTENT_STORAGE_KEY = "pad-site-content-v2";
   let currentUnitId = "gov-0";
   let lastFocused = null;
-  let siteContent = { currentUnit: "gov-0", exitQuestion: "", upcoming: [], classroomUrl: "", assignmentUnlocks: {} };
+  let siteContent = { currentUnit: "gov-0", unitUnlocks: {}, exitQuestion: "", upcoming: [], classroomUrl: "", assignmentUnlocks: {}, assignmentUrls: {} };
   let historyEvents = [];
   let historyIndex = 0;
   let devKeys = "";
@@ -62,10 +62,13 @@
   }
 
   function unitState(unit) {
+    if (unit.id === currentUnitId) return "current";
+    if (Object.prototype.hasOwnProperty.call(siteContent.unitUnlocks || {}, unit.id)) {
+      return siteContent.unitUnlocks[unit.id] ? "open" : "locked";
+    }
     const currentIndex = data.units.findIndex(item => item.id === currentUnitId);
     const unitIndex = data.units.findIndex(item => item.id === unit.id);
     if (unitIndex < currentIndex) return "open";
-    if (unitIndex === currentIndex) return "current";
     return "locked";
   }
 
@@ -168,12 +171,13 @@
         const resourceGrid = document.createElement("div");
         resourceGrid.className = "unit-resource-grid";
         lessonResources.forEach(resource => {
-          const unlocked = Boolean(resource.url && siteContent.assignmentUnlocks?.[resource.id]);
+          const resourceUrl = siteContent.assignmentUrls?.[resource.id] ?? resource.url;
+          const unlocked = Boolean(resourceUrl && siteContent.assignmentUnlocks?.[resource.id]);
           const card = document.createElement(unlocked ? "a" : "div");
           card.className = "unit-resource";
           if (unlocked) {
-            card.href = resource.url;
-            if (!resource.url.startsWith("#")) {
+            card.href = resourceUrl;
+            if (!resourceUrl.startsWith("#")) {
               card.target = "_blank";
               card.rel = "noopener";
             }
@@ -971,6 +975,8 @@
       siteContent = await response.json();
       siteContent.foundationUnlocks = siteContent.foundationUnlocks || { source: 3, argument: 3, language: 3 };
       siteContent.assignmentUnlocks = siteContent.assignmentUnlocks || {};
+      siteContent.assignmentUrls = siteContent.assignmentUrls || {};
+      siteContent.unitUnlocks = siteContent.unitUnlocks || {};
       const local = localStorage.getItem(CONTENT_STORAGE_KEY);
       if (local) siteContent = { ...siteContent, ...JSON.parse(local) };
       if (data.units.some(unit => unit.id === siteContent.currentUnit)) currentUnitId = siteContent.currentUnit;
@@ -1084,23 +1090,59 @@
       option.selected = unit.id === currentUnitId;
       document.getElementById("admin-current-unit").appendChild(option);
     });
+    document.getElementById("admin-current-unit").onchange = event => {
+      document.querySelectorAll("[data-unit-unlock]").forEach(checkbox => {
+        const isCurrent = checkbox.dataset.unitUnlock === event.target.value;
+        checkbox.disabled = isCurrent;
+        if (isCurrent) checkbox.checked = true;
+        const label = checkbox.nextElementSibling;
+        const unit = data.units.find(item => item.id === checkbox.dataset.unitUnlock);
+        label.textContent = `${unit.number.toUpperCase()} · ${unit.title.toUpperCase()}${isCurrent ? " · CURRENT" : ""}`;
+      });
+    };
     document.getElementById("admin-exit-question").value = siteContent.exitQuestion || "";
     document.getElementById("admin-classroom-link").value = siteContent.classroomUrl || "";
+    const unitUnlockContainer = document.getElementById("admin-unit-unlocks");
+    unitUnlockContainer.replaceChildren();
+    data.units.forEach(unit => {
+      const row = document.createElement("label");
+      row.className = "admin-unlock-row admin-unit-unlock-row";
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.dataset.unitUnlock = unit.id;
+      checkbox.checked = unit.id === currentUnitId || Boolean(siteContent.unitUnlocks?.[unit.id]);
+      checkbox.disabled = unit.id === currentUnitId;
+      const labelText = document.createElement("span");
+      labelText.textContent = `${unit.number.toUpperCase()} · ${unit.title.toUpperCase()}${unit.id === currentUnitId ? " · CURRENT" : ""}`;
+      row.append(checkbox, labelText);
+      unitUnlockContainer.appendChild(row);
+    });
     document.getElementById("admin-upcoming").replaceChildren();
     (siteContent.upcoming || []).forEach(addAdminUpcoming);
     const assignmentUnlockContainer = document.getElementById("admin-assignment-unlocks");
     assignmentUnlockContainer.replaceChildren();
     data.units.flatMap(unit => unit.resources || []).forEach(resource => {
-      const row = document.createElement("label");
+      const row = document.createElement("div");
       row.className = "admin-unlock-row admin-assignment-unlock-row";
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.dataset.assignmentUnlock = resource.id;
-      checkbox.checked = Boolean(resource.url && siteContent.assignmentUnlocks?.[resource.id]);
-      checkbox.disabled = !resource.url;
+      const currentUrl = siteContent.assignmentUrls?.[resource.id] ?? resource.url;
+      checkbox.checked = Boolean(currentUrl && siteContent.assignmentUnlocks?.[resource.id]);
       const labelText = document.createElement("span");
-      labelText.textContent = resource.url ? resource.title : `${resource.title} · NO LINK YET`;
-      row.append(checkbox, labelText);
+      labelText.textContent = resource.title;
+      const urlInput = document.createElement("input");
+      urlInput.type = "text";
+      urlInput.inputMode = "url";
+      urlInput.placeholder = "PASTE A LINK OR USE #PAGE-NAME";
+      urlInput.value = currentUrl || "";
+      urlInput.dataset.assignmentUrl = resource.id;
+      checkbox.disabled = !currentUrl;
+      urlInput.addEventListener("input", () => {
+        checkbox.disabled = !urlInput.value.trim();
+        if (checkbox.disabled) checkbox.checked = false;
+      });
+      row.append(checkbox, labelText, urlInput);
       assignmentUnlockContainer.appendChild(row);
     });
     const unlockContainer = document.getElementById("admin-foundation-unlocks");
@@ -1142,12 +1184,22 @@
     document.querySelectorAll("[data-assignment-unlock]").forEach(checkbox => {
       assignmentUnlocks[checkbox.dataset.assignmentUnlock] = checkbox.checked && !checkbox.disabled;
     });
+    const assignmentUrls = {};
+    document.querySelectorAll("[data-assignment-url]").forEach(input => {
+      assignmentUrls[input.dataset.assignmentUrl] = input.value.trim();
+    });
+    const unitUnlocks = {};
+    document.querySelectorAll("[data-unit-unlock]").forEach(checkbox => {
+      unitUnlocks[checkbox.dataset.unitUnlock] = checkbox.checked || checkbox.dataset.unitUnlock === document.getElementById("admin-current-unit").value;
+    });
     return {
       currentUnit: document.getElementById("admin-current-unit").value,
+      unitUnlocks,
       exitQuestion: document.getElementById("admin-exit-question").value.trim(),
       upcoming,
       classroomUrl: document.getElementById("admin-classroom-link").value.trim(),
       assignmentUnlocks,
+      assignmentUrls,
       foundationUnlocks
     };
   }
@@ -1182,6 +1234,10 @@
   document.getElementById("admin-close").addEventListener("click", closeAdmin);
   document.getElementById("admin-add-upcoming").addEventListener("click", () => addAdminUpcoming());
   document.getElementById("admin-save").addEventListener("click", saveAdminPreview);
+  document.getElementById("admin-reset").addEventListener("click", () => {
+    localStorage.removeItem(CONTENT_STORAGE_KEY);
+    location.reload();
+  });
   document.getElementById("admin-copy").addEventListener("click", async () => {
     const output = JSON.stringify(buildAdminContent(), null, 2);
     await navigator.clipboard.writeText(output);
@@ -1236,5 +1292,4 @@
   loadConfig();
   loadHistory();
   loadPresidentFacts();
-  route();
 })();
