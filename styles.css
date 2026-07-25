@@ -316,6 +316,46 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .rights-options button:hover:not(:disabled), .rights-options button[data-answer="correct"] { color: var(--white); background: var(--black); }
 .rights-options button[data-answer="selected"] { text-decoration: line-through; background: var(--paper); }
 .rights-referee .explorer-feedback a { display: inline-block; margin-top: .8rem; color: var(--black); font-size: .74rem; font-weight: 950; }
+.ballot-header { margin-bottom: 1rem; padding: clamp(1.3rem, 4vw, 2.2rem); display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; color: var(--white); background: var(--black); border-bottom: 10px solid var(--slate); }
+.ballot-header h2 { margin: 0; font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
+.ballot-header .eyebrow { color: var(--stone); }
+.ballot-header dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+.ballot-header dl div { padding: 1rem; color: var(--black); background: var(--white); }
+.ballot-header dt { font-size: .7rem; font-weight: 950; letter-spacing: .08em; }
+.ballot-header dd { margin: .35rem 0 0; font-weight: 900; }
+.ballot-location { margin-bottom: 2rem; padding: 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--stone); border: 1px solid var(--stone-dark); border-left: 10px solid var(--black); }
+.ballot-location h2 { margin: .2rem 0 .45rem; font-size: clamp(1.35rem, 3vw, 2rem); }
+.ballot-location p { margin: 0; max-width: 720px; font-weight: 650; }
+.ballot-location a, .race-card > a, .ballot-sources a { color: var(--black); font-size: .72rem; font-weight: 950; }
+.ballot-section { margin: 2.5rem 0; }
+.race-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.race-card { padding: 1.3rem; background: var(--white); border: 1px solid var(--line); border-top: 8px solid var(--black); }
+.race-card.local-race { outline: 3px solid var(--black); outline-offset: -3px; }
+.local-label { display: inline-block; margin: 0 0 1rem; padding: .35rem .55rem; color: var(--white); background: var(--black); font-size: .68rem; font-weight: 950; letter-spacing: .06em; }
+.race-card h3 { margin: .3rem 0 .5rem; font-size: clamp(1.3rem, 3vw, 1.8rem); }
+.race-card > p:not(.eyebrow) { margin: 0 0 1rem; color: var(--muted); font-weight: 650; }
+.candidate-list { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin: 1rem 0; }
+.candidate-list section { padding: 1rem; background: var(--stone); border: 1px solid var(--stone-dark); }
+.candidate-list h4 { margin: 0 0 .25rem; font-size: 1rem; }
+.candidate-list strong { display: block; font-size: .7rem; letter-spacing: .06em; }
+.candidate-list p { margin: .65rem 0 0; font-size: .82rem; font-weight: 650; line-height: 1.4; }
+.proposition-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.proposition-card { background: var(--white); border: 1px solid var(--line); border-top: 6px solid var(--black); }
+.proposition-card summary { min-height: 150px; padding: 1rem; display: grid; align-content: start; gap: .45rem; cursor: pointer; }
+.proposition-card summary span { width: max-content; padding: .3rem .5rem; color: var(--white); background: var(--black); font-size: .7rem; font-weight: 950; }
+.proposition-card summary strong { font-size: 1.08rem; }
+.proposition-card summary small { color: var(--muted); font-size: .84rem; font-weight: 650; line-height: 1.4; }
+.proposition-choices { padding: 0 1rem 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.proposition-choices p { margin: 0; padding: .8rem; background: var(--stone); font-size: .8rem; font-weight: 650; line-height: 1.4; }
+.proposition-choices b { display: block; margin-bottom: .3rem; font-size: .72rem; letter-spacing: .08em; }
+.more-propositions { margin-top: 1rem; padding: 1.2rem; background: var(--stone); border: 1px solid var(--stone-dark); }
+.more-propositions h3 { margin: 0 0 .8rem; }
+.more-propositions ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .7rem; }
+.more-propositions li { padding: .8rem; display: grid; gap: .25rem; background: var(--white); border-left: 5px solid var(--black); }
+.more-propositions li strong { font-size: .84rem; }
+.more-propositions li span { color: var(--muted); font-size: .8rem; font-weight: 650; }
+.ballot-sources { margin: 2rem 0; padding: 1rem; display: flex; flex-wrap: wrap; gap: .8rem 1rem; background: var(--stone); border-top: 5px solid var(--black); }
+.ballot-sources p { width: 100%; margin: 0; font-size: .74rem; }
 .admin-foundation-note { margin: 0; color: var(--muted); font-size: .72rem; font-weight: 650; }
 .admin-unlock-row { margin-top: .7rem; grid-template-columns: 1fr 190px; align-items: center; }
 .admin-assignment-unlock-row { grid-template-columns: auto 1fr; }
@@ -370,6 +410,8 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .explorer-options { grid-template-columns: 1fr; }
   .rights-case { grid-template-columns: 1fr; }
   .rights-case > svg { max-width: 220px; justify-self: center; padding-bottom: 0; }
+  .ballot-header, .race-grid, .proposition-grid { grid-template-columns: 1fr; }
+  .ballot-location { align-items: flex-start; flex-direction: column; }
   .madison-side p { min-height: auto; }
   .admin-unlock-row { grid-template-columns: 1fr; }
   footer { flex-direction: column; }
@@ -383,6 +425,7 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .path-stop b { font-size: .75rem; }
   .lesson { grid-template-columns: 1fr; }
   .lesson details, .standard-tag { grid-column: 1; }
+  .ballot-header dl, .candidate-list, .proposition-choices { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }

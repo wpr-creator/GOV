@@ -4,6 +4,7 @@
   const foundations = window.FOUNDATIONS_DATA;
   const explorerSituations = window.CONSTITUTION_EXPLORER_DATA;
   const rightsCases = window.RIGHTS_REFEREE_DATA;
+  const electionData = window.ELECTION_2026_DATA;
   const views = Array.from(document.querySelectorAll("[data-view]"));
   const nav = document.getElementById("site-nav");
   const menuButton = document.querySelector(".menu-button");
@@ -44,12 +45,16 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     if (["madison", "constitution-explorer"].includes(routeName) && unitState(data.units.find(unit => unit.id === "gov-2")) === "locked") {
       location.hash = "units";
       return;
     }
     if (routeName === "rights-referee" && unitState(data.units.find(unit => unit.id === "gov-5")) === "locked") {
+      location.hash = "units";
+      return;
+    }
+    if (routeName === "election-2026" && unitState(data.units.find(unit => unit.id === "gov-3")) === "locked") {
       location.hash = "units";
       return;
     }
@@ -257,6 +262,110 @@
       empty.textContent = "NO MATCH YET. TRY A SHORTER WORD OR CHOOSE ALL TERMS.";
       wordGrid.appendChild(empty);
     }
+  }
+
+  function renderElection2026() {
+    const container = document.getElementById("election-2026-content");
+    container.replaceChildren();
+
+    const ballotHeader = document.createElement("section");
+    ballotHeader.className = "ballot-header";
+    ballotHeader.innerHTML = `
+      <div>
+        <p class="eyebrow">ELECTION DAY</p>
+        <h2>${electionData.electionDate}</h2>
+      </div>
+      <dl>
+        <div><dt>REGISTER BY</dt><dd>${electionData.registrationDeadline}</dd></div>
+        <div><dt>BALLOTS MAILED BY</dt><dd>${electionData.ballotMailingDeadline}</dd></div>
+      </dl>`;
+
+    const locationCard = document.createElement("section");
+    locationCard.className = "ballot-location";
+    const locationCopy = document.createElement("div");
+    locationCopy.innerHTML = `<p class="eyebrow">YOUR AREA</p><h2>${electionData.location.zip} · ${electionData.location.district}</h2><p>${electionData.location.note}</p>`;
+    const mapLink = document.createElement("a");
+    mapLink.href = electionData.location.mapSource;
+    mapLink.target = "_blank";
+    mapLink.rel = "noopener";
+    mapLink.textContent = "CHECK THE OFFICIAL DISTRICT MAP ↗";
+    locationCard.append(locationCopy, mapLink);
+
+    const races = document.createElement("section");
+    races.className = "ballot-section";
+    races.innerHTML = `<div class="section-heading"><div><p class="eyebrow">CANDIDATE RACES</p><h2>WHO GETS THE JOB?</h2></div></div>`;
+    const raceGrid = document.createElement("div");
+    raceGrid.className = "race-grid";
+    electionData.races.forEach(race => {
+      const article = document.createElement("article");
+      article.className = "race-card";
+      if (race.local) article.classList.add("local-race");
+      const localLabel = race.local ? `<span class="local-label">YOUR CONGRESSIONAL RACE</span>` : "";
+      article.innerHTML = `${localLabel}<p class="eyebrow">${race.office}</p><h3>${race.question}</h3><p>${race.note}</p>`;
+      const candidateList = document.createElement("div");
+      candidateList.className = "candidate-list";
+      race.candidates.forEach(candidate => {
+        const candidateCard = document.createElement("section");
+        candidateCard.innerHTML = `<h4>${candidate.name}</h4><strong>${candidate.party}</strong><p>${candidate.fact}</p>`;
+        candidateList.appendChild(candidateCard);
+      });
+      const source = document.createElement("a");
+      source.href = race.source;
+      source.target = "_blank";
+      source.rel = "noopener";
+      source.textContent = "CHECK THE RACE SOURCE ↗";
+      article.append(candidateList, source);
+      raceGrid.appendChild(article);
+    });
+    races.appendChild(raceGrid);
+
+    const propositions = document.createElement("section");
+    propositions.className = "ballot-section";
+    propositions.innerHTML = `<div class="section-heading"><div><p class="eyebrow">STATEWIDE PROPOSITIONS</p><h2>VOTERS MAKE THE LAW</h2></div><p>YES CHANGES THE LAW. NO KEEPS CURRENT LAW.</p></div>`;
+    const featuredGrid = document.createElement("div");
+    featuredGrid.className = "proposition-grid";
+    electionData.propositions.filter(proposition => proposition.featured).forEach(proposition => {
+      const details = document.createElement("details");
+      details.className = "proposition-card";
+      const summary = document.createElement("summary");
+      summary.innerHTML = `<span>PROP ${proposition.number}</span><strong>${proposition.title}</strong><small>${proposition.short}</small>`;
+      const choices = document.createElement("div");
+      choices.className = "proposition-choices";
+      choices.innerHTML = `<p><b>YES</b>${proposition.yes}</p><p><b>NO</b>${proposition.no}</p>`;
+      details.append(summary, choices);
+      featuredGrid.appendChild(details);
+    });
+
+    const more = document.createElement("section");
+    more.className = "more-propositions";
+    more.innerHTML = "<h3>ALSO ON THE BALLOT</h3>";
+    const moreList = document.createElement("ul");
+    electionData.propositions.filter(proposition => !proposition.featured).forEach(proposition => {
+      const item = document.createElement("li");
+      item.innerHTML = `<strong>PROP ${proposition.number} · ${proposition.title}</strong><span>${proposition.short}</span>`;
+      moreList.appendChild(item);
+    });
+    more.appendChild(moreList);
+    propositions.append(featuredGrid, more);
+
+    const sources = document.createElement("footer");
+    sources.className = "ballot-sources";
+    sources.innerHTML = `<p><strong>CHECKED ${electionData.updated}</strong> · BALLOT INFORMATION CAN CHANGE BEFORE ELECTION DAY.</p>`;
+    [
+      ["CALIFORNIA SECRETARY OF STATE · PROPOSITIONS", electionData.sources.officialMeasures],
+      ["DRAFT OFFICIAL VOTER GUIDE", electionData.sources.voterGuide],
+      ["ELECTION DATES", electionData.sources.dates],
+      ["BALLOTPEDIA", electionData.sources.ballotpedia]
+    ].forEach(([label, url]) => {
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = `${label} ↗`;
+      sources.appendChild(link);
+    });
+
+    container.append(ballotHeader, locationCard, races, propositions, sources);
   }
 
   function renderPresidents() {
@@ -1123,6 +1232,7 @@
   renderMadison();
   renderExplorer();
   renderRightsReferee();
+  renderElection2026();
   loadConfig();
   loadHistory();
   loadPresidentFacts();

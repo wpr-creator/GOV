@@ -14,14 +14,16 @@ vm.runInContext(fs.readFileSync(path.join(root, "course-data.js"), "utf8"), cont
 vm.runInContext(fs.readFileSync(path.join(root, "foundations-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "constitution-explorer-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "rights-referee-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "election-2026-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
 const explorerSituations = context.window.CONSTITUTION_EXPLORER_DATA;
 const rightsCases = context.window.RIGHTS_REFEREE_DATA;
+const electionData = context.window.ELECTION_2026_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/cases/rights-referee-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/cases/rights-referee-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -230,6 +232,26 @@ rightsCases?.forEach((caseData, index) => {
 });
 if (data.units.find(unit => unit.id === "gov-5")?.resources?.[0]?.id !== "rights-referee") {
   errors.push("Rights Referee must be a Unit 5 resource.");
+}
+if (data.units.find(unit => unit.id === "gov-3")?.resources?.[0]?.id !== "california-ballot-2026") {
+  errors.push("The 2026 California Ballot must be a Unit 3 resource.");
+}
+if (electionData.location?.zip !== "92114" || electionData.location?.district !== "CALIFORNIA DISTRICT 52") {
+  errors.push("The 2026 ballot must identify ZIP 92114 as California District 52.");
+}
+if (electionData.races?.length !== 2 || electionData.races.some(race => race.candidates?.length !== 2)) {
+  errors.push("The 2026 ballot needs the governor race and the local congressional race with two candidates each.");
+}
+const propositionNumbers = electionData.propositions?.map(proposition => proposition.number).join("|");
+if (propositionNumbers !== "1|2|3|4|5|37|38|39|40|41|42|43|44|45") {
+  errors.push("The 2026 ballot must include all 14 certified California propositions in number order.");
+}
+if (electionData.propositions.filter(proposition => proposition.featured).some(proposition => !proposition.yes || !proposition.no)) {
+  errors.push("Each featured proposition needs plain-language YES and NO effects.");
+}
+for (const electionFeature of ['id="election-2026" data-view="election-2026"', "CALIFORNIA BALLOT", "proposition-card"]) {
+  const source = electionFeature === "proposition-card" ? fs.readFileSync(path.join(root, "styles.css"), "utf8") : html;
+  if (!source.includes(electionFeature)) errors.push(`The 2026 ballot is missing: ${electionFeature}`);
 }
 for (const rightsFeature of ['id="rights-referee" data-view="rights-referee"', "RIGHTS REFEREE", "rights-referee-icons.svg"]) {
   const source = rightsFeature === "rights-referee-icons.svg" ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
