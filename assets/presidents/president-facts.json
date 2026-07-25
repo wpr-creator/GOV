@@ -1,6 +1,6 @@
 {
   "note": "Student-ready key facts for the Portrait Day design activity. Action lists include major achievements, consequential choices, and important controversies when needed for historical accuracy.",
-  "generated": "2026-07-24T20:58:27.497Z",
+  "generated": "2026-07-25T14:13:19.033Z",
   "count": 45,
   "presidents": [
     {
@@ -19,14 +19,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "I hope I shall always possess firmness and virtue enough to maintain the character of an Honest Man.",
-          "sourceUrl": "https://ourwhitehouse.org/george-washington/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The basis of our political systems is the right of the people to make and to alter their constitutions of government.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/farewell-address",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "The proposed Constitution . . . is provided with more checks and barriers against the introduction of Tyranny . . . than any Government hitherto instituted among mortals.",
-          "sourceUrl": "https://ourwhitehouse.org/george-washington/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The Constitution which at any time exists, till changed by an explicit and authentic act of the whole people, is sacredly obligatory upon all.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/farewell-address",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": {
@@ -57,19 +57,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "Swim or sink, live or die, survive or perish with my country was my unalterable determination.",
-          "sourceUrl": "https://ourwhitehouse.org/john-adams/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "A government of laws, and not of men.",
+          "sourceUrl": "https://malegislature.gov/Laws/Constitution",
+          "sourceLabel": "MASSACHUSETTS CONSTITUTION"
         },
         {
-          "text": "The institutions now made in America will not wholly wear out for thousands of years. It is of the last importance, then, that they should begin right.",
-          "sourceUrl": "https://ourwhitehouse.org/john-adams/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "People and nations are forged in the fires of adversity.",
-          "sourceUrl": "https://ourwhitehouse.org/john-adams/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "May none but honest and wise men ever rule under this roof.",
+          "sourceUrl": "https://founders.archives.gov/documents/Adams/04-14-02-0198",
+          "sourceLabel": "FOUNDERS ONLINE"
         }
       ],
       "presentDayConnection": {
@@ -136,19 +131,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "There never was an assembly of men who were more pure in their motives, or more . . . devoted to the object committed to them.",
-          "sourceUrl": "https://ourwhitehouse.org/james-madison/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "If men were angels, no government would be necessary.",
+          "sourceUrl": "https://guides.loc.gov/federalist-papers/text-51-60#s-lg-box-wrapper-25493427",
+          "sourceLabel": "LIBRARY OF CONGRESS"
         },
         {
-          "text": "To have shrunk [from war], would have acknowledged . . . [that] the American people were not an independent people, but colonists and vassals.",
-          "sourceUrl": "https://ourwhitehouse.org/james-madison/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "Justice is the end of government. It ever has been, and ever will be pursued, until it be obtained, or until liberty be lost in the pursuit.",
-          "sourceUrl": "https://ourwhitehouse.org/james-madison/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Justice is the end of government. It is the end of civil society.",
+          "sourceUrl": "https://guides.loc.gov/federalist-papers/text-51-60#s-lg-box-wrapper-25493427",
+          "sourceLabel": "LIBRARY OF CONGRESS"
         }
       ],
       "presentDayConnection": null,
@@ -277,14 +267,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "I cannot expect to perform the task with equal ability and success.",
-          "sourceUrl": "https://ourwhitehouse.org/martin-van-buren/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "I bring with me a settled purpose to maintain the institutions of my country.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-28",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "As to the Presidency, the two happiest days of my life were those of my entrance upon the office and my surrender of it.",
-          "sourceUrl": "https://ourwhitehouse.org/martin-van-buren/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Conscious of but one desire, faithfully to serve my country, I throw myself without fear on its justice and its kindness.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-28",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -379,19 +369,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "In truth, though I occupy a very high position, I am the hardest working man in this country.",
-          "sourceUrl": "https://ourwhitehouse.org/james-knox-polk/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The Constitution itself...will be the chart by which I shall be directed.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-30",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "I prefer to supervise the whole operations of the Government myself rather than entrust the public business to subordinates and this makes my duties very great.",
-          "sourceUrl": "https://ourwhitehouse.org/james-knox-polk/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "No President who performs his duties faithfully and conscientiously can have any leisure.",
-          "sourceUrl": "https://ourwhitehouse.org/james-knox-polk/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The Government of the United States is one of delegated and limited powers.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-30",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -453,13 +438,13 @@
       "importantQuotes": [
         {
           "text": "The Constitution has made it the duty of the President to take care that the laws be faithfully executed.",
-          "sourceUrl": "https://ourwhitehouse.org/millard-fillmore/",
-          "sourceLabel": "QUOTE SOURCE"
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/first-annual-message-7",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "An honorable defeat is better than a dishonorable victory.",
-          "sourceUrl": "https://ourwhitehouse.org/millard-fillmore/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "In a government like ours, all laws are passed by a majority of the representatives of the people.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/first-annual-message-7",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -622,14 +607,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "No terms except an unconditional and immediate surrender can be accepted.",
-          "sourceUrl": "https://ourwhitehouse.org/ulysses-s-grant/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Let us have peace.",
+          "sourceUrl": "https://www.loc.gov/resource/rbpe.20802000/?st=text",
+          "sourceLabel": "LIBRARY OF CONGRESS"
         },
         {
-          "text": "Mistakes have been made . . and I admit [them. But] failures have been errors of judgment, not of intent.",
-          "sourceUrl": "https://ourwhitehouse.org/ulysses-s-grant/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The question of suffrage is one which is likely to agitate the public so long as a portion of the citizens of the nation are excluded from its privileges.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/second-inaugural-address-1",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -690,14 +675,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "My God, what is there in this place that a man should ever want to get in it?",
-          "sourceUrl": "https://ourwhitehouse.org/james-abram-garfield/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The Constitution guarantees absolute religious freedom.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-40",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "We shall never know why slavery dies so hard in this Republic . . . till we know why Sin is long-lived and Satan is immortal.",
-          "sourceUrl": "https://ourwhitehouse.org/james-abram-garfield/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The elevation of the Negro race from slavery to the full rights of citizenship is the most important political change we have known since the adoption of the Constitution.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-40",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -758,19 +743,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "The truly American sentiment recognizes the dignity of labor and the fact that honor lies in natural toil.",
-          "sourceUrl": "https://ourwhitehouse.org/grover-cleveland/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Public office is a public trust.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/message-accepting-the-resignation-secretary-the-treasury-daniel-manning",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "He mocks the people who proposes that the government shall protect the rich and that they in turn will care for the laboring poor.",
-          "sourceUrl": "https://ourwhitehouse.org/grover-cleveland/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "Federal aid in such cases encourages the expectation of paternal care on the part of the Government and weakens the sturdiness of our national character.",
-          "sourceUrl": "https://ourwhitehouse.org/grover-cleveland/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "He mocks the people who proposes that the Government shall protect the rich and that they in turn will care for the laboring poor.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/veto-the-texas-seed-bill",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -831,19 +811,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "I have never been in doubt since I was old enough to think intelligently that I would someday be made President.",
-          "sourceUrl": "https://ourwhitehouse.org/william-mckinley/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Our differences are policies; our agreements, principles.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-43",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "That’s all a man can hope for during his lifetime––to set an example––and when he is dead, to be an inspiration to history.",
-          "sourceUrl": "https://ourwhitehouse.org/william-mckinley/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "Illiteracy must be banished from the land if we shall attain that high destiny as the foremost of the enlightened nations of the world which, under Providence, we ought to achieve.",
-          "sourceUrl": "https://ourwhitehouse.org/william-mckinley/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The people themselves, not their servants, can safely reverse their own deliberate judgment.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-43",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -870,19 +845,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "Get action. Do things; be sane; don’t fritter away your time; create, act, take a place wherever you are and be somebody; get action.",
-          "sourceUrl": "https://ourwhitehouse.org/theodore-roosevelt/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "The joy of living is his who has the heart to demand it. Life is a great adventure, and I want to say to you, accept it in such a spirit.",
-          "sourceUrl": "https://ourwhitehouse.org/theodore-roosevelt/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
           "text": "The first requisite of a good citizen in this Republic of ours is that he shall be able and willing to pull his weight.",
-          "sourceUrl": "https://ourwhitehouse.org/theodore-roosevelt/",
-          "sourceLabel": "QUOTE SOURCE"
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/remarks-new-york-city-the-occasion-the-unveiling-the-bust-philip-sheridan",
+          "sourceLabel": "PRIMARY SOURCE"
+        },
+        {
+          "text": "Speak softly and carry a big stick; you will go far.",
+          "sourceUrl": "https://www.loc.gov/pictures/item/2011649384/",
+          "sourceLabel": "LIBRARY OF CONGRESS"
         }
       ],
       "presentDayConnection": null,
@@ -910,18 +880,13 @@
       "importantQuotes": [
         {
           "text": "Our international policy is always to promote peace.",
-          "sourceUrl": "https://ourwhitehouse.org/william-howard-taft/",
-          "sourceLabel": "QUOTE SOURCE"
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-44",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "Machine politics and the spoils system are as much an enemy of a proper and efficient government system of civil service as the boll weevil is of the cotton crop.",
-          "sourceUrl": "https://ourwhitehouse.org/william-howard-taft/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "Anti-semitism is a noxious weed that should be cut out. It has no place in America.",
-          "sourceUrl": "https://ourwhitehouse.org/william-howard-taft/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The welfare of the farmer is vital to that of the whole country.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/executive-order-1146-establishing-the-country-life-commission",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -982,19 +947,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "In the great fulfillment we must have a citizenship less concerned about what the government can do for it and more anxious about what it can do for the nation.",
-          "sourceUrl": "https://ourwhitehouse.org/warren-g-harding/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "America's present need is not heroics, but healing; not nostrums, but normalcy; not revolution, but restoration.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-home-market-club-boston-massachusetts",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "We must stabilize and strive for normalcy.",
-          "sourceUrl": "https://ourwhitehouse.org/warren-g-harding/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "I am just beginning to realize what a job I have taken over. God help me, for I need it.",
-          "sourceUrl": "https://ourwhitehouse.org/warren-g-harding/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "I accept my part with single-mindedness of purpose and humility of spirit.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-48",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -1021,19 +981,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "The business of America is business.",
-          "sourceUrl": "https://ourwhitehouse.org/calvin-coolidge/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The chief business of the American people is business.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-the-american-society-newspaper-editors-washington-dc",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "There is no dignity quite so impressive, and no independence quite so important, as living within your means.",
-          "sourceUrl": "https://ourwhitehouse.org/calvin-coolidge/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "It is the duty of a citizen not only to observe the law but to let it be known that he is opposed to its violation.",
-          "sourceUrl": "https://ourwhitehouse.org/calvin-coolidge/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The government of a country never gets ahead of the religion of a country.",
+          "sourceUrl": "https://www.loc.gov/resource/coolidge.1925.0001/?sp=1",
+          "sourceLabel": "LIBRARY OF CONGRESS"
         }
       ],
       "presentDayConnection": null,
@@ -1060,14 +1015,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "We in America today are nearer to the final triumph over poverty than ever before in the history of any land.",
-          "sourceUrl": "https://ourwhitehouse.org/herbert-clark-hoover/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Absolute freedom of the press to discuss public questions is a foundation stone of American liberty.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/statement-the-freedom-the-press",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "Every time the government is forced to act, we lose something in self-reliance, character and initiative.",
-          "sourceUrl": "https://ourwhitehouse.org/herbert-clark-hoover/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "We in America today are nearer to the final triumph over poverty than ever before in the history of any land.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/address-accepting-the-republican-presidential-nomination",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -1132,19 +1087,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "The menace of communism lies primarily in those areas of American life where the promise of democracy remains unfulfilled.",
-          "sourceUrl": "https://ourwhitehouse.org/harry-s-truman/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The buck stops here.",
+          "sourceUrl": "https://www.trumanlibrary.gov/education/trivia/buck-stops-here-sign",
+          "sourceLabel": "TRUMAN LIBRARY"
         },
         {
-          "text": "Every segment of our population, and every individual, has a right to expect from his government a fair deal.",
-          "sourceUrl": "https://ourwhitehouse.org/harry-s-truman/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "It’s a recession when your neighbor loses his job. It’s a depression when you lose yours.",
-          "sourceUrl": "https://ourwhitehouse.org/harry-s-truman/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Democracy is based on the conviction that man has the moral and intellectual capacity, as well as the inalienable right, to govern himself with reason and justice.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-4",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -1239,14 +1189,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "This administration, today, here and now, declares unconditional war on poverty.",
-          "sourceUrl": "https://ourwhitehouse.org/lyndon-b-johnson/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "We shall overcome.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/special-message-the-congress-the-american-promise",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "The women of America represent a reservoir of talent that is still underused. It is too often underpaid, and almost always underpromoted.",
-          "sourceUrl": "https://ourwhitehouse.org/lyndon-b-johnson/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The vote is the most powerful instrument ever devised by man for breaking down injustice.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/remarks-the-signing-the-voting-rights-act",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -1307,14 +1257,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "It can go on and on, or someone must write ‘The End’ to it. I have concluded that only I can do that. And if I can, I must.",
-          "sourceUrl": "https://ourwhitehouse.org/gerald-r-ford/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Our long national nightmare is over.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/remarks-taking-the-oath-office",
+          "sourceLabel": "PRIMARY SOURCE"
         },
         {
-          "text": "I hope historians will write that the Ford administration healed the land, that I restored public confidence in the White House and in the government.",
-          "sourceUrl": "https://ourwhitehouse.org/gerald-r-ford/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Our Constitution works; our great Republic is a government of laws and not of men.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/remarks-taking-the-oath-office",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,
@@ -1477,19 +1427,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "I kind of figure life is going to work its way out somehow.",
-          "sourceUrl": "https://ourwhitehouse.org/george-w-bush/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Freedom itself was attacked this morning by a faceless coward, and freedom will be defended.",
+          "sourceUrl": "https://georgewbush-whitehouse.archives.gov/news/releases/2001/09/20010911.html",
+          "sourceLabel": "WHITE HOUSE ARCHIVE"
         },
         {
-          "text": "Today, we affirm a new commitment to live out our nation’s promise through civility, courage, compassion and character.",
-          "sourceUrl": "https://ourwhitehouse.org/george-w-bush/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "We will pass through this time of peril and carry on the work of peace. We will defend our freedom. We will bring freedom to others, and we will prevail.",
-          "sourceUrl": "https://ourwhitehouse.org/george-w-bush/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "America has never been united by blood or birth or soil. We are bound by ideals that move us beyond our backgrounds.",
+          "sourceUrl": "https://www.presidency.ucsb.edu/documents/inaugural-address-52",
+          "sourceLabel": "PRIMARY SOURCE"
         }
       ],
       "presentDayConnection": null,

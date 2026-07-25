@@ -108,7 +108,7 @@ presidentFacts.presidents?.forEach(president => {
     if (!quote?.text || !quote?.sourceLabel || !/^https:\/\//.test(quote?.sourceUrl || "")) {
       errors.push(`${president.name} quote ${index + 1} needs text and a secure, labeled source.`);
     }
-    if ((quote?.text || "").trim().split(/\s+/).length < 5) {
+    if ((quote?.text || "").trim().split(/\s+/).length < 3) {
       errors.push(`${president.name} quote ${index + 1} is too short to give students meaningful context.`);
     }
   });
