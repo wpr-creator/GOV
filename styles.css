@@ -379,7 +379,13 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .admin-actions { padding: 1.2rem; display: flex; align-items: center; justify-content: flex-end; gap: .6rem; border-top: 1px solid var(--line); background: var(--white); }
 .admin-actions p { margin: 0 auto 0 0; max-width: 390px; color: var(--muted); font-size: .72rem; font-weight: 700; }
 .admin-actions button { min-height: 44px; padding: .6rem .8rem; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-weight: 900; }
-#admin-save { color: var(--white); background: var(--black); }
+#admin-publish { color: var(--white); background: var(--black); }
+.admin-actions button:disabled, .admin-token-row button:disabled { color: #777; background: var(--stone); cursor: not-allowed; }
+.admin-token-row { margin-top: .8rem; display: grid; grid-template-columns: 1fr auto auto; gap: .6rem; align-items: end; }
+.admin-token-help { margin-top: .55rem; display: inline-block; color: var(--black); font-size: .72rem; font-weight: 950; }
+.admin-token-row button { min-height: 46px; padding: .65rem .8rem; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-size: .72rem; font-weight: 950; }
+.admin-connection-status { margin: .7rem 0 0; padding: .65rem .8rem; background: var(--stone); border-left: 5px solid var(--black); font-size: .74rem; font-weight: 900; }
+.admin-connection-status[data-connected="true"] { color: var(--white); background: var(--black); }
 .admin-status { min-height: 1.5rem; margin: 0; padding: 0 1.2rem 1rem; font-size: .78rem; font-weight: 900; }
 
 @keyframes reveal { from { opacity: 0; transform: translateY(5px); } }
@@ -404,6 +410,8 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .history-card, .exit-card { grid-column: 1; }
   .history-body { grid-template-columns: 1fr; gap: .8rem; }
   .admin-actions { align-items: stretch; flex-direction: column; }
+  .admin-token-row { grid-template-columns: 1fr 1fr; }
+  .admin-token-row label { grid-column: 1 / -1; }
   .admin-upcoming-row { grid-template-columns: 1fr 100px 44px; }
   .foundation-tabs button { flex: 0 0 auto; }
   .tool-heading { align-items: start; flex-direction: column; }
