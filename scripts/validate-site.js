@@ -128,7 +128,7 @@ presidentFacts.presidents?.forEach(president => {
     if (!fs.existsSync(target)) errors.push(`Broken local reference: ${ref}`);
   }
 });
-for (const civicSelfieFeature of ["Civic Selfie", "Edit the example", "Replace portrait", "Print or save PDF", "prefers-reduced-motion"]) {
+for (const civicSelfieFeature of ["Civic Selfie", "Build both sides", "civic-selfie-example.png", "prefers-reduced-motion"]) {
   if (!civicSelfieHtml.includes(civicSelfieFeature)) errors.push(`Civic Selfie page is missing: ${civicSelfieFeature}`);
 }
 
