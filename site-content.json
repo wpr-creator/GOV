@@ -19,7 +19,8 @@
     "civics-field-guide": false,
     "presidential-yearbook": true,
     "civics-field-test": false,
-    "unit-0-synthesis": false
+    "unit-0-synthesis": false,
+    "madison-vs-brutus": true
   },
   "foundationUnlocks": {
     "source": 3,

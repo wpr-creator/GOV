@@ -40,7 +40,11 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "units", "foundations", "words", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "units", "foundations", "words", "skills", "madison", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    if (routeName === "madison" && unitState(data.units.find(unit => unit.id === "gov-1")) === "locked") {
+      location.hash = "units";
+      return;
+    }
     showView(valid ? routeName : "home");
   }
 
@@ -745,8 +749,7 @@
     (siteContent.upcoming || []).forEach(addAdminUpcoming);
     const assignmentUnlockContainer = document.getElementById("admin-assignment-unlocks");
     assignmentUnlockContainer.replaceChildren();
-    const firstBell = data.units.find(unit => unit.id === "gov-0");
-    (firstBell?.resources || []).forEach(resource => {
+    data.units.flatMap(unit => unit.resources || []).forEach(resource => {
       const row = document.createElement("label");
       row.className = "admin-unlock-row admin-assignment-unlock-row";
       const checkbox = document.createElement("input");
