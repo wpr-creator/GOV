@@ -1004,55 +1004,82 @@
   function renderFoundingPower() {
     const workspace = document.getElementById("founding-power-workspace");
     workspace.replaceChildren();
-    const context = document.createElement("div");
-    context.className = "founding-context";
-    const historyContext = document.createElement("section");
-    historyContext.innerHTML = "<h2>WHY THESE IDEAS WERE RADICAL</h2><p>In the 1600s and 1700s, most people lived under rulers they did not choose. Some of these ideas had older roots, but putting them together made a powerful new argument: people have rights, and government needs their permission. That argument challenged the power of kings and helped colonists justify a revolution.</p>";
-    const trustContext = document.createElement("section");
-    trustContext.innerHTML = "<h2>A WAY TO JUDGE GOVERNMENT</h2><p>You do not have to trust every leader or institution. These ideas give you questions to ask: Does government protect people’s rights? Does its power come from the people? Are its leaders following the law?</p>";
-    context.append(historyContext, trustContext);
-    const map = document.createElement("div");
-    map.className = "founding-map";
-    const sourceColumn = document.createElement("section");
-    sourceColumn.className = "founding-column founding-sources";
-    sourceColumn.innerHTML = "<h2>WHERE THE IDEAS CAME FROM</h2>";
-    foundingPowerIdeas.forEach((item, itemIndex) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "founding-artifact";
-      button.dataset.foundingIndex = String(itemIndex);
-      button.setAttribute("aria-controls", "founding-detail");
-      button.setAttribute("aria-pressed", "false");
-      if (item.image) {
-        const image = document.createElement("img");
-        image.src = item.image;
-        image.alt = "";
-        button.appendChild(image);
-      } else {
-        const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        icon.setAttribute("viewBox", "0 0 160 120");
-        icon.setAttribute("aria-hidden", "true");
-        const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-        use.setAttribute("href", `assets/foundations/founding-power-icons.svg#${item.icon}`);
-        icon.appendChild(use);
-        button.appendChild(icon);
-      }
-      const label = document.createElement("span");
-      label.innerHTML = `<b>${item.thinker}</b><small>${item.year} · ${item.document}</small>`;
-      button.appendChild(label);
-      button.addEventListener("click", () => showFoundingDetail(itemIndex, true));
-      sourceColumn.appendChild(button);
-    });
-    const firstArrow = document.createElement("div");
-    firstArrow.className = "founding-flow-arrow";
-    firstArrow.innerHTML = '<span aria-hidden="true">→</span><b>SHAPED THESE IDEALS</b>';
-
     const ideals = [
       ["NATURAL RIGHTS", "RIGHTS YOU ARE BORN WITH", "Every person is born with basic rights. Government does not create these rights and should not take them away."],
       ["SOCIAL CONTRACT", "AN AGREEMENT ABOUT POWER", "People agree to live under shared rules. In return, government protects their safety and rights."],
       ["POPULAR SOVEREIGNTY", "POWER BEGINS WITH THE PEOPLE", "The people are the source of government power. Leaders govern only with the people’s consent, or permission."],
       ["LIMITED GOVERNMENT", "GOVERNMENT HAS BOUNDARIES", "Government must follow the Constitution and the law. No leader or branch has unlimited power."]
     ];
+    const designs = [
+      ["SEPARATION OF POWERS", "DIFFERENT PARTS HAVE DIFFERENT JOBS", "The Constitution gives different responsibilities to Congress, the president, and the courts."],
+      ["CHECKS AND BALANCES", "BRANCHES CAN LIMIT ONE ANOTHER", "Each branch can limit actions taken by the other branches. This makes it harder for one branch to control the government."],
+      ["FEDERALISM", "POWER IS SHARED ACROSS LEVELS", "The national government and state governments share power. Each level has its own responsibilities."],
+      ["REPUBLICANISM", "PEOPLE CHOOSE REPRESENTATIVES", "Voters choose representatives to make laws and govern on their behalf."]
+    ];
+    const opening = document.createElement("section");
+    opening.className = "founding-story-opening";
+    opening.innerHTML = "<p class=\"eyebrow\">EUROPE AND THE ATLANTIC WORLD · 1600s</p><h2>IMAGINE YOU LIVE UNDER A KING</h2><p>He rules for life, and most people do not choose him. Laws and taxes come from above. Questioning the ruler can be dangerous. Government is something done to you, not something you expect to control.</p><p>War, religious conflict, trade, and life in new settlements begin to test that system. Writers and political leaders look at the world around them and ask what government is for, where its power comes from, and what should happen when it fails.</p>";
+
+    const story = document.createElement("div");
+    story.className = "founding-story";
+    let activeStoryIndex = -1;
+    const visual = document.createElement("figure");
+    visual.className = "founding-story-visual";
+    visual.setAttribute("aria-live", "polite");
+    const visualMedia = document.createElement("div");
+    visualMedia.className = "founding-story-media";
+    const visualCaption = document.createElement("figcaption");
+    visual.append(visualMedia, visualCaption);
+    const chapters = document.createElement("div");
+    chapters.className = "founding-story-chapters";
+
+    foundingPowerIdeas.forEach((item, index) => {
+      const chapter = document.createElement("section");
+      chapter.className = `founding-story-chapter story-type-${index % 3}`;
+      chapter.dataset.storyIndex = String(index);
+      chapter.tabIndex = 0;
+      const question = storyQuestion(item.document);
+      const mobileVisual = document.createElement("div");
+      mobileVisual.className = "founding-story-mobile-visual";
+      appendStoryMedia(mobileVisual, item, index === 0);
+      const meta = document.createElement("p");
+      meta.className = "eyebrow";
+      meta.textContent = `${item.year} · ${item.thinker}`;
+      const heading = document.createElement("h2");
+      heading.textContent = question;
+      const title = document.createElement("h3");
+      title.textContent = item.document;
+      const excerpt = document.createElement("blockquote");
+      excerpt.textContent = item.excerpt;
+      const help = document.createElement("p");
+      help.className = "founding-word-help";
+      help.textContent = item.wordHelp;
+      const explanation = document.createElement("p");
+      explanation.textContent = item.explanation;
+      const connection = document.createElement("p");
+      connection.className = "founding-story-connection";
+      connection.innerHTML = "<b>WHAT MOVES FORWARD</b>";
+      connection.append(document.createTextNode(`This source helps explain ${formatConceptList(item.ideas)}.`));
+      const caution = document.createElement("p");
+      caution.className = "founding-caution";
+      caution.textContent = item.caution || "";
+      caution.hidden = !item.caution;
+      const source = document.createElement("a");
+      source.href = item.source;
+      source.target = "_blank";
+      source.rel = "noopener";
+      source.textContent = `${item.sourceLabel} · VIEW THE SOURCE ↗`;
+      chapter.append(mobileVisual, meta, heading, title, excerpt, help, explanation, connection, caution, source);
+      chapter.addEventListener("focus", () => activateChapter(index));
+      chapters.appendChild(chapter);
+    });
+    story.append(visual, chapters);
+
+    const conclusion = document.createElement("section");
+    conclusion.className = "founding-story-conclusion";
+    conclusion.innerHTML = "<p class=\"eyebrow\">THE REVOLUTION CHANGES THE QUESTION</p><h2>POWER NOW HAS TO EXPLAIN ITSELF</h2><p>The Declaration uses these ideas to defend independence. The Constitution then tries to build a government strong enough to act but divided enough to control. The result is not perfect trust. It is a set of standards people can use to judge government.</p>";
+    const framework = document.createElement("div");
+    framework.className = "founding-story-framework";
     const idealColumn = document.createElement("section");
     idealColumn.className = "founding-column founding-ideals";
     idealColumn.innerHTML = "<h2>DEMOCRATIC IDEALS</h2>";
@@ -1061,16 +1088,6 @@
       card.innerHTML = `<h3>${name}</h3><span>${bridge}</span><p>${definition}</p>`;
       idealColumn.appendChild(card);
     });
-    const secondArrow = document.createElement("div");
-    secondArrow.className = "founding-flow-arrow";
-    secondArrow.innerHTML = '<span aria-hidden="true">→</span><b>PUT INTO PRACTICE THROUGH</b>';
-
-    const designs = [
-      ["SEPARATION OF POWERS", "DIFFERENT PARTS HAVE DIFFERENT JOBS", "The Constitution gives different responsibilities to Congress, the president, and the courts."],
-      ["CHECKS AND BALANCES", "BRANCHES CAN LIMIT ONE ANOTHER", "Each branch can limit actions taken by the other branches. This makes it harder for one branch to control the government."],
-      ["FEDERALISM", "POWER IS SHARED ACROSS LEVELS", "The national government and state governments share power. Each level has its own responsibilities."],
-      ["REPUBLICANISM", "PEOPLE CHOOSE REPRESENTATIVES", "Voters choose representatives to make laws and govern on their behalf."]
-    ];
     const designColumn = document.createElement("section");
     designColumn.className = "founding-column founding-designs";
     designColumn.innerHTML = "<h2>HOW POWER IS LIMITED</h2>";
@@ -1079,87 +1096,76 @@
       card.innerHTML = `<h3>${name}</h3><span>${bridge}</span><p>${definition}</p>`;
       designColumn.appendChild(card);
     });
-    map.append(sourceColumn, firstArrow, idealColumn, secondArrow, designColumn);
+    framework.append(idealColumn, designColumn);
+    conclusion.appendChild(framework);
+    workspace.append(opening, story, conclusion);
 
-    const detail = document.createElement("article");
-    detail.className = "founding-detail";
-    detail.id = "founding-detail";
-    detail.tabIndex = -1;
-    const detailsHeading = document.createElement("h2");
-    const detailsMeta = document.createElement("p");
-    detailsMeta.className = "eyebrow";
-    const detailBody = document.createElement("div");
-    detailBody.className = "founding-detail-body";
-    const detailVisual = document.createElement("div");
-    detailVisual.className = "founding-detail-visual";
-    const detailCopy = document.createElement("div");
-    const excerpt = document.createElement("blockquote");
-    const help = document.createElement("p");
-    help.className = "founding-word-help";
-    const explanation = document.createElement("p");
-    const connections = document.createElement("div");
-    connections.className = "founding-connections";
-    const caution = document.createElement("p");
-    caution.className = "founding-caution";
-    const source = document.createElement("a");
-    source.target = "_blank";
-    source.rel = "noopener";
-    detailCopy.append(excerpt, help, explanation, connections, caution, source);
-    detailBody.append(detailVisual, detailCopy);
-    detail.append(detailsMeta, detailsHeading, detailBody);
-    workspace.append(context, map, detail);
-
-    function showFoundingDetail(index, moveFocus) {
-      const item = foundingPowerIdeas[index];
-      map.querySelectorAll(".founding-artifact").forEach((button, buttonIndex) => {
-        const active = Number(button.dataset.foundingIndex) === index;
-        button.setAttribute("aria-pressed", String(active));
+    function activateChapter(index) {
+      if (index === activeStoryIndex) return;
+      activeStoryIndex = index;
+      chapters.querySelectorAll(".founding-story-chapter").forEach((chapter, chapterIndex) => {
+        chapter.dataset.active = String(chapterIndex === index);
       });
-      detailsMeta.textContent = `${item.thinker} · ${item.year}`;
-      detailsHeading.textContent = item.document;
-      detailVisual.replaceChildren();
+      const item = foundingPowerIdeas[index];
+      visualMedia.replaceChildren();
+      appendStoryMedia(visualMedia, item, true);
+      visualCaption.textContent = `${item.thinker} · ${item.year} · ${item.document}`;
+    }
+    activateChapter(0);
+
+    if ("IntersectionObserver" in window) {
+      const updateVisibleChapter = () => {
+        const screenCenter = window.innerHeight * .5;
+        const nearest = Array.from(chapters.querySelectorAll(".founding-story-chapter")).reduce((best, chapter) => {
+          const bounds = chapter.getBoundingClientRect();
+          const distance = Math.abs((bounds.top + bounds.height / 2) - screenCenter);
+          return !best || distance < best.distance ? { chapter, distance } : best;
+        }, null);
+        if (nearest) activateChapter(Number(nearest.chapter.dataset.storyIndex));
+      };
+      let storyScrollFrame = 0;
+      const observer = new IntersectionObserver(updateVisibleChapter, { rootMargin: "-28% 0px -42% 0px", threshold: [0.1, 0.35, 0.65] });
+      chapters.querySelectorAll(".founding-story-chapter").forEach(chapter => observer.observe(chapter));
+      window.addEventListener("scroll", () => {
+        if (storyScrollFrame) return;
+        storyScrollFrame = requestAnimationFrame(() => {
+          storyScrollFrame = 0;
+          updateVisibleChapter();
+        });
+      }, { passive: true });
+    }
+
+    function appendStoryMedia(container, item, eager) {
       if (item.image) {
         const image = document.createElement("img");
         image.src = item.image;
         image.alt = item.imageAlt;
-        detailVisual.appendChild(image);
-      } else {
-        const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        icon.setAttribute("viewBox", "0 0 160 120");
-        icon.setAttribute("role", "img");
-        icon.setAttribute("aria-label", item.iconAlt);
-        const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-        use.setAttribute("href", `assets/foundations/founding-power-icons.svg#${item.icon}`);
-        icon.appendChild(use);
-        detailVisual.appendChild(icon);
+        image.loading = eager ? "eager" : "lazy";
+        container.appendChild(image);
+        return;
       }
-      excerpt.textContent = item.excerpt;
-      help.textContent = item.wordHelp;
-      explanation.textContent = item.explanation;
-      connections.replaceChildren();
-      const ideaGroup = document.createElement("div");
-      const ideaLabel = document.createElement("b");
-      ideaLabel.textContent = "IDEAS IT HELPED SHAPE";
-      const ideaList = document.createElement("p");
-      ideaList.textContent = `This source helps explain ${formatConceptList(item.ideas)}.`;
-      ideaGroup.append(ideaLabel, ideaList);
-      connections.appendChild(ideaGroup);
-      if (item.designs?.length) {
-        const designGroup = document.createElement("div");
-        const designLabel = document.createElement("b");
-        designLabel.textContent = "HOW THE IDEA APPEARS IN GOVERNMENT";
-        const designList = document.createElement("p");
-        designList.textContent = `The Constitution puts this idea into practice through ${formatConceptList(item.designs)}.`;
-        designGroup.append(designLabel, designList);
-        connections.appendChild(designGroup);
-      }
-      caution.textContent = item.caution || "";
-      caution.hidden = !item.caution;
-      source.href = item.source;
-      source.textContent = `${item.sourceLabel} · VIEW THE SOURCE ↗`;
-      if (moveFocus) detail.focus({ preventScroll: true });
+      const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      icon.setAttribute("viewBox", "0 0 160 120");
+      icon.setAttribute("role", "img");
+      icon.setAttribute("aria-label", item.iconAlt);
+      const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+      use.setAttribute("href", `assets/foundations/founding-power-icons.svg#${item.icon}`);
+      icon.appendChild(use);
+      container.appendChild(icon);
     }
-    showFoundingDetail(0, false);
+
+    function storyQuestion(documentName) {
+      const questions = {
+        "MAYFLOWER COMPACT": "CAN PEOPLE CREATE GOVERNMENT BY AGREEMENT?",
+        "LEVIATHAN": "WHAT HAPPENS WHEN NO POWER CAN ENFORCE THE RULES?",
+        "SECOND TREATISE OF GOVERNMENT": "WHAT DOES GOVERNMENT OWE THE PEOPLE?",
+        "THE SPIRIT OF THE LAWS": "HOW CAN POWER BE KEPT FROM ONE SET OF HANDS?",
+        "DECLARATION OF INDEPENDENCE": "WHEN MAY PEOPLE REJECT THEIR GOVERNMENT?",
+        "UNITED STATES CONSTITUTION": "HOW DO YOU BUILD POWER AND STILL LIMIT IT?",
+        "FEDERALIST NOS. 39 AND 51": "HOW CAN GOVERNMENT CONTROL ITSELF?"
+      };
+      return questions[documentName];
+    }
 
     function formatConceptList(items) {
       const readable = items.map(item => item.toLowerCase());
