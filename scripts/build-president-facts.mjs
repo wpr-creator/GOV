@@ -146,6 +146,10 @@ const quote = (text, sourceUrl = inauguralArchive, sourceLabel = "PRIMARY SOURCE
 // plus a few profile quotations that were too weak or misleading for students.
 // Wording is preserved from the cited presidential document.
 const curatedQuoteOverrides = {
+  "Thomas Jefferson": [
+    quote("We hold these truths to be self-evident, that all men are created equal.", "https://www.archives.gov/founding-docs/declaration-transcript", "NATIONAL ARCHIVES"),
+    quote("Governments are instituted among Men, deriving their just powers from the consent of the governed.", "https://www.archives.gov/founding-docs/declaration-transcript", "NATIONAL ARCHIVES")
+  ],
   "James Monroe": [
     quote("National honor is national property of the highest value.", "https://www.presidency.ucsb.edu/documents/inaugural-address-23"),
     quote("Let us by all wise and constitutional measures promote intelligence among the people as the best means of preserving our liberties.", "https://www.presidency.ucsb.edu/documents/inaugural-address-23")
@@ -205,6 +209,14 @@ const curatedQuoteOverrides = {
   "Richard Nixon": [
     quote("The greatest honor history can bestow is the title of peacemaker.", "https://www.presidency.ucsb.edu/documents/inaugural-address-1"),
     quote("We cannot learn from one another until we stop shouting at one another.", "https://www.presidency.ucsb.edu/documents/inaugural-address-1")
+  ],
+  "Dwight D. Eisenhower": [
+    quote("In the councils of government, we must guard against the acquisition of unwarranted influence, whether sought or unsought, by the military-industrial complex.", "https://www.eisenhowerlibrary.gov/eisenhowers/quotes", "EISENHOWER LIBRARY"),
+    quote("The potential for the disastrous rise of misplaced power exists and will persist.", "https://www.eisenhowerlibrary.gov/eisenhowers/quotes", "EISENHOWER LIBRARY")
+  ],
+  "John F. Kennedy": [
+    quote("Ask not what your country can do for you—ask what you can do for your country.", "https://www.jfklibrary.org/node/11526", "JFK LIBRARY"),
+    quote("We choose to go to the Moon in this decade and do the other things, not because they are easy, but because they are hard.", "https://www.jfklibrary.org/archives/other-resources/john-f-kennedy-speeches/rice-university-19620912", "JFK LIBRARY")
   ],
   "Jimmy Carter": [
     quote("Our Government must at the same time be both competent and compassionate.", "https://www.presidency.ucsb.edu/documents/inaugural-address-0"),
@@ -317,7 +329,7 @@ function studentActionLabel(value) {
   const replacements = [
     ["presidential cabinet", "presidential Cabinet, the president’s group of top advisers"],
     ["two-term precedent", "two-term example that later presidents followed"],
-    ["nation neutral", "nation out of the European war"],
+    ["Kept the nation neutral in the European war", "Kept the nation out of war between European powers"],
     ["national finances", "national money and banking system"],
     ["presidential succession", "rules for replacing a president"],
     ["Texas annexation", "adding Texas to the United States"],
@@ -359,6 +371,7 @@ async function buildCard(portrait) {
   const table = tableValues(html);
   const profileQuotes = chooseQuotes(html).map(text => quote(text, profileUrl, "QUOTE SOURCE"));
   const termOverrides = {
+    "Grover Cleveland": "1885–1889; 1893–1897",
     "George W. Bush": "2001–2009",
     "Barack Obama": "2009–2017",
     "Donald Trump": "2017–2021; 2025–present"

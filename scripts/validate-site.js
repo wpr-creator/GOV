@@ -43,6 +43,59 @@ portraitManifest.portraits?.forEach(portrait => {
 if (presidentFacts.count !== 45 || presidentFacts.presidents?.length !== 45) {
   errors.push("Expected 45 complete president fact cards.");
 }
+const expectedPresidentSequence = [
+  ["George Washington", "1", "1789–1797"],
+  ["John Adams", "2", "1797–1801"],
+  ["Thomas Jefferson", "3", "1801–1809"],
+  ["James Madison", "4", "1809–1817"],
+  ["James Monroe", "5", "1817–1825"],
+  ["John Quincy Adams", "6", "1825–1829"],
+  ["Andrew Jackson", "7", "1829–1837"],
+  ["Martin Van Buren", "8", "1837–1841"],
+  ["William Henry Harrison", "9", "1841"],
+  ["John Tyler", "10", "1841–1845"],
+  ["James K. Polk", "11", "1845–1849"],
+  ["Zachary Taylor", "12", "1849–1850"],
+  ["Millard Fillmore", "13", "1850–1853"],
+  ["Franklin Pierce", "14", "1853–1857"],
+  ["James Buchanan", "15", "1857–1861"],
+  ["Abraham Lincoln", "16", "1861–1865"],
+  ["Andrew Johnson", "17", "1865–1869"],
+  ["Ulysses S. Grant", "18", "1869–1877"],
+  ["Rutherford B. Hayes", "19", "1877–1881"],
+  ["James A. Garfield", "20", "1881"],
+  ["Chester A. Arthur", "21", "1881–1885"],
+  ["Grover Cleveland", "22 and 24", "1885–1889; 1893–1897"],
+  ["Benjamin Harrison", "23", "1889–1893"],
+  ["William McKinley", "25", "1897–1901"],
+  ["Theodore Roosevelt", "26", "1901–1909"],
+  ["William Howard Taft", "27", "1909–1913"],
+  ["Woodrow Wilson", "28", "1913–1921"],
+  ["Warren G. Harding", "29", "1921–1923"],
+  ["Calvin Coolidge", "30", "1923–1929"],
+  ["Herbert Hoover", "31", "1929–1933"],
+  ["Franklin D. Roosevelt", "32", "1933–1945"],
+  ["Harry S. Truman", "33", "1945–1953"],
+  ["Dwight D. Eisenhower", "34", "1953–1961"],
+  ["John F. Kennedy", "35", "1961–1963"],
+  ["Lyndon B. Johnson", "36", "1963–1969"],
+  ["Richard Nixon", "37", "1969–1974"],
+  ["Gerald Ford", "38", "1974–1977"],
+  ["Jimmy Carter", "39", "1977–1981"],
+  ["Ronald Reagan", "40", "1981–1989"],
+  ["George H. W. Bush", "41", "1989–1993"],
+  ["Bill Clinton", "42", "1993–2001"],
+  ["George W. Bush", "43", "2001–2009"],
+  ["Barack Obama", "44", "2009–2017"],
+  ["Donald Trump", "45 and 47", "2017–2021; 2025–present"],
+  ["Joe Biden", "46", "2021–2025"]
+];
+expectedPresidentSequence.forEach(([name, order, yearsInOffice], index) => {
+  const president = presidentFacts.presidents?.[index];
+  if (!president || president.name !== name || president.order !== order || president.yearsInOffice !== yearsInOffice) {
+    errors.push(`President ${index + 1} must be ${name}, order ${order}, serving ${yearsInOffice}.`);
+  }
+});
 presidentFacts.presidents?.forEach(president => {
   for (const key of ["name", "order", "yearsInOffice", "portrait", "birthplace", "religion", "education", "careerBeforePresidency"]) {
     if (!president[key]) errors.push(`${president.name || "Unknown president"} is missing ${key}.`);
@@ -54,6 +107,9 @@ presidentFacts.presidents?.forEach(president => {
   president.importantQuotes?.forEach((quote, index) => {
     if (!quote?.text || !quote?.sourceLabel || !/^https:\/\//.test(quote?.sourceUrl || "")) {
       errors.push(`${president.name} quote ${index + 1} needs text and a secure, labeled source.`);
+    }
+    if ((quote?.text || "").trim().split(/\s+/).length < 5) {
+      errors.push(`${president.name} quote ${index + 1} is too short to give students meaningful context.`);
     }
   });
   if (president.presentDayConnection) {

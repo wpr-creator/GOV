@@ -15,7 +15,7 @@
       "keyAccomplishments": [
         "Created the presidential Cabinet, the president’s group of top advisers",
         "Set the two-term example that later presidents followed",
-        "Kept the nation out of the European war in the European war"
+        "Kept the nation out of war between European powers"
       ],
       "importantQuotes": [
         {
@@ -102,19 +102,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "I have sworn upon the altar of God eternal hostility against every form of tyranny over the mind of man.",
-          "sourceUrl": "https://ourwhitehouse.org/thomas-jefferson/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "We hold these truths to be self-evident, that all men are created equal.",
+          "sourceUrl": "https://www.archives.gov/founding-docs/declaration-transcript",
+          "sourceLabel": "NATIONAL ARCHIVES"
         },
         {
-          "text": "The care of human life and happiness, and not their destructions, is the first and only legitimate object of good government.",
-          "sourceUrl": "https://ourwhitehouse.org/thomas-jefferson/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "A little rebellion now and then is a good thing, and as necessary in the political world as storms in the physical.",
-          "sourceUrl": "https://ourwhitehouse.org/thomas-jefferson/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Governments are instituted among Men, deriving their just powers from the consent of the governed.",
+          "sourceUrl": "https://www.archives.gov/founding-docs/declaration-transcript",
+          "sourceLabel": "NATIONAL ARCHIVES"
         }
       ],
       "presentDayConnection": null,
@@ -750,7 +745,7 @@
     {
       "name": "Grover Cleveland",
       "order": "22 and 24",
-      "yearsInOffice": "1885–1889",
+      "yearsInOffice": "1885–1889; 1893–1897",
       "portrait": "assets/presidents/grover-cleveland.jpg",
       "birthplace": "New Jersey",
       "religion": "Presbyterian (Christian)",
@@ -1176,19 +1171,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "Well, not at the time. But I was scared stiff three weeks later when I got around to reading the newspaper accounts.",
-          "sourceUrl": "https://ourwhitehouse.org/dwight-d-eisenhower/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "In the councils of government, we must guard against the acquisition of unwarranted influence, whether sought or unsought, by the military-industrial complex.",
+          "sourceUrl": "https://www.eisenhowerlibrary.gov/eisenhowers/quotes",
+          "sourceLabel": "EISENHOWER LIBRARY"
         },
         {
-          "text": "military-industrial complex,",
-          "sourceUrl": "https://ourwhitehouse.org/dwight-d-eisenhower/",
-          "sourceLabel": "QUOTE SOURCE"
-        },
-        {
-          "text": "The middle of the road is all of the usable surface. The extremes, right and left, are in the gutters.",
-          "sourceUrl": "https://ourwhitehouse.org/dwight-d-eisenhower/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "The potential for the disastrous rise of misplaced power exists and will persist.",
+          "sourceUrl": "https://www.eisenhowerlibrary.gov/eisenhowers/quotes",
+          "sourceLabel": "EISENHOWER LIBRARY"
         }
       ],
       "presentDayConnection": null,
@@ -1215,14 +1205,14 @@
       ],
       "importantQuotes": [
         {
-          "text": "New Frontier",
-          "sourceUrl": "https://ourwhitehouse.org/john-fitzgerald-kennedy/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "Ask not what your country can do for you—ask what you can do for your country.",
+          "sourceUrl": "https://www.jfklibrary.org/node/11526",
+          "sourceLabel": "JFK LIBRARY"
         },
         {
-          "text": "All free men, wherever they may live, are citizens of Berlin, and, therefore, as a free man, I take pride in the words––Ich bin ein Berliner (I am a Berliner)!’",
-          "sourceUrl": "https://ourwhitehouse.org/john-fitzgerald-kennedy/",
-          "sourceLabel": "QUOTE SOURCE"
+          "text": "We choose to go to the Moon in this decade and do the other things, not because they are easy, but because they are hard.",
+          "sourceUrl": "https://www.jfklibrary.org/archives/other-resources/john-f-kennedy-speeches/rice-university-19620912",
+          "sourceLabel": "JFK LIBRARY"
         }
       ],
       "presentDayConnection": null,
