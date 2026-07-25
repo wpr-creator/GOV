@@ -16,16 +16,18 @@ vm.runInContext(fs.readFileSync(path.join(root, "constitution-explorer-data.js")
 vm.runInContext(fs.readFileSync(path.join(root, "rights-referee-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "election-2026-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "presidential-power-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "founding-power-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
 const explorerSituations = context.window.CONSTITUTION_EXPLORER_DATA;
 const rightsCases = context.window.RIGHTS_REFEREE_DATA;
 const electionData = context.window.ELECTION_2026_DATA;
 const presidentialPowerCases = context.window.PRESIDENTIAL_POWER_DATA;
+const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -205,6 +207,25 @@ data.units.flatMap(unit => unit.resources || []).forEach(resource => {
 const unitTwo = data.units.find(unit => unit.id === "gov-2");
 if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "constitution-explorer|madison-vs-brutus") {
   errors.push("Unit 2 must include Constitution Explorer and Madison vs. Brutus.");
+}
+const unitOne = data.units.find(unit => unit.id === "gov-1");
+if (unitOne?.resources?.map(resource => resource.id).join("|") !== "founding-power") {
+  errors.push("Where Does Power Come From? must be a Unit 1 resource.");
+}
+if (!Array.isArray(foundingPowerIdeas) || foundingPowerIdeas.length !== 6) {
+  errors.push(`Expected 6 founding-power ideas; found ${foundingPowerIdeas?.length || 0}.`);
+}
+foundingPowerIdeas?.forEach((idea, index) => {
+  for (const key of ["document", "year", "icon", "iconAlt", "excerpt", "wordHelp", "question", "idea", "explanation", "sourceLabel", "source"]) {
+    if (!idea[key]) errors.push(`Founding-power idea ${index + 1} is missing ${key}.`);
+  }
+  if (idea.options?.length !== 2 || !Number.isInteger(idea.answer) || !/^https:\/\//.test(idea.source || "")) {
+    errors.push(`Founding-power idea ${index + 1} has incomplete choices or source.`);
+  }
+});
+for (const foundingFeature of ['id="founding-power" data-view="founding-power"', "WHERE DOES POWER COME FROM?", "founding-power-icons.svg"]) {
+  const source = foundingFeature === "founding-power-icons.svg" ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
+  if (!source.includes(foundingFeature)) errors.push(`The founding-power activity is missing: ${foundingFeature}`);
 }
 for (const fragment of ['data-view-link="skills"', 'id="skills" data-view="skills"', 'href="#presidents"', 'id="madison" data-view="madison"']) {
   if (!html.includes(fragment)) errors.push(`Course navigation is missing: ${fragment}`);

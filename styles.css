@@ -333,6 +333,21 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .power-limits { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
 .power-limits p { margin: 0; padding: .8rem; background: var(--stone); font-size: .82rem; font-weight: 650; }
 .power-limits b { display: block; margin-bottom: .35rem; font-size: .7rem; letter-spacing: .08em; }
+.founding-power { max-width: 940px; padding: clamp(1rem, 4vw, 2rem); background: var(--stone); border: 1px solid var(--line); }
+.founding-power-card { display: grid; grid-template-columns: minmax(190px, 32%) 1fr; background: var(--white); border-top: 8px solid var(--black); }
+.founding-power-card > svg { width: 100%; align-self: center; padding: 1.2rem; color: var(--black); }
+.founding-power-card > div { padding: clamp(1rem, 3vw, 1.7rem); }
+.founding-power-card blockquote { margin: .7rem 0; padding-left: 1rem; border-left: 5px solid var(--slate); font-size: clamp(1.05rem, 2.5vw, 1.35rem); font-weight: 850; line-height: 1.45; }
+.founding-word-help { display: inline-block; margin: 0 0 1rem; padding: .45rem .6rem; background: var(--stone); font-size: .72rem; font-weight: 950; letter-spacing: .04em; }
+.founding-power-card h2 { margin: 0 0 .8rem; font-size: clamp(1.25rem, 3vw, 1.75rem); }
+.founding-power-options { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+.founding-power-options button { min-height: 58px; padding: .75rem; border: 2px solid var(--black); background: var(--white); cursor: pointer; font-weight: 950; }
+.founding-power-options button:hover:not(:disabled), .founding-power-options button[data-answer="correct"] { color: var(--white); background: var(--black); }
+.founding-power-options button[data-answer="selected"] { text-decoration: line-through; background: var(--paper); }
+.founding-power-feedback { margin-top: 1rem; padding: 1.2rem; background: var(--white); border-left: 8px solid var(--black); }
+.founding-power-feedback > strong { display: block; margin-bottom: .6rem; font-size: 1.15rem; }
+.founding-power-feedback p { font-weight: 650; line-height: 1.5; }
+.founding-power-feedback a { color: var(--black); font-size: .74rem; font-weight: 950; }
 .ballot-header { margin-bottom: 1rem; padding: clamp(1.3rem, 4vw, 2.2rem); display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; color: var(--white); background: var(--black); border-bottom: 10px solid var(--slate); }
 .ballot-header h2 { margin: 0; font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
 .ballot-header .eyebrow { color: var(--stone); }
@@ -439,6 +454,8 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .rights-case > svg { max-width: 220px; justify-self: center; padding-bottom: 0; }
   .power-case { grid-template-columns: 1fr; }
   .power-case > svg { max-width: 220px; justify-self: center; padding-bottom: 0; }
+  .founding-power-card { grid-template-columns: 1fr; }
+  .founding-power-card > svg { max-width: 220px; justify-self: center; padding-bottom: 0; }
   .ballot-header, .race-grid, .proposition-grid { grid-template-columns: 1fr; }
   .ballot-location { align-items: flex-start; flex-direction: column; }
   .madison-side p { min-height: auto; }

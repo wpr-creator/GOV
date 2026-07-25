@@ -6,6 +6,7 @@
   const rightsCases = window.RIGHTS_REFEREE_DATA;
   const electionData = window.ELECTION_2026_DATA;
   const presidentialPowerCases = window.PRESIDENTIAL_POWER_DATA;
+  const foundingPowerIdeas = window.FOUNDING_POWER_DATA;
   const views = Array.from(document.querySelectorAll("[data-view]"));
   const nav = document.getElementById("site-nav");
   const menuButton = document.querySelector(".menu-button");
@@ -31,6 +32,7 @@
   let explorerIndex = 0;
   let rightsIndex = 0;
   let presidentialPowerIndex = 0;
+  let foundingPowerIndex = 0;
 
   function showView(name) {
     const isUnit = data.units.some(unit => unit.id === name);
@@ -49,7 +51,11 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "founding-power", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    if (routeName === "founding-power" && unitState(data.units.find(unit => unit.id === "gov-1")) === "locked") {
+      location.hash = "units";
+      return;
+    }
     if (["madison", "constitution-explorer"].includes(routeName) && unitState(data.units.find(unit => unit.id === "gov-2")) === "locked") {
       location.hash = "units";
       return;
@@ -996,6 +1002,105 @@
     workspace.append(card, feedback, next);
   }
 
+  function renderFoundingPower() {
+    const workspace = document.getElementById("founding-power-workspace");
+    const progress = document.getElementById("founding-power-progress");
+    workspace.replaceChildren();
+    if (foundingPowerIndex >= foundingPowerIdeas.length) {
+      progress.textContent = `${foundingPowerIdeas.length} OF ${foundingPowerIdeas.length}`;
+      const finish = document.createElement("div");
+      finish.className = "explorer-finish";
+      const heading = document.createElement("h2");
+      heading.id = "founding-power-question";
+      heading.textContent = "THE PEOPLE ARE THE SOURCE";
+      const summary = document.createElement("p");
+      summary.textContent = "American democracy begins with people who have rights, agree to be governed, and can hold government accountable.";
+      const restart = document.createElement("button");
+      restart.type = "button";
+      restart.textContent = "START AGAIN";
+      restart.addEventListener("click", () => {
+        foundingPowerIndex = 0;
+        renderFoundingPower();
+      });
+      finish.append(heading, summary, restart);
+      workspace.appendChild(finish);
+      restart.focus();
+      return;
+    }
+
+    const item = foundingPowerIdeas[foundingPowerIndex];
+    progress.textContent = `${foundingPowerIndex + 1} OF ${foundingPowerIdeas.length}`;
+    const card = document.createElement("article");
+    card.className = "founding-power-card";
+    const visual = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    visual.setAttribute("viewBox", "0 0 160 120");
+    visual.setAttribute("role", "img");
+    visual.setAttribute("aria-label", item.iconAlt);
+    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", `assets/foundations/founding-power-icons.svg#${item.icon}`);
+    visual.appendChild(use);
+    const copy = document.createElement("div");
+    const meta = document.createElement("p");
+    meta.className = "eyebrow";
+    meta.textContent = `${item.document} · ${item.year}`;
+    const excerpt = document.createElement("blockquote");
+    excerpt.textContent = item.excerpt;
+    const help = document.createElement("p");
+    help.className = "founding-word-help";
+    help.textContent = item.wordHelp;
+    const question = document.createElement("h2");
+    question.id = "founding-power-question";
+    question.tabIndex = -1;
+    question.textContent = item.question;
+    const options = document.createElement("div");
+    options.className = "founding-power-options";
+    const feedback = document.createElement("div");
+    feedback.className = "founding-power-feedback";
+    feedback.setAttribute("role", "status");
+    feedback.hidden = true;
+    const next = document.createElement("button");
+    next.type = "button";
+    next.className = "explorer-next";
+    next.textContent = foundingPowerIndex === foundingPowerIdeas.length - 1 ? "FINISH" : "NEXT IDEA →";
+    next.hidden = true;
+    next.addEventListener("click", () => {
+      foundingPowerIndex += 1;
+      renderFoundingPower();
+      document.getElementById("founding-power-question").focus({ preventScroll: true });
+    });
+    item.options.forEach((optionText, optionIndex) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = optionText;
+      button.addEventListener("click", () => {
+        options.querySelectorAll("button").forEach((optionButton, index) => {
+          optionButton.disabled = true;
+          if (index === item.answer) optionButton.dataset.answer = "correct";
+          if (index === optionIndex && index !== item.answer) optionButton.dataset.answer = "selected";
+        });
+        const result = document.createElement("strong");
+        result.textContent = optionIndex === item.answer ? "YOU FOUND THE IDEA." : `THE STRONGER ANSWER IS ${item.options[item.answer]}.`;
+        const idea = document.createElement("p");
+        const ideaLabel = document.createElement("b");
+        ideaLabel.textContent = `${item.idea}: `;
+        idea.append(ideaLabel, item.explanation);
+        const source = document.createElement("a");
+        source.href = item.source;
+        source.target = "_blank";
+        source.rel = "noopener";
+        source.textContent = `${item.sourceLabel} · READ THE SOURCE ↗`;
+        feedback.replaceChildren(result, idea, source);
+        feedback.hidden = false;
+        next.hidden = false;
+        next.focus();
+      });
+      options.appendChild(button);
+    });
+    copy.append(meta, excerpt, help, question, options);
+    card.append(visual, copy);
+    workspace.append(card, feedback, next);
+  }
+
   function switchFoundationTab(tabName) {
     document.querySelectorAll("[data-foundation-tab]").forEach(button => button.setAttribute("aria-selected", String(button.dataset.foundationTab === tabName)));
     document.querySelectorAll(".foundation-panel").forEach(panel => { panel.hidden = panel.id !== `foundation-${tabName}`; });
@@ -1467,6 +1572,7 @@
   renderExplorer();
   renderRightsReferee();
   renderPresidentialPower();
+  renderFoundingPower();
   renderElection2026();
   loadConfig();
   loadHistory();

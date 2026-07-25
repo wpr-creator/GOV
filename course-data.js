@@ -89,6 +89,14 @@ window.COURSE_DATA = {
         ["Democracy’s Promise and Risks", "What can democracy do well—and what can go wrong?", "Gov 12.1.2", "Use Tocqueville’s observations to examine equality, majority power, and participation.", "Explain one promise and one risk"],
         ["Rights and the Public Good", "Should government protect individual freedom or serve the common good?", "Gov 12.1.3", "Compare the public good with individual rights.", "Explain how a democracy needs both"],
         ["The Declaration of Independence", "What makes government legitimate?", "Gov 12.1.3", "Connect natural rights, equality, and consent of the governed to the Declaration of Independence.", "Use the Declaration to answer the unit question"]
+      ],
+      resources: [
+        {
+          id: "founding-power",
+          lesson: "UNIT 1 EXTENSION",
+          title: "WHERE DOES POWER COME FROM?",
+          url: "#founding-power"
+        }
       ]
     },
     {
