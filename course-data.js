@@ -151,6 +151,14 @@ window.COURSE_DATA = {
         ["Federal Courts", "What cases can federal courts decide?", "Gov 12.4.5–12.4.6; 12.7.7", "Map federal, state, and local courts. Examine Supreme Court terms, powers, selection, and confirmation.", "Send a case to the correct court"],
         ["Judicial Review", "How should judges interpret the Constitution?", "Gov 12.5.2–12.5.3", "Compare judicial restraint and judicial activism through Marbury, McCulloch, and United States v. Nixon.", "Compare how two Court decisions changed government power"],
         ["Civil Rights in the Supreme Court", "How has the Supreme Court changed civil rights?", "Gov 12.5.4", "Examine Plessy, Brown, Miranda, Bakke, Adarand, and United States v. Virginia.", "Use one case to explain how constitutional meaning changed"]
+      ],
+      resources: [
+        {
+          id: "presidential-power",
+          lesson: "UNIT 4 EXTENSION",
+          title: "CAN THE PRESIDENT DO THAT?",
+          url: "#presidential-power"
+        }
       ]
     },
     {

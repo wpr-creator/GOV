@@ -15,15 +15,17 @@ vm.runInContext(fs.readFileSync(path.join(root, "foundations-data.js"), "utf8"),
 vm.runInContext(fs.readFileSync(path.join(root, "constitution-explorer-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "rights-referee-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "election-2026-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "presidential-power-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
 const explorerSituations = context.window.CONSTITUTION_EXPLORER_DATA;
 const rightsCases = context.window.RIGHTS_REFEREE_DATA;
 const electionData = context.window.ELECTION_2026_DATA;
+const presidentialPowerCases = context.window.PRESIDENTIAL_POWER_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/cases/rights-referee-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -265,6 +267,24 @@ for (const electionFeature of ['id="election-2026" data-view="election-2026"', "
 for (const rightsFeature of ['id="rights-referee" data-view="rights-referee"', "RIGHTS REFEREE", "rights-referee-icons.svg"]) {
   const source = rightsFeature === "rights-referee-icons.svg" ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
   if (!source.includes(rightsFeature)) errors.push(`Rights Referee is missing: ${rightsFeature}`);
+}
+if (data.units.find(unit => unit.id === "gov-4")?.resources?.[0]?.id !== "presidential-power") {
+  errors.push("Can the President Do That? must be a Unit 4 resource.");
+}
+if (!Array.isArray(presidentialPowerCases) || presidentialPowerCases.length !== 6) {
+  errors.push(`Expected 6 presidential-power actions; found ${presidentialPowerCases?.length || 0}.`);
+}
+presidentialPowerCases?.forEach((caseData, index) => {
+  for (const key of ["president", "year", "icon", "iconAlt", "action", "question", "ruling", "power", "check", "sourceLabel", "source"]) {
+    if (!caseData[key]) errors.push(`Presidential-power action ${index + 1} is missing ${key}.`);
+  }
+  if (caseData.options?.length !== 2 || !Number.isInteger(caseData.answer) || !/^https:\/\//.test(caseData.source || "")) {
+    errors.push(`Presidential-power action ${index + 1} has incomplete choices or source.`);
+  }
+});
+for (const powerFeature of ['id="presidential-power" data-view="presidential-power"', "CAN THE PRESIDENT DO THAT?", "presidential-power-icons.svg"]) {
+  const source = powerFeature === "presidential-power-icons.svg" ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
+  if (!source.includes(powerFeature)) errors.push(`The presidential-power activity is missing: ${powerFeature}`);
 }
 const teacherFacingLessonTerms = /\b(CER|retrieval check|constructed response|targeted reteach|reassessment evidence|assessed content|supplied information)\b/i;
 data.units.forEach(unit => unit.lessons.forEach(lesson => {

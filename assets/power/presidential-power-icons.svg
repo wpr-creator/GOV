@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="steel" viewBox="0 0 160 120">
+    <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 101h126M25 101V58l32 17V58l32 17V48h43v53"/>
+      <path d="M100 48V18h18v30M124 48V28h14v20M38 90h12M66 90h12M101 65h18"/>
+    </g>
+  </symbol>
+  <symbol id="tape" viewBox="0 0 160 120">
+    <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="18" y="20" width="124" height="80" rx="8"/>
+      <circle cx="55" cy="55" r="23"/><circle cx="105" cy="55" r="23"/>
+      <circle cx="55" cy="55" r="6"/><circle cx="105" cy="55" r="6"/>
+      <path d="M68 74h24M45 92l20-18M115 92 95 74"/>
+    </g>
+  </symbol>
+  <symbol id="pardon" viewBox="0 0 160 120">
+    <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M35 13h70l20 20v74H35zM105 13v22h20M51 49h58M51 63h43M51 77h34"/>
+      <circle cx="104" cy="83" r="15"/><path d="m96 83 6 6 11-14"/>
+    </g>
+  </symbol>
+  <symbol id="veto" viewBox="0 0 160 120">
+    <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 102h116M32 102V66h35v36M93 102V66h35v36M25 66h49M86 66h49"/>
+      <rect x="48" y="16" width="64" height="60" rx="5" fill="white"/>
+      <path d="m62 31 36 31M98 31 62 62"/>
+    </g>
+  </symbol>
+  <symbol id="court-seat" viewBox="0 0 160 120">
+    <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M31 104V79h98v25M43 79V56c0-18 14-32 32-32h10c18 0 32 14 32 32v23"/>
+      <path d="M54 79V58c0-12 10-22 22-22h8c12 0 22 10 22 22v21M22 104h116"/>
+      <path d="M69 62h22M80 51v22"/>
+    </g>
+  </symbol>
+  <symbol id="student-loan" viewBox="0 0 160 120">
+    <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m19 33 61-22 61 22-61 22zM42 43v25c19 13 57 13 76 0V43M134 36v32"/>
+      <path d="M48 81h64v29H48zM60 94h26M100 91v9M95 96h10"/>
+    </g>
+  </symbol>
+</svg>

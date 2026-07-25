@@ -5,6 +5,7 @@
   const explorerSituations = window.CONSTITUTION_EXPLORER_DATA;
   const rightsCases = window.RIGHTS_REFEREE_DATA;
   const electionData = window.ELECTION_2026_DATA;
+  const presidentialPowerCases = window.PRESIDENTIAL_POWER_DATA;
   const views = Array.from(document.querySelectorAll("[data-view]"));
   const nav = document.getElementById("site-nav");
   const menuButton = document.querySelector(".menu-button");
@@ -29,6 +30,7 @@
   let presidentQuery = "";
   let explorerIndex = 0;
   let rightsIndex = 0;
+  let presidentialPowerIndex = 0;
 
   function showView(name) {
     const isUnit = data.units.some(unit => unit.id === name);
@@ -47,7 +49,7 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     if (["madison", "constitution-explorer"].includes(routeName) && unitState(data.units.find(unit => unit.id === "gov-2")) === "locked") {
       location.hash = "units";
       return;
@@ -57,6 +59,10 @@
       return;
     }
     if (routeName === "election-2026" && unitState(data.units.find(unit => unit.id === "gov-3")) === "locked") {
+      location.hash = "units";
+      return;
+    }
+    if (routeName === "presidential-power" && unitState(data.units.find(unit => unit.id === "gov-4")) === "locked") {
       location.hash = "units";
       return;
     }
@@ -891,6 +897,105 @@
     workspace.append(card, feedback, next);
   }
 
+  function renderPresidentialPower() {
+    const workspace = document.getElementById("power-workspace");
+    const progress = document.getElementById("power-progress");
+    workspace.replaceChildren();
+    if (presidentialPowerIndex >= presidentialPowerCases.length) {
+      progress.textContent = `${presidentialPowerCases.length} OF ${presidentialPowerCases.length}`;
+      const finish = document.createElement("div");
+      finish.className = "explorer-finish";
+      const heading = document.createElement("h2");
+      heading.id = "power-question";
+      heading.textContent = "WHAT THESE ACTIONS SHOW";
+      const summary = document.createElement("p");
+      summary.textContent = "Presidential power can be strong, but laws, Congress, and the courts place limits on what a president may do alone.";
+      const restart = document.createElement("button");
+      restart.type = "button";
+      restart.textContent = "START AGAIN";
+      restart.addEventListener("click", () => {
+        presidentialPowerIndex = 0;
+        renderPresidentialPower();
+      });
+      finish.append(heading, summary, restart);
+      workspace.appendChild(finish);
+      restart.focus();
+      return;
+    }
+
+    const item = presidentialPowerCases[presidentialPowerIndex];
+    progress.textContent = `${presidentialPowerIndex + 1} OF ${presidentialPowerCases.length}`;
+    const card = document.createElement("article");
+    card.className = "power-case";
+    const visual = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    visual.setAttribute("viewBox", "0 0 160 120");
+    visual.setAttribute("role", "img");
+    visual.setAttribute("aria-label", item.iconAlt);
+    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", `assets/power/presidential-power-icons.svg#${item.icon}`);
+    visual.appendChild(use);
+    const copy = document.createElement("div");
+    const meta = document.createElement("p");
+    meta.className = "eyebrow";
+    meta.textContent = `${item.president} · ${item.year}`;
+    const action = document.createElement("p");
+    action.className = "power-action";
+    action.textContent = item.action;
+    const question = document.createElement("h2");
+    question.id = "power-question";
+    question.tabIndex = -1;
+    question.textContent = item.question;
+    const options = document.createElement("div");
+    options.className = "power-options";
+    const feedback = document.createElement("div");
+    feedback.className = "power-feedback";
+    feedback.setAttribute("role", "status");
+    feedback.hidden = true;
+    const next = document.createElement("button");
+    next.type = "button";
+    next.className = "explorer-next";
+    next.textContent = presidentialPowerIndex === presidentialPowerCases.length - 1 ? "FINISH" : "NEXT ACTION →";
+    next.hidden = true;
+    next.addEventListener("click", () => {
+      presidentialPowerIndex += 1;
+      renderPresidentialPower();
+      document.getElementById("power-question").focus({ preventScroll: true });
+    });
+
+    item.options.forEach((optionText, optionIndex) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = optionText;
+      button.addEventListener("click", () => {
+        options.querySelectorAll("button").forEach((optionButton, index) => {
+          optionButton.disabled = true;
+          if (index === item.answer) optionButton.dataset.answer = "correct";
+          if (index === optionIndex && index !== item.answer) optionButton.dataset.answer = "selected";
+        });
+        const result = document.createElement("strong");
+        result.textContent = optionIndex === item.answer ? "YOUR CALL MATCHES THE CONSTITUTIONAL RESULT." : `THE RESULT WAS ${item.options[item.answer]}.`;
+        const ruling = document.createElement("p");
+        ruling.textContent = item.ruling;
+        const limits = document.createElement("div");
+        limits.className = "power-limits";
+        limits.innerHTML = `<p><b>THE POWER</b>${item.power}</p><p><b>THE CHECK</b>${item.check}</p>`;
+        const source = document.createElement("a");
+        source.href = item.source;
+        source.target = "_blank";
+        source.rel = "noopener";
+        source.textContent = `${item.sourceLabel} · SOURCE ↗`;
+        feedback.replaceChildren(result, ruling, limits, source);
+        feedback.hidden = false;
+        next.hidden = false;
+        next.focus();
+      });
+      options.appendChild(button);
+    });
+    copy.append(meta, action, question, options);
+    card.append(visual, copy);
+    workspace.append(card, feedback, next);
+  }
+
   function switchFoundationTab(tabName) {
     document.querySelectorAll("[data-foundation-tab]").forEach(button => button.setAttribute("aria-selected", String(button.dataset.foundationTab === tabName)));
     document.querySelectorAll(".foundation-panel").forEach(panel => { panel.hidden = panel.id !== `foundation-${tabName}`; });
@@ -943,12 +1048,22 @@
       const response = await fetch("site-content.json", { cache: "no-store" });
       if (!response.ok) throw new Error("Site content unavailable");
       siteContent = await response.json();
+      const local = localStorage.getItem(CONTENT_STORAGE_KEY);
+      if (local) {
+        const preview = JSON.parse(local);
+        siteContent = {
+          ...siteContent,
+          ...preview,
+          foundationUnlocks: { ...(siteContent.foundationUnlocks || {}), ...(preview.foundationUnlocks || {}) },
+          assignmentUnlocks: { ...(siteContent.assignmentUnlocks || {}), ...(preview.assignmentUnlocks || {}) },
+          assignmentUrls: { ...(siteContent.assignmentUrls || {}), ...(preview.assignmentUrls || {}) },
+          unitUnlocks: { ...(siteContent.unitUnlocks || {}), ...(preview.unitUnlocks || {}) }
+        };
+      }
       siteContent.foundationUnlocks = siteContent.foundationUnlocks || { source: 3, argument: 3, language: 3 };
       siteContent.assignmentUnlocks = siteContent.assignmentUnlocks || {};
       siteContent.assignmentUrls = siteContent.assignmentUrls || {};
       siteContent.unitUnlocks = siteContent.unitUnlocks || {};
-      const local = localStorage.getItem(CONTENT_STORAGE_KEY);
-      if (local) siteContent = { ...siteContent, ...JSON.parse(local) };
       if (data.units.some(unit => unit.id === siteContent.currentUnit)) currentUnitId = siteContent.currentUnit;
       if (!data.words.some(word => word[4] === currentUnitId)) glossaryFilter = "all";
     } catch (error) {
@@ -1351,6 +1466,7 @@
   renderMadison();
   renderExplorer();
   renderRightsReferee();
+  renderPresidentialPower();
   renderElection2026();
   loadConfig();
   loadHistory();
