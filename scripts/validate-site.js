@@ -128,8 +128,12 @@ presidentFacts.presidents?.forEach(president => {
     if (!fs.existsSync(target)) errors.push(`Broken local reference: ${ref}`);
   }
 });
-for (const civicSelfieFeature of ["Civic Selfie", "Build both sides", "civic-selfie-example.png", "prefers-reduced-motion"]) {
+for (const civicSelfieFeature of ["Civic Selfie", "Build both sides", "civic-selfie-example.png", "prefers-reduced-motion", 'href="./#gov-0"', "FIRST BELL"]) {
   if (!civicSelfieHtml.includes(civicSelfieFeature)) errors.push(`Civic Selfie page is missing: ${civicSelfieFeature}`);
+}
+
+for (const backLink of ['href="#home"', 'href="#gov-0"']) {
+  if (!html.includes(backLink)) errors.push(`Course views are missing a back link: ${backLink}`);
 }
 
 for (const fragment of ["<main", "<nav", "Skip to the course", "prefers-reduced-motion"]) {
@@ -177,14 +181,24 @@ const expectedFirstBellAssignments = [
 if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${resource.title}`).join("\n") !== expectedFirstBellAssignments.join("\n")) {
   errors.push("First Bell assignments are missing, mislabeled, or out of lesson order.");
 }
-firstBell?.resources?.forEach(resource => {
+data.units.flatMap(unit => unit.resources || []).forEach(resource => {
   if (typeof config.assignmentUnlocks?.[resource.id] !== "boolean") {
-    errors.push(`First Bell assignment ${resource.id} needs a true or false unlock setting.`);
+    errors.push(`Unit resource ${resource.id} needs a true or false unlock setting.`);
   }
   if (!resource.url && config.assignmentUnlocks?.[resource.id]) {
-    errors.push(`First Bell assignment ${resource.id} cannot be open without a link.`);
+    errors.push(`Unit resource ${resource.id} cannot be open without a link.`);
   }
 });
+const unitOne = data.units.find(unit => unit.id === "gov-1");
+if (unitOne?.resources?.length !== 1 || unitOne.resources[0].id !== "madison-vs-brutus" || unitOne.resources[0].url !== "#madison") {
+  errors.push("Madison vs. Brutus must be a Unit 1 resource.");
+}
+for (const fragment of ['data-view-link="skills"', 'id="skills" data-view="skills"', 'href="#presidents"', 'id="madison" data-view="madison"']) {
+  if (!html.includes(fragment)) errors.push(`Course navigation is missing: ${fragment}`);
+}
+for (const removedFoundationTab of ['data-foundation-tab="skills"', 'data-foundation-tab="madison"']) {
+  if (html.includes(removedFoundationTab)) errors.push(`Foundations still contains the removed tab: ${removedFoundationTab}`);
+}
 const teacherFacingLessonTerms = /\b(CER|retrieval check|constructed response|targeted reteach|reassessment evidence|assessed content|supplied information)\b/i;
 data.units.forEach(unit => unit.lessons.forEach(lesson => {
   if (lesson.some(value => teacherFacingLessonTerms.test(String(value)))) {

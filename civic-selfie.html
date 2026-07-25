@@ -31,6 +31,30 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      min-height: 48px;
+      margin: 1rem 0 0 max(.625rem, calc((100% - 980px) / 2));
+      padding: .7rem 1rem;
+      color: var(--black);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background: var(--stone);
+    }
+
+    .back-button:focus-visible {
+      outline: 4px solid var(--focus);
+      outline-offset: 3px;
+    }
+
     main {
       width: min(100% - 1.25rem, 980px);
       margin: 1.25rem auto 2rem;
@@ -307,6 +331,7 @@
   </style>
 </head>
 <body>
+  <a class="back-button" href="./#gov-0"><span aria-hidden="true">←</span> FIRST BELL</a>
   <main>
     <header class="hero">
       <p class="eyebrow">First Bell · Lesson 0.2</p>

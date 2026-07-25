@@ -44,6 +44,7 @@
       <a href="#units" data-view-link="units">Units</a>
       <a href="#foundations" data-view-link="foundations">Foundations</a>
       <a href="#words" data-view-link="words">Glossary</a>
+      <a href="#skills" data-view-link="skills">Skill Builders</a>
     </nav>
   </header>
 
@@ -117,6 +118,7 @@
     </section>
 
     <section class="view" id="units" data-view="units" hidden>
+      <a class="back-button" href="#home"><span aria-hidden="true">←</span> HOME</a>
       <div class="page-intro">
         <p class="eyebrow">COURSE UNITS</p>
         <h1>COURSE OUTLINE</h1>
@@ -132,16 +134,19 @@
     </section>
 
     <section class="view" id="foundations" data-view="foundations" hidden>
+      <a class="back-button" href="#home"><span aria-hidden="true">←</span> HOME</a>
       <div class="page-intro foundations-intro">
         <p class="eyebrow">USE ANYTIME</p>
         <h1>FOUNDATIONS</h1>
-        <p>Read a key document, find an amendment, or practice a government skill.</p>
+        <p>Read a key document, find an amendment, or explore the presidency.</p>
       </div>
+      <a class="foundation-feature" href="#presidents">
+        <span>PRESIDENTIAL LIBRARY</span>
+        <strong>FORTY-FIVE PEOPLE. ONE OFFICE. THEIR CHOICES STILL ECHO. <span aria-hidden="true">→</span></strong>
+      </a>
       <div class="foundation-tabs" role="tablist" aria-label="Foundations tools">
         <button type="button" role="tab" aria-selected="true" aria-controls="foundation-documents" data-foundation-tab="documents">DOCUMENTS</button>
         <button type="button" role="tab" aria-selected="false" aria-controls="foundation-amendments" data-foundation-tab="amendments">AMENDMENTS</button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="foundation-skills" data-foundation-tab="skills">SKILL BUILDERS</button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="foundation-madison" data-foundation-tab="madison">MADISON VS. BRUTUS</button>
       </div>
 
       <section class="foundation-panel" id="foundation-documents" role="tabpanel">
@@ -155,20 +160,10 @@
         <div class="amendment-grid" id="amendment-grid"></div>
       </section>
 
-      <section class="foundation-panel" id="foundation-skills" role="tabpanel" hidden>
-        <div class="tool-heading"><div><p class="eyebrow">THREE CORE SKILLS</p><h2>SKILL BUILDERS</h2></div><p>START HERE · TRY IT · USE IT</p></div>
-        <div class="skills-grid" id="skills-grid"></div>
-        <div class="skill-workspace" id="skill-workspace" hidden></div>
-      </section>
-
-      <section class="foundation-panel" id="foundation-madison" role="tabpanel" hidden>
-        <div class="tool-heading"><div><p class="eyebrow">CONSTITUTIONAL DEBATE</p><h2>MADISON VS. BRUTUS</h2></div><p>READ TWO VIEWS. CHOOSE. DEFEND.</p></div>
-        <div class="madison-topics" id="madison-topics"></div>
-        <article class="madison-workspace" id="madison-workspace"></article>
-      </section>
     </section>
 
     <section class="view" id="words" data-view="words" hidden>
+      <a class="back-button" href="#home"><span aria-hidden="true">←</span> HOME</a>
       <div class="page-intro">
         <p class="eyebrow">COURSE GLOSSARY</p>
         <h1>GOVERNMENT WORDS, PLAIN LANGUAGE.</h1>
@@ -186,7 +181,30 @@
       <div class="word-grid" id="word-grid"></div>
     </section>
 
+    <section class="view" id="skills" data-view="skills" hidden>
+      <a class="back-button" href="#home"><span aria-hidden="true">←</span> HOME</a>
+      <div class="page-intro">
+        <p class="eyebrow">PRACTICE SPACE</p>
+        <h1>SKILL BUILDERS</h1>
+        <p>START HERE. TRY IT. USE IT.</p>
+      </div>
+      <div class="skills-grid" id="skills-grid"></div>
+      <div class="skill-workspace" id="skill-workspace" hidden></div>
+    </section>
+
+    <section class="view" id="madison" data-view="madison" hidden>
+      <a class="back-button" href="#gov-1"><span aria-hidden="true">←</span> UNIT 1</a>
+      <div class="page-intro">
+        <p class="eyebrow">UNIT 1 · CONSTITUTIONAL DEBATE</p>
+        <h1>MADISON VS. BRUTUS</h1>
+        <p>READ TWO VIEWS. CHOOSE. DEFEND.</p>
+      </div>
+      <div class="madison-topics" id="madison-topics"></div>
+      <article class="madison-workspace" id="madison-workspace"></article>
+    </section>
+
     <section class="view" id="presidents" data-view="presidents" hidden>
+      <a class="back-button" href="#gov-0"><span aria-hidden="true">←</span> FIRST BELL</a>
       <div class="page-intro">
         <p class="eyebrow">PORTRAIT DAY</p>
         <h1>PRESIDENTIAL LIBRARY.</h1>
@@ -201,6 +219,7 @@
     </section>
 
     <section class="view" id="help" data-view="help" hidden>
+      <a class="back-button" href="#home"><span aria-hidden="true">←</span> HOME</a>
       <div class="page-intro">
         <p class="eyebrow">Reading support</p>
         <h1>WHEN THE WORK FEELS STUCK.</h1>
@@ -261,12 +280,12 @@
           <button type="button" class="admin-add" id="admin-add-upcoming">+ ADD ASSIGNMENT</button>
         </fieldset>
         <fieldset>
-          <legend>FIRST BELL ASSIGNMENT CARDS</legend>
+          <legend>UNIT RESOURCE CARDS</legend>
           <p class="admin-foundation-note">CHECK A LINKED CARD TO OPEN IT FOR STUDENTS.</p>
           <div id="admin-assignment-unlocks"></div>
         </fieldset>
         <fieldset>
-          <legend>FOUNDATIONS SKILL LEVELS</legend>
+          <legend>SKILL BUILDER LEVELS</legend>
           <p class="admin-foundation-note">ALL LEVELS OPEN BY DEFAULT. ADJUST ONLY IF THIS CLASS NEEDS A SMALLER START.</p>
           <div id="admin-foundation-unlocks"></div>
         </fieldset>
