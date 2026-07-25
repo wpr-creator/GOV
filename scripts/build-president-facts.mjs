@@ -146,6 +146,82 @@ const quote = (text, sourceUrl = inauguralArchive, sourceLabel = "PRIMARY SOURCE
 // plus a few profile quotations that were too weak or misleading for students.
 // Wording is preserved from the cited presidential document.
 const curatedQuoteOverrides = {
+  "George Washington": [
+    quote("The basis of our political systems is the right of the people to make and to alter their constitutions of government.", "https://www.presidency.ucsb.edu/documents/farewell-address"),
+    quote("The Constitution which at any time exists, till changed by an explicit and authentic act of the whole people, is sacredly obligatory upon all.", "https://www.presidency.ucsb.edu/documents/farewell-address")
+  ],
+  "John Adams": [
+    quote("A government of laws, and not of men.", "https://malegislature.gov/Laws/Constitution", "MASSACHUSETTS CONSTITUTION"),
+    quote("May none but honest and wise men ever rule under this roof.", "https://founders.archives.gov/documents/Adams/04-14-02-0198", "FOUNDERS ONLINE")
+  ],
+  "James Madison": [
+    quote("If men were angels, no government would be necessary.", "https://guides.loc.gov/federalist-papers/text-51-60#s-lg-box-wrapper-25493427", "LIBRARY OF CONGRESS"),
+    quote("Justice is the end of government. It is the end of civil society.", "https://guides.loc.gov/federalist-papers/text-51-60#s-lg-box-wrapper-25493427", "LIBRARY OF CONGRESS")
+  ],
+  "Martin Van Buren": [
+    quote("I bring with me a settled purpose to maintain the institutions of my country.", "https://www.presidency.ucsb.edu/documents/inaugural-address-28"),
+    quote("Conscious of but one desire, faithfully to serve my country, I throw myself without fear on its justice and its kindness.", "https://www.presidency.ucsb.edu/documents/inaugural-address-28")
+  ],
+  "James K. Polk": [
+    quote("The Constitution itself...will be the chart by which I shall be directed.", "https://www.presidency.ucsb.edu/documents/inaugural-address-30"),
+    quote("The Government of the United States is one of delegated and limited powers.", "https://www.presidency.ucsb.edu/documents/inaugural-address-30")
+  ],
+  "Millard Fillmore": [
+    quote("The Constitution has made it the duty of the President to take care that the laws be faithfully executed.", "https://www.presidency.ucsb.edu/documents/first-annual-message-7"),
+    quote("In a government like ours, all laws are passed by a majority of the representatives of the people.", "https://www.presidency.ucsb.edu/documents/first-annual-message-7")
+  ],
+  "Ulysses S. Grant": [
+    quote("Let us have peace.", "https://www.loc.gov/resource/rbpe.20802000/?st=text", "LIBRARY OF CONGRESS"),
+    quote("The question of suffrage is one which is likely to agitate the public so long as a portion of the citizens of the nation are excluded from its privileges.", "https://www.presidency.ucsb.edu/documents/second-inaugural-address-1")
+  ],
+  "James A. Garfield": [
+    quote("The Constitution guarantees absolute religious freedom.", "https://www.presidency.ucsb.edu/documents/inaugural-address-40"),
+    quote("The elevation of the Negro race from slavery to the full rights of citizenship is the most important political change we have known since the adoption of the Constitution.", "https://www.presidency.ucsb.edu/documents/inaugural-address-40")
+  ],
+  "Grover Cleveland": [
+    quote("Public office is a public trust.", "https://www.presidency.ucsb.edu/documents/message-accepting-the-resignation-secretary-the-treasury-daniel-manning"),
+    quote("He mocks the people who proposes that the Government shall protect the rich and that they in turn will care for the laboring poor.", "https://www.presidency.ucsb.edu/documents/veto-the-texas-seed-bill")
+  ],
+  "William McKinley": [
+    quote("Our differences are policies; our agreements, principles.", "https://www.presidency.ucsb.edu/documents/inaugural-address-43"),
+    quote("The people themselves, not their servants, can safely reverse their own deliberate judgment.", "https://www.presidency.ucsb.edu/documents/inaugural-address-43")
+  ],
+  "Theodore Roosevelt": [
+    quote("The first requisite of a good citizen in this Republic of ours is that he shall be able and willing to pull his weight.", "https://www.presidency.ucsb.edu/documents/remarks-new-york-city-the-occasion-the-unveiling-the-bust-philip-sheridan"),
+    quote("Speak softly and carry a big stick; you will go far.", "https://www.loc.gov/pictures/item/2011649384/", "LIBRARY OF CONGRESS")
+  ],
+  "William Howard Taft": [
+    quote("Our international policy is always to promote peace.", "https://www.presidency.ucsb.edu/documents/inaugural-address-44"),
+    quote("The welfare of the farmer is vital to that of the whole country.", "https://www.presidency.ucsb.edu/documents/executive-order-1146-establishing-the-country-life-commission")
+  ],
+  "Warren G. Harding": [
+    quote("America's present need is not heroics, but healing; not nostrums, but normalcy; not revolution, but restoration.", "https://www.presidency.ucsb.edu/documents/address-home-market-club-boston-massachusetts"),
+    quote("I accept my part with single-mindedness of purpose and humility of spirit.", "https://www.presidency.ucsb.edu/documents/inaugural-address-48")
+  ],
+  "Calvin Coolidge": [
+    quote("The chief business of the American people is business.", "https://www.presidency.ucsb.edu/documents/address-the-american-society-newspaper-editors-washington-dc"),
+    quote("The government of a country never gets ahead of the religion of a country.", "https://www.loc.gov/resource/coolidge.1925.0001/?sp=1", "LIBRARY OF CONGRESS")
+  ],
+  "Herbert Hoover": [
+    quote("Absolute freedom of the press to discuss public questions is a foundation stone of American liberty.", "https://www.presidency.ucsb.edu/documents/statement-the-freedom-the-press"),
+    quote("We in America today are nearer to the final triumph over poverty than ever before in the history of any land.", "https://www.presidency.ucsb.edu/documents/address-accepting-the-republican-presidential-nomination")
+  ],
+  "Harry S. Truman": [
+    quote("The buck stops here.", "https://www.trumanlibrary.gov/education/trivia/buck-stops-here-sign", "TRUMAN LIBRARY"),
+    quote("Democracy is based on the conviction that man has the moral and intellectual capacity, as well as the inalienable right, to govern himself with reason and justice.", "https://www.presidency.ucsb.edu/documents/inaugural-address-4")
+  ],
+  "Lyndon B. Johnson": [
+    quote("We shall overcome.", "https://www.presidency.ucsb.edu/documents/special-message-the-congress-the-american-promise"),
+    quote("The vote is the most powerful instrument ever devised by man for breaking down injustice.", "https://www.presidency.ucsb.edu/documents/remarks-the-signing-the-voting-rights-act")
+  ],
+  "Gerald Ford": [
+    quote("Our long national nightmare is over.", "https://www.presidency.ucsb.edu/documents/remarks-taking-the-oath-office"),
+    quote("Our Constitution works; our great Republic is a government of laws and not of men.", "https://www.presidency.ucsb.edu/documents/remarks-taking-the-oath-office")
+  ],
+  "George W. Bush": [
+    quote("Freedom itself was attacked this morning by a faceless coward, and freedom will be defended.", "https://georgewbush-whitehouse.archives.gov/news/releases/2001/09/20010911.html", "WHITE HOUSE ARCHIVE"),
+    quote("America has never been united by blood or birth or soil. We are bound by ideals that move us beyond our backgrounds.", "https://www.presidency.ucsb.edu/documents/inaugural-address-52")
+  ],
   "Thomas Jefferson": [
     quote("We hold these truths to be self-evident, that all men are created equal.", "https://www.archives.gov/founding-docs/declaration-transcript", "NATIONAL ARCHIVES"),
     quote("Governments are instituted among Men, deriving their just powers from the consent of the governed.", "https://www.archives.gov/founding-docs/declaration-transcript", "NATIONAL ARCHIVES")
@@ -369,7 +445,6 @@ async function buildCard(portrait) {
   const profileUrl = `https://ourwhitehouse.org/${profileSlug}/`;
   const html = await fetchProfile(profileUrl);
   const table = tableValues(html);
-  const profileQuotes = chooseQuotes(html).map(text => quote(text, profileUrl, "QUOTE SOURCE"));
   const termOverrides = {
     "Grover Cleveland": "1885–1889; 1893–1897",
     "George W. Bush": "2001–2009",
@@ -390,7 +465,7 @@ async function buildCard(portrait) {
     education: extra.education,
     careerBeforePresidency: careerOverrides[portrait.name] || table.career,
     keyAccomplishments: extra.accomplishments.map(studentActionLabel),
-    importantQuotes: curatedQuoteOverrides[portrait.name] || profileQuotes,
+    importantQuotes: curatedQuoteOverrides[portrait.name],
     presentDayConnection: presentDayConnections[portrait.name] || null,
     sources: {
       biographyAndQuote: profileUrl,
@@ -399,6 +474,9 @@ async function buildCard(portrait) {
       portrait: portrait.commonsPage
     }
   };
+  if (!card.importantQuotes) {
+    throw new Error(`Missing deliberately selected civic quotations for ${portrait.name}`);
+  }
   console.log(`✓ ${portrait.name}`);
   return card;
 }
