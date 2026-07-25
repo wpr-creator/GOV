@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="agreement" viewBox="0 0 160 120">
+    <path d="M55 43h50v57H55zM67 58h26M67 70h26M67 82h18" fill="none" stroke="currentColor" stroke-width="6"/>
+    <path d="M18 48l25-13 20 16-17 15-14-8-14 11M142 48l-25-13-20 16 17 15 14-8 14 11" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="rights" viewBox="0 0 160 120">
+    <circle cx="80" cy="38" r="14" fill="none" stroke="currentColor" stroke-width="7"/>
+    <path d="M54 94c2-25 10-38 26-38s24 13 26 38M80 105c31-10 46-30 46-61L80 25 34 44c0 31 15 51 46 61z" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="liberty" viewBox="0 0 160 120">
+    <path d="M45 105V20h60v85M65 105V42h40v63M105 42l24-11v63l-24 11" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M17 63h29M25 48L10 63l15 15" fill="none" stroke="currentColor" stroke-width="7"/>
+  </symbol>
+  <symbol id="vote" viewBox="0 0 160 120">
+    <path d="M40 50h80l14 55H26zM51 50l8-21h42l8 21" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M65 64h30M60 16h40" fill="none" stroke="currentColor" stroke-width="7"/>
+  </symbol>
+  <symbol id="belief" viewBox="0 0 160 120">
+    <circle cx="80" cy="60" r="45" fill="none" stroke="currentColor" stroke-width="7"/>
+    <circle cx="50" cy="60" r="8" fill="currentColor"/>
+    <path d="M80 45v30M65 60h30M110 50l12 20h-24z" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="checks" viewBox="0 0 160 120">
+    <path d="M22 99h116M31 91h30M65 91h30M99 91h30M37 44v47M55 44v47M71 44v47M89 44v47M105 44v47M123 44v47M21 36h118L80 14z" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M53 64h54M80 54v20" fill="none" stroke="currentColor" stroke-width="6"/>
+  </symbol>
+</svg>
