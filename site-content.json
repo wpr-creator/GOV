@@ -33,7 +33,8 @@
     "constitution-explorer": true,
     "madison-vs-brutus": true,
     "california-ballot-2026": true,
-    "rights-referee": true
+    "rights-referee": true,
+    "presidential-power": true
   },
   "assignmentUrls": {
     "classroom": "https://classroom.google.com/c/ODcxMDI4ODY2NDUy",
@@ -50,7 +51,8 @@
     "constitution-explorer": "#constitution-explorer",
     "madison-vs-brutus": "#madison",
     "california-ballot-2026": "#election-2026",
-    "rights-referee": "#rights-referee"
+    "rights-referee": "#rights-referee",
+    "presidential-power": "#presidential-power"
   },
   "foundationUnlocks": {
     "source": 3,

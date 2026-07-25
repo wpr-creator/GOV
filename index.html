@@ -29,6 +29,7 @@
   <script src="constitution-explorer-data.js" defer></script>
   <script src="rights-referee-data.js" defer></script>
   <script src="election-2026-data.js" defer></script>
+  <script src="presidential-power-data.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -240,6 +241,19 @@
         <p>THE RACES AND PROPOSITIONS ON THIS YEAR’S BALLOT.</p>
       </div>
       <div id="election-2026-content"></div>
+    </section>
+
+    <section class="view" id="presidential-power" data-view="presidential-power" hidden>
+      <a class="back-button" href="#gov-4"><span aria-hidden="true">←</span> UNIT 4</a>
+      <div class="page-intro">
+        <p class="eyebrow">UNIT 4 · CHECKS AND BALANCES</p>
+        <h1>CAN THE PRESIDENT DO THAT?</h1>
+        <p>MAKE THE CALL. THEN SEE WHO CAN CHECK THE PRESIDENT.</p>
+      </div>
+      <section class="presidential-power" aria-labelledby="power-question">
+        <p class="explorer-progress" id="power-progress"></p>
+        <div id="power-workspace"></div>
+      </section>
     </section>
 
     <section class="view" id="presidents" data-view="presidents" hidden>

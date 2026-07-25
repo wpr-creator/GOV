@@ -316,6 +316,23 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .rights-options button:hover:not(:disabled), .rights-options button[data-answer="correct"] { color: var(--white); background: var(--black); }
 .rights-options button[data-answer="selected"] { text-decoration: line-through; background: var(--paper); }
 .rights-referee .explorer-feedback a { display: inline-block; margin-top: .8rem; color: var(--black); font-size: .74rem; font-weight: 950; }
+.presidential-power { max-width: 940px; padding: clamp(1rem, 4vw, 2rem); background: var(--stone); border: 1px solid var(--line); }
+.power-case { display: grid; grid-template-columns: minmax(190px, 32%) 1fr; background: var(--white); border-top: 8px solid var(--black); }
+.power-case > svg { width: 100%; align-self: center; padding: 1.2rem; color: var(--black); }
+.power-case > div { padding: clamp(1rem, 3vw, 1.7rem); }
+.power-action { margin: .6rem 0 1rem; font-size: 1.02rem; font-weight: 650; line-height: 1.5; }
+.power-case h2 { margin: 0 0 .8rem; font-size: clamp(1.25rem, 3vw, 1.75rem); }
+.power-options { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+.power-options button { min-height: 58px; border: 2px solid var(--black); background: var(--white); cursor: pointer; font-weight: 950; }
+.power-options button:hover:not(:disabled), .power-options button[data-answer="correct"] { color: var(--white); background: var(--black); }
+.power-options button[data-answer="selected"] { text-decoration: line-through; background: var(--paper); }
+.power-feedback { margin-top: 1rem; padding: 1.2rem; background: var(--white); border-left: 8px solid var(--black); }
+.power-feedback > strong { display: block; margin-bottom: .6rem; font-size: 1.15rem; }
+.power-feedback > p { font-weight: 650; line-height: 1.5; }
+.power-feedback > a { display: inline-block; margin-top: .8rem; color: var(--black); font-size: .74rem; font-weight: 950; }
+.power-limits { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+.power-limits p { margin: 0; padding: .8rem; background: var(--stone); font-size: .82rem; font-weight: 650; }
+.power-limits b { display: block; margin-bottom: .35rem; font-size: .7rem; letter-spacing: .08em; }
 .ballot-header { margin-bottom: 1rem; padding: clamp(1.3rem, 4vw, 2.2rem); display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; color: var(--white); background: var(--black); border-bottom: 10px solid var(--slate); }
 .ballot-header h2 { margin: 0; font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
 .ballot-header .eyebrow { color: var(--stone); }
@@ -420,6 +437,8 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .explorer-options { grid-template-columns: 1fr; }
   .rights-case { grid-template-columns: 1fr; }
   .rights-case > svg { max-width: 220px; justify-self: center; padding-bottom: 0; }
+  .power-case { grid-template-columns: 1fr; }
+  .power-case > svg { max-width: 220px; justify-self: center; padding-bottom: 0; }
   .ballot-header, .race-grid, .proposition-grid { grid-template-columns: 1fr; }
   .ballot-location { align-items: flex-start; flex-direction: column; }
   .madison-side p { min-height: auto; }
@@ -439,6 +458,7 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .lesson { grid-template-columns: 1fr; }
   .lesson details, .standard-tag { grid-column: 1; }
   .ballot-header dl, .candidate-list, .proposition-choices { grid-template-columns: 1fr; }
+  .power-options, .power-limits { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
