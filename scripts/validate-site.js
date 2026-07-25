@@ -12,12 +12,14 @@ const context = { window: {} };
 vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, "course-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "foundations-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "constitution-explorer-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
+const explorerSituations = context.window.CONSTITUTION_EXPLORER_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png"]) {
+for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -189,15 +191,31 @@ data.units.flatMap(unit => unit.resources || []).forEach(resource => {
     errors.push(`Unit resource ${resource.id} cannot be open without a link.`);
   }
 });
-const unitOne = data.units.find(unit => unit.id === "gov-1");
-if (unitOne?.resources?.length !== 1 || unitOne.resources[0].id !== "madison-vs-brutus" || unitOne.resources[0].url !== "#madison") {
-  errors.push("Madison vs. Brutus must be a Unit 1 resource.");
+const unitTwo = data.units.find(unit => unit.id === "gov-2");
+if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "constitution-explorer|madison-vs-brutus") {
+  errors.push("Unit 2 must include Constitution Explorer and Madison vs. Brutus.");
 }
 for (const fragment of ['data-view-link="skills"', 'id="skills" data-view="skills"', 'href="#presidents"', 'id="madison" data-view="madison"']) {
   if (!html.includes(fragment)) errors.push(`Course navigation is missing: ${fragment}`);
 }
 for (const removedFoundationTab of ['data-foundation-tab="skills"', 'data-foundation-tab="madison"']) {
   if (html.includes(removedFoundationTab)) errors.push(`Foundations still contains the removed tab: ${removedFoundationTab}`);
+}
+for (const unitSourceFeature of ["UNIT SOURCES", "unit-source-grid", "BILL OF RIGHTS · AMENDMENTS 1–10", 'href="#gov-2"']) {
+  const source = unitSourceFeature === 'href="#gov-2"' ? html : fs.readFileSync(path.join(root, unitSourceFeature === "unit-source-grid" ? "styles.css" : "app.js"), "utf8");
+  if (!source.includes(unitSourceFeature)) errors.push(`Unit source shelf is missing: ${unitSourceFeature}`);
+}
+if (!Array.isArray(explorerSituations) || explorerSituations.length !== 6) {
+  errors.push(`Expected 6 Constitution Explorer situations; found ${explorerSituations?.length || 0}.`);
+}
+explorerSituations?.forEach((situation, index) => {
+  if (!situation.situation || !situation.question || situation.options?.length !== 4 || !Number.isInteger(situation.answer) || !situation.power || !situation.check || !situation.source) {
+    errors.push(`Constitution Explorer situation ${index + 1} is incomplete.`);
+  }
+});
+for (const explorerFeature of ['id="constitution-explorer" data-view="constitution-explorer"', "CONSTITUTION EXPLORER", "explorer-feedback"]) {
+  const source = explorerFeature === "explorer-feedback" ? fs.readFileSync(path.join(root, "styles.css"), "utf8") : html;
+  if (!source.includes(explorerFeature)) errors.push(`Constitution Explorer is missing: ${explorerFeature}`);
 }
 const teacherFacingLessonTerms = /\b(CER|retrieval check|constructed response|targeted reteach|reassessment evidence|assessed content|supplied information)\b/i;
 data.units.forEach(unit => unit.lessons.forEach(lesson => {

@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="course-data.js" defer></script>
   <script src="foundations-data.js" defer></script>
+  <script src="constitution-explorer-data.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -193,14 +194,27 @@
     </section>
 
     <section class="view" id="madison" data-view="madison" hidden>
-      <a class="back-button" href="#gov-1"><span aria-hidden="true">←</span> UNIT 1</a>
+      <a class="back-button" href="#gov-2"><span aria-hidden="true">←</span> UNIT 2</a>
       <div class="page-intro">
-        <p class="eyebrow">UNIT 1 · CONSTITUTIONAL DEBATE</p>
+        <p class="eyebrow">UNIT 2 · CONSTITUTIONAL DEBATE</p>
         <h1>MADISON VS. BRUTUS</h1>
         <p>READ TWO VIEWS. CHOOSE. DEFEND.</p>
       </div>
       <div class="madison-topics" id="madison-topics"></div>
       <article class="madison-workspace" id="madison-workspace"></article>
+    </section>
+
+    <section class="view" id="constitution-explorer" data-view="constitution-explorer" hidden>
+      <a class="back-button" href="#gov-2"><span aria-hidden="true">←</span> UNIT 2</a>
+      <div class="page-intro">
+        <p class="eyebrow">UNIT 2</p>
+        <h1>CONSTITUTION EXPLORER</h1>
+        <p>READ THE SITUATION. CHOOSE WHO ACTS. THEN SEE WHAT LIMITS THAT POWER.</p>
+      </div>
+      <section class="explorer" aria-labelledby="explorer-question">
+        <p class="explorer-progress" id="explorer-progress"></p>
+        <div id="explorer-workspace"></div>
+      </section>
     </section>
 
     <section class="view" id="presidents" data-view="presidents" hidden>
