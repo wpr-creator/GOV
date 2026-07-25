@@ -13,13 +13,15 @@ vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, "course-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "foundations-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "constitution-explorer-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "rights-referee-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
 const explorerSituations = context.window.CONSTITUTION_EXPLORER_DATA;
+const rightsCases = context.window.RIGHTS_REFEREE_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png"]) {
+for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/cases/rights-referee-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -216,6 +218,22 @@ explorerSituations?.forEach((situation, index) => {
 for (const explorerFeature of ['id="constitution-explorer" data-view="constitution-explorer"', "CONSTITUTION EXPLORER", "explorer-feedback"]) {
   const source = explorerFeature === "explorer-feedback" ? fs.readFileSync(path.join(root, "styles.css"), "utf8") : html;
   if (!source.includes(explorerFeature)) errors.push(`Constitution Explorer is missing: ${explorerFeature}`);
+}
+if (!Array.isArray(rightsCases) || rightsCases.length !== 6) errors.push(`Expected 6 Rights Referee cases; found ${rightsCases?.length || 0}.`);
+rightsCases?.forEach((caseData, index) => {
+  for (const key of ["caseName", "year", "icon", "iconAlt", "facts", "question", "ruling", "keyFact", "amendment", "source"]) {
+    if (!caseData[key]) errors.push(`Rights Referee case ${index + 1} is missing ${key}.`);
+  }
+  if (caseData.options?.length !== 2 || !Number.isInteger(caseData.answer) || !/^https:\/\//.test(caseData.source || "")) {
+    errors.push(`Rights Referee case ${index + 1} has incomplete choices or source.`);
+  }
+});
+if (data.units.find(unit => unit.id === "gov-5")?.resources?.[0]?.id !== "rights-referee") {
+  errors.push("Rights Referee must be a Unit 5 resource.");
+}
+for (const rightsFeature of ['id="rights-referee" data-view="rights-referee"', "RIGHTS REFEREE", "rights-referee-icons.svg"]) {
+  const source = rightsFeature === "rights-referee-icons.svg" ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
+  if (!source.includes(rightsFeature)) errors.push(`Rights Referee is missing: ${rightsFeature}`);
 }
 const teacherFacingLessonTerms = /\b(CER|retrieval check|constructed response|targeted reteach|reassessment evidence|assessed content|supplied information)\b/i;
 data.units.forEach(unit => unit.lessons.forEach(lesson => {

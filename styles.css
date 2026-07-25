@@ -305,6 +305,17 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .explorer-next { margin-top: 1rem; color: var(--white); background: var(--black); }
 .explorer-finish { padding: clamp(1.2rem, 4vw, 2rem); background: var(--white); border-top: 8px solid var(--black); }
 .explorer-finish h2 { margin-top: 0; }
+.rights-referee { max-width: 940px; padding: clamp(1rem, 4vw, 2rem); background: var(--stone); border: 1px solid var(--line); }
+.rights-case { display: grid; grid-template-columns: minmax(180px, 32%) 1fr; background: var(--white); border-top: 8px solid var(--black); }
+.rights-case > svg { width: 100%; align-self: center; padding: 1.2rem; color: var(--black); }
+.rights-case > div { padding: clamp(1rem, 3vw, 1.7rem); }
+.rights-facts { margin: .6rem 0 1rem; font-size: 1.02rem; font-weight: 650; line-height: 1.5; }
+.rights-case h2 { margin: 0 0 .8rem; font-size: clamp(1.25rem, 3vw, 1.75rem); }
+.rights-options { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+.rights-options button { min-height: 58px; border: 2px solid var(--black); background: var(--white); cursor: pointer; font-weight: 950; }
+.rights-options button:hover:not(:disabled), .rights-options button[data-answer="correct"] { color: var(--white); background: var(--black); }
+.rights-options button[data-answer="selected"] { text-decoration: line-through; background: var(--paper); }
+.rights-referee .explorer-feedback a { display: inline-block; margin-top: .8rem; color: var(--black); font-size: .74rem; font-weight: 950; }
 .admin-foundation-note { margin: 0; color: var(--muted); font-size: .72rem; font-weight: 650; }
 .admin-unlock-row { margin-top: .7rem; grid-template-columns: 1fr 190px; align-items: center; }
 .admin-assignment-unlock-row { grid-template-columns: auto 1fr; }
@@ -357,6 +368,8 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .tool-heading > p { text-align: left; }
   .document-grid, .skills-grid, .madison-sides { grid-template-columns: 1fr; }
   .explorer-options { grid-template-columns: 1fr; }
+  .rights-case { grid-template-columns: 1fr; }
+  .rights-case > svg { max-width: 220px; justify-self: center; padding-bottom: 0; }
   .madison-side p { min-height: auto; }
   .admin-unlock-row { grid-template-columns: 1fr; }
   footer { flex-direction: column; }
