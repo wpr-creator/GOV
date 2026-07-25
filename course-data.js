@@ -129,6 +129,14 @@ window.COURSE_DATA = {
         ["Ways to Participate", "How can people influence government besides voting?", "Gov 12.6.4", "Compare campaigning, lobbying, legal challenges, demonstrations, petitions, picketing, and running for office.", "Choose an effective action for an issue"],
         ["Direct Democracy", "When should voters decide a policy themselves?", "Gov 12.6.5", "Examine initiatives, referendums, and recall elections.", "Decide when direct democracy works best"],
         ["Representation and Voting", "Do election rules give every voter a fair voice?", "Gov 12.6.6", "Examine voter turnout, district maps, minority voting rights, and the Electoral College.", "Use election evidence to defend a position"]
+      ],
+      resources: [
+        {
+          id: "california-ballot-2026",
+          lesson: "UNIT 3 EXTENSION",
+          title: "2026 CALIFORNIA BALLOT",
+          url: "#election-2026"
+        }
       ]
     },
     {
