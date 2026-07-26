@@ -52,27 +52,31 @@
       font-size: clamp(3rem, 8vw, 5.5rem); line-height: .88;
       letter-spacing: -.045em; text-transform: uppercase;
     }
-    .dek {
-      position: relative; z-index: 1; max-width: 650px; margin: 1rem 0 0;
-      color: var(--stone); font-size: clamp(1rem, 2.5vw, 1.25rem);
-      font-weight: 700; line-height: 1.45;
-    }
-    .directions { padding: clamp(1rem, 4vw, 2.25rem); background: var(--stone); }
     h2 {
       margin: 0 0 .8rem; font-family: "Arial Black", Impact, Arial, sans-serif;
       font-size: clamp(1.35rem, 4vw, 2rem); letter-spacing: -.02em; text-transform: uppercase;
     }
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
-    .step {
-      min-height: 135px; padding: 1rem; background: var(--white);
-      border-top: 7px solid var(--black);
+    .resources-section, .examples-section, .back-section { padding: clamp(1rem, 4vw, 2.25rem); }
+    .resources-section { background: var(--stone); }
+    .resource-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem;
     }
-    .step strong {
-      display: block; margin-bottom: .6rem; font-family: "Arial Black", Impact, Arial, sans-serif;
-      font-size: 2rem; line-height: 1;
+    .resource-card {
+      min-height: 150px; padding: clamp(1.15rem, 3vw, 1.75rem);
+      display: flex; flex-direction: column; justify-content: center;
+      color: var(--white); background: var(--black); border-top: 8px solid var(--slate);
+      text-decoration: none;
     }
-    .step span { font-size: .98rem; font-weight: 750; line-height: 1.4; }
-    .examples-section, .back-section { padding: clamp(1rem, 4vw, 2.25rem); }
+    .resource-card strong {
+      margin: .55rem 0; font-family: "Arial Black", Impact, Arial, sans-serif;
+      font-size: clamp(1.55rem, 4vw, 2.35rem); line-height: .96; text-transform: uppercase;
+    }
+    .resource-card span:last-child { font-weight: 750; line-height: 1.4; }
+    .resource-card[href]:hover { background: var(--charcoal); }
+    .resource-card.coming-soon {
+      color: var(--black); background: var(--white); border: 1px dashed var(--slate);
+      border-top: 8px solid var(--slate);
+    }
     .section-intro {
       max-width: 720px; margin: -.3rem 0 1rem; color: var(--slate);
       font-weight: 750; line-height: 1.45;
@@ -92,34 +96,14 @@
       object-fit: contain; background: var(--white);
     }
     .back-section { background: var(--paper); border-top: 1px solid var(--line); }
-    .back-layout {
-      display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
-      gap: 1rem; align-items: stretch;
-    }
-    .checklist, .library-card {
-      padding: clamp(1.15rem, 3vw, 1.75rem); background: var(--white); border: 1px solid var(--line);
-    }
+    .checklist { padding: clamp(1.15rem, 3vw, 1.75rem); background: var(--white); border: 1px solid var(--line); }
     .checklist ul { margin: 0; padding-left: 1.25rem; columns: 2; column-gap: 2rem; }
     .checklist li {
       margin: 0 0 .75rem; padding-left: .15rem; break-inside: avoid;
       font-weight: 750; line-height: 1.35;
     }
-    .library-card {
-      display: flex; flex-direction: column; justify-content: center; color: var(--white);
-      background: var(--black); border-top: 8px solid var(--slate); text-decoration: none;
-    }
-    .library-card .label {
-      color: var(--stone); font-size: .75rem; font-weight: 900;
-      letter-spacing: .12em; text-transform: uppercase;
-    }
-    .library-card strong {
-      margin: .6rem 0; font-family: "Arial Black", Impact, Arial, sans-serif;
-      font-size: clamp(1.7rem, 4vw, 2.6rem); line-height: .96; text-transform: uppercase;
-    }
-    .library-card span:last-child { font-weight: 750; line-height: 1.4; }
-    .library-card:hover { background: var(--charcoal); }
     @media (max-width: 760px) {
-      .steps, .examples, .back-layout { grid-template-columns: 1fr; }
+      .resource-grid, .examples { grid-template-columns: 1fr; }
       .checklist ul { columns: 1; }
       .hero::after { display: none; }
       h1 { font-size: clamp(2.1rem, 9.5vw, 3rem); }
@@ -133,7 +117,7 @@
       main { width: auto; margin: 0; border: 0; box-shadow: none; }
       .hero { padding: .3in; }
       .hero::after { display: none; }
-      .directions, .examples-section, .back-section { padding: .2in; }
+      .resources-section, .examples-section, .back-section { padding: .2in; }
       figure img { max-height: 6.8in; }
     }
   </style>
@@ -144,21 +128,24 @@
     <header class="hero">
       <p class="eyebrow">FIRST BELL · 0.4 PORTRAIT DAY</p>
       <h1>THE PRESIDENTIAL YEARBOOK</h1>
-      <p class="dek">Create a front and back page for your assigned president. Your page will become part of our classroom display.</p>
     </header>
 
-    <section class="directions" aria-labelledby="directions-title">
-      <h2 id="directions-title">DIRECTIONS</h2>
-      <div class="steps">
-        <div class="step"><strong>01</strong><span>Use one sheet of 8.5 × 11 paper. Keep it vertical.</span></div>
-        <div class="step"><strong>02</strong><span>Put the president’s name, number, and years in office at the top.</span></div>
-        <div class="step"><strong>03</strong><span>Choose one design for the front. Complete the required facts on the back.</span></div>
+    <section class="resources-section" aria-label="Assignment resources">
+      <div class="resource-grid">
+        <div class="resource-card coming-soon">
+          <strong>ASSIGNED PRESIDENTS</strong>
+          <span>COMING SOON</span>
+        </div>
+        <a class="resource-card" href="./#presidents">
+          <strong>PRESIDENTIAL LIBRARY</strong>
+          <span>OPEN FACTS AND QUOTES</span>
+        </a>
       </div>
     </section>
 
     <section class="examples-section" aria-labelledby="examples-title">
-      <h2 id="examples-title">CHOOSE ONE FRONT</h2>
-      <p class="section-intro">Use the examples to understand the layout. Create your own design for your assigned president.</p>
+      <h2 id="examples-title">CHOOSE A STYLE</h2>
+      <p class="section-intro">Put the president’s name, number, and years in office at the top.</p>
       <div class="examples">
         <figure>
           <figcaption>OPTION A · COLOR PORTRAIT</figcaption>
@@ -173,22 +160,15 @@
 
     <section class="back-section" aria-labelledby="back-title">
       <h2 id="back-title">EVERYONE COMPLETES THE BACK</h2>
-      <div class="back-layout">
-        <div class="checklist">
-          <ul>
-            <li>State where the president was born</li>
-            <li>Religion or religious tradition</li>
-            <li>Education</li>
-            <li>Career before the presidency</li>
-            <li>Key accomplishments as president</li>
-            <li>One important quote about politics or civic life</li>
-          </ul>
-        </div>
-        <a class="library-card" href="./#presidents">
-          <span class="label">FACTS FOR YOUR ASSIGNMENT</span>
-          <strong>PRESIDENTIAL LIBRARY</strong>
-          <span>Find your assigned president’s information and choose from verified quotes.</span>
-        </a>
+      <div class="checklist">
+        <ul>
+          <li>BIRTH STATE</li>
+          <li>RELIGION OR TRADITION</li>
+          <li>EDUCATION</li>
+          <li>CAREER BEFORE THE PRESIDENCY</li>
+          <li>KEY ACCOMPLISHMENTS</li>
+          <li>ONE QUOTE ABOUT POLITICS OR CIVIC LIFE</li>
+        </ul>
       </div>
     </section>
   </main>
