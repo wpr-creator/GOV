@@ -102,8 +102,45 @@
       margin: 0 0 .75rem; padding-left: .15rem; break-inside: avoid;
       font-weight: 750; line-height: 1.35;
     }
+    .back-example {
+      width: min(100%, 760px); margin: 1.5rem auto 0; padding: clamp(1rem, 4vw, 2rem);
+      background: var(--white); border: 8px solid var(--black);
+    }
+    .example-name {
+      margin: 0; font-family: "Arial Black", Impact, Arial, sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3.2rem); line-height: 1; text-align: center;
+      text-transform: uppercase;
+    }
+    .example-years {
+      margin: .4rem 0 1.25rem; color: var(--slate); font-weight: 900;
+      letter-spacing: .08em; text-align: center;
+    }
+    .example-facts {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 4px solid var(--black); border-left: 1px solid var(--line);
+    }
+    .example-fact {
+      min-width: 0; padding: 1rem; border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .example-fact.wide { grid-column: 1 / -1; }
+    .example-fact strong {
+      display: block; margin-bottom: .35rem; font-size: .76rem;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .example-fact p, .example-fact ul {
+      margin: 0; color: var(--charcoal); font-weight: 700; line-height: 1.45;
+    }
+    .example-fact ul { padding-left: 1.15rem; }
+    .example-fact li + li { margin-top: .35rem; }
+    .example-quote {
+      margin: 0; font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 700; line-height: 1.45;
+    }
     @media (max-width: 760px) {
       .resource-grid, .examples { grid-template-columns: 1fr; }
+      .example-facts { grid-template-columns: 1fr; }
+      .example-fact.wide { grid-column: auto; }
       .checklist ul { columns: 1; }
       .hero::after { display: none; }
       h1 { font-size: clamp(2.1rem, 9.5vw, 3rem); }
@@ -144,7 +181,7 @@
     </section>
 
     <section class="examples-section" aria-labelledby="examples-title">
-      <h2 id="examples-title">CHOOSE A STYLE</h2>
+      <h2 id="examples-title">THE FRONT</h2>
       <p class="section-intro">Put the president’s name, number, and years in office at the top.</p>
       <div class="examples">
         <figure>
@@ -159,7 +196,7 @@
     </section>
 
     <section class="back-section" aria-labelledby="back-title">
-      <h2 id="back-title">EVERYONE COMPLETES THE BACK</h2>
+      <h2 id="back-title">THE BACK</h2>
       <div class="checklist">
         <ul>
           <li>BIRTH STATE</li>
@@ -170,6 +207,40 @@
           <li>ONE QUOTE ABOUT POLITICS OR CIVIC LIFE</li>
         </ul>
       </div>
+      <article class="back-example" aria-label="Example back for George Washington">
+        <h3 class="example-name">GEORGE WASHINGTON</h3>
+        <p class="example-years">PRESIDENT #1 · 1789–1797</p>
+        <div class="example-facts">
+          <div class="example-fact">
+            <strong>BIRTH STATE</strong>
+            <p>Virginia</p>
+          </div>
+          <div class="example-fact">
+            <strong>RELIGION OR TRADITION</strong>
+            <p>Episcopalian (Christian)</p>
+          </div>
+          <div class="example-fact">
+            <strong>EDUCATION</strong>
+            <p>No college degree; trained as a surveyor</p>
+          </div>
+          <div class="example-fact">
+            <strong>CAREER BEFORE THE PRESIDENCY</strong>
+            <p>Surveyor, soldier, planter</p>
+          </div>
+          <div class="example-fact wide">
+            <strong>KEY ACCOMPLISHMENTS</strong>
+            <ul>
+              <li>Created the presidential Cabinet, the president’s group of top advisers</li>
+              <li>Set the two-term example that later presidents followed</li>
+              <li>Kept the nation out of war between European powers</li>
+            </ul>
+          </div>
+          <div class="example-fact wide">
+            <strong>ONE QUOTE ABOUT POLITICS OR CIVIC LIFE</strong>
+            <blockquote class="example-quote">“The basis of our political systems is the right of the people to make and to alter their constitutions of government.”</blockquote>
+          </div>
+        </div>
+      </article>
     </section>
   </main>
 </body>
