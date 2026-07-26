@@ -607,7 +607,7 @@
     foundations.skills.forEach(skill => {
       const card = document.createElement("article");
       card.className = "skill-card";
-      const title = document.createElement("h3");
+      const title = document.createElement("h2");
       title.textContent = skill.title;
       const summary = document.createElement("p");
       summary.textContent = skill.summary;
@@ -636,7 +636,7 @@
     const eyebrow = document.createElement("p");
     eyebrow.className = "eyebrow";
     eyebrow.textContent = `${skill.title} · LEVEL ${levelIndex + 1}`;
-    const title = document.createElement("h3");
+    const title = document.createElement("h2");
     title.textContent = level.title;
     const prompt = document.createElement("p");
     prompt.className = "skill-prompt";
@@ -675,14 +675,14 @@
     const debate = foundations.debates.find(item => item.id === selectedId);
     const workspace = document.getElementById("madison-workspace");
     workspace.replaceChildren();
-    const question = document.createElement("h3");
+    const question = document.createElement("h2");
     question.textContent = debate.question;
     const sides = document.createElement("div");
     sides.className = "madison-sides";
     [["MADISON · FEDERALIST VIEW", debate.federalist, debate.federalistSource], ["BRUTUS · ANTI-FEDERALIST VIEW", debate.anti, debate.antiSource]].forEach(([labelText, argument, source]) => {
       const side = document.createElement("section");
       side.className = "madison-side";
-      const label = document.createElement("h4");
+      const label = document.createElement("h3");
       label.textContent = labelText;
       const text = document.createElement("p");
       text.textContent = argument;
@@ -693,19 +693,23 @@
     });
     const connection = document.createElement("div");
     connection.className = "madison-connection";
-    connection.innerHTML = "<h4>CONSTITUTIONAL CONNECTION</h4>";
+    connection.innerHTML = "<h3>CONSTITUTIONAL CONNECTION</h3>";
     const connectionText = document.createElement("p");
     connectionText.textContent = debate.connection;
     connection.append(connectionText);
     const turn = document.createElement("div");
     turn.className = "madison-turn";
-    const turnTitle = document.createElement("h4");
+    const turnTitle = document.createElement("h3");
     turnTitle.textContent = "YOUR TURN";
     const turnPrompt = document.createElement("p");
     turnPrompt.textContent = debate.prompt;
     const choiceRow = document.createElement("div");
     choiceRow.className = "madison-choices";
+    const responseLabel = document.createElement("label");
+    responseLabel.htmlFor = "madison-response";
+    responseLabel.textContent = "WRITE YOUR RESPONSE";
     const response = document.createElement("textarea");
+    response.id = "madison-response";
     response.rows = 4;
     response.placeholder = "I AGREE MORE WITH THE ___ VIEW BECAUSE ___. THE DOCUMENT SHOWS ___.";
     ["FEDERALIST", "ANTI-FEDERALIST"].forEach(choice => {
@@ -719,7 +723,7 @@
       });
       choiceRow.appendChild(button);
     });
-    turn.append(turnTitle, turnPrompt, choiceRow, response);
+    turn.append(turnTitle, turnPrompt, choiceRow, responseLabel, response);
     workspace.append(question, sides, connection, turn);
   }
 
