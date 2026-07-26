@@ -363,6 +363,60 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .power-limits { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
 .power-limits p { margin: 0; padding: .8rem; background: var(--stone); font-size: .82rem; font-weight: 650; }
 .power-limits b { display: block; margin-bottom: .35rem; font-size: .7rem; letter-spacing: .08em; }
+.bill-intro { max-width: 920px; }
+.bill-journey { max-width: 1120px; padding: clamp(.8rem, 2vw, 1.4rem); background: var(--stone); border: 1px solid var(--line); }
+.bill-route { margin-bottom: 1rem; display: grid; grid-template-columns: repeat(7, 1fr); background: var(--white); border: 2px solid var(--black); overflow-x: auto; }
+.bill-route-stop { min-width: 105px; min-height: 72px; padding: .7rem; position: relative; display: grid; align-content: center; border-right: 1px solid var(--stone-dark); }
+.bill-route-stop:last-child { border-right: 0; }
+.bill-route-stop span { color: var(--muted); font-size: .62rem; font-weight: 950; letter-spacing: .08em; }
+.bill-route-stop strong { font-size: .68rem; line-height: 1.2; }
+.bill-route-stop[data-state="passed"] { color: var(--white); background: var(--slate); }
+.bill-route-stop[data-state="passed"] span { color: var(--stone); }
+.bill-route-stop[data-state="current"] { color: var(--white); background: var(--black); box-shadow: inset 0 -7px 0 var(--white); }
+.bill-route-stop[data-state="current"] span { color: var(--white); }
+.bill-stage-layout { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .7fr); gap: 1rem; }
+.bill-stage { min-height: 560px; padding: clamp(1.2rem, 4vw, 2.4rem); display: flex; flex-direction: column; background: var(--white); border-top: 10px solid var(--black); }
+.bill-stage h2, .bill-start h2, .bill-outcome h2 { margin: .25rem 0 .8rem; font-size: clamp(2rem, 5vw, 4rem); line-height: .93; letter-spacing: -.045em; }
+.bill-stage h3 { margin: auto 0 .8rem; padding-top: 2rem; font-size: .82rem; letter-spacing: .07em; }
+.bill-stage-explanation { max-width: 670px; margin: 0; font-size: clamp(1rem, 2vw, 1.18rem); font-weight: 650; line-height: 1.55; }
+.bill-hearing-note { margin-top: 1.4rem; padding: 1rem; background: var(--stone); border-left: 7px solid var(--black); }
+.bill-hearing-note strong { font-size: .69rem; letter-spacing: .08em; }
+.bill-hearing-note p { margin: .4rem 0 0; font-weight: 700; line-height: 1.45; }
+.bill-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+.bill-choices button { min-height: 62px; padding: .8rem 1rem; border: 2px solid var(--black); background: var(--white); cursor: pointer; font-weight: 950; text-align: left; }
+.bill-choices button:hover:not(:disabled), .bill-choices button[data-selected="true"] { color: var(--white); background: var(--black); }
+.bill-feedback { margin-top: .8rem; padding: 1rem; background: var(--stone); border-left: 7px solid var(--black); }
+.bill-feedback strong { display: block; font-size: .75rem; letter-spacing: .06em; }
+.bill-feedback p { margin: .4rem 0 0; font-weight: 650; line-height: 1.45; }
+.bill-folder { min-height: 560px; padding: 2rem 1.2rem 1.2rem; position: relative; background: #eceae5; border: 2px solid var(--black); box-shadow: 7px 7px 0 var(--slate); }
+.bill-folder::before { content: ""; position: absolute; inset: 13px; pointer-events: none; border: 1px solid #aaa; }
+.bill-folder > * { position: relative; }
+.bill-folder-tab { margin: -2rem 0 1.4rem -1.2rem; padding: .65rem 1.2rem; display: inline-block; color: var(--white); background: var(--black); font-size: .66rem; font-weight: 950; letter-spacing: .06em; }
+.bill-folder h2 { margin: .3rem 0 .8rem; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: .95; }
+.bill-number { padding: .35rem .5rem; display: inline-block; background: var(--white); border: 1px solid var(--black); font-family: "Courier New", monospace; font-size: .8rem; }
+.bill-folder > p:not(.eyebrow) { font-weight: 650; line-height: 1.5; }
+.bill-change { margin-top: 1rem; padding: .8rem; background: var(--white); border: 1px solid var(--black); }
+.bill-change strong { font-size: .66rem; letter-spacing: .07em; }
+.bill-change p { margin: .35rem 0 0; font-size: .82rem; font-weight: 650; line-height: 1.4; }
+.bill-stamps { margin-top: 1.2rem; display: grid; gap: .55rem; }
+.bill-stamps span { padding: .55rem; display: block; color: var(--slate); border: 3px double var(--slate); font-size: .65rem; font-weight: 950; letter-spacing: .06em; text-align: center; transform: rotate(-1deg); }
+.bill-stamps span:nth-child(even) { transform: rotate(1deg); }
+.bill-start { padding: clamp(1.2rem, 4vw, 2.5rem); background: var(--white); border-top: 10px solid var(--black); }
+.bill-start > p { font-size: 1.08rem; font-weight: 650; }
+.bill-proposal-grid { margin-top: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.bill-proposal-grid button { min-height: 170px; padding: 1.2rem; display: grid; grid-template-columns: auto 1fr; align-content: start; gap: .4rem 1rem; border: 2px solid var(--black); background: var(--white); cursor: pointer; text-align: left; }
+.bill-proposal-grid button:hover, .bill-proposal-grid button:focus-visible { color: var(--white); background: var(--black); }
+.bill-proposal-grid button span { grid-row: 1 / 3; font-size: 2.5rem; font-weight: 950; line-height: .9; }
+.bill-proposal-grid button strong { font-size: 1.05rem; }
+.bill-proposal-grid button p { margin: 0; font-weight: 650; line-height: 1.4; }
+.bill-outcome { min-height: 380px; padding: clamp(1.2rem, 4vw, 2.5rem); display: grid; grid-template-columns: minmax(170px, .45fr) 1fr; gap: 1.5rem; align-items: center; color: var(--white); background: var(--black); border-bottom: 10px solid var(--slate); }
+.bill-outcome-mark { aspect-ratio: 1; display: grid; place-items: center; border: 10px double var(--white); border-radius: 50%; font-size: clamp(2rem, 6vw, 4.8rem); font-weight: 950; transform: rotate(-6deg); }
+.bill-outcome .eyebrow { color: var(--stone); }
+.bill-outcome h2 { color: var(--white); }
+.bill-outcome p:not(.eyebrow) { max-width: 680px; font-weight: 650; line-height: 1.5; }
+.bill-outcome-note { padding: .8rem; color: var(--black); background: var(--stone); }
+.bill-outcome .primary-action { margin-top: .8rem; color: var(--black); background: var(--white); border-color: var(--white); }
+.bill-outcome + .bill-folder { display: none; }
 .founding-power { max-width: 1100px; padding: clamp(1rem, 3vw, 2rem); background: var(--stone); border: 1px solid var(--line); }
 .founding-story-opening { min-height: 70vh; padding: clamp(1.5rem, 6vw, 4rem); display: grid; align-content: center; color: #f4ead7; background: #211d18; border-top: 9px solid #080808; }
 .founding-story-opening .eyebrow { color: #c9b997; }
@@ -531,6 +585,14 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .rights-case > svg { max-width: 220px; justify-self: center; padding-bottom: 0; }
   .power-case { grid-template-columns: 1fr; }
   .power-case > svg { max-width: 220px; justify-self: center; padding-bottom: 0; }
+  .bill-route { grid-template-columns: repeat(7, minmax(105px, 1fr)); }
+  .bill-stage-layout { grid-template-columns: 1fr; }
+  .bill-folder { min-height: auto; order: -1; }
+  .bill-stage { min-height: auto; }
+  .bill-stage h3 { margin-top: 1.2rem; }
+  .bill-proposal-grid { grid-template-columns: 1fr; }
+  .bill-outcome { grid-template-columns: 1fr; }
+  .bill-outcome-mark { width: 150px; }
   .founding-story-opening { min-height: auto; padding: 2rem 1.3rem; }
   .founding-story { grid-template-columns: 1fr; }
   .founding-story-visual { display: none; }
@@ -562,6 +624,9 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .lesson details, .standard-tag { grid-column: 1; }
   .ballot-header dl, .candidate-list, .proposition-choices { grid-template-columns: 1fr; }
   .power-options, .power-limits { grid-template-columns: 1fr; }
+  .bill-choices { grid-template-columns: 1fr; }
+  .bill-proposal-grid button { grid-template-columns: 1fr; }
+  .bill-proposal-grid button span { grid-row: auto; font-size: 1.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }

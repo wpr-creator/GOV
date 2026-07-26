@@ -17,6 +17,7 @@ vm.runInContext(fs.readFileSync(path.join(root, "constitution-explorer-data.js")
 vm.runInContext(fs.readFileSync(path.join(root, "rights-referee-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "election-2026-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "presidential-power-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "bill-journey-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "founding-power-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
@@ -24,11 +25,12 @@ const explorerSituations = context.window.CONSTITUTION_EXPLORER_DATA;
 const rightsCases = context.window.RIGHTS_REFEREE_DATA;
 const electionData = context.window.ELECTION_2026_DATA;
 const presidentialPowerCases = context.window.PRESIDENTIAL_POWER_DATA;
+const billJourneyData = context.window.BILL_JOURNEY_DATA;
 const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -322,8 +324,8 @@ for (const rightsFeature of ['id="rights-referee" data-view="rights-referee"', "
   const source = rightsFeature === "rights-referee-icons.svg" ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
   if (!source.includes(rightsFeature)) errors.push(`Rights Referee is missing: ${rightsFeature}`);
 }
-if (data.units.find(unit => unit.id === "gov-4")?.resources?.[0]?.id !== "presidential-power") {
-  errors.push("Can the President Do That? must be a Unit 4 resource.");
+if (data.units.find(unit => unit.id === "gov-4")?.resources?.map(resource => resource.id).join("|") !== "bill-journey|presidential-power") {
+  errors.push("Unit 4 must include How a Bill Becomes a Law and Can the President Do That?.");
 }
 if (!Array.isArray(presidentialPowerCases) || presidentialPowerCases.length !== 6) {
   errors.push(`Expected 6 presidential-power actions; found ${presidentialPowerCases?.length || 0}.`);
@@ -339,6 +341,21 @@ presidentialPowerCases?.forEach((caseData, index) => {
 for (const powerFeature of ['id="presidential-power" data-view="presidential-power"', "CAN THE PRESIDENT DO THAT?", "presidential-power-icons.svg"]) {
   const source = powerFeature === "presidential-power-icons.svg" ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
   if (!source.includes(powerFeature)) errors.push(`The presidential-power activity is missing: ${powerFeature}`);
+}
+if (!Array.isArray(billJourneyData?.proposals) || billJourneyData.proposals.length !== 4) {
+  errors.push("How a Bill Becomes a Law needs four proposal choices.");
+}
+if (!Array.isArray(billJourneyData?.stages) || billJourneyData.stages.map(stage => stage.id).join("|") !== "introduce|committee|first-vote|second-vote|conference|president|override") {
+  errors.push("The bill journey is missing or has an incorrect stage sequence.");
+}
+billJourneyData?.stages?.forEach((stage, index) => {
+  if (!stage.title || !stage.explanation || !stage.prompt || stage.choices?.length < 2) {
+    errors.push(`Bill journey stage ${index + 1} is incomplete.`);
+  }
+});
+for (const billFeature of ['id="bill-journey" data-view="bill-journey"', "HOW A BILL BECOMES A LAW", "renderBillJourney", "bill-folder"]) {
+  const source = billFeature === "renderBillJourney" ? fs.readFileSync(path.join(root, "app.js"), "utf8") : billFeature === "bill-folder" ? fs.readFileSync(path.join(root, "styles.css"), "utf8") : html;
+  if (!source.includes(billFeature)) errors.push(`How a Bill Becomes a Law is missing: ${billFeature}`);
 }
 const teacherFacingLessonTerms = /\b(CER|retrieval check|constructed response|targeted reteach|reassessment evidence|assessed content|supplied information)\b/i;
 data.units.forEach(unit => unit.lessons.forEach(lesson => {

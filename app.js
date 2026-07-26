@@ -6,6 +6,7 @@
   const rightsCases = window.RIGHTS_REFEREE_DATA;
   const electionData = window.ELECTION_2026_DATA;
   const presidentialPowerCases = window.PRESIDENTIAL_POWER_DATA;
+  const billJourneyData = window.BILL_JOURNEY_DATA;
   const foundingPowerIdeas = window.FOUNDING_POWER_DATA;
   const views = Array.from(document.querySelectorAll("[data-view]"));
   const nav = document.getElementById("site-nav");
@@ -32,6 +33,7 @@
   let explorerIndex = 0;
   let rightsIndex = 0;
   let presidentialPowerIndex = 0;
+  let billJourneyState = { proposal: null, stageIndex: 0, history: [], amended: false, outcome: null };
 
   function showView(name) {
     const isUnit = data.units.some(unit => unit.id === name);
@@ -50,7 +52,7 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "agenda", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "founding-power", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "agenda", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "bill-journey", "founding-power", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     if (routeName === "founding-power" && unitState(data.units.find(unit => unit.id === "gov-1")) === "locked") {
       location.hash = "units";
       return;
@@ -67,7 +69,7 @@
       location.hash = "units";
       return;
     }
-    if (routeName === "presidential-power" && unitState(data.units.find(unit => unit.id === "gov-4")) === "locked") {
+    if (["presidential-power", "bill-journey"].includes(routeName) && unitState(data.units.find(unit => unit.id === "gov-4")) === "locked") {
       location.hash = "units";
       return;
     }
@@ -1005,6 +1007,235 @@
     workspace.append(card, feedback, next);
   }
 
+  function resetBillJourney() {
+    billJourneyState = { proposal: null, stageIndex: 0, history: [], amended: false, outcome: null };
+    renderBillJourney();
+  }
+
+  function renderBillRoute() {
+    const routeMap = document.getElementById("bill-route");
+    routeMap.replaceChildren();
+    const visibleStages = billJourneyData.stages.filter(stage => stage.id !== "conference" || billJourneyState.history.some(item => item.id === "second-vote" && item.conference));
+    visibleStages.forEach((stage, index) => {
+      const marker = document.createElement("div");
+      marker.className = "bill-route-stop";
+      const actualIndex = billJourneyData.stages.findIndex(item => item.id === stage.id);
+      if (billJourneyState.proposal && actualIndex === billJourneyState.stageIndex && !billJourneyState.outcome) marker.dataset.state = "current";
+      if (billJourneyState.history.some(item => item.id === stage.id)) marker.dataset.state = "passed";
+      const number = document.createElement("span");
+      number.textContent = String(index + 1).padStart(2, "0");
+      const label = document.createElement("strong");
+      if (stage.id === "first-vote" && billJourneyState.chamber) label.textContent = billJourneyState.chamber.toUpperCase();
+      else if (stage.id === "second-vote" && billJourneyState.chamber) label.textContent = billJourneyState.chamber === "House" ? "SENATE" : "HOUSE";
+      else label.textContent = stage.place;
+      marker.append(number, label);
+      routeMap.appendChild(marker);
+    });
+  }
+
+  function renderBillFolder() {
+    const proposal = billJourneyState.proposal;
+    const folder = document.createElement("aside");
+    folder.className = "bill-folder";
+    folder.setAttribute("aria-label", "Your bill record");
+    const tab = document.createElement("span");
+    tab.className = "bill-folder-tab";
+    tab.textContent = proposal.shortTitle;
+    const label = document.createElement("p");
+    label.className = "eyebrow";
+    label.textContent = "YOUR BILL";
+    const title = document.createElement("h2");
+    title.textContent = proposal.title;
+    const billNumber = document.createElement("strong");
+    billNumber.className = "bill-number";
+    billNumber.textContent = billJourneyState.chamber === "Senate" ? "S. 142" : billJourneyState.chamber === "House" ? "H.R. 142" : "DRAFT";
+    const purpose = document.createElement("p");
+    purpose.textContent = proposal.purpose;
+    folder.append(tab, label, title, billNumber, purpose);
+    if (billJourneyState.amended) {
+      const change = document.createElement("div");
+      change.className = "bill-change";
+      const changeLabel = document.createElement("strong");
+      changeLabel.textContent = "CHANGE ADDED";
+      const changeText = document.createElement("p");
+      changeText.textContent = proposal.amendment;
+      change.append(changeLabel, changeText);
+      folder.appendChild(change);
+    }
+    const stamps = document.createElement("div");
+    stamps.className = "bill-stamps";
+    billJourneyState.history.forEach(item => {
+      const stamp = document.createElement("span");
+      stamp.textContent = item.stamp;
+      stamps.appendChild(stamp);
+    });
+    folder.appendChild(stamps);
+    return folder;
+  }
+
+  function renderBillOutcome() {
+    const workspace = document.getElementById("bill-workspace");
+    const outcome = billJourneyState.outcome;
+    const panel = document.createElement("div");
+    panel.className = `bill-outcome ${outcome.law ? "became-law" : "bill-stopped"}`;
+    const mark = document.createElement("div");
+    mark.className = "bill-outcome-mark";
+    mark.setAttribute("aria-hidden", "true");
+    mark.textContent = outcome.law ? "LAW" : "STOP";
+    const copy = document.createElement("div");
+    const eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow";
+    eyebrow.textContent = outcome.law ? "THE PROCESS IS COMPLETE" : "THIS BILL’S JOURNEY ENDED";
+    const title = document.createElement("h2");
+    title.id = "bill-stage-title";
+    title.tabIndex = -1;
+    title.textContent = outcome.law ? "YOUR BILL BECAME A LAW" : outcome.stamp;
+    const result = document.createElement("p");
+    result.textContent = outcome.result;
+    const truth = document.createElement("p");
+    truth.className = "bill-outcome-note";
+    truth.textContent = outcome.law
+      ? "Every federal law must pass both chambers in the same form. It then needs the president’s signature or a successful veto override."
+      : "Stopping is normal. Members of Congress introduce thousands of bills, but only a small share complete every step.";
+    const restart = document.createElement("button");
+    restart.type = "button";
+    restart.className = "primary-action";
+    restart.textContent = "TRY ANOTHER BILL";
+    restart.addEventListener("click", resetBillJourney);
+    copy.append(eyebrow, title, result, truth, restart);
+    panel.append(mark, copy);
+    workspace.replaceChildren(panel, renderBillFolder());
+    renderBillRoute();
+    title.focus({ preventScroll: true });
+  }
+
+  function renderBillStage() {
+    const workspace = document.getElementById("bill-workspace");
+    const stage = billJourneyData.stages[billJourneyState.stageIndex];
+    const layout = document.createElement("div");
+    layout.className = "bill-stage-layout";
+    const stageCard = document.createElement("article");
+    stageCard.className = `bill-stage bill-stage-${stage.id}`;
+    const place = document.createElement("p");
+    place.className = "eyebrow";
+    if (stage.id === "first-vote" && billJourneyState.chamber) place.textContent = billJourneyState.chamber.toUpperCase();
+    else if (stage.id === "second-vote" && billJourneyState.chamber) place.textContent = billJourneyState.chamber === "House" ? "SENATE" : "HOUSE";
+    else place.textContent = stage.place;
+    const title = document.createElement("h2");
+    title.id = "bill-stage-title";
+    title.tabIndex = -1;
+    title.textContent = stage.title;
+    const explanation = document.createElement("p");
+    explanation.className = "bill-stage-explanation";
+    explanation.textContent = stage.explanation;
+    if (stage.id === "committee") {
+      const note = document.createElement("div");
+      note.className = "bill-hearing-note";
+      note.innerHTML = `<strong>CHANGE UNDER DISCUSSION</strong><p>${billJourneyState.proposal.amendment}</p>`;
+      stageCard.append(place, title, explanation, note);
+    } else if (stage.id === "president") {
+      const note = document.createElement("div");
+      note.className = "bill-hearing-note";
+      note.innerHTML = `<strong>THE PRESIDENT’S CONCERN</strong><p>${billJourneyState.proposal.concern}</p>`;
+      stageCard.append(place, title, explanation, note);
+    } else {
+      stageCard.append(place, title, explanation);
+    }
+    const prompt = document.createElement("h3");
+    prompt.textContent = stage.prompt;
+    const choices = document.createElement("div");
+    choices.className = "bill-choices";
+    const feedback = document.createElement("div");
+    feedback.className = "bill-feedback";
+    feedback.setAttribute("role", "status");
+    feedback.hidden = true;
+    const next = document.createElement("button");
+    next.type = "button";
+    next.className = "explorer-next";
+    next.hidden = true;
+    next.textContent = "MOVE THE BILL →";
+
+    stage.choices.forEach(choice => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = choice.label;
+      button.addEventListener("click", () => {
+        choices.querySelectorAll("button").forEach(item => { item.disabled = true; });
+        button.dataset.selected = "true";
+        if (choice.chamber) billJourneyState.chamber = choice.chamber;
+        if (choice.amend) billJourneyState.amended = true;
+        billJourneyState.history.push({ id: stage.id, stamp: choice.stamp, conference: Boolean(choice.conference) });
+        const stamp = document.createElement("strong");
+        stamp.textContent = choice.stamp;
+        const result = document.createElement("p");
+        result.textContent = choice.result;
+        feedback.replaceChildren(stamp, result);
+        feedback.hidden = false;
+        next.textContent = choice.stop || choice.law ? "SEE THE RESULT →" : "MOVE THE BILL →";
+        next.hidden = false;
+        next.onclick = () => {
+          if (choice.stop || choice.law) {
+            billJourneyState.outcome = choice;
+            renderBillOutcome();
+            return;
+          }
+          if (stage.id === "second-vote") billJourneyState.stageIndex = choice.conference ? 4 : 5;
+          else if (stage.id === "president" && choice.veto) billJourneyState.stageIndex = 6;
+          else billJourneyState.stageIndex += 1;
+          renderBillJourney();
+          document.getElementById("bill-stage-title").focus({ preventScroll: true });
+        };
+        next.focus();
+        renderBillRoute();
+      });
+      choices.appendChild(button);
+    });
+    stageCard.append(prompt, choices, feedback, next);
+    layout.append(stageCard, renderBillFolder());
+    workspace.replaceChildren(layout);
+  }
+
+  function renderBillJourney() {
+    renderBillRoute();
+    const workspace = document.getElementById("bill-workspace");
+    if (billJourneyState.outcome) {
+      renderBillOutcome();
+      return;
+    }
+    if (billJourneyState.proposal) {
+      renderBillStage();
+      return;
+    }
+    const start = document.createElement("div");
+    start.className = "bill-start";
+    const heading = document.createElement("h2");
+    heading.id = "bill-stage-title";
+    heading.textContent = "CHOOSE A PROPOSAL";
+    const copy = document.createElement("p");
+    copy.textContent = "You will guide one idea through the federal lawmaking process.";
+    const grid = document.createElement("div");
+    grid.className = "bill-proposal-grid";
+    billJourneyData.proposals.forEach((proposal, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      const number = document.createElement("span");
+      number.textContent = String(index + 1).padStart(2, "0");
+      const title = document.createElement("strong");
+      title.textContent = proposal.title;
+      const purpose = document.createElement("p");
+      purpose.textContent = proposal.purpose;
+      button.append(number, title, purpose);
+      button.addEventListener("click", () => {
+        billJourneyState.proposal = proposal;
+        renderBillJourney();
+        document.getElementById("bill-stage-title").focus({ preventScroll: true });
+      });
+      grid.appendChild(button);
+    });
+    start.append(heading, copy, grid);
+    workspace.replaceChildren(start);
+  }
+
   function renderFoundingPower() {
     const workspace = document.getElementById("founding-power-workspace");
     workspace.replaceChildren();
@@ -1728,6 +1959,7 @@
   renderExplorer();
   renderRightsReferee();
   renderPresidentialPower();
+  renderBillJourney();
   renderFoundingPower();
   renderElection2026();
   renderPortraitRain();

@@ -39,6 +39,7 @@
     "california-ballot-2026": true,
     "rights-referee": true,
     "presidential-power": true
+    ,"bill-journey": true
   },
   "assignmentUrls": {
     "classroom": "https://classroom.google.com/c/ODcxMDI4ODY2NDUy",
@@ -59,6 +60,7 @@
     "california-ballot-2026": "#election-2026",
     "rights-referee": "#rights-referee",
     "presidential-power": "#presidential-power"
+    ,"bill-journey": "#bill-journey"
   },
   "foundationUnlocks": {
     "source": 3,
