@@ -198,7 +198,7 @@ const expectedFirstBellAssignments = [
 if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${resource.title}`).join("\n") !== expectedFirstBellAssignments.join("\n")) {
   errors.push("First Bell assignments are missing, mislabeled, or out of lesson order.");
 }
-for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
+for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "ASSIGNED PRESIDENTS", "COMING SOON", "CHOOSE A STYLE", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
   if (!presidentialYearbookHtml.includes(yearbookFeature)) errors.push(`The Presidential Yearbook page is missing: ${yearbookFeature}`);
 }
 for (const yearbookMigrationFeature of ['previewAssignmentUrls["presidential-yearbook"] === "#presidents"', 'delete previewAssignmentUrls["presidential-yearbook"]']) {
