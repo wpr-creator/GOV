@@ -64,6 +64,12 @@ window.COURSE_DATA = {
           id: "presidential-yearbook",
           lesson: "0.4 — PORTRAIT DAY",
           title: "THE PRESIDENTIAL YEARBOOK",
+          url: "presidential-yearbook.html"
+        },
+        {
+          id: "presidential-library",
+          lesson: "0.4 — PORTRAIT DAY",
+          title: "PRESIDENTIAL LIBRARY",
           url: "#presidents"
         },
         {
