@@ -7,6 +7,7 @@ const root = path.resolve(__dirname, "..");
 const errors = [];
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const civicSelfieHtml = fs.readFileSync(path.join(root, "civic-selfie.html"), "utf8");
+const presidentialYearbookHtml = fs.readFileSync(path.join(root, "presidential-yearbook.html"), "utf8");
 const config = JSON.parse(fs.readFileSync(path.join(root, "site-content.json"), "utf8"));
 const context = { window: {} };
 vm.createContext(context);
@@ -27,7 +28,7 @@ const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -190,11 +191,15 @@ const expectedFirstBellAssignments = [
   "typology-reflection|0.3 — PACK YOUR FIELD GUIDES|TYPOLOGY REFLECTION: BETWEEN THE LINES",
   "civics-field-guide|0.3 — PACK YOUR FIELD GUIDES|CIVICS FIELD GUIDE",
   "presidential-yearbook|0.4 — PORTRAIT DAY|THE PRESIDENTIAL YEARBOOK",
+  "presidential-library|0.4 — PORTRAIT DAY|PRESIDENTIAL LIBRARY",
   "civics-field-test|0.5 — SHOW YOUR WORK|CIVICS FIELD TEST",
   "unit-0-synthesis|0.5 — SHOW YOUR WORK|UNIT 0 SYNTHESIS"
 ];
 if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${resource.title}`).join("\n") !== expectedFirstBellAssignments.join("\n")) {
   errors.push("First Bell assignments are missing, mislabeled, or out of lesson order.");
+}
+for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
+  if (!presidentialYearbookHtml.includes(yearbookFeature)) errors.push(`The Presidential Yearbook page is missing: ${yearbookFeature}`);
 }
 data.units.flatMap(unit => unit.resources || []).forEach(resource => {
   if (typeof config.assignmentUnlocks?.[resource.id] !== "boolean") {
