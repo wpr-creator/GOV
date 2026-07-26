@@ -28,7 +28,7 @@ const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/civic-wallpaper.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -40,6 +40,16 @@ for (const socialTag of [
 ]) {
   if (!html.includes(socialTag)) errors.push(`Missing social-sharing metadata: ${socialTag}`);
 }
+for (const agendaFeature of ['data-view-link="agenda"', 'id="agenda" data-view="agenda"', 'id="agenda-page-title"', 'id="agenda-page-text"', 'id="election-count"', 'id="admin-agenda-title"', 'id="admin-agenda-text"']) {
+  if (!html.includes(agendaFeature)) errors.push(`The agenda page is missing: ${agendaFeature}`);
+}
+for (const agendaScriptFeature of ['"America/Los_Angeles"', "Date.UTC(2026, 10, 3)", "renderAgendaDate", "agendaTitle", "agendaText"]) {
+  if (!fs.readFileSync(path.join(root, "app.js"), "utf8").includes(agendaScriptFeature)) errors.push(`The agenda behavior is missing: ${agendaScriptFeature}`);
+}
+for (const wallpaperFeature of ["civic-wallpaper.svg", "civic-wallpaper-fall", "#home::before", ".agenda-view::before"]) {
+  if (!fs.readFileSync(path.join(root, "styles.css"), "utf8").includes(wallpaperFeature)) errors.push(`The civic wallpaper is missing: ${wallpaperFeature}`);
+}
+if (typeof config.agendaTitle !== "string" || typeof config.agendaText !== "string") errors.push("Agenda title and text must be editable strings.");
 
 if (portraitManifest.count !== 45 || portraitManifest.portraits?.length !== 45 || portraitManifest.failures?.length) {
   errors.push("Expected 45 verified presidential portraits with no sourcing failures.");

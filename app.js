@@ -20,7 +20,7 @@
   const GITHUB_CONTENT_URL = "https://api.github.com/repos/wpr-creator/GOV/contents/site-content.json";
   let currentUnitId = "gov-0";
   let lastFocused = null;
-  let siteContent = { currentUnit: "gov-0", unitUnlocks: {}, exitQuestion: "", upcoming: [], classroomUrl: "", assignmentUnlocks: {}, assignmentUrls: {} };
+  let siteContent = { currentUnit: "gov-0", unitUnlocks: {}, exitQuestion: "", upcoming: [], classroomUrl: "", agendaTitle: "AGENDA", agendaText: "COMING SOON.", assignmentUnlocks: {}, assignmentUrls: {} };
   let historyEvents = [];
   let historyIndex = 0;
   let devKeys = "";
@@ -50,7 +50,7 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "founding-power", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "agenda", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "founding-power", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     if (routeName === "founding-power" && unitState(data.units.find(unit => unit.id === "gov-1")) === "locked") {
       location.hash = "units";
       return;
@@ -1200,6 +1200,10 @@
     document.getElementById("exit-question").textContent = siteContent.exitQuestion || "NO EXIT TICKET TODAY.";
     const classroom = document.getElementById("classroom-link");
     classroom.href = siteContent.classroomUrl || "https://classroom.google.com/c/ODcxMDI4ODY2NDUy";
+    const agendaTitle = (siteContent.agendaTitle || "AGENDA").trim();
+    document.getElementById("agenda-page-title").textContent = agendaTitle;
+    document.getElementById("agenda-nav-link").textContent = agendaTitle;
+    document.getElementById("agenda-page-text").textContent = siteContent.agendaText || "";
     const list = document.getElementById("upcoming-list");
     list.replaceChildren();
     const items = Array.isArray(siteContent.upcoming) ? siteContent.upcoming : [];
@@ -1220,6 +1224,37 @@
         list.appendChild(row);
       });
     }
+  }
+
+  function renderAgendaDate() {
+    const nowParts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles",
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    }).formatToParts(new Date());
+    const part = type => nowParts.find(item => item.type === type)?.value || "";
+    const year = Number(part("year"));
+    const monthName = part("month");
+    const monthIndex = new Date(`${monthName} 1, 2000`).getMonth();
+    const day = Number(part("day"));
+    const weekday = part("weekday");
+    const todayUtc = Date.UTC(year, monthIndex, day);
+    const electionUtc = Date.UTC(2026, 10, 3);
+    const daysUntil = Math.max(0, Math.round((electionUtc - todayUtc) / 86400000));
+    document.getElementById("agenda-weekday").textContent = weekday;
+    const dateElement = document.getElementById("agenda-date");
+    dateElement.textContent = `${monthName} ${day}`;
+    dateElement.dateTime = `${year}-${String(monthIndex + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    document.getElementById("election-count").textContent = daysUntil;
+    const label = document.getElementById("election-count-label");
+    label.textContent = todayUtc === electionUtc ? "ELECTION DAY" : todayUtc > electionUtc ? "THE 2026 MIDTERM ELECTIONS HAVE PASSED" : `DAY${daysUntil === 1 ? "" : "S"} UNTIL THE MIDTERM ELECTIONS`;
+    const progress = Math.max(0, Math.min(100, 100 - daysUntil));
+    const progressElement = document.getElementById("election-progress");
+    progressElement.setAttribute("aria-valuenow", String(progress));
+    progressElement.setAttribute("aria-valuetext", `${daysUntil} days until the 2026 midterm elections`);
+    document.getElementById("election-progress-fill").style.width = `${progress}%`;
   }
 
   async function loadConfig() {
@@ -1258,6 +1293,7 @@
     document.getElementById("current-action").href = `#${current.id}`;
     document.getElementById("current-action").firstChild.textContent = `OPEN ${current.number.toUpperCase()} `;
     renderSiteContent();
+    renderAgendaDate();
     renderUnits();
     renderWords();
     renderAmendments();
@@ -1370,6 +1406,8 @@
     };
     document.getElementById("admin-exit-question").value = siteContent.exitQuestion || "";
     document.getElementById("admin-classroom-link").value = siteContent.classroomUrl || "";
+    document.getElementById("admin-agenda-title").value = siteContent.agendaTitle || "AGENDA";
+    document.getElementById("admin-agenda-text").value = siteContent.agendaText || "";
     const unitUnlockContainer = document.getElementById("admin-unit-unlocks");
     unitUnlockContainer.replaceChildren();
     data.units.forEach(unit => {
@@ -1468,6 +1506,8 @@
       exitQuestion: document.getElementById("admin-exit-question").value.trim(),
       upcoming,
       classroomUrl: document.getElementById("admin-classroom-link").value.trim(),
+      agendaTitle: document.getElementById("admin-agenda-title").value.trim().toUpperCase() || "AGENDA",
+      agendaText: document.getElementById("admin-agenda-text").value.trim(),
       assignmentUnlocks,
       assignmentUrls,
       foundationUnlocks
@@ -1643,6 +1683,7 @@
     }
   });
   window.addEventListener("hashchange", route);
+  window.setInterval(renderAgendaDate, 60000);
 
   renderWords();
   renderDocuments();
