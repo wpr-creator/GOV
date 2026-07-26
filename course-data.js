@@ -168,6 +168,12 @@ window.COURSE_DATA = {
       ],
       resources: [
         {
+          id: "bill-journey",
+          lesson: "UNIT 4 EXTENSION",
+          title: "HOW A BILL BECOMES A LAW",
+          url: "#bill-journey"
+        },
+        {
           id: "presidential-power",
           lesson: "UNIT 4 EXTENSION",
           title: "CAN THE PRESIDENT DO THAT?",

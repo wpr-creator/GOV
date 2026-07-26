@@ -23,15 +23,16 @@
   <meta name="twitter:image:alt" content="Principles of American Democracy beside a white civic building with tall columns.">
   <title>Principles of American Democracy</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
-  <script src="course-data.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260726-bill">
+  <script src="course-data.js?v=20260726-bill" defer></script>
   <script src="foundations-data.js" defer></script>
   <script src="constitution-explorer-data.js" defer></script>
   <script src="rights-referee-data.js" defer></script>
   <script src="election-2026-data.js" defer></script>
   <script src="presidential-power-data.js" defer></script>
+  <script src="bill-journey-data.js?v=20260726-bill" defer></script>
   <script src="founding-power-data.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=20260726-bill" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the course</a>
@@ -291,6 +292,19 @@
       <section class="presidential-power" aria-labelledby="power-question">
         <p class="explorer-progress" id="power-progress"></p>
         <div id="power-workspace"></div>
+      </section>
+    </section>
+
+    <section class="view" id="bill-journey" data-view="bill-journey" hidden>
+      <a class="back-button" href="#gov-4"><span aria-hidden="true">←</span> UNIT 4</a>
+      <div class="page-intro bill-intro">
+        <p class="eyebrow">UNIT 4 · LAWMAKING</p>
+        <h1>HOW A BILL BECOMES A LAW</h1>
+        <p>CHOOSE A BILL. MOVE IT THROUGH CONGRESS. SEE WHERE IT GOES.</p>
+      </div>
+      <section class="bill-journey" aria-labelledby="bill-stage-title">
+        <div class="bill-route" id="bill-route" aria-label="A bill’s route through the federal government"></div>
+        <div id="bill-workspace" aria-live="polite"></div>
       </section>
     </section>
 
