@@ -52,6 +52,10 @@ for (const wallpaperFeature of ["portrait-rain", "portrait-rain-fall", "grayscal
 for (const wallpaperScriptFeature of ["renderPortraitRain", "assets/presidents/", "barack-obama.jpg"]) {
   if (!fs.readFileSync(path.join(root, "app.js"), "utf8").includes(wallpaperScriptFeature)) errors.push(`The presidential wallpaper behavior is missing: ${wallpaperScriptFeature}`);
 }
+for (const accessibilityFeature of ['@media (max-width: 1100px)', "white-space: nowrap", 'responseLabel.htmlFor = "madison-response"', 'response.id = "madison-response"', 'document.createElement("h2")', "min-height: 44px"]) {
+  const source = accessibilityFeature.includes("response") || accessibilityFeature.includes("document.createElement") ? fs.readFileSync(path.join(root, "app.js"), "utf8") : fs.readFileSync(path.join(root, "styles.css"), "utf8");
+  if (!source.includes(accessibilityFeature)) errors.push(`The accessibility cleanup is missing: ${accessibilityFeature}`);
+}
 if (typeof config.agendaTitle !== "string" || typeof config.agendaText !== "string") errors.push("Agenda title and text must be editable strings.");
 
 if (portraitManifest.count !== 45 || portraitManifest.portraits?.length !== 45 || portraitManifest.failures?.length) {
