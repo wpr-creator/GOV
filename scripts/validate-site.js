@@ -201,6 +201,11 @@ if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${r
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
   if (!presidentialYearbookHtml.includes(yearbookFeature)) errors.push(`The Presidential Yearbook page is missing: ${yearbookFeature}`);
 }
+for (const yearbookMigrationFeature of ['previewAssignmentUrls["presidential-yearbook"] === "#presidents"', 'delete previewAssignmentUrls["presidential-yearbook"]']) {
+  if (!fs.readFileSync(path.join(root, "app.js"), "utf8").includes(yearbookMigrationFeature)) {
+    errors.push(`The Presidential Yearbook legacy-link migration is missing: ${yearbookMigrationFeature}`);
+  }
+}
 data.units.flatMap(unit => unit.resources || []).forEach(resource => {
   if (typeof config.assignmentUnlocks?.[resource.id] !== "boolean") {
     errors.push(`Unit resource ${resource.id} needs a true or false unlock setting.`);

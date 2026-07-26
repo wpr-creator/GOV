@@ -1230,12 +1230,16 @@
       const local = localStorage.getItem(CONTENT_STORAGE_KEY);
       if (local) {
         const preview = JSON.parse(local);
+        const previewAssignmentUrls = { ...(preview.assignmentUrls || {}) };
+        if (previewAssignmentUrls["presidential-yearbook"] === "#presidents") {
+          delete previewAssignmentUrls["presidential-yearbook"];
+        }
         siteContent = {
           ...siteContent,
           ...preview,
           foundationUnlocks: { ...(siteContent.foundationUnlocks || {}), ...(preview.foundationUnlocks || {}) },
           assignmentUnlocks: { ...(siteContent.assignmentUnlocks || {}), ...(preview.assignmentUnlocks || {}) },
-          assignmentUrls: { ...(siteContent.assignmentUrls || {}), ...(preview.assignmentUrls || {}) },
+          assignmentUrls: { ...(siteContent.assignmentUrls || {}), ...previewAssignmentUrls },
           unitUnlocks: { ...(siteContent.unitUnlocks || {}), ...(preview.unitUnlocks || {}) }
         };
       }
