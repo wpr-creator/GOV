@@ -40,6 +40,7 @@
     "rights-referee": true,
     "presidential-power": true
     ,"bill-journey": true
+    ,"federalism-map": true
   },
   "assignmentUrls": {
     "classroom": "https://classroom.google.com/c/ODcxMDI4ODY2NDUy",
@@ -61,6 +62,7 @@
     "rights-referee": "#rights-referee",
     "presidential-power": "#presidential-power"
     ,"bill-journey": "#bill-journey"
+    ,"federalism-map": "#federalism-map"
   },
   "foundationUnlocks": {
     "source": 3,

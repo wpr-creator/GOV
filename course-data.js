@@ -118,6 +118,12 @@ window.COURSE_DATA = {
       ],
       resources: [
         {
+          id: "federalism-map",
+          lesson: "UNIT 2 EXTENSION",
+          title: "THE FEDERALISM MAP",
+          url: "#federalism-map"
+        },
+        {
           id: "constitution-explorer",
           lesson: "UNIT 2 EXTENSION",
           title: "CONSTITUTION EXPLORER",
