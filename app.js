@@ -7,6 +7,7 @@
   const electionData = window.ELECTION_2026_DATA;
   const presidentialPowerCases = window.PRESIDENTIAL_POWER_DATA;
   const billJourneyData = window.BILL_JOURNEY_DATA;
+  const federalismMapData = window.FEDERALISM_MAP_DATA;
   const foundingPowerIdeas = window.FOUNDING_POWER_DATA;
   const views = Array.from(document.querySelectorAll("[data-view]"));
   const nav = document.getElementById("site-nav");
@@ -34,6 +35,8 @@
   let rightsIndex = 0;
   let presidentialPowerIndex = 0;
   let billJourneyState = { proposal: null, stageIndex: 0, history: [], amended: false, outcome: null };
+  let federalismLocationId = "school";
+  const federalismVisited = new Set();
 
   function showView(name) {
     const isUnit = data.units.some(unit => unit.id === name);
@@ -52,12 +55,12 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "agenda", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "bill-journey", "founding-power", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "agenda", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "bill-journey", "federalism-map", "founding-power", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     if (routeName === "founding-power" && unitState(data.units.find(unit => unit.id === "gov-1")) === "locked") {
       location.hash = "units";
       return;
     }
-    if (["madison", "constitution-explorer"].includes(routeName) && unitState(data.units.find(unit => unit.id === "gov-2")) === "locked") {
+    if (["madison", "constitution-explorer", "federalism-map"].includes(routeName) && unitState(data.units.find(unit => unit.id === "gov-2")) === "locked") {
       location.hash = "units";
       return;
     }
@@ -1012,6 +1015,122 @@
     renderBillJourney();
   }
 
+  function appendGovernmentLevels(container, levelIds) {
+    levelIds.forEach(levelId => {
+      const level = federalismMapData.levels.find(item => item.id === levelId);
+      const chip = document.createElement("span");
+      chip.className = "government-level";
+      chip.dataset.level = levelId;
+      chip.textContent = level.label;
+      container.appendChild(chip);
+    });
+  }
+
+  function renderFederalismDetail() {
+    const location = federalismMapData.locations.find(item => item.id === federalismLocationId);
+    const detail = document.getElementById("federalism-detail");
+    detail.replaceChildren();
+    const top = document.createElement("div");
+    top.className = "federalism-detail-top";
+    const count = document.createElement("p");
+    count.className = "eyebrow";
+    count.textContent = `${federalismVisited.size} OF ${federalismMapData.locations.length} EXPLORED`;
+    const title = document.createElement("h2");
+    title.id = "federalism-location-title";
+    title.tabIndex = -1;
+    title.textContent = location.mapLabel;
+    const levelRow = document.createElement("div");
+    levelRow.className = "government-levels";
+    appendGovernmentLevels(levelRow, location.levels);
+    top.append(count, title, levelRow);
+
+    const sections = [
+      ["WHO ACTS?", location.who],
+      ["WHAT DO THEY DO?", location.what],
+      ["WHY THIS LEVEL?", location.why]
+    ];
+    const facts = document.createElement("div");
+    facts.className = "federalism-facts";
+    sections.forEach(([headingText, bodyText]) => {
+      const section = document.createElement("section");
+      const heading = document.createElement("h3");
+      heading.textContent = headingText;
+      const body = document.createElement("p");
+      body.textContent = bodyText;
+      section.append(heading, body);
+      facts.appendChild(section);
+    });
+    const connection = document.createElement("blockquote");
+    connection.textContent = location.connection;
+    const source = document.createElement("a");
+    source.href = location.source;
+    source.target = "_blank";
+    source.rel = "noopener";
+    source.textContent = `${location.sourceLabel} · CHECK THE SOURCE ↗`;
+    detail.append(top, facts, connection, source);
+  }
+
+  function openFederalismLocation(locationId, moveFocus = true) {
+    federalismLocationId = locationId;
+    federalismVisited.add(locationId);
+    document.querySelectorAll(".map-location").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.locationId === locationId));
+      button.dataset.visited = String(federalismVisited.has(button.dataset.locationId));
+    });
+    renderFederalismDetail();
+    if (moveFocus) document.getElementById("federalism-location-title").focus({ preventScroll: true });
+  }
+
+  function renderFederalismMap() {
+    const key = document.getElementById("federalism-key");
+    const map = document.getElementById("community-map");
+    key.replaceChildren();
+    map.replaceChildren();
+    federalismMapData.levels.forEach(level => {
+      const item = document.createElement("div");
+      item.className = "federalism-key-item";
+      const chip = document.createElement("span");
+      chip.className = "government-level";
+      chip.dataset.level = level.id;
+      chip.textContent = level.label;
+      const meaning = document.createElement("p");
+      meaning.textContent = level.meaning;
+      item.append(chip, meaning);
+      key.appendChild(item);
+    });
+    const mapHeading = document.createElement("div");
+    mapHeading.className = "community-map-heading";
+    const mapEyebrow = document.createElement("p");
+    mapEyebrow.className = "eyebrow";
+    mapEyebrow.textContent = "SAN DIEGO COMMUNITY";
+    const mapTitle = document.createElement("h2");
+    mapTitle.textContent = "OPEN A LOCATION";
+    mapHeading.append(mapEyebrow, mapTitle);
+    map.appendChild(mapHeading);
+    federalismMapData.locations.forEach((location, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "map-location";
+      button.dataset.locationId = location.id;
+      button.dataset.mapPosition = String(index + 1);
+      button.dataset.icon = location.icon;
+      button.dataset.visited = String(federalismVisited.has(location.id));
+      button.setAttribute("aria-pressed", String(location.id === federalismLocationId));
+      const structure = document.createElement("span");
+      structure.className = "map-structure";
+      structure.setAttribute("aria-hidden", "true");
+      const name = document.createElement("strong");
+      name.textContent = location.mapLabel;
+      const levels = document.createElement("span");
+      levels.className = "map-location-levels";
+      levels.textContent = location.levels.filter(level => level !== "shared").map(level => level.toUpperCase()).join(" · ");
+      button.append(structure, name, levels);
+      button.addEventListener("click", () => openFederalismLocation(location.id));
+      map.appendChild(button);
+    });
+    openFederalismLocation(federalismLocationId, false);
+  }
+
   function renderBillRoute() {
     const routeMap = document.getElementById("bill-route");
     routeMap.replaceChildren();
@@ -1960,6 +2079,7 @@
   renderRightsReferee();
   renderPresidentialPower();
   renderBillJourney();
+  renderFederalismMap();
   renderFoundingPower();
   renderElection2026();
   renderPortraitRain();

@@ -18,6 +18,7 @@ vm.runInContext(fs.readFileSync(path.join(root, "rights-referee-data.js"), "utf8
 vm.runInContext(fs.readFileSync(path.join(root, "election-2026-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "presidential-power-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "bill-journey-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "federalism-map-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "founding-power-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
@@ -26,11 +27,12 @@ const rightsCases = context.window.RIGHTS_REFEREE_DATA;
 const electionData = context.window.ELECTION_2026_DATA;
 const presidentialPowerCases = context.window.PRESIDENTIAL_POWER_DATA;
 const billJourneyData = context.window.BILL_JOURNEY_DATA;
+const federalismMapData = context.window.FEDERALISM_MAP_DATA;
 const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -234,8 +236,8 @@ data.units.flatMap(unit => unit.resources || []).forEach(resource => {
   }
 });
 const unitTwo = data.units.find(unit => unit.id === "gov-2");
-if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "constitution-explorer|madison-vs-brutus") {
-  errors.push("Unit 2 must include Constitution Explorer and Madison vs. Brutus.");
+if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-map|constitution-explorer|madison-vs-brutus") {
+  errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== "founding-power") {
@@ -356,6 +358,24 @@ billJourneyData?.stages?.forEach((stage, index) => {
 for (const billFeature of ['id="bill-journey" data-view="bill-journey"', "HOW A BILL BECOMES A LAW", "renderBillJourney", "bill-folder"]) {
   const source = billFeature === "renderBillJourney" ? fs.readFileSync(path.join(root, "app.js"), "utf8") : billFeature === "bill-folder" ? fs.readFileSync(path.join(root, "styles.css"), "utf8") : html;
   if (!source.includes(billFeature)) errors.push(`How a Bill Becomes a Law is missing: ${billFeature}`);
+}
+if (!Array.isArray(federalismMapData?.levels) || federalismMapData.levels.map(level => level.id).join("|") !== "federal|state|local|tribal|shared") {
+  errors.push("The Federalism Map needs federal, state, local, tribal, and shared power keys.");
+}
+if (!Array.isArray(federalismMapData?.locations) || federalismMapData.locations.length !== 9) {
+  errors.push("The Federalism Map needs nine community locations.");
+}
+federalismMapData?.locations?.forEach((location, index) => {
+  for (const key of ["id", "mapLabel", "who", "what", "why", "connection", "sourceLabel", "source"]) {
+    if (!location[key]) errors.push(`Federalism Map location ${index + 1} is missing ${key}.`);
+  }
+  if (!location.levels?.length || !location.levels.every(level => federalismMapData.levels.some(item => item.id === level)) || !/^https:\/\//.test(location.source || "")) {
+    errors.push(`Federalism Map location ${index + 1} has incomplete levels or source.`);
+  }
+});
+for (const mapFeature of ['id="federalism-map" data-view="federalism-map"', "THE FEDERALISM MAP", "renderFederalismMap", "community-map"]) {
+  const source = mapFeature === "renderFederalismMap" ? fs.readFileSync(path.join(root, "app.js"), "utf8") : mapFeature === "community-map" ? fs.readFileSync(path.join(root, "styles.css"), "utf8") : html;
+  if (!source.includes(mapFeature)) errors.push(`The Federalism Map is missing: ${mapFeature}`);
 }
 const teacherFacingLessonTerms = /\b(CER|retrieval check|constructed response|targeted reteach|reassessment evidence|assessed content|supplied information)\b/i;
 data.units.forEach(unit => unit.lessons.forEach(lesson => {
