@@ -34,13 +34,13 @@
     "civics-field-test": false,
     "unit-0-synthesis": false,
     "founding-power": true,
+    "federalism-map": true,
     "constitution-explorer": true,
     "madison-vs-brutus": true,
     "california-ballot-2026": true,
-    "rights-referee": true,
-    "presidential-power": true
-    ,"bill-journey": true
-    ,"federalism-map": true
+    "bill-journey": true,
+    "presidential-power": true,
+    "rights-referee": true
   },
   "assignmentUrls": {
     "classroom": "https://classroom.google.com/c/ODcxMDI4ODY2NDUy",
@@ -56,13 +56,13 @@
     "civics-field-test": "",
     "unit-0-synthesis": "",
     "founding-power": "#founding-power",
+    "federalism-map": "#federalism-map",
     "constitution-explorer": "#constitution-explorer",
     "madison-vs-brutus": "#madison",
     "california-ballot-2026": "#election-2026",
-    "rights-referee": "#rights-referee",
-    "presidential-power": "#presidential-power"
-    ,"bill-journey": "#bill-journey"
-    ,"federalism-map": "#federalism-map"
+    "bill-journey": "#bill-journey",
+    "presidential-power": "#presidential-power",
+    "rights-referee": "#rights-referee"
   },
   "foundationUnlocks": {
     "source": 3,
