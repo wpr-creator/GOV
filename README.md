@@ -2,20 +2,6 @@
 
 A mobile-first, static Principles of American Democracy course site.
 
-## TEACHER EDIT MODE
-
-Type `dev` anywhere on the page when an input is not selected. The hidden edit panel controls:
-
-- the current released unit
-- the exit-ticket question
-- upcoming assignments
-- the Google Classroom link
-- which linked First Bell assignment cards are open
-
-`SAVE PREVIEW` stores changes only in the current browser. `COPY JSON` copies the finished settings so they can replace `site-content.json` for publication.
-
-The selected unit and all earlier units open; later units stay locked.
-
 ## Curriculum structure
 
 - The course contains eight student-facing Government units.
