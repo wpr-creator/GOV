@@ -34,7 +34,7 @@ window.COURSE_DATA = {
           id: "self-guided-tour",
           lesson: "0.2 — READ THE FINE PRINT",
           title: "SELF-GUIDED TOUR",
-          url: ""
+          url: "https://docs.google.com/document/d/138en8gavF_LzZIC0FzXJGNrjdS96kPEu41MYrxhT38I/edit"
         },
         {
           id: "civic-selfie",
