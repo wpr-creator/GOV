@@ -208,6 +208,7 @@
                 const shortcut = appleDevice ? "⌘D" : "Ctrl+D";
                 const deviceNote = chromebook ? " on your Chromebook" : "";
                 window.alert(`Press ${shortcut}${deviceNote} to bookmark this course website.`);
+                window.location.hash = "home";
               });
             }
           } else {
