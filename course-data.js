@@ -16,13 +16,14 @@ window.COURSE_DATA = {
           id: "classroom",
           lesson: "0.1 — ALREADY IN SESSION",
           title: "JOIN GOOGLE CLASSROOM",
-          url: "https://classroom.google.com/c/ODcxMDI4ODY2NDUy"
+          url: "https://classroom.google.com/",
+          note: "JOIN CODE: 566qlkhw"
         },
         {
           id: "course-site",
           lesson: "0.1 — ALREADY IN SESSION",
-          title: "COURSE WEBSITE",
-          url: "#home"
+          title: "BOOKMARK COURSE WEBSITE",
+          url: "https://wpr-creator.github.io/GOV/"
         },
         {
           id: "syllabus",

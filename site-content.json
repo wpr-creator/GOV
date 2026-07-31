@@ -17,7 +17,7 @@
       "date": "AUGUST"
     }
   ],
-  "classroomUrl": "https://classroom.google.com/c/ODcxMDI4ODY2NDUy",
+  "classroomUrl": "https://classroom.google.com/",
   "agendaTitle": "AGENDA",
   "agendaText": "COMING SOON.",
   "assignmentUnlocks": {
@@ -43,8 +43,8 @@
     "rights-referee": true
   },
   "assignmentUrls": {
-    "classroom": "https://classroom.google.com/c/ODcxMDI4ODY2NDUy",
-    "course-site": "#home",
+    "classroom": "https://classroom.google.com/",
+    "course-site": "https://wpr-creator.github.io/GOV/",
     "syllabus": "https://docs.google.com/document/d/1JRS7wb7qTVWhNokfK924OkKO34TbEF1a99Q9Mzh9Iug/edit?usp=sharing",
     "self-guided-tour": "https://docs.google.com/document/d/138en8gavF_LzZIC0FzXJGNrjdS96kPEu41MYrxhT38I/edit",
     "civic-selfie": "civic-selfie.html",

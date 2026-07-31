@@ -204,7 +204,7 @@ if (firstBell?.lessons.some((lesson, index) => lesson[0] !== expectedFirstBellLe
 }
 const expectedFirstBellAssignments = [
   "classroom|0.1 — ALREADY IN SESSION|JOIN GOOGLE CLASSROOM",
-  "course-site|0.1 — ALREADY IN SESSION|COURSE WEBSITE",
+  "course-site|0.1 — ALREADY IN SESSION|BOOKMARK COURSE WEBSITE",
   "syllabus|0.2 — READ THE FINE PRINT|CLASS SYLLABUS",
   "self-guided-tour|0.2 — READ THE FINE PRINT|SELF-GUIDED TOUR",
   "civic-selfie|0.2 — READ THE FINE PRINT|CIVIC SELFIE",

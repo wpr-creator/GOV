@@ -109,7 +109,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .classroom-card .primary-action { grid-column: 1 / -1; }
 .classroom-code { grid-column: 1 / -1; padding: .8rem 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: var(--stone); border-left: 4px solid var(--black); }
 .classroom-code span { color: var(--black); font-size: .75rem; font-weight: 950; letter-spacing: .08em; }
-.classroom-code code { color: var(--black); font-size: 1.15rem; font-weight: 950; letter-spacing: .08em; text-transform: none; }
+.classroom-code code { color: var(--black); font-size: 1.15rem; font-weight: 950; letter-spacing: .08em; text-transform: none; user-select: all; }
 .exit-card { grid-column: 1 / -1; }
 .exit-question { padding: 1rem; background: var(--stone); font-weight: 750; }
 .exit-card label { display: block; margin: 1rem 0 .4rem; font-size: .76rem; font-weight: 900; }
