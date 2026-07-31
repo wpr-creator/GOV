@@ -199,6 +199,17 @@
               card.target = "_blank";
               card.rel = "noopener";
             }
+            if (resource.id === "course-site") {
+              card.addEventListener("click", event => {
+                event.preventDefault();
+                const device = `${navigator.platform || ""} ${navigator.userAgent || ""}`;
+                const appleDevice = /Mac|iPhone|iPad|iPod/i.test(device);
+                const chromebook = /CrOS/i.test(device);
+                const shortcut = appleDevice ? "⌘D" : "Ctrl+D";
+                const deviceNote = chromebook ? " on your Chromebook" : "";
+                window.alert(`Press ${shortcut}${deviceNote} to bookmark this course website.`);
+              });
+            }
           } else {
             card.classList.add("placeholder");
             card.setAttribute("aria-disabled", "true");
@@ -206,6 +217,11 @@
           const resourceTitle = document.createElement("strong");
           resourceTitle.textContent = resource.title;
           card.append(resourceTitle);
+          if (resource.note) {
+            const resourceNote = document.createElement("span");
+            resourceNote.textContent = resource.note;
+            card.append(resourceNote);
+          }
           if (!unlocked) {
             const resourceStatus = document.createElement("span");
             resourceStatus.textContent = "COMING SOON";
@@ -1553,7 +1569,7 @@
   function renderSiteContent() {
     document.getElementById("exit-question").textContent = siteContent.exitQuestion || "NO EXIT TICKET TODAY.";
     const classroom = document.getElementById("classroom-link");
-    classroom.href = siteContent.classroomUrl || "https://classroom.google.com/c/ODcxMDI4ODY2NDUy";
+    classroom.href = siteContent.classroomUrl || "https://classroom.google.com/";
     const agendaTitle = (siteContent.agendaTitle || "AGENDA").trim();
     document.getElementById("agenda-page-title").textContent = agendaTitle;
     document.getElementById("agenda-nav-link").textContent = agendaTitle;
@@ -1653,6 +1669,10 @@
       if (local) {
         const preview = JSON.parse(local);
         const previewAssignmentUrls = { ...(preview.assignmentUrls || {}) };
+        const oldClassroomUrl = "https://classroom.google.com/c/ODcxMDI4ODY2NDUy";
+        if (preview.classroomUrl === oldClassroomUrl) delete preview.classroomUrl;
+        if (previewAssignmentUrls.classroom === oldClassroomUrl) delete previewAssignmentUrls.classroom;
+        if (previewAssignmentUrls["course-site"] === "#home") delete previewAssignmentUrls["course-site"];
         if (previewAssignmentUrls["presidential-yearbook"] === "#presidents") {
           delete previewAssignmentUrls["presidential-yearbook"];
         }
