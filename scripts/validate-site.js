@@ -193,7 +193,7 @@ if (firstBell?.question !== "Who makes the rules—and what changes when we star
   errors.push("First Bell has the wrong essential question.");
 }
 const expectedFirstBellLessons = [
-  "0.1 — Already in Session",
+  "0.1 — Class Is in Session",
   "0.2 — Read the Fine Print",
   "0.3 — Pack Your Field Guides",
   "0.4 — Portrait Day",
@@ -203,8 +203,8 @@ if (firstBell?.lessons.some((lesson, index) => lesson[0] !== expectedFirstBellLe
   errors.push("First Bell lessons are missing or out of order.");
 }
 const expectedFirstBellAssignments = [
-  "classroom|0.1 — ALREADY IN SESSION|JOIN GOOGLE CLASSROOM",
-  "course-site|0.1 — ALREADY IN SESSION|BOOKMARK COURSE WEBSITE",
+  "classroom|0.1 — CLASS IS IN SESSION|JOIN GOOGLE CLASSROOM",
+  "course-site|0.1 — CLASS IS IN SESSION|BOOKMARK COURSE WEBSITE",
   "syllabus|0.2 — READ THE FINE PRINT|CLASS SYLLABUS",
   "self-guided-tour|0.2 — READ THE FINE PRINT|SELF-GUIDED TOUR",
   "civic-selfie|0.2 — READ THE FINE PRINT|CIVIC SELFIE",
