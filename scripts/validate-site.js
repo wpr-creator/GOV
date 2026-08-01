@@ -164,7 +164,7 @@ for (const civicSelfieFeature of ["Civic Selfie", "Build both sides", "civic-sel
   if (!civicSelfieHtml.includes(civicSelfieFeature)) errors.push(`Civic Selfie page is missing: ${civicSelfieFeature}`);
 }
 
-for (const backLink of ['href="#home"', 'href="#gov-0"']) {
+for (const backLink of ['href="#home"']) {
   if (!html.includes(backLink)) errors.push(`Course views are missing a back link: ${backLink}`);
 }
 
@@ -233,7 +233,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260801-completion") || !html.includes("app.js?v=20260801-completion")) {
+if (!html.includes("styles.css?v=20260801-foundations-library") || !html.includes("app.js?v=20260801-foundations-library")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "ASSIGNED PRESIDENTS", "COMING SOON", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -254,7 +254,8 @@ data.units.flatMap(unit => unit.resources || []).forEach(resource => {
 });
 const validCourseHashes = new Set([
   ...Array.from(html.matchAll(/\sid="([^"]+)"/g), match => `#${match[1]}`),
-  ...data.units.map(unit => `#${unit.id}`)
+  ...data.units.map(unit => `#${unit.id}`),
+  "#presidents"
 ]);
 function validateCourseResourceUrl(label, url) {
   if (!url || /^https?:\/\//.test(url)) return;
@@ -296,8 +297,15 @@ for (const foundingFeature of ['id="founding-power" data-view="founding-power"',
   const source = ["founding-power-icons.svg", "founding-story", "IMAGINE YOU LIVE UNDER A KING", "DEMOCRATIC IDEALS", "HOW POWER IS LIMITED"].includes(foundingFeature) ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
   if (!source.includes(foundingFeature)) errors.push(`The founding-power activity is missing: ${foundingFeature}`);
 }
-for (const fragment of ['data-view-link="skills"', 'id="skills" data-view="skills"', 'href="#presidents"', 'id="madison" data-view="madison"']) {
+for (const fragment of ['data-view-link="skills"', 'id="skills" data-view="skills"', 'data-foundation-tab="presidents"', 'id="foundation-presidents"', 'id="madison" data-view="madison"']) {
   if (!html.includes(fragment)) errors.push(`Course navigation is missing: ${fragment}`);
+}
+for (const presidentLibraryFeature of ['routeName === "presidents"', 'switchFoundationTab("presidents")', 'id="president-search"', 'id="president-grid"']) {
+  const source = presidentLibraryFeature.startsWith("id=") ? html : fs.readFileSync(path.join(root, "app.js"), "utf8");
+  if (!source.includes(presidentLibraryFeature)) errors.push(`The Presidential Library tab is missing: ${presidentLibraryFeature}`);
+}
+if (html.includes('class="foundation-feature"') || html.includes('id="presidents" data-view="presidents"')) {
+  errors.push("Foundations still contains the old Presidential Library promotion or duplicate page.");
 }
 for (const adminPublishFeature of ["admin-github-token", "admin-publish", "GITHUB_TOKEN_STORAGE_KEY", "GITHUB_CONTENT_URL", "SAVE & PUBLISH"]) {
   const source = adminPublishFeature === "admin-github-token" || adminPublishFeature === "admin-publish" ? html : fs.readFileSync(path.join(root, "app.js"), "utf8");
