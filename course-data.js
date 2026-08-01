@@ -5,7 +5,7 @@ window.COURSE_DATA = {
       question: "Who makes the rules—and what changes when we start paying attention?",
       standards: "Course launch",
       lessons: [
-        ["0.1 — Already in Session", "Why does government already matter?", "Course launch", "Compare government and politics, connect both to everyday life, and get connected to the course.", "Join Google Classroom and bookmark the course website"],
+        ["0.1 — Class Is in Session", "Why does government already matter?", "Course launch", "Compare government and politics, connect both to everyday life, and get connected to the course.", "Join Google Classroom and bookmark the course website"],
         ["0.2 — Read the Fine Print", "How will this class work?", "Course launch", "Review the syllabus and classroom expectations, then learn how to navigate course resources.", "Complete the signed syllabus, Self-Guided Tour, and Civic Selfie"],
         ["0.3 — Pack Your Field Guides", "What do I already believe and know about government?", "Course launch", "Complete the PEW Political Typology, reflect on the result, review the course outline, and check essential government knowledge.", "Complete Between the Lines and begin the Civics Field Guide"],
         ["0.4 — Portrait Day", "What can presidents reveal about American government?", "Prepares for Gov 12.4.4", "Explore the presidency through research, art, and a shared classroom display.", "Complete The Presidential Yearbook"],
@@ -14,14 +14,14 @@ window.COURSE_DATA = {
       resources: [
         {
           id: "classroom",
-          lesson: "0.1 — ALREADY IN SESSION",
+          lesson: "0.1 — CLASS IS IN SESSION",
           title: "JOIN GOOGLE CLASSROOM",
           url: "https://classroom.google.com/",
           note: "JOIN CODE: 566qlkhw"
         },
         {
           id: "course-site",
-          lesson: "0.1 — ALREADY IN SESSION",
+          lesson: "0.1 — CLASS IS IN SESSION",
           title: "BOOKMARK COURSE WEBSITE",
           url: "https://wpr-creator.github.io/GOV/"
         },
