@@ -19,6 +19,7 @@
   const adminOverlay = document.getElementById("admin-overlay");
   const CONTENT_STORAGE_KEY = "pad-site-content-v2";
   const GITHUB_TOKEN_STORAGE_KEY = "pad-github-token-v1";
+  const UNIT_ZERO_COMPLETION_KEY = "gov-unit0-completion-v1";
   const GITHUB_CONTENT_URL = "https://api.github.com/repos/wpr-creator/GOV/contents/site-content.json";
   let currentUnitId = "gov-0";
   let lastFocused = null;
@@ -37,6 +38,46 @@
   let billJourneyState = { proposal: null, stageIndex: 0, history: [], amended: false, outcome: null };
   let federalismLocationId = "school";
   const federalismVisited = new Set();
+
+  function loadUnitZeroCompletion() {
+    try {
+      const completion = JSON.parse(localStorage.getItem(UNIT_ZERO_COMPLETION_KEY) || "{}");
+      return completion && typeof completion === "object" && !Array.isArray(completion) ? completion : {};
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function saveUnitZeroCompletion(completion) {
+    try {
+      localStorage.setItem(UNIT_ZERO_COMPLETION_KEY, JSON.stringify(completion));
+    } catch (error) {
+      console.warn("Unit 0 completion could not be saved.", error);
+    }
+  }
+
+  function createUnitZeroCheck(resource, unlocked) {
+    const completion = loadUnitZeroCompletion();
+    const check = document.createElement("button");
+    const checked = Boolean(completion[resource.id]);
+    check.type = "button";
+    check.className = "unit-zero-check";
+    check.disabled = !unlocked;
+    check.setAttribute("aria-label", `${checked ? "Mark incomplete" : "Mark complete"}: ${resource.title}`);
+    check.setAttribute("aria-pressed", String(checked));
+    check.textContent = checked ? "✓" : "";
+    check.addEventListener("click", () => {
+      const nextCompletion = loadUnitZeroCompletion();
+      const nextChecked = !Boolean(nextCompletion[resource.id]);
+      if (nextChecked) nextCompletion[resource.id] = true;
+      else delete nextCompletion[resource.id];
+      saveUnitZeroCompletion(nextCompletion);
+      check.textContent = nextChecked ? "✓" : "";
+      check.setAttribute("aria-pressed", String(nextChecked));
+      check.setAttribute("aria-label", `${nextChecked ? "Mark incomplete" : "Mark complete"}: ${resource.title}`);
+    });
+    return check;
+  }
 
   function showView(name) {
     const isUnit = data.units.some(unit => unit.id === name);
@@ -228,7 +269,14 @@
             resourceStatus.textContent = "COMING SOON";
             card.append(resourceStatus);
           }
-          resourceGrid.appendChild(card);
+          if (unit.id === "gov-0") {
+            const item = document.createElement("div");
+            item.className = "unit-zero-resource-item";
+            item.append(createUnitZeroCheck(resource, unlocked), card);
+            resourceGrid.appendChild(item);
+          } else {
+            resourceGrid.appendChild(card);
+          }
         });
         group.append(lessonTitle, resourceGrid);
         resources.append(group);

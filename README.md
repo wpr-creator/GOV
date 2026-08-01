@@ -20,6 +20,8 @@ A mobile-first, static Principles of American Democracy course site.
 - `app.js` — navigation and interaction
 - `assets/course-mark.svg` — original course mark
 - `us-politics-events.json` — source-linked daily political-history database
+- `scripts/validate-site.js` — local content and reference checks
+- `docs/curriculum-inventory.md` — source-to-site curriculum inventory
 
 ## FOUNDATIONS
 
@@ -30,10 +32,6 @@ The permanent Foundations section contains:
 - Read the Source, Build the Argument, and Use the Language skill builders
 - four simplified Madison vs. Brutus constitutional debates
 - a searchable glossary with short definitions and concrete examples
-
-All three Skill Builder levels are open by default. In `dev` mode, a teacher can set each skill to open through Level 1, 2, or 3. Those choices are included when `site-content.json` is copied.
-- `scripts/validate-site.js` — local content and reference checks
-- `docs/curriculum-inventory.md` — source-to-site curriculum inventory
 
 ## Check the site
 

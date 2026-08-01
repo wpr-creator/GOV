@@ -152,7 +152,7 @@ presidentFacts.presidents?.forEach(president => {
   }
 });
 
-[html, civicSelfieHtml].forEach(pageHtml => {
+[html, civicSelfieHtml, presidentialYearbookHtml].forEach(pageHtml => {
   for (const match of pageHtml.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const ref = match[1];
     if (/^(https?:|#|mailto:|tel:)/.test(ref)) continue;
@@ -219,6 +219,23 @@ const expectedFirstBellAssignments = [
 if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${resource.title}`).join("\n") !== expectedFirstBellAssignments.join("\n")) {
   errors.push("First Bell assignments are missing, mislabeled, or out of lesson order.");
 }
+const appCode = fs.readFileSync(path.join(root, "app.js"), "utf8");
+for (const completionFeature of [
+  'const UNIT_ZERO_COMPLETION_KEY = "gov-unit0-completion-v1";',
+  "createUnitZeroCheck(resource, unlocked)",
+  "localStorage.setItem(UNIT_ZERO_COMPLETION_KEY",
+  'check.setAttribute("aria-pressed"',
+  '"Mark incomplete" : "Mark complete"'
+]) {
+  if (!appCode.includes(completionFeature)) errors.push(`Unit 0 completion behavior is missing: ${completionFeature}`);
+}
+const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
+for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
+  if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
+}
+if (!html.includes("styles.css?v=20260801-completion") || !html.includes("app.js?v=20260801-completion")) {
+  errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
+}
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "ASSIGNED PRESIDENTS", "COMING SOON", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
   if (!presidentialYearbookHtml.includes(yearbookFeature)) errors.push(`The Presidential Yearbook page is missing: ${yearbookFeature}`);
 }
@@ -235,6 +252,21 @@ data.units.flatMap(unit => unit.resources || []).forEach(resource => {
     errors.push(`Unit resource ${resource.id} cannot be open without a link.`);
   }
 });
+const validCourseHashes = new Set([
+  ...Array.from(html.matchAll(/\sid="([^"]+)"/g), match => `#${match[1]}`),
+  ...data.units.map(unit => `#${unit.id}`)
+]);
+function validateCourseResourceUrl(label, url) {
+  if (!url || /^https?:\/\//.test(url)) return;
+  if (url.startsWith("#")) {
+    if (!validCourseHashes.has(url)) errors.push(`${label} uses an unknown course route: ${url}`);
+    return;
+  }
+  const localTarget = url.split(/[?#]/)[0];
+  if (!fs.existsSync(path.join(root, localTarget))) errors.push(`${label} uses a missing local page: ${url}`);
+}
+data.units.flatMap(unit => unit.resources || []).forEach(resource => validateCourseResourceUrl(`Unit resource ${resource.id}`, resource.url));
+Object.entries(config.assignmentUrls || {}).forEach(([id, url]) => validateCourseResourceUrl(`Configured assignment ${id}`, url));
 const unitTwo = data.units.find(unit => unit.id === "gov-2");
 if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-map|constitution-explorer|madison-vs-brutus") {
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");

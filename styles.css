@@ -180,6 +180,13 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .unit-resource span { color: var(--stone); font-size: .75rem; font-weight: 850; letter-spacing: .04em; }
 .unit-resource.placeholder { color: var(--black); background: var(--stone); border: 1px dashed var(--stone-dark); }
 .unit-resource.placeholder span { color: var(--muted); }
+.unit-zero-resource-item { min-width: 0; display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: .75rem; align-items: stretch; }
+.unit-zero-resource-item .unit-resource { min-width: 0; }
+.unit-zero-check { width: 92px; min-height: 0; aspect-ratio: 1; align-self: center; padding: 0; display: grid; place-items: center; color: #13753c; background: var(--white); border: 5px solid var(--black); border-radius: 4px; cursor: pointer; font: 950 4.6rem/1 Arial, sans-serif; }
+.unit-zero-check:hover { background: #edf8f0; border-color: #13753c; }
+.unit-zero-check[aria-pressed="true"] { color: #13753c; background: #e4f4e8; border-color: #13753c; }
+.unit-zero-check:focus-visible { outline: 4px solid var(--slate); outline-offset: 3px; }
+.unit-zero-check:disabled { color: transparent; background: var(--stone); border-color: var(--stone-dark); cursor: not-allowed; }
 .president-tools { margin-bottom: 1rem; padding: 1rem; background: var(--stone); border-radius: var(--radius); }
 .president-tools label { display: block; margin-bottom: .4rem; font-size: .75rem; font-weight: 950; letter-spacing: .08em; }
 .president-tools input { width: 100%; min-height: 50px; padding: .75rem .9rem; border: 2px solid var(--black); background: var(--white); font: inherit; font-weight: 750; }
@@ -606,6 +613,8 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .semester-cards, .unit-grid, .word-grid, .president-grid, .help-grid { grid-template-columns: 1fr; }
   .semester-card { grid-template-columns: auto 1fr; }
   .unit-resource-grid, .unit-source-grid { grid-template-columns: 1fr; }
+  .unit-zero-resource-item { grid-template-columns: 88px minmax(0, 1fr); }
+  .unit-zero-check { width: 88px; font-size: 4.2rem; }
   .lesson { grid-template-columns: 46px 1fr; }
   .standard-tag { grid-column: 2; width: max-content; }
   .home-dashboard { grid-template-columns: 1fr; }
