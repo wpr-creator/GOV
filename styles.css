@@ -256,10 +256,6 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); border-top: 1px solid var(--line); font-size: .85rem; }
 
 .foundations-intro { max-width: 920px; }
-.foundation-feature { margin: 0 0 1.5rem; padding: 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--white); background: var(--black); border-left: 10px solid var(--stone-dark); text-decoration: none; }
-.foundation-feature span { font-size: .76rem; font-weight: 950; letter-spacing: .06em; }
-.foundation-feature strong { font-size: clamp(.9rem, 2vw, 1.15rem); text-align: right; }
-.foundation-feature:hover { background: var(--charcoal); }
 .foundation-tabs { position: sticky; top: 0; z-index: 20; margin-bottom: 1.5rem; padding: .5rem; display: flex; gap: .4rem; overflow-x: auto; background: var(--black); border: 1px solid var(--charcoal); }
 .foundation-tabs button { min-height: 48px; padding: .7rem 1rem; flex: 1; border: 1px solid #555; color: #cfcfcd; background: transparent; cursor: pointer; font-size: .76rem; font-weight: 950; white-space: nowrap; }
 .foundation-tabs button[aria-selected="true"] { color: var(--black); background: var(--white); border-color: var(--white); }

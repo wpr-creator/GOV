@@ -23,7 +23,7 @@
   <meta name="twitter:image:alt" content="Principles of American Democracy beside a white civic building with tall columns.">
   <title>Principles of American Democracy</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260801-completion">
+  <link rel="stylesheet" href="styles.css?v=20260801-foundations-library">
   <script src="course-data.js?v=20260726-map" defer></script>
   <script src="foundations-data.js" defer></script>
   <script src="constitution-explorer-data.js" defer></script>
@@ -33,7 +33,7 @@
   <script src="bill-journey-data.js?v=20260726-bill" defer></script>
   <script src="federalism-map-data.js?v=20260726-map" defer></script>
   <script src="founding-power-data.js" defer></script>
-  <script src="app.js?v=20260801-completion" defer></script>
+  <script src="app.js?v=20260801-foundations-library" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the course</a>
@@ -172,13 +172,10 @@
         <h1>FOUNDATIONS</h1>
         <p>Read a key document, find an amendment, or explore the presidency.</p>
       </div>
-      <a class="foundation-feature" href="#presidents">
-        <span>PRESIDENTIAL LIBRARY</span>
-        <strong>FORTY-FIVE PEOPLE. ONE OFFICE. THEIR CHOICES STILL ECHO. <span aria-hidden="true">→</span></strong>
-      </a>
       <div class="foundation-tabs" role="tablist" aria-label="Foundations tools">
-        <button type="button" role="tab" aria-selected="true" aria-controls="foundation-documents" data-foundation-tab="documents">DOCUMENTS</button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="foundation-amendments" data-foundation-tab="amendments">AMENDMENTS</button>
+        <button type="button" role="tab" aria-selected="true" tabindex="0" aria-controls="foundation-documents" data-foundation-tab="documents">DOCUMENTS</button>
+        <button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="foundation-amendments" data-foundation-tab="amendments">AMENDMENTS</button>
+        <button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="foundation-presidents" data-foundation-tab="presidents">PRESIDENTIAL LIBRARY</button>
       </div>
 
       <section class="foundation-panel" id="foundation-documents" role="tabpanel">
@@ -190,6 +187,16 @@
         <div class="tool-heading"><div><p class="eyebrow">CONSTITUTIONAL CHANGE</p><h2>AMENDMENTS</h2></div><p>START WITH THIS UNIT OR VIEW ALL 27.</p></div>
         <div class="amendment-filters" id="amendment-filters" aria-label="Filter amendments"></div>
         <div class="amendment-grid" id="amendment-grid"></div>
+      </section>
+
+      <section class="foundation-panel" id="foundation-presidents" role="tabpanel" hidden>
+        <div class="tool-heading"><div><p class="eyebrow">THE PRESIDENCY</p><h2>PRESIDENTIAL LIBRARY</h2></div><p>SEARCH ALL 45 PEOPLE WHO HAVE SERVED AS PRESIDENT.</p></div>
+        <div class="president-tools">
+          <label for="president-search">FIND A PRESIDENT</label>
+          <input id="president-search" type="search" autocomplete="off" placeholder="TYPE A NAME">
+          <p id="president-status" role="status"></p>
+        </div>
+        <div class="president-grid" id="president-grid"></div>
       </section>
 
     </section>
@@ -323,21 +330,6 @@
           <article class="federalism-detail" id="federalism-detail" aria-live="polite"></article>
         </div>
       </section>
-    </section>
-
-    <section class="view" id="presidents" data-view="presidents" hidden>
-      <a class="back-button" href="#gov-0"><span aria-hidden="true">←</span> FIRST BELL</a>
-      <div class="page-intro">
-        <p class="eyebrow">PORTRAIT DAY</p>
-        <h1>PRESIDENTIAL LIBRARY.</h1>
-        <p>FORTY-FIVE PEOPLE. ONE OFFICE. THEIR CHOICES STILL ECHO.</p>
-      </div>
-      <div class="president-tools">
-        <label for="president-search">FIND A PRESIDENT</label>
-        <input id="president-search" type="search" autocomplete="off" placeholder="TYPE A NAME">
-        <p id="president-status" role="status"></p>
-      </div>
-      <div class="president-grid" id="president-grid"></div>
     </section>
 
     <section class="view" id="help" data-view="help" hidden>

@@ -96,7 +96,12 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
-    const valid = ["home", "agenda", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "bill-journey", "federalism-map", "founding-power", "presidents", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    if (routeName === "presidents") {
+      showView("foundations");
+      switchFoundationTab("presidents");
+      return;
+    }
+    const valid = ["home", "agenda", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "bill-journey", "federalism-map", "founding-power", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     if (routeName === "founding-power" && unitState(data.units.find(unit => unit.id === "gov-1")) === "locked") {
       location.hash = "units";
       return;
@@ -1595,8 +1600,15 @@
   }
 
   function switchFoundationTab(tabName) {
-    document.querySelectorAll("[data-foundation-tab]").forEach(button => button.setAttribute("aria-selected", String(button.dataset.foundationTab === tabName)));
+    let selectedButton;
+    document.querySelectorAll("[data-foundation-tab]").forEach(button => {
+      const selected = button.dataset.foundationTab === tabName;
+      button.setAttribute("aria-selected", String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      if (selected) selectedButton = button;
+    });
     document.querySelectorAll(".foundation-panel").forEach(panel => { panel.hidden = panel.id !== `foundation-${tabName}`; });
+    requestAnimationFrame(() => selectedButton?.scrollIntoView({ block: "nearest", inline: "nearest" }));
   }
 
   function openWord(word, source) {
@@ -2057,7 +2069,22 @@
     menuButton.setAttribute("aria-expanded", String(open));
   });
   document.getElementById("back-to-units").addEventListener("click", () => { location.hash = "units"; });
-  document.querySelectorAll("[data-foundation-tab]").forEach(button => button.addEventListener("click", () => switchFoundationTab(button.dataset.foundationTab)));
+  const foundationTabs = [...document.querySelectorAll("[data-foundation-tab]")];
+  foundationTabs.forEach((button, index) => {
+    button.addEventListener("click", () => switchFoundationTab(button.dataset.foundationTab));
+    button.addEventListener("keydown", event => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === "ArrowLeft") nextIndex = (index - 1 + foundationTabs.length) % foundationTabs.length;
+      if (event.key === "ArrowRight") nextIndex = (index + 1) % foundationTabs.length;
+      if (event.key === "Home") nextIndex = 0;
+      if (event.key === "End") nextIndex = foundationTabs.length - 1;
+      const nextTab = foundationTabs[nextIndex];
+      switchFoundationTab(nextTab.dataset.foundationTab);
+      nextTab.focus();
+    });
+  });
   foundationDialog.querySelector(".foundation-dialog-close").addEventListener("click", closeFoundationDialog);
   foundationDialog.addEventListener("click", event => { if (event.target === foundationDialog) closeFoundationDialog(); });
   document.getElementById("history-prev").addEventListener("click", () => {
