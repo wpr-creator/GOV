@@ -423,7 +423,7 @@ data.units.forEach(unit => unit.lessons.forEach(lesson => {
     errors.push(`${unit.number} contains teacher-facing lesson language.`);
   }
 }));
-if (!Array.isArray(data.words) || data.words.length !== 54) errors.push(`Expected 54 plain-language glossary terms; found ${data.words?.length || 0}.`);
+if (!Array.isArray(data.words) || data.words.length !== 63) errors.push(`Expected 63 plain-language glossary terms; found ${data.words?.length || 0}.`);
 data.words?.forEach((word, index) => {
   if (word.length !== 5 || word.some(value => !String(value).trim()) || !data.units.some(unit => unit.id === word[4])) {
     errors.push(`Glossary term ${index + 1} is incomplete or has an unknown unit.`);
