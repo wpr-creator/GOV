@@ -23,7 +23,7 @@
   const GITHUB_CONTENT_URL = "https://api.github.com/repos/wpr-creator/GOV/contents/site-content.json";
   let currentUnitId = "gov-0";
   let lastFocused = null;
-  let siteContent = { currentUnit: "gov-0", unitUnlocks: {}, exitQuestion: "", upcoming: [], classroomUrl: "", agendaTitle: "AGENDA", agendaText: "COMING SOON.", assignmentUnlocks: {}, assignmentUrls: {} };
+  let siteContent = { currentUnit: "gov-0", unitUnlocks: {}, exitQuestion: "", upcoming: [], classroomUrl: "", agendaTitle: "AGENDA", agendaText: "COMING SOON.", assignmentUnlocks: {}, assignmentUnlockAt: {}, assignmentUrls: {} };
   let historyEvents = [];
   let historyIndex = 0;
   let devKeys = "";
@@ -38,6 +38,26 @@
   let billJourneyState = { proposal: null, stageIndex: 0, history: [], amended: false, outcome: null };
   let federalismLocationId = "school";
   const federalismVisited = new Set();
+
+  function assignmentIsUnlocked(resourceId, resourceUrl) {
+    if (!resourceUrl) return false;
+    if (siteContent.assignmentUnlocks?.[resourceId]) return true;
+    const unlockTime = Date.parse(siteContent.assignmentUnlockAt?.[resourceId] || "");
+    return Number.isFinite(unlockTime) && Date.now() >= unlockTime;
+  }
+
+  function scheduleAssignmentRefresh() {
+    const futureUnlocks = Object.values(siteContent.assignmentUnlockAt || {})
+      .map(value => Date.parse(value))
+      .filter(value => Number.isFinite(value) && value > Date.now());
+    if (!futureUnlocks.length) return;
+    const delay = Math.min(...futureUnlocks) - Date.now();
+    window.setTimeout(() => {
+      renderUnits();
+      route();
+      scheduleAssignmentRefresh();
+    }, Math.min(delay + 100, 2147483647));
+  }
 
   function loadUnitZeroCompletion() {
     try {
@@ -236,7 +256,7 @@
         resourceGrid.className = "unit-resource-grid";
         lessonResources.forEach(resource => {
           const resourceUrl = siteContent.assignmentUrls?.[resource.id] ?? resource.url;
-          const unlocked = Boolean(resourceUrl && siteContent.assignmentUnlocks?.[resource.id]);
+          const unlocked = assignmentIsUnlocked(resource.id, resourceUrl);
           const card = document.createElement(unlocked ? "a" : "div");
           card.className = "unit-resource";
           if (unlocked) {
@@ -1742,12 +1762,14 @@
           ...preview,
           foundationUnlocks: { ...(siteContent.foundationUnlocks || {}), ...(preview.foundationUnlocks || {}) },
           assignmentUnlocks: { ...(siteContent.assignmentUnlocks || {}), ...(preview.assignmentUnlocks || {}) },
+          assignmentUnlockAt: { ...(siteContent.assignmentUnlockAt || {}), ...(preview.assignmentUnlockAt || {}) },
           assignmentUrls: { ...(siteContent.assignmentUrls || {}), ...previewAssignmentUrls },
           unitUnlocks: { ...(siteContent.unitUnlocks || {}), ...(preview.unitUnlocks || {}) }
         };
       }
       siteContent.foundationUnlocks = siteContent.foundationUnlocks || { source: 3, argument: 3, language: 3 };
       siteContent.assignmentUnlocks = siteContent.assignmentUnlocks || {};
+      siteContent.assignmentUnlockAt = siteContent.assignmentUnlockAt || {};
       siteContent.assignmentUrls = siteContent.assignmentUrls || {};
       siteContent.unitUnlocks = siteContent.unitUnlocks || {};
       if (data.units.some(unit => unit.id === siteContent.currentUnit)) currentUnitId = siteContent.currentUnit;
@@ -1767,6 +1789,7 @@
     renderAmendments();
     renderSkills();
     route();
+    scheduleAssignmentRefresh();
   }
 
   function renderHistory() {
@@ -1902,7 +1925,7 @@
       checkbox.type = "checkbox";
       checkbox.dataset.assignmentUnlock = resource.id;
       const currentUrl = siteContent.assignmentUrls?.[resource.id] ?? resource.url;
-      checkbox.checked = Boolean(currentUrl && siteContent.assignmentUnlocks?.[resource.id]);
+      checkbox.checked = assignmentIsUnlocked(resource.id, currentUrl);
       const labelText = document.createElement("span");
       labelText.textContent = resource.title;
       const urlInput = document.createElement("input");
@@ -1977,6 +2000,7 @@
       agendaTitle: document.getElementById("admin-agenda-title").value.trim().toUpperCase() || "AGENDA",
       agendaText: document.getElementById("admin-agenda-text").value.trim(),
       assignmentUnlocks,
+      assignmentUnlockAt: siteContent.assignmentUnlockAt || {},
       assignmentUrls,
       foundationUnlocks
     };

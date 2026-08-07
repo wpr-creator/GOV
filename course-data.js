@@ -59,7 +59,7 @@ window.COURSE_DATA = {
           id: "civics-field-guide",
           lesson: "0.3 — PACK YOUR FIELD GUIDES",
           title: "CIVICS FIELD GUIDE",
-          url: ""
+          url: "https://docs.google.com/document/d/1-xEhsGyKlaDogaCCvOtJV70IyeqFgpSwPo2H_wqkoOI/edit?tab=t.0"
         },
         {
           id: "presidential-yearbook",
