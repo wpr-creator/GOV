@@ -180,7 +180,7 @@ for (const removedUnitOutline of ["LEARNING PATH", "FOCUSED TOPICS", "WHAT WILL 
 
 if (!Array.isArray(data.units) || data.units.length !== 8) errors.push("Expected 8 Government units.");
 const lessonCount = data.units.reduce((count, unit) => count + unit.lessons.length, 0);
-if (lessonCount !== 39) errors.push(`Expected 39 focused Government topics; found ${lessonCount}.`);
+if (lessonCount !== 40) errors.push(`Expected 40 focused Government topics; found ${lessonCount}.`);
 const expectedUnitTitles = ["First Bell", "Foundations of American Democracy", "Building the Constitution", "Election Season", "Checks and Balances", "Rights in Real Life", "Government Around the World", "Constitutional Tensions"];
 if (data.units.some((unit, index) => unit.title !== expectedUnitTitles[index])) {
   errors.push("Government units are missing or out of the approved sequence.");
@@ -196,8 +196,9 @@ const expectedFirstBellLessons = [
   "0.1 — Class Is in Session",
   "0.2 — Read the Fine Print",
   "0.3 — Pack Your Field Guides",
-  "0.4 — Portrait Day",
-  "0.5 — Show Your Work"
+  "0.4 — Government Takes the Stage",
+  "0.5 — Portrait Day",
+  "0.6 — Show Your Work"
 ];
 if (firstBell?.lessons.some((lesson, index) => lesson[0] !== expectedFirstBellLessons[index])) {
   errors.push("First Bell lessons are missing or out of order.");
@@ -210,11 +211,12 @@ const expectedFirstBellAssignments = [
   "civic-selfie|0.2 — READ THE FINE PRINT|CIVIC SELFIE",
   "pew-typology|0.3 — PACK YOUR FIELD GUIDES|PEW POLITICAL TYPOLOGY",
   "typology-reflection|0.3 — PACK YOUR FIELD GUIDES|TYPOLOGY REFLECTION: BETWEEN THE LINES",
-  "civics-field-guide|0.3 — PACK YOUR FIELD GUIDES|CIVICS FIELD GUIDE",
-  "presidential-yearbook|0.4 — PORTRAIT DAY|THE PRESIDENTIAL YEARBOOK",
-  "presidential-library|0.4 — PORTRAIT DAY|PRESIDENTIAL LIBRARY",
-  "civics-field-test|0.5 — SHOW YOUR WORK|CIVICS FIELD TEST",
-  "unit-0-synthesis|0.5 — SHOW YOUR WORK|UNIT 0 SYNTHESIS"
+  "civics-field-guide|0.4 — GOVERNMENT TAKES THE STAGE|CIVICS FIELD GUIDE",
+  "mr-smith-reflection|0.4 — GOVERNMENT TAKES THE STAGE|MR. SMITH GOES TO WASHINGTON REFLECTION",
+  "presidential-yearbook|0.5 — PORTRAIT DAY|THE PRESIDENTIAL YEARBOOK",
+  "presidential-library|0.5 — PORTRAIT DAY|PRESIDENTIAL LIBRARY",
+  "civics-field-test|0.6 — SHOW YOUR WORK|CIVICS FIELD TEST",
+  "unit-0-synthesis|0.6 — SHOW YOUR WORK|PROVE YOUR CASE"
 ];
 if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${resource.title}`).join("\n") !== expectedFirstBellAssignments.join("\n")) {
   errors.push("First Bell assignments are missing, mislabeled, or out of lesson order.");
