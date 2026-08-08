@@ -241,7 +241,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260808-home-election-tracker") || !html.includes("app.js?v=20260808-home-election-tracker")) {
+if (!html.includes("styles.css?v=20260808-balanced-home") || !html.includes("app.js?v=20260808-home-election-tracker")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "ASSIGNED PRESIDENTS", "COMING SOON", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {

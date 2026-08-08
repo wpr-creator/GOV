@@ -23,7 +23,7 @@
   <meta name="twitter:image:alt" content="Principles of American Democracy beside a white civic building with tall columns.">
   <title>Principles of American Democracy</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260808-home-election-tracker">
+  <link rel="stylesheet" href="styles.css?v=20260808-balanced-home">
   <script src="course-data.js?v=20260726-map" defer></script>
   <script src="foundations-data.js" defer></script>
   <script src="constitution-explorer-data.js" defer></script>
@@ -107,27 +107,37 @@
         </article>
 
         <article class="dashboard-card election-tracker-card" aria-labelledby="election-tracker-title">
-          <div class="election-tracker-copy">
-            <p class="eyebrow">NOVEMBER 3, 2026</p>
-            <h2 id="election-tracker-title">MIDTERM ELECTION TRACKER</h2>
-            <p>FOLLOW THE RACES AND PROPOSITIONS THAT WILL APPEAR ON OUR LOCAL BALLOT.</p>
-            <a class="primary-action" href="#election-2026">OPEN ELECTION TRACKER <span aria-hidden="true">→</span></a>
+          <div class="card-heading">
+            <div><p class="eyebrow">NOVEMBER 3, 2026</p><h2 id="election-tracker-title">MIDTERM ELECTION TRACKER</h2></div>
           </div>
-          <div class="election-countdown">
-            <strong id="election-count">100</strong>
-            <p id="election-count-label">DAYS UNTIL THE MIDTERM ELECTIONS</p>
-            <div class="election-progress" id="election-progress" role="progressbar" aria-label="Progress toward the 2026 midterm elections" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <span id="election-progress-fill"></span>
+          <div class="election-tracker-layout">
+            <div class="election-countdown">
+              <strong id="election-count">100</strong>
+              <p id="election-count-label">DAYS UNTIL THE MIDTERM ELECTIONS</p>
+              <div class="election-progress" id="election-progress" role="progressbar" aria-label="Progress toward the 2026 midterm elections" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span id="election-progress-fill"></span>
+              </div>
+              <time datetime="2026-11-03">ELECTION DAY · NOVEMBER 3, 2026</time>
             </div>
-            <time datetime="2026-11-03">NOVEMBER 3, 2026</time>
+            <div class="election-tracker-copy">
+              <p class="eyebrow">CALIFORNIA ELECTION DESK</p>
+              <h3>FOLLOW THE RACES, BALLOT MEASURES, AND KEY DATES.</h3>
+              <p>Connect campaigns, participation, and public policy to the choices California voters will make.</p>
+              <a class="primary-action" href="#election-2026">OPEN ELECTION TRACKER <span aria-hidden="true">→</span></a>
+            </div>
           </div>
         </article>
 
-        <article class="dashboard-card classroom-card">
-          <div class="classroom-mark" aria-hidden="true">G</div>
-          <div><p class="eyebrow">COURSE LINK</p><h2>GOOGLE CLASSROOM</h2><p>OPEN CLASS MATERIALS, ANNOUNCEMENTS, AND ASSIGNMENTS.</p></div>
-          <a class="primary-action" id="classroom-link" href="https://classroom.google.com/" target="_blank" rel="noopener">OPEN CLASSROOM <span aria-hidden="true">↗</span></a>
-          <p class="classroom-code"><span>JOIN CODE · COPY AND PASTE</span><code>566qlkhw</code></p>
+        <article class="dashboard-card course-links-card">
+          <div class="card-heading"><div><p class="eyebrow">GET CONNECTED</p><h2>COURSE LINKS</h2></div></div>
+          <div class="course-link-list">
+            <section class="compact-course-link">
+              <div class="classroom-mark" aria-hidden="true">G</div>
+              <div><h3>GOOGLE CLASSROOM</h3></div>
+              <a id="classroom-link" href="https://classroom.google.com/" target="_blank" rel="noopener">OPEN <span aria-hidden="true">↗</span></a>
+              <p class="compact-code"><span>JOIN CODE</span><code>566qlkhw</code></p>
+            </section>
+          </div>
         </article>
 
         <article class="dashboard-card exit-card">
