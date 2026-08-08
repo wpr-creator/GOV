@@ -47,6 +47,9 @@ for (const socialTag of [
 for (const removedAgendaFeature of ['data-view-link="agenda"', 'id="agenda" data-view="agenda"', 'id="agenda-page-title"', 'id="agenda-page-text"']) {
   if (html.includes(removedAgendaFeature)) errors.push(`The disabled student Agenda page remains visible: ${removedAgendaFeature}`);
 }
+for (const removedHelpFeature of ['href="#help"', 'id="help" data-view="help"', 'id="history-connection"', 'WHY IT MATTERS:']) {
+  if (html.includes(removedHelpFeature) || fs.readFileSync(path.join(root, "app.js"), "utf8").includes(removedHelpFeature)) errors.push(`Removed home-page clutter remains: ${removedHelpFeature}`);
+}
 for (const homeElectionFeature of ['id="election-tracker-title"', 'MIDTERM ELECTION TRACKER', 'id="election-count"', 'href="#election-2026"']) {
   if (!html.includes(homeElectionFeature)) errors.push(`The home-page election tracker is missing: ${homeElectionFeature}`);
 }
@@ -241,7 +244,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260808-balanced-home") || !html.includes("app.js?v=20260808-home-election-tracker")) {
+if (!html.includes("styles.css?v=20260808-history-cleanup") || !html.includes("app.js?v=20260808-history-cleanup")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "ASSIGNED PRESIDENTS", "COMING SOON", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
