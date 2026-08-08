@@ -23,7 +23,7 @@
   <meta name="twitter:image:alt" content="Principles of American Democracy beside a white civic building with tall columns.">
   <title>Principles of American Democracy</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260801-foundations-library">
+  <link rel="stylesheet" href="styles.css?v=20260808-home-election-tracker">
   <script src="course-data.js?v=20260726-map" defer></script>
   <script src="foundations-data.js" defer></script>
   <script src="constitution-explorer-data.js" defer></script>
@@ -33,7 +33,7 @@
   <script src="bill-journey-data.js?v=20260726-bill" defer></script>
   <script src="federalism-map-data.js?v=20260726-map" defer></script>
   <script src="founding-power-data.js" defer></script>
-  <script src="app.js?v=20260807-scheduled-unlocks" defer></script>
+  <script src="app.js?v=20260808-home-election-tracker" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the course</a>
@@ -48,7 +48,6 @@
     </button>
     <nav id="site-nav" aria-label="Main navigation">
       <a href="#home" data-view-link="home">Home</a>
-      <a href="#agenda" data-view-link="agenda" id="agenda-nav-link">Agenda</a>
       <a href="#units" data-view-link="units">Units</a>
       <a href="#foundations" data-view-link="foundations">Foundations</a>
       <a href="#words" data-view-link="words">Glossary</a>
@@ -107,6 +106,23 @@
           <div id="upcoming-list" class="upcoming-list"></div>
         </article>
 
+        <article class="dashboard-card election-tracker-card" aria-labelledby="election-tracker-title">
+          <div class="election-tracker-copy">
+            <p class="eyebrow">NOVEMBER 3, 2026</p>
+            <h2 id="election-tracker-title">MIDTERM ELECTION TRACKER</h2>
+            <p>FOLLOW THE RACES AND PROPOSITIONS THAT WILL APPEAR ON OUR LOCAL BALLOT.</p>
+            <a class="primary-action" href="#election-2026">OPEN ELECTION TRACKER <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="election-countdown">
+            <strong id="election-count">100</strong>
+            <p id="election-count-label">DAYS UNTIL THE MIDTERM ELECTIONS</p>
+            <div class="election-progress" id="election-progress" role="progressbar" aria-label="Progress toward the 2026 midterm elections" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span id="election-progress-fill"></span>
+            </div>
+            <time datetime="2026-11-03">NOVEMBER 3, 2026</time>
+          </div>
+        </article>
+
         <article class="dashboard-card classroom-card">
           <div class="classroom-mark" aria-hidden="true">G</div>
           <div><p class="eyebrow">COURSE LINK</p><h2>GOOGLE CLASSROOM</h2><p>OPEN CLASS MATERIALS, ANNOUNCEMENTS, AND ASSIGNMENTS.</p></div>
@@ -123,30 +139,6 @@
           <p class="system-note" hidden></p>
         </article>
       </section>
-    </section>
-
-    <section class="view agenda-view" id="agenda" data-view="agenda" hidden>
-      <a class="back-button" href="#home"><span aria-hidden="true">←</span> HOME</a>
-      <div class="agenda-layout">
-        <article class="agenda-board" aria-labelledby="agenda-page-title">
-          <h1 id="agenda-page-title">AGENDA</h1>
-          <div class="agenda-copy" id="agenda-page-text">COMING SOON.</div>
-        </article>
-        <aside class="agenda-date-panel" aria-label="Today and election countdown">
-          <div class="agenda-today">
-            <p id="agenda-weekday">SUNDAY</p>
-            <time id="agenda-date" datetime="">JULY 26</time>
-          </div>
-          <div class="election-countdown">
-            <strong id="election-count">100</strong>
-            <p id="election-count-label">DAYS UNTIL THE MIDTERM ELECTIONS</p>
-            <div class="election-progress" id="election-progress" role="progressbar" aria-label="Progress toward the 2026 midterm elections" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <span id="election-progress-fill"></span>
-            </div>
-            <time datetime="2026-11-03">NOVEMBER 3, 2026</time>
-          </div>
-        </aside>
-      </div>
     </section>
 
     <section class="view" id="units" data-view="units" hidden>

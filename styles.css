@@ -41,7 +41,7 @@ nav a:hover, nav a[aria-current="page"] { color: var(--black); background: var(-
 
 main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .view { animation: reveal .25s ease-out; }
-#home, .agenda-view { position: relative; isolation: isolate; }
+#home { position: relative; isolation: isolate; }
 .portrait-rain {
   position: fixed; z-index: -1; inset: 0;
   pointer-events: none; overflow: hidden;
@@ -131,16 +131,12 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .page-intro { padding: clamp(2.5rem, 7vw, 6rem) 0 2.5rem; max-width: 820px; }
 .page-intro h1 { font-size: clamp(2.5rem, 6vw, 5rem); color: var(--black); }
 .page-intro > p:last-child { max-width: 650px; color: var(--muted); font-size: 1.1rem; font-weight: 600; }
-.agenda-layout { min-height: calc(100vh - 190px); display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, .75fr); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); }
-.agenda-board { min-width: 0; padding: clamp(2rem, 6vw, 5rem); }
-.agenda-board h1 { margin: 0; padding-bottom: 1rem; border-bottom: 10px solid var(--black); font-size: clamp(3rem, 8vw, 7rem); line-height: .88; letter-spacing: -.06em; overflow-wrap: anywhere; }
-.agenda-copy { max-width: 850px; padding-top: clamp(1.5rem, 4vw, 3rem); white-space: pre-wrap; color: var(--charcoal); font: 750 clamp(1.15rem, 2.2vw, 1.65rem)/1.6 Arial, Helvetica, sans-serif; }
-.agenda-date-panel { min-width: 0; display: grid; grid-template-rows: 1fr auto; color: var(--white); background: var(--black); border-left: 10px solid var(--slate); }
-.agenda-today { padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem); display: flex; flex-direction: column; justify-content: center; }
-.agenda-today p { margin: 0; color: var(--stone); font-size: clamp(1.35rem, 3vw, 2.5rem); font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
-.agenda-today time { display: block; font-size: clamp(4rem, 8vw, 7.5rem); font-weight: 950; line-height: .82; letter-spacing: -.07em; text-transform: uppercase; }
-.election-countdown { padding: clamp(1.5rem, 4vw, 3rem); color: var(--black); background: var(--stone); border-top: 10px solid var(--white); }
-.election-countdown strong { display: block; font-size: clamp(5rem, 11vw, 10rem); line-height: .72; letter-spacing: -.08em; }
+.election-tracker-card { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr); padding: 0; overflow: hidden; }
+.election-tracker-copy { padding: clamp(1.5rem, 4vw, 3rem); }
+.election-tracker-copy h2 { margin-bottom: .75rem; font-size: clamp(2rem, 5vw, 4rem); }
+.election-tracker-copy > p:not(.eyebrow) { max-width: 620px; margin-bottom: 1.5rem; color: var(--muted); font-weight: 750; }
+.election-countdown { padding: clamp(1.5rem, 4vw, 3rem); color: var(--black); background: var(--stone); border-left: 10px solid var(--black); }
+.election-countdown strong { display: block; font-size: clamp(5rem, 10vw, 8rem); line-height: .72; letter-spacing: -.08em; }
 .election-countdown p { max-width: 330px; margin: 1.25rem 0; font-size: clamp(.9rem, 1.6vw, 1.15rem); font-weight: 950; line-height: 1.2; letter-spacing: .06em; }
 .election-countdown > time { display: block; margin-top: .75rem; font-size: .78rem; font-weight: 900; letter-spacing: .08em; }
 .election-progress { height: 12px; background: var(--white); border: 2px solid var(--black); overflow: hidden; }
@@ -614,10 +610,8 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .lesson { grid-template-columns: 46px 1fr; }
   .standard-tag { grid-column: 2; width: max-content; }
   .home-dashboard { grid-template-columns: 1fr; }
-  .agenda-layout { min-height: auto; grid-template-columns: 1fr; }
-  .agenda-date-panel { border-left: 0; border-top: 10px solid var(--slate); }
-  .agenda-today { min-height: 330px; }
-  .agenda-today time { font-size: clamp(4rem, 21vw, 7rem); }
+  .election-tracker-card { grid-template-columns: 1fr; }
+  .election-countdown { border-left: 0; border-top: 10px solid var(--black); }
   .election-countdown strong { font-size: clamp(6rem, 32vw, 9rem); }
   .history-card, .exit-card { grid-column: 1; }
   .history-body { grid-template-columns: 1fr; gap: .8rem; }

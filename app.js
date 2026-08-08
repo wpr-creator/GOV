@@ -121,7 +121,7 @@
       switchFoundationTab("presidents");
       return;
     }
-    const valid = ["home", "agenda", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "bill-journey", "federalism-map", "founding-power", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "bill-journey", "federalism-map", "founding-power", "help"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     if (routeName === "founding-power" && unitState(data.units.find(unit => unit.id === "gov-1")) === "locked") {
       location.hash = "units";
       return;
@@ -1651,10 +1651,6 @@
     document.getElementById("exit-question").textContent = siteContent.exitQuestion || "NO EXIT TICKET TODAY.";
     const classroom = document.getElementById("classroom-link");
     classroom.href = siteContent.classroomUrl || "https://classroom.google.com/";
-    const agendaTitle = (siteContent.agendaTitle || "AGENDA").trim();
-    document.getElementById("agenda-page-title").textContent = agendaTitle;
-    document.getElementById("agenda-nav-link").textContent = agendaTitle;
-    document.getElementById("agenda-page-text").textContent = siteContent.agendaText || "";
     const list = document.getElementById("upcoming-list");
     list.replaceChildren();
     const items = Array.isArray(siteContent.upcoming) ? siteContent.upcoming : [];
@@ -1694,10 +1690,6 @@
     const todayUtc = Date.UTC(year, monthIndex, day);
     const electionUtc = Date.UTC(2026, 10, 3);
     const daysUntil = Math.max(0, Math.round((electionUtc - todayUtc) / 86400000));
-    document.getElementById("agenda-weekday").textContent = weekday;
-    const dateElement = document.getElementById("agenda-date");
-    dateElement.textContent = `${monthName} ${day}`;
-    dateElement.dateTime = `${year}-${String(monthIndex + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     document.getElementById("election-count").textContent = daysUntil;
     const label = document.getElementById("election-count-label");
     label.textContent = todayUtc === electionUtc ? "ELECTION DAY" : todayUtc > electionUtc ? "THE 2026 MIDTERM ELECTIONS HAVE PASSED" : `DAY${daysUntil === 1 ? "" : "S"} UNTIL THE MIDTERM ELECTIONS`;
@@ -1723,7 +1715,7 @@
     ];
     const positions = [4, 17, 31, 46, 61, 76, 89, 11, 54, 83];
     const sizes = [118, 92, 134, 104, 126, 88, 112, 138, 82, 102];
-    document.querySelectorAll("#home, .agenda-view").forEach(view => {
+    document.querySelectorAll("#home").forEach(view => {
       const layer = document.createElement("div");
       layer.className = "portrait-rain";
       layer.setAttribute("aria-hidden", "true");
