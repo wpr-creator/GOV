@@ -134,10 +134,6 @@
       location.hash = "units";
       return;
     }
-    if (routeName === "election-2026" && unitState(data.units.find(unit => unit.id === "gov-3")) === "locked") {
-      location.hash = "units";
-      return;
-    }
     if (["presidential-power", "bill-journey"].includes(routeName) && unitState(data.units.find(unit => unit.id === "gov-4")) === "locked") {
       location.hash = "units";
       return;
@@ -2154,6 +2150,11 @@
     }
   });
   window.addEventListener("hashchange", route);
+  document.getElementById("home-election-link").addEventListener("click", event => {
+    event.preventDefault();
+    if (location.hash === "#election-2026") showView("election-2026");
+    else location.hash = "election-2026";
+  });
   window.setInterval(renderAgendaDate, 60000);
 
   renderWords();
