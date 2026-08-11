@@ -102,6 +102,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .upcoming-row strong { text-transform: uppercase; }
 .upcoming-row span { padding: .3rem .55rem; background: var(--stone); font-size: .72rem; font-weight: 900; white-space: nowrap; }
 .empty-state { color: var(--muted); font-weight: 700; }
+.upcoming-unit-link { margin-top: 1rem; }
 .classroom-mark { width: 54px; height: 54px; display: grid; place-items: center; color: var(--white); background: var(--black); font-size: 1.5rem; font-weight: 950; }
 .course-links-card { grid-area: links; }
 .course-link-list { display: grid; gap: .65rem; padding-top: .8rem; }

@@ -8,9 +8,9 @@ window.COURSE_DATA = {
         ["0.1 — Class Is in Session", "Why does government already matter?", "Course launch", "Compare government and politics, connect both to everyday life, and get connected to the course.", "Join Google Classroom and bookmark the course website"],
         ["0.2 — Read the Fine Print", "How will this class work?", "Course launch", "Review the syllabus and classroom expectations, then learn how to navigate course resources.", "Complete the signed syllabus, Self-Guided Tour, and Civic Selfie"],
         ["0.3 — Pack Your Field Guides", "What do I already believe about government?", "Course launch", "Complete the PEW Political Typology and reflect on the result.", "Complete Between the Lines"],
-        ["0.4 — Government Takes the Stage", "How does government work when we see it in action?", "Course launch", "Use the Civics Field Guide and a classic film to notice how people, institutions, and political ideas shape government.", "Complete the Civics Field Guide and Mr. Smith Goes to Washington Reflection"],
+        ["0.4 — Government Takes the Stage", "How does government work when we see it in action?", "Course launch", "Use the Civics Field Guide and a classic film to notice how people, institutions, and political ideas shape government.", "Complete the Civics Field Guide and Mr. Smith Goes to Washington Extension"],
         ["0.5 — Portrait Day", "What can presidents reveal about American government?", "Prepares for Gov 12.4.4", "Explore the presidency through research, art, and a shared classroom display.", "Complete The Presidential Yearbook"],
-        ["0.6 — Show Your Work", "What have I learned so far?", "Course launch", "Complete the civics assessment, bring together what you learned in Unit 0, and finish outstanding work.", "Complete the Civics Field Test and Prove Your Case"]
+        ["0.6 — Show Your Work", "What have I learned so far?", "Course launch", "Complete the civics assessment, bring together what you learned in Unit 0, and finish outstanding work.", "Complete the Civics Field Guide Test and Prove Your Case"]
       ],
       resources: [
         {
@@ -65,8 +65,8 @@ window.COURSE_DATA = {
         {
           id: "mr-smith-reflection",
           lesson: "0.4 — GOVERNMENT TAKES THE STAGE",
-          title: "MR. SMITH GOES TO WASHINGTON REFLECTION",
-          url: ""
+          title: "MR. SMITH GOES TO WASHINGTON EXTENSION",
+          url: "https://docs.google.com/forms/d/e/1FAIpQLSfEvttJqyYGUOLTLTgbdpf4Uzxm4h7OUafD6nk2GZwo5HANiA/viewform?usp=publish-editor"
         },
         {
           id: "presidential-yearbook",
@@ -83,8 +83,8 @@ window.COURSE_DATA = {
         {
           id: "civics-field-test",
           lesson: "0.6 — SHOW YOUR WORK",
-          title: "CIVICS FIELD TEST",
-          url: ""
+          title: "CIVICS FIELD GUIDE TEST",
+          url: "https://docs.google.com/forms/d/e/1FAIpQLSchtFHBKW3g1YxP38--uD3CmlffQFeL0ci-fd18Bfhr9vJQqA/viewform?usp=dialog"
         },
         {
           id: "unit-0-synthesis",

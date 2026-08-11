@@ -13,8 +13,16 @@
   "exitQuestion": "",
   "upcoming": [
     {
-      "title": "COURSE MATERIALS COMING SOON",
-      "date": "AUGUST"
+      "title": "MR. SMITH GOES TO WASHINGTON EXTENSION",
+      "date": "OPEN NOW"
+    },
+    {
+      "title": "THE PRESIDENTIAL YEARBOOK",
+      "date": "OPEN NOW"
+    },
+    {
+      "title": "CIVICS FIELD GUIDE TEST",
+      "date": "OPEN NOW"
     }
   ],
   "classroomUrl": "https://classroom.google.com/",
@@ -29,10 +37,10 @@
     "pew-typology": true,
     "typology-reflection": true,
     "civics-field-guide": true,
-    "mr-smith-reflection": false,
-    "presidential-yearbook": false,
+    "mr-smith-reflection": true,
+    "presidential-yearbook": true,
     "presidential-library": false,
-    "civics-field-test": false,
+    "civics-field-test": true,
     "unit-0-synthesis": false,
     "founding-power": true,
     "federalism-map": true,
@@ -44,9 +52,6 @@
     "rights-referee": true
   },
   "assignmentUnlockAt": {
-    "civics-field-guide": "2026-08-10T09:00:00-07:00",
-    "mr-smith-reflection": "2026-08-10T09:00:00-07:00",
-    "presidential-yearbook": "2026-08-12T09:00:00-07:00",
     "presidential-library": "2026-08-12T09:00:00-07:00"
   },
   "assignmentUrls": {
@@ -58,10 +63,10 @@
     "pew-typology": "https://www.pewresearch.org/politics/quiz/political-typology/group/99e1939eab70f1619bde23fadf282d77",
     "typology-reflection": "https://docs.google.com/forms/d/e/1FAIpQLSe_BuUT-XX1ZFlTxXcSIsflQ__3H6Gc-p-tUZz4pDCrYKLMSw/viewform?usp=dialog",
     "civics-field-guide": "https://docs.google.com/document/d/1-xEhsGyKlaDogaCCvOtJV70IyeqFgpSwPo2H_wqkoOI/edit?tab=t.0",
-    "mr-smith-reflection": "",
+    "mr-smith-reflection": "https://docs.google.com/forms/d/e/1FAIpQLSfEvttJqyYGUOLTLTgbdpf4Uzxm4h7OUafD6nk2GZwo5HANiA/viewform?usp=publish-editor",
     "presidential-yearbook": "presidential-yearbook.html",
     "presidential-library": "#presidents",
-    "civics-field-test": "",
+    "civics-field-test": "https://docs.google.com/forms/d/e/1FAIpQLSchtFHBKW3g1YxP38--uD3CmlffQFeL0ci-fd18Bfhr9vJQqA/viewform?usp=dialog",
     "unit-0-synthesis": "",
     "founding-power": "#founding-power",
     "federalism-map": "#federalism-map",

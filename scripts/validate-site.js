@@ -224,10 +224,10 @@ const expectedFirstBellAssignments = [
   "pew-typology|0.3 — PACK YOUR FIELD GUIDES|PEW POLITICAL TYPOLOGY",
   "typology-reflection|0.3 — PACK YOUR FIELD GUIDES|TYPOLOGY REFLECTION: BETWEEN THE LINES",
   "civics-field-guide|0.4 — GOVERNMENT TAKES THE STAGE|CIVICS FIELD GUIDE",
-  "mr-smith-reflection|0.4 — GOVERNMENT TAKES THE STAGE|MR. SMITH GOES TO WASHINGTON REFLECTION",
+  "mr-smith-reflection|0.4 — GOVERNMENT TAKES THE STAGE|MR. SMITH GOES TO WASHINGTON EXTENSION",
   "presidential-yearbook|0.5 — PORTRAIT DAY|THE PRESIDENTIAL YEARBOOK",
   "presidential-library|0.5 — PORTRAIT DAY|PRESIDENTIAL LIBRARY",
-  "civics-field-test|0.6 — SHOW YOUR WORK|CIVICS FIELD TEST",
+  "civics-field-test|0.6 — SHOW YOUR WORK|CIVICS FIELD GUIDE TEST",
   "unit-0-synthesis|0.6 — SHOW YOUR WORK|PROVE YOUR CASE"
 ];
 if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${resource.title}`).join("\n") !== expectedFirstBellAssignments.join("\n")) {
@@ -247,7 +247,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260808-history-cleanup") || !html.includes("app.js?v=20260808-election-link-fix")) {
+if (!html.includes("styles.css?v=20260811-unit0-upcoming") || !html.includes("app.js?v=20260808-election-link-fix") || !html.includes("course-data.js?v=20260811-unit0-assignments")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "ASSIGNED PRESIDENTS", "COMING SOON", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
