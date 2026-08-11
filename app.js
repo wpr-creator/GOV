@@ -450,7 +450,7 @@
     const matches = presidentFacts.filter(president =>
       `${president.name} ${president.order} ${president.yearsInOffice}`.toLowerCase().includes(presidentQuery)
     );
-    document.getElementById("president-status").textContent = `${matches.length} ${matches.length === 1 ? "PRESIDENT" : "PRESIDENTS"} SHOWN`;
+    document.getElementById("president-status").textContent = `${matches.length} ${matches.length === 1 ? "PRESIDENCY" : "PRESIDENCIES"} SHOWN`;
     matches.forEach(president => {
       const card = document.createElement("article");
       card.className = "president-card";
@@ -554,12 +554,30 @@
     });
   }
 
+  function expandPresidentialTerms(presidents) {
+    return presidents.flatMap(president => {
+      if (president.name === "Grover Cleveland") {
+        return [
+          { ...president, order: "22", yearsInOffice: "1885–1889" },
+          { ...president, order: "24", yearsInOffice: "1893–1897" }
+        ];
+      }
+      if (president.name === "Donald Trump") {
+        return [
+          { ...president, order: "45", yearsInOffice: "2017–2021" },
+          { ...president, order: "47", yearsInOffice: "2025–present" }
+        ];
+      }
+      return [president];
+    }).sort((a, b) => Number(a.order) - Number(b.order));
+  }
+
   async function loadPresidentFacts() {
     try {
       const response = await fetch("assets/presidents/president-facts.json");
       if (!response.ok) throw new Error("President facts unavailable");
       const payload = await response.json();
-      presidentFacts = payload.presidents || [];
+      presidentFacts = expandPresidentialTerms(payload.presidents || []);
       renderPresidents();
     } catch (error) {
       document.getElementById("president-status").textContent = "PRESIDENT FACT CARDS ARE TEMPORARILY UNAVAILABLE.";

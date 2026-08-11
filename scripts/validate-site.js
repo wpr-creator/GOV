@@ -247,7 +247,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260811-unit0-upcoming") || !html.includes("app.js?v=20260808-election-link-fix") || !html.includes("course-data.js?v=20260811-unit0-assignments")) {
+if (!html.includes("styles.css?v=20260811-unit0-upcoming") || !html.includes("app.js?v=20260811-presidential-terms") || !html.includes("course-data.js?v=20260811-unit0-assignments")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "ASSIGNED PRESIDENTS", "COMING SOON", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -317,6 +317,10 @@ for (const fragment of ['data-view-link="skills"', 'id="skills" data-view="skill
 for (const presidentLibraryFeature of ['routeName === "presidents"', 'switchFoundationTab("presidents")', 'id="president-search"', 'id="president-grid"']) {
   const source = presidentLibraryFeature.startsWith("id=") ? html : fs.readFileSync(path.join(root, "app.js"), "utf8");
   if (!source.includes(presidentLibraryFeature)) errors.push(`The Presidential Library tab is missing: ${presidentLibraryFeature}`);
+}
+for (const presidentialTermFeature of ['function expandPresidentialTerms', 'order: "22", yearsInOffice: "1885–1889"', 'order: "24", yearsInOffice: "1893–1897"', 'order: "45", yearsInOffice: "2017–2021"', 'order: "47", yearsInOffice: "2025–present"', "PRESIDENCIES"]) {
+  const source = presidentialTermFeature === "PRESIDENCIES" ? html : fs.readFileSync(path.join(root, "app.js"), "utf8");
+  if (!source.includes(presidentialTermFeature)) errors.push(`The separate presidential-term cards are missing: ${presidentialTermFeature}`);
 }
 if (html.includes('class="foundation-feature"') || html.includes('id="presidents" data-view="presidents"')) {
   errors.push("Foundations still contains the old Presidential Library promotion or duplicate page.");
