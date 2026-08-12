@@ -243,9 +243,18 @@
         if (!resourceGroups.has(lesson)) resourceGroups.set(lesson, []);
         resourceGroups.get(lesson).push(resource);
       });
-      resourceGroups.forEach((lessonResources, lesson) => {
+      const resourceGroupEntries = [...resourceGroups.entries()];
+      if (unit.id === "gov-0") {
+        const unitZeroOrder = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "ASSESSMENTS"];
+        resourceGroupEntries.sort(([lessonA], [lessonB]) => {
+          const rank = lesson => lesson === "ASSESSMENTS" ? 6 : unitZeroOrder.findIndex(prefix => lesson.startsWith(prefix));
+          return rank(lessonB) - rank(lessonA);
+        });
+      }
+      resourceGroupEntries.forEach(([lesson, lessonResources]) => {
         const group = document.createElement("section");
         group.className = "unit-resource-group";
+        if (lesson === "ASSESSMENTS") group.classList.add("assessment-group");
         const lessonTitle = document.createElement("h2");
         lessonTitle.textContent = lesson;
         const resourceGrid = document.createElement("div");

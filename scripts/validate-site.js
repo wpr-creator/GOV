@@ -211,7 +211,7 @@ const expectedFirstBellLessons = [
   "0.3 — Pack Your Field Guides",
   "0.4 — Government Takes the Stage",
   "0.5 — Portrait Day",
-  "0.6 — Show Your Work"
+  "0.6 — The Court Is in Session"
 ];
 if (firstBell?.lessons.some((lesson, index) => lesson[0] !== expectedFirstBellLessons[index])) {
   errors.push("First Bell lessons are missing or out of order.");
@@ -225,11 +225,11 @@ const expectedFirstBellAssignments = [
   "pew-typology|0.3 — PACK YOUR FIELD GUIDES|PEW POLITICAL TYPOLOGY",
   "typology-reflection|0.3 — PACK YOUR FIELD GUIDES|TYPOLOGY REFLECTION: BETWEEN THE LINES",
   "civics-field-guide|0.4 — GOVERNMENT TAKES THE STAGE|CIVICS FIELD GUIDE",
-  "mr-smith-reflection|0.4 — GOVERNMENT TAKES THE STAGE|MR. SMITH GOES TO WASHINGTON EXTENSION",
+  "mr-smith-reflection|ASSESSMENTS|MR. SMITH GOES TO WASHINGTON EXTENSION",
   "presidential-yearbook|0.5 — PORTRAIT DAY|THE PRESIDENTIAL YEARBOOK",
   "presidential-library|0.5 — PORTRAIT DAY|PRESIDENTIAL LIBRARY",
-  "civics-field-test|0.6 — SHOW YOUR WORK|CIVICS FIELD GUIDE TEST",
-  "unit-0-synthesis|0.6 — SHOW YOUR WORK|PROVE YOUR CASE"
+  "civics-field-test|ASSESSMENTS|CIVICS FIELD GUIDE TEST",
+  "unit-0-synthesis|0.6 — THE COURT IS IN SESSION|PROVE YOUR CASE"
 ];
 if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${resource.title}`).join("\n") !== expectedFirstBellAssignments.join("\n")) {
   errors.push("First Bell assignments are missing, mislabeled, or out of lesson order.");
@@ -248,7 +248,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260812-case-guides") || !html.includes("app.js?v=20260812-case-guides") || !html.includes("course-data.js?v=20260811-unit0-assignments")) {
+if (!html.includes("styles.css?v=20260812-unit0-order") || !html.includes("app.js?v=20260812-unit0-order") || !html.includes("course-data.js?v=20260812-unit0-order")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -506,7 +506,7 @@ function validatePresidentialYearbookAssignments() {
   vm.createContext(revealContext);
   vm.runInContext(dataCode, revealContext);
   const assignments = revealContext.window.PRESIDENTIAL_YEARBOOK_ASSIGNMENTS;
-  const expectedCounts = { "1B": 35, "2A": 25 };
+  const expectedCounts = { "1B": 34, "2A": 25 };
   const requiredFields = ["period", "student", "presidentNumber", "president", "term", "libraryUrl", "status"];
 
   if (/Math\.random\s*\(/.test(dataCode + revealCode + presidentialYearbookHtml)) {
@@ -518,8 +518,8 @@ function validatePresidentialYearbookAssignments() {
   if (presidentialYearbookHtml.includes("ASSIGNED PRESIDENTS") || presidentialYearbookHtml.includes("COMING SOON")) {
     errors.push("The Assigned Presidents placeholder is still present.");
   }
-  if (!Array.isArray(assignments) || assignments.length !== 60) {
-    errors.push(`Expected 60 finalized CP assignments; found ${assignments?.length || 0}.`);
+  if (!Array.isArray(assignments) || assignments.length !== 59) {
+    errors.push(`Expected 59 finalized CP assignments; found ${assignments?.length || 0}.`);
     return;
   }
   assignments.forEach((assignment, index) => {

@@ -75,15 +75,6 @@ window.PRESIDENTIAL_YEARBOOK_ASSIGNMENTS = [
   },
   {
     "period": "1B",
-    "student": "Espinoza Virgen, Anthony",
-    "presidentNumber": 33,
-    "president": "Harry S. Truman",
-    "term": "1945–1953",
-    "libraryUrl": "./#presidents",
-    "status": "Assigned"
-  },
-  {
-    "period": "1B",
     "student": "Gabriel, Gavin Florence E.",
     "presidentNumber": 47,
     "president": "Donald Trump",

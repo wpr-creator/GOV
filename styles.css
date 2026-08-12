@@ -176,6 +176,9 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .unit-source span { color: var(--muted); font-size: .68rem; font-weight: 850; letter-spacing: .04em; }
 .unit-resource-group { margin: 0 0 1.4rem; }
 .unit-resource-group > h2 { margin: 0 0 .65rem; padding-bottom: .45rem; border-bottom: 3px solid var(--black); font-size: 1rem; letter-spacing: .025em; }
+.unit-resource-group.assessment-group { padding: 1rem; background: #f5dddd; border: 2px solid #8d2024; }
+.unit-resource-group.assessment-group > h2 { color: #74171b; border-bottom-color: #8d2024; }
+.unit-resource-group.assessment-group .unit-resource { border-color: #8d2024; }
 .unit-resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
 .unit-resource { min-height: 92px; padding: 1rem; display: flex; flex-direction: column; justify-content: center; gap: .3rem; color: var(--white); background: var(--black); border-radius: 4px; text-decoration: none; }
 .unit-resource:hover { background: var(--charcoal); }
