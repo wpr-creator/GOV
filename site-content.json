@@ -39,7 +39,7 @@
     "civics-field-guide": true,
     "mr-smith-reflection": true,
     "presidential-yearbook": true,
-    "presidential-library": false,
+    "presidential-library": true,
     "civics-field-test": true,
     "unit-0-synthesis": false,
     "founding-power": true,
@@ -51,9 +51,7 @@
     "presidential-power": true,
     "rights-referee": true
   },
-  "assignmentUnlockAt": {
-    "presidential-library": "2026-08-12T09:00:00-07:00"
-  },
+  "assignmentUnlockAt": {},
   "assignmentUrls": {
     "classroom": "https://classroom.google.com/",
     "course-site": "https://wpr-creator.github.io/GOV/",
