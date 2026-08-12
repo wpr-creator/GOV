@@ -29,6 +29,7 @@ const presidentialPowerCases = context.window.PRESIDENTIAL_POWER_DATA;
 const billJourneyData = context.window.BILL_JOURNEY_DATA;
 const federalismMapData = context.window.FEDERALISM_MAP_DATA;
 const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
+const foundationCases = context.window.FOUNDATIONS_DATA.cases;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
@@ -247,7 +248,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260811-unit0-upcoming") || !html.includes("app.js?v=20260811-presidential-terms") || !html.includes("course-data.js?v=20260811-unit0-assignments")) {
+if (!html.includes("styles.css?v=20260812-case-guides") || !html.includes("app.js?v=20260812-case-guides") || !html.includes("course-data.js?v=20260811-unit0-assignments")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -463,6 +464,24 @@ data.units.forEach(unit => {
 });
 
 if (foundations.documents.length !== 10) errors.push(`Expected 10 foundational documents; found ${foundations.documents.length}.`);
+if (!Array.isArray(foundationCases) || foundationCases.length !== 9) errors.push(`Expected 9 student-friendly court case guides; found ${foundationCases?.length || 0}.`);
+foundationCases?.forEach((caseData, index) => {
+  for (const key of ["slug", "title", "year", "topic", "question"]) {
+    if (!caseData[key]) errors.push(`Court case guide ${index + 1} is missing ${key}.`);
+  }
+  if (!fs.existsSync(path.join(root, "cases", `${caseData.slug}.html`))) errors.push(`Missing individual page for ${caseData.title}.`);
+});
+if (foundationCases?.some((caseData, index) => index && Number(caseData.year) < Number(foundationCases[index - 1].year))) {
+  errors.push("Court case guides must remain in chronological order.");
+}
+const caseGuideCode = fs.readFileSync(path.join(root, "cases", "case-guides-data.js"), "utf8");
+const caseGuideContext = { window: {} };
+vm.createContext(caseGuideContext);
+vm.runInContext(caseGuideCode, caseGuideContext);
+if (caseGuideContext.window.CP_CASE_GUIDES?.length !== 9) errors.push("Court case page data must contain all 9 guides.");
+for (const forbiddenCase of ["Marbury v. Madison", "McCulloch v. Maryland"]) {
+  if (caseGuideCode.includes(forbiddenCase)) errors.push(`The CP case collection must not include ${forbiddenCase}.`);
+}
 if (foundations.amendments.length !== 27) errors.push(`Expected all 27 amendments; found ${foundations.amendments.length}.`);
 if (foundations.debates.length !== 4) errors.push(`Expected 4 Madison debates; found ${foundations.debates.length}.`);
 if (foundations.skills.length !== 3 || foundations.skills.some(skill => skill.levels.length !== 3)) {

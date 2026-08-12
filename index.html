@@ -23,9 +23,9 @@
   <meta name="twitter:image:alt" content="Principles of American Democracy beside a white civic building with tall columns.">
   <title>Principles of American Democracy</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260811-unit0-upcoming">
+  <link rel="stylesheet" href="styles.css?v=20260812-case-guides">
   <script src="course-data.js?v=20260811-unit0-assignments" defer></script>
-  <script src="foundations-data.js" defer></script>
+  <script src="foundations-data.js?v=20260812-case-guides" defer></script>
   <script src="constitution-explorer-data.js" defer></script>
   <script src="rights-referee-data.js" defer></script>
   <script src="election-2026-data.js" defer></script>
@@ -33,7 +33,7 @@
   <script src="bill-journey-data.js?v=20260726-bill" defer></script>
   <script src="federalism-map-data.js?v=20260726-map" defer></script>
   <script src="founding-power-data.js" defer></script>
-  <script src="app.js?v=20260811-presidential-terms" defer></script>
+  <script src="app.js?v=20260812-case-guides" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the course</a>
@@ -176,6 +176,7 @@
       </div>
       <div class="foundation-tabs" role="tablist" aria-label="Foundations tools">
         <button type="button" role="tab" aria-selected="true" tabindex="0" aria-controls="foundation-documents" data-foundation-tab="documents">DOCUMENTS</button>
+        <button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="foundation-cases" data-foundation-tab="cases">COURT CASES</button>
         <button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="foundation-amendments" data-foundation-tab="amendments">AMENDMENTS</button>
         <button type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="foundation-presidents" data-foundation-tab="presidents">PRESIDENTIAL LIBRARY</button>
       </div>
@@ -183,6 +184,11 @@
       <section class="foundation-panel" id="foundation-documents" role="tabpanel">
         <div class="tool-heading"><div><p class="eyebrow">ESSENTIAL TEXTS</p><h2>FOUNDATIONAL DOCUMENTS</h2></div><p>SHORT EXCERPTS · PLAIN LANGUAGE · ONE QUESTION</p></div>
         <div class="document-grid" id="document-grid"></div>
+      </section>
+
+      <section class="foundation-panel" id="foundation-cases" role="tabpanel" hidden>
+        <div class="tool-heading"><div><p class="eyebrow">RIGHTS AND POWER</p><h2>IMPORTANT COURT CASES</h2></div><p>WHAT HAPPENED · WHAT THE COURT DECIDED · WHY IT MATTERS</p></div>
+        <div class="case-guide-grid" id="case-guide-grid"></div>
       </section>
 
       <section class="foundation-panel" id="foundation-amendments" role="tabpanel" hidden>

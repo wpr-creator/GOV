@@ -704,6 +704,29 @@
     }
   }
 
+  function renderCaseGuides() {
+    const grid = document.getElementById("case-guide-grid");
+    if (!grid) return;
+    grid.replaceChildren();
+    foundations.cases.forEach(caseData => {
+      const link = document.createElement("a");
+      link.className = "case-guide-card";
+      link.href = `cases/${caseData.slug}.html`;
+      const meta = document.createElement("span");
+      meta.className = "case-guide-meta";
+      meta.textContent = `${caseData.year} · ${caseData.topic}`;
+      const title = document.createElement("strong");
+      title.textContent = caseData.title;
+      const question = document.createElement("span");
+      question.textContent = caseData.question;
+      const action = document.createElement("span");
+      action.className = "case-guide-action";
+      action.textContent = "OPEN CASE →";
+      link.append(meta, title, question, action);
+      grid.appendChild(link);
+    });
+  }
+
   function ordinal(number) {
     const mod100 = number % 100;
     if (mod100 >= 11 && mod100 <= 13) return `${number}TH`;
@@ -1792,7 +1815,8 @@
     renderAgendaDate();
     renderUnits();
     renderWords();
-    renderAmendments();
+  renderAmendments();
+  renderCaseGuides();
     renderSkills();
     route();
     scheduleAssignmentRefresh();

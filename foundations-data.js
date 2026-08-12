@@ -1,4 +1,15 @@
 window.FOUNDATIONS_DATA = {
+  cases: [
+    {slug:"brown-v-board", title:"Brown v. Board of Education", year:"1954", topic:"EQUAL PROTECTION", question:"Could public schools separate students by race?"},
+    {slug:"engel-v-vitale", title:"Engel v. Vitale", year:"1962", topic:"RELIGIOUS FREEDOM", question:"Could a public school lead students in an official prayer?"},
+    {slug:"gideon-v-wainwright", title:"Gideon v. Wainwright", year:"1963", topic:"RIGHT TO A LAWYER", question:"Must the state provide a lawyer when a defendant cannot afford one?"},
+    {slug:"miranda-v-arizona", title:"Miranda v. Arizona", year:"1966", topic:"POLICE QUESTIONING", question:"What must police explain before questioning a person in custody?"},
+    {slug:"loving-v-virginia", title:"Loving v. Virginia", year:"1967", topic:"EQUAL PROTECTION", question:"Could a state ban interracial marriage?"},
+    {slug:"tinker-v-des-moines", title:"Tinker v. Des Moines", year:"1969", topic:"STUDENT SPEECH", question:"Could a school punish students for a peaceful protest?"},
+    {slug:"united-states-v-nixon", title:"United States v. Nixon", year:"1974", topic:"LIMITS ON PRESIDENTIAL POWER", question:"Did the president have to obey a court order for evidence?"},
+    {slug:"new-jersey-v-tlo", title:"New Jersey v. T.L.O.", year:"1985", topic:"SCHOOL SEARCHES", question:"When may a school official search a student’s belongings?"},
+    {slug:"texas-v-johnson", title:"Texas v. Johnson", year:"1989", topic:"POLITICAL SPEECH", question:"Could Texas punish flag burning used as political protest?"}
+  ],
   documents: [
     {
       id: "declaration", title: "Declaration of Independence", author: "Thomas Jefferson", year: "1776",

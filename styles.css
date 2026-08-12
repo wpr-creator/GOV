@@ -259,6 +259,13 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .tool-heading h2 { margin: 0; font-size: clamp(1.65rem, 4vw, 2.8rem); }
 .tool-heading > p { max-width: 300px; margin: 0; color: var(--muted); text-align: right; font-size: .74rem; font-weight: 850; letter-spacing: .06em; }
 .document-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.case-guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.case-guide-card { min-height: 210px; padding: 1.25rem; display: flex; flex-direction: column; color: var(--white); background: var(--black); border-top: 8px solid var(--slate); text-decoration: none; }
+.case-guide-card:hover { background: var(--charcoal); }
+.case-guide-card strong { margin: .6rem 0; font-family: var(--display); font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1; text-transform: uppercase; }
+.case-guide-card > span:not(.case-guide-meta):not(.case-guide-action) { color: #e4e4e1; font-weight: 750; line-height: 1.4; }
+.case-guide-meta { color: #bfc1bf; font-size: .72rem; font-weight: 950; letter-spacing: .08em; }
+.case-guide-action { margin-top: auto; padding-top: 1rem; font-weight: 950; }
 .document-card { min-height: 280px; padding: 1.3rem; display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--stone-dark); border-top: 7px solid var(--black); }
 .document-meta { margin: 0; color: var(--muted); font-size: .72rem; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
 .document-card h3 { margin: .7rem 0; font-size: 1.35rem; }
@@ -621,7 +628,7 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .foundation-tabs button { flex: 0 0 auto; }
   .tool-heading { align-items: start; flex-direction: column; }
   .tool-heading > p { text-align: left; }
-  .document-grid, .skills-grid, .madison-sides { grid-template-columns: 1fr; }
+  .document-grid, .case-guide-grid, .skills-grid, .madison-sides { grid-template-columns: 1fr; }
   .explorer-options { grid-template-columns: 1fr; }
   .rights-case { grid-template-columns: 1fr; }
   .rights-case > svg { max-width: 220px; justify-self: center; padding-bottom: 0; }
