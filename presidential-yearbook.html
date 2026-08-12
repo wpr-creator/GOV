@@ -74,9 +74,69 @@
     }
     .resource-card span:last-child { font-weight: 750; line-height: 1.4; }
     .resource-card[href]:hover { background: var(--charcoal); }
-    .resource-card.coming-soon {
-      color: var(--black); background: var(--white); border: 1px dashed var(--slate);
-      border-top: 8px solid var(--slate);
+    .reveal-panel {
+      min-height: 150px; padding: clamp(1.15rem, 3vw, 1.75rem);
+      color: var(--black); background: var(--white); border-top: 8px solid var(--slate);
+    }
+    .reveal-panel h2 { margin-bottom: .35rem; font-size: clamp(1.55rem, 4vw, 2.35rem); }
+    .reveal-intro { margin: 0 0 1rem; color: var(--slate); font-weight: 750; line-height: 1.4; }
+    .reveal-form { display: grid; grid-template-columns: minmax(110px, .45fr) minmax(190px, 1fr); gap: .75rem; }
+    .reveal-field { min-width: 0; }
+    .reveal-field label {
+      display: block; margin-bottom: .35rem; font-size: .72rem; font-weight: 900;
+      letter-spacing: .09em; text-transform: uppercase;
+    }
+    .reveal-field select {
+      width: 100%; min-height: 48px; padding: .7rem .75rem; color: var(--black);
+      background: var(--paper); border: 2px solid var(--charcoal); border-radius: 0;
+      font: inherit; font-weight: 750;
+    }
+    .reveal-field select:focus-visible, .reveal-button:focus-visible, .reveal-library-link:focus-visible {
+      outline: 4px solid var(--focus); outline-offset: 3px;
+    }
+    .selected-student {
+      grid-column: 1 / -1; min-height: 24px; margin: .15rem 0 0;
+      font-weight: 850; line-height: 1.4;
+    }
+    .reveal-button {
+      grid-column: 1 / -1; min-height: 52px; padding: .8rem 1rem;
+      color: var(--white); background: var(--black); border: 0;
+      font-family: "Arial Black", Impact, Arial, sans-serif; font-size: 1rem;
+      letter-spacing: .025em; text-transform: uppercase; cursor: pointer;
+    }
+    .reveal-button:hover:not(:disabled) { background: var(--charcoal); }
+    .reveal-button:disabled { color: var(--slate); background: var(--stone); cursor: not-allowed; }
+    .reveal-message { margin: .75rem 0 0; color: var(--slate); font-weight: 750; line-height: 1.4; }
+    .president-reveal-card {
+      grid-column: 1 / -1; position: relative; overflow: hidden; margin-top: .15rem;
+      padding: clamp(1.25rem, 4vw, 2rem); color: var(--white); background: var(--black);
+      border: 8px double var(--white); outline: 3px solid var(--black);
+      opacity: 0; transform: translateY(12px) scale(.985);
+      transition: opacity .35s ease, transform .35s ease;
+    }
+    .president-reveal-card.is-revealed { opacity: 1; transform: none; }
+    .president-reveal-card::after {
+      position: absolute; right: -30px; top: -38px; width: 150px; height: 150px;
+      border: 18px solid rgba(255,255,255,.07); border-radius: 50%; content: "";
+    }
+    .reveal-president-number {
+      position: relative; z-index: 1; margin: 0 0 .45rem; color: var(--stone);
+      font-weight: 900; letter-spacing: .12em;
+    }
+    .president-reveal-card h3 {
+      position: relative; z-index: 1; margin: 0; max-width: 90%;
+      font-family: "Arial Black", Impact, Arial, sans-serif;
+      font-size: clamp(2rem, 6vw, 3.5rem); line-height: .95; text-transform: uppercase;
+    }
+    .reveal-president-term { position: relative; z-index: 1; margin: .55rem 0 1rem; color: var(--stone); font-weight: 900; }
+    .reveal-status {
+      display: inline-block; margin: 0 0 1rem; padding: .35rem .6rem;
+      color: var(--black); background: var(--white); font-size: .72rem;
+      font-weight: 900; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .reveal-library-link {
+      position: relative; z-index: 1; display: block; width: fit-content;
+      color: var(--white); font-weight: 900; line-height: 1.4;
     }
     .section-intro {
       max-width: 720px; margin: -.3rem 0 1rem; color: var(--slate);
@@ -145,9 +205,12 @@
       .checklist ul { columns: 1; }
       .hero::after { display: none; }
       h1 { font-size: clamp(2.1rem, 9.5vw, 3rem); }
+      .reveal-form { grid-template-columns: 1fr; }
+      .selected-student, .reveal-button, .president-reveal-card { grid-column: auto; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; }
+      .president-reveal-card { opacity: 1; transform: none; transition: none; }
     }
     @media print {
       body { background: var(--white); }
@@ -170,10 +233,30 @@
 
     <section class="resources-section" aria-label="Assignment resources">
       <div class="resource-grid">
-        <div class="resource-card coming-soon">
-          <strong>ASSIGNED PRESIDENTS</strong>
-          <span>COMING SOON</span>
-        </div>
+        <section class="reveal-panel" aria-labelledby="presidential-reveal-title">
+          <h2 id="presidential-reveal-title">PRESIDENTIAL REVEAL</h2>
+          <p class="reveal-intro">Choose your CP Government period and name. Your saved assignment will stay the same every time.</p>
+          <div class="reveal-form">
+            <div class="reveal-field">
+              <label for="reveal-period">Class period</label>
+              <select id="reveal-period">
+                <option value="">SELECT PERIOD</option>
+                <option value="1B">1B</option>
+                <option value="2A">2A</option>
+              </select>
+            </div>
+            <div class="reveal-field">
+              <label for="reveal-student">Your name</label>
+              <select id="reveal-student" disabled>
+                <option value="">CHOOSE A PERIOD FIRST</option>
+              </select>
+            </div>
+            <p class="selected-student" id="selected-student">Choose your CP Government period first.</p>
+            <button class="reveal-button" id="reveal-president-button" type="button" disabled>REVEAL MY PRESIDENT</button>
+            <p class="reveal-message" id="reveal-message" role="status" aria-live="polite"></p>
+            <article class="president-reveal-card" id="president-reveal-card" tabindex="-1" aria-live="polite" hidden></article>
+          </div>
+        </section>
         <a class="resource-card" href="./#presidents">
           <strong>PRESIDENTIAL LIBRARY</strong>
           <span>OPEN FACTS AND QUOTES</span>
@@ -244,5 +327,7 @@
       </article>
     </section>
   </main>
+  <script src="presidential-yearbook-assignments.js"></script>
+  <script src="presidential-yearbook-reveal.js"></script>
 </body>
 </html>
