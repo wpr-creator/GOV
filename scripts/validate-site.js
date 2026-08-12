@@ -32,7 +32,7 @@ const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -250,7 +250,7 @@ for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check"
 if (!html.includes("styles.css?v=20260811-unit0-upcoming") || !html.includes("app.js?v=20260811-presidential-terms") || !html.includes("course-data.js?v=20260811-unit0-assignments")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
-for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "ASSIGNED PRESIDENTS", "COMING SOON", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
+for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
   if (!presidentialYearbookHtml.includes(yearbookFeature)) errors.push(`The Presidential Yearbook page is missing: ${yearbookFeature}`);
 }
 for (const yearbookMigrationFeature of ['previewAssignmentUrls["presidential-yearbook"] === "#presidents"', 'delete previewAssignmentUrls["presidential-yearbook"]']) {
@@ -479,6 +479,71 @@ foundations.amendments.forEach((amendment, index) => {
 for (const skillId of ["source", "argument", "language"]) {
   if (![1, 2, 3].includes(config.foundationUnlocks?.[skillId])) errors.push(`Invalid foundation unlock for ${skillId}.`);
 }
+
+function validatePresidentialYearbookAssignments() {
+  const dataCode = fs.readFileSync(path.join(root, "presidential-yearbook-assignments.js"), "utf8");
+  const revealCode = fs.readFileSync(path.join(root, "presidential-yearbook-reveal.js"), "utf8");
+  const revealContext = { window: {} };
+  vm.createContext(revealContext);
+  vm.runInContext(dataCode, revealContext);
+  const assignments = revealContext.window.PRESIDENTIAL_YEARBOOK_ASSIGNMENTS;
+  const expectedCounts = { "1B": 35, "2A": 25 };
+  const requiredFields = ["period", "student", "presidentNumber", "president", "term", "libraryUrl", "status"];
+
+  if (/Math\.random\s*\(/.test(dataCode + revealCode + presidentialYearbookHtml)) {
+    errors.push("Presidential Yearbook assignments must never be randomized in the browser.");
+  }
+  for (const marker of ["PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prefers-reduced-motion: reduce"]) {
+    if (!presidentialYearbookHtml.includes(marker)) errors.push(`Presidential Yearbook reveal is missing: ${marker}`);
+  }
+  if (presidentialYearbookHtml.includes("ASSIGNED PRESIDENTS") || presidentialYearbookHtml.includes("COMING SOON")) {
+    errors.push("The Assigned Presidents placeholder is still present.");
+  }
+  if (!Array.isArray(assignments) || assignments.length !== 60) {
+    errors.push(`Expected 60 finalized CP assignments; found ${assignments?.length || 0}.`);
+    return;
+  }
+  assignments.forEach((assignment, index) => {
+    requiredFields.forEach(field => {
+      if (assignment[field] === undefined || assignment[field] === null || assignment[field] === "") {
+        errors.push(`Incomplete Presidential Yearbook assignment at record ${index + 1}: ${field}`);
+      }
+    });
+    if (!Object.hasOwn(expectedCounts, assignment.period)) errors.push(`Non-CP period in Presidential Yearbook assignments: ${assignment.period}`);
+    if (assignment.libraryUrl !== "./#presidents") errors.push(`Incorrect CP Presidential Library link for ${assignment.student}.`);
+    if (assignment.status !== "Assigned") errors.push(`Incorrect assignment status for ${assignment.student}.`);
+  });
+  const studentKeys = assignments.map(assignment => `${assignment.period}|${assignment.student}`);
+  if (new Set(studentKeys).size !== assignments.length) errors.push("Duplicate CP student assignment record detected.");
+  Object.entries(expectedCounts).forEach(([period, count]) => {
+    const periodAssignments = assignments.filter(assignment => assignment.period === period);
+    if (periodAssignments.length !== count) errors.push(`CP period ${period} must contain ${count} assignments.`);
+    const numbers = periodAssignments.map(assignment => assignment.presidentNumber);
+    if (new Set(numbers).size !== numbers.length) errors.push(`Duplicate presidency number within CP period ${period}.`);
+    [22, 24, 45, 47].forEach(number => {
+      if (!numbers.includes(number)) errors.push(`CP period ${period} is missing separate presidency #${number}.`);
+    });
+  });
+  const presidencyChecks = new Map([
+    [22, ["Grover Cleveland", "1885–1889"]],
+    [24, ["Grover Cleveland", "1893–1897"]],
+    [45, ["Donald Trump", "2017–2021"]],
+    [47, ["Donald Trump", "2025–present"]]
+  ]);
+  presidencyChecks.forEach(([name, term], number) => {
+    const matching = assignments.filter(assignment => assignment.presidentNumber === number);
+    if (!matching.length || matching.some(assignment => assignment.president !== name || assignment.term !== term)) {
+      errors.push(`Presidency #${number} is missing or incorrectly identified.`);
+    }
+  });
+  for (const forbidden of ["1A", "2B", "AP Government", "github.io/APG"]) {
+    if (dataCode.includes(forbidden) || revealCode.includes(forbidden) || presidentialYearbookHtml.includes(forbidden)) {
+      errors.push(`AP-only content found in CP Presidential Reveal: ${forbidden}`);
+    }
+  }
+}
+
+validatePresidentialYearbookAssignments();
 
 try { new vm.Script(fs.readFileSync(path.join(root, "app.js"), "utf8")); }
 catch (error) { errors.push(`Invalid app.js: ${error.message}`); }
