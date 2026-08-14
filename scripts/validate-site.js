@@ -509,7 +509,7 @@ function validateProveYourCase() {
   expected.forEach(id => {
     const item = proveCases?.find(entry => entry.id === id);
     if (!item) { errors.push(`Missing Prove Your Case data: ${id}`); return; }
-    for (const field of ["file", "name", "year", "topic", "amendments", "image", "alt", "question", "story", "notice", "constitution", "sideA", "sideB", "prompts", "ruling"]) if (!item[field]) errors.push(`Incomplete Prove Your Case ${id}: ${field}`);
+    for (const field of ["file", "name", "year", "topic", "amendments", "image", "alt", "teaser", "question", "story", "notice", "constitution", "sideA", "sideB", "prompts", "ruling"]) if (!item[field]) errors.push(`Incomplete Prove Your Case ${id}: ${field}`);
     if (!fs.existsSync(path.join(root, "prove-your-case", item.file))) errors.push(`Missing Prove Your Case page: ${item.file}`);
     const localImage = item.image.replace(/^\.\.\//, "");
     if (!fs.existsSync(path.join(root, localImage))) errors.push(`Missing Prove Your Case illustration: ${localImage}`);
