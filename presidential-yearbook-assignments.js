@@ -48,6 +48,15 @@ window.PRESIDENTIAL_YEARBOOK_ASSIGNMENTS = [
   },
   {
     "period": "1B",
+    "student": "Carrillo, Luis F.",
+    "presidentNumber": 21,
+    "president": "Chester A. Arthur",
+    "term": "1881–1885",
+    "libraryUrl": "./#presidents",
+    "status": "Assigned"
+  },
+  {
+    "period": "1B",
     "student": "Castillo, Mia",
     "presidentNumber": 40,
     "president": "Ronald Reagan",

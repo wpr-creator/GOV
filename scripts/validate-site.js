@@ -506,7 +506,7 @@ function validatePresidentialYearbookAssignments() {
   vm.createContext(revealContext);
   vm.runInContext(dataCode, revealContext);
   const assignments = revealContext.window.PRESIDENTIAL_YEARBOOK_ASSIGNMENTS;
-  const expectedCounts = { "1B": 34, "2A": 25 };
+  const expectedCounts = { "1B": 35, "2A": 25 };
   const requiredFields = ["period", "student", "presidentNumber", "president", "term", "libraryUrl", "status"];
 
   if (/Math\.random\s*\(/.test(dataCode + revealCode + presidentialYearbookHtml)) {
@@ -518,8 +518,8 @@ function validatePresidentialYearbookAssignments() {
   if (presidentialYearbookHtml.includes("ASSIGNED PRESIDENTS") || presidentialYearbookHtml.includes("COMING SOON")) {
     errors.push("The Assigned Presidents placeholder is still present.");
   }
-  if (!Array.isArray(assignments) || assignments.length !== 59) {
-    errors.push(`Expected 59 finalized CP assignments; found ${assignments?.length || 0}.`);
+  if (!Array.isArray(assignments) || assignments.length !== 60) {
+    errors.push(`Expected 60 finalized CP assignments; found ${assignments?.length || 0}.`);
     return;
   }
   assignments.forEach((assignment, index) => {
@@ -534,6 +534,10 @@ function validatePresidentialYearbookAssignments() {
   });
   const studentKeys = assignments.map(assignment => `${assignment.period}|${assignment.student}`);
   if (new Set(studentKeys).size !== assignments.length) errors.push("Duplicate CP student assignment record detected.");
+  const carrilloAssignment = assignments.find(assignment => assignment.period === "1B" && assignment.student === "Carrillo, Luis F.");
+  if (!carrilloAssignment || carrilloAssignment.presidentNumber !== 21 || carrilloAssignment.president !== "Chester A. Arthur" || carrilloAssignment.term !== "1881–1885") {
+    errors.push("Carrillo, Luis F. must remain assigned to Chester A. Arthur, presidency #21.");
+  }
   Object.entries(expectedCounts).forEach(([period, count]) => {
     const periodAssignments = assignments.filter(assignment => assignment.period === period);
     if (periodAssignments.length !== count) errors.push(`CP period ${period} must contain ${count} assignments.`);
