@@ -90,7 +90,7 @@ window.COURSE_DATA = {
           id: "unit-0-synthesis",
           lesson: "0.6 — THE COURT IS IN SESSION",
           title: "PROVE YOUR CASE",
-          url: ""
+          url: "prove-your-case.html"
         }
       ]
     },

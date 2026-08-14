@@ -20,6 +20,7 @@ vm.runInContext(fs.readFileSync(path.join(root, "presidential-power-data.js"), "
 vm.runInContext(fs.readFileSync(path.join(root, "bill-journey-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "federalism-map-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "founding-power-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "prove-your-case", "case-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const foundations = context.window.FOUNDATIONS_DATA;
 const explorerSituations = context.window.CONSTITUTION_EXPLORER_DATA;
@@ -29,11 +30,12 @@ const presidentialPowerCases = context.window.PRESIDENTIAL_POWER_DATA;
 const billJourneyData = context.window.BILL_JOURNEY_DATA;
 const federalismMapData = context.window.FEDERALISM_MAP_DATA;
 const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
+const proveCases = context.window.PROVE_CASES;
 const foundationCases = context.window.FOUNDATIONS_DATA.cases;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -498,6 +500,28 @@ foundations.amendments.forEach((amendment, index) => {
 for (const skillId of ["source", "argument", "language"]) {
   if (![1, 2, 3].includes(config.foundationUnlocks?.[skillId])) errors.push(`Invalid foundation unlock for ${skillId}.`);
 }
+
+function validateProveYourCase() {
+  const expected = ["miranda", "riley", "mahanoy", "carpenter", "earls", "miller"];
+  const resource = data.units.flatMap(unit => unit.resources || []).find(item => item.id === "unit-0-synthesis");
+  if (resource?.url !== "prove-your-case.html" || config.assignmentUrls?.["unit-0-synthesis"] !== "prove-your-case.html") errors.push("Prove Your Case resource must link to its case hub.");
+  if (!Array.isArray(proveCases) || proveCases.length !== expected.length) errors.push("Prove Your Case must contain exactly six case files.");
+  expected.forEach(id => {
+    const item = proveCases?.find(entry => entry.id === id);
+    if (!item) { errors.push(`Missing Prove Your Case data: ${id}`); return; }
+    for (const field of ["file", "name", "year", "topic", "amendments", "image", "alt", "question", "story", "notice", "constitution", "sideA", "sideB", "prompts", "ruling"]) if (!item[field]) errors.push(`Incomplete Prove Your Case ${id}: ${field}`);
+    if (!fs.existsSync(path.join(root, "prove-your-case", item.file))) errors.push(`Missing Prove Your Case page: ${item.file}`);
+    const localImage = item.image.replace(/^\.\.\//, "");
+    if (!fs.existsSync(path.join(root, localImage))) errors.push(`Missing Prove Your Case illustration: ${localImage}`);
+    if (config.proveCaseUnlocks?.[id] !== false) errors.push(`Prove Your Case ruling must begin teacher-locked: ${id}`);
+    if (!/^https:\/\//.test(item.ruling?.source || "")) errors.push(`Invalid Prove Your Case decision source: ${id}`);
+  });
+  for (const marker of ["admin-prove-case-unlocks", "data-prove-case-unlock", "proveCaseUnlocks"]) {
+    if (!html.includes(marker) && !fs.readFileSync(path.join(root, "app.js"), "utf8").includes(marker)) errors.push(`Missing Prove Your Case teacher control: ${marker}`);
+  }
+}
+
+validateProveYourCase();
 
 function validatePresidentialYearbookAssignments() {
   const dataCode = fs.readFileSync(path.join(root, "presidential-yearbook-assignments.js"), "utf8");

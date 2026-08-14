@@ -65,7 +65,7 @@
     "presidential-yearbook": "presidential-yearbook.html",
     "presidential-library": "#presidents",
     "civics-field-test": "https://docs.google.com/forms/d/e/1FAIpQLSchtFHBKW3g1YxP38--uD3CmlffQFeL0ci-fd18Bfhr9vJQqA/viewform?usp=dialog",
-    "unit-0-synthesis": "",
+    "unit-0-synthesis": "prove-your-case.html",
     "founding-power": "#founding-power",
     "federalism-map": "#federalism-map",
     "constitution-explorer": "#constitution-explorer",
@@ -74,6 +74,14 @@
     "bill-journey": "#bill-journey",
     "presidential-power": "#presidential-power",
     "rights-referee": "#rights-referee"
+  },
+  "proveCaseUnlocks": {
+    "miranda": false,
+    "riley": false,
+    "mahanoy": false,
+    "carpenter": false,
+    "earls": false,
+    "miller": false
   },
   "foundationUnlocks": {
     "source": 3,

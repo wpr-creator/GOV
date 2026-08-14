@@ -23,7 +23,8 @@
   const GITHUB_CONTENT_URL = "https://api.github.com/repos/wpr-creator/GOV/contents/site-content.json";
   let currentUnitId = "gov-0";
   let lastFocused = null;
-  let siteContent = { currentUnit: "gov-0", unitUnlocks: {}, exitQuestion: "", upcoming: [], classroomUrl: "", agendaTitle: "AGENDA", agendaText: "COMING SOON.", assignmentUnlocks: {}, assignmentUnlockAt: {}, assignmentUrls: {} };
+  let siteContent = { currentUnit: "gov-0", unitUnlocks: {}, exitQuestion: "", upcoming: [], classroomUrl: "", agendaTitle: "AGENDA", agendaText: "COMING SOON.", assignmentUnlocks: {}, assignmentUnlockAt: {}, assignmentUrls: {}, proveCaseUnlocks: {} };
+  const proveCaseLabels = [["miranda", "MIRANDA v. ARIZONA"], ["riley", "RILEY v. CALIFORNIA"], ["mahanoy", "MAHANOY AREA SCHOOL DISTRICT v. B.L."], ["carpenter", "CARPENTER v. UNITED STATES"], ["earls", "BOARD OF EDUCATION v. EARLS"], ["miller", "MILLER v. ALABAMA"]];
   let historyEvents = [];
   let historyIndex = 0;
   let devKeys = "";
@@ -1802,6 +1803,7 @@
           assignmentUnlocks: { ...(siteContent.assignmentUnlocks || {}), ...(preview.assignmentUnlocks || {}) },
           assignmentUnlockAt: { ...(siteContent.assignmentUnlockAt || {}), ...(preview.assignmentUnlockAt || {}) },
           assignmentUrls: { ...(siteContent.assignmentUrls || {}), ...previewAssignmentUrls },
+          proveCaseUnlocks: { ...(siteContent.proveCaseUnlocks || {}), ...(preview.proveCaseUnlocks || {}) },
           unitUnlocks: { ...(siteContent.unitUnlocks || {}), ...(preview.unitUnlocks || {}) }
         };
       }
@@ -1809,6 +1811,7 @@
       siteContent.assignmentUnlocks = siteContent.assignmentUnlocks || {};
       siteContent.assignmentUnlockAt = siteContent.assignmentUnlockAt || {};
       siteContent.assignmentUrls = siteContent.assignmentUrls || {};
+      siteContent.proveCaseUnlocks = siteContent.proveCaseUnlocks || {};
       siteContent.unitUnlocks = siteContent.unitUnlocks || {};
       if (data.units.some(unit => unit.id === siteContent.currentUnit)) currentUnitId = siteContent.currentUnit;
       if (!data.words.some(word => word[4] === currentUnitId)) glossaryFilter = "all";
@@ -1953,6 +1956,20 @@
       row.append(checkbox, labelText, urlInput);
       assignmentUnlockContainer.appendChild(row);
     });
+    const proveCaseUnlockContainer = document.getElementById("admin-prove-case-unlocks");
+    proveCaseUnlockContainer.replaceChildren();
+    proveCaseLabels.forEach(([id, title]) => {
+      const row = document.createElement("label");
+      row.className = "admin-unlock-row";
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.dataset.proveCaseUnlock = id;
+      checkbox.checked = Boolean(siteContent.proveCaseUnlocks?.[id]);
+      const labelText = document.createElement("span");
+      labelText.textContent = title;
+      row.append(checkbox, labelText);
+      proveCaseUnlockContainer.appendChild(row);
+    });
     const unlockContainer = document.getElementById("admin-foundation-unlocks");
     unlockContainer.replaceChildren();
     foundations.skills.forEach(skill => {
@@ -2002,6 +2019,10 @@
     document.querySelectorAll("[data-unit-unlock]").forEach(checkbox => {
       unitUnlocks[checkbox.dataset.unitUnlock] = checkbox.checked || checkbox.dataset.unitUnlock === document.getElementById("admin-current-unit").value;
     });
+    const proveCaseUnlocks = {};
+    document.querySelectorAll("[data-prove-case-unlock]").forEach(checkbox => {
+      proveCaseUnlocks[checkbox.dataset.proveCaseUnlock] = checkbox.checked;
+    });
     return {
       currentUnit: document.getElementById("admin-current-unit").value,
       unitUnlocks,
@@ -2013,6 +2034,7 @@
       assignmentUnlocks,
       assignmentUnlockAt: siteContent.assignmentUnlockAt || {},
       assignmentUrls,
+      proveCaseUnlocks,
       foundationUnlocks
     };
   }
