@@ -509,8 +509,14 @@ function validateProveYourCase() {
   expected.forEach(id => {
     const item = proveCases?.find(entry => entry.id === id);
     if (!item) { errors.push(`Missing Prove Your Case data: ${id}`); return; }
-    for (const field of ["file", "name", "year", "topic", "amendments", "image", "alt", "teaser", "question", "story", "notice", "constitution", "sideA", "sideB", "prompts", "ruling"]) if (!item[field]) errors.push(`Incomplete Prove Your Case ${id}: ${field}`);
+    for (const field of ["file", "name", "year", "topic", "amendments", "image", "alt", "teaser", "question", "story", "notice", "constitution", "toolbox", "sideA", "sideB", "prompts", "ruling"]) if (!item[field]) errors.push(`Incomplete Prove Your Case ${id}: ${field}`);
+    for (const field of ["rule", "decide", "remember", "terms"]) if (!item.toolbox?.[field]) errors.push(`Incomplete Prove Your Case toolbox ${id}: ${field}`);
+    if (item.toolbox?.terms?.length !== 3) errors.push(`Prove Your Case ${id} must define exactly three legal terms.`);
     if (!fs.existsSync(path.join(root, "prove-your-case", item.file))) errors.push(`Missing Prove Your Case page: ${item.file}`);
+    const caseHtml = fs.existsSync(path.join(root, "prove-your-case", item.file)) ? fs.readFileSync(path.join(root, "prove-your-case", item.file), "utf8") : "";
+    for (const marker of ["case-path", "story-step", "constitution-step", "toolbox-rule", "toolbox-decide", "toolbox-remember", "toolbox-terms", "EVIDENCE THIS SIDE CAN USE", "My rule is that government should"]) {
+      if (!caseHtml.includes(marker)) errors.push(`Prove Your Case ${id} is missing page component: ${marker}`);
+    }
     const localImage = item.image.replace(/^\.\.\//, "");
     if (!fs.existsSync(path.join(root, localImage))) errors.push(`Missing Prove Your Case illustration: ${localImage}`);
     if (config.proveCaseUnlocks?.[id] !== false) errors.push(`Prove Your Case ruling must begin teacher-locked: ${id}`);

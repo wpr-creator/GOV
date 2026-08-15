@@ -20,6 +20,14 @@
     const explain = document.createElement("p"); explain.textContent = part.explain;
     section.append(heading, quote, explain); $("#constitution").append(section);
   });
+  $("#toolbox-rule").textContent = item.toolbox.rule;
+  $("#toolbox-decide").textContent = item.toolbox.decide;
+  $("#toolbox-remember").textContent = item.toolbox.remember;
+  item.toolbox.terms.forEach(([term, meaning]) => {
+    const name = document.createElement("dt"); name.textContent = term;
+    const definition = document.createElement("dd"); definition.textContent = meaning;
+    $("#toolbox-terms").append(name, definition);
+  });
   const choiceKey = `prove-case-choice-${id}`;
   let choice = localStorage.getItem(choiceKey) || "";
   const choiceStatus = $("#choice-status");
