@@ -503,6 +503,10 @@ for (const skillId of ["source", "argument", "language"]) {
 
 function validateProveYourCase() {
   const expected = ["miranda", "riley", "mahanoy", "carpenter", "earls", "miller"];
+  const proveCaseSource = fs.readFileSync(path.join(root, "prove-your-case", "case-data.js"), "utf8") + fs.readFileSync(path.join(root, "prove-your-case.html"), "utf8") + expected.map(id => {
+    const item = proveCases?.find(entry => entry.id === id);
+    return item?.file && fs.existsSync(path.join(root, "prove-your-case", item.file)) ? fs.readFileSync(path.join(root, "prove-your-case", item.file), "utf8") : "";
+  }).join("\n");
   const resource = data.units.flatMap(unit => unit.resources || []).find(item => item.id === "unit-0-synthesis");
   if (resource?.url !== "prove-your-case.html" || config.assignmentUrls?.["unit-0-synthesis"] !== "prove-your-case.html") errors.push("Prove Your Case resource must link to its case hub.");
   if (!Array.isArray(proveCases) || proveCases.length !== expected.length) errors.push("Prove Your Case must contain exactly six case files.");
@@ -514,7 +518,7 @@ function validateProveYourCase() {
     if (item.toolbox?.terms?.length !== 3) errors.push(`Prove Your Case ${id} must define exactly three legal terms.`);
     if (!fs.existsSync(path.join(root, "prove-your-case", item.file))) errors.push(`Missing Prove Your Case page: ${item.file}`);
     const caseHtml = fs.existsSync(path.join(root, "prove-your-case", item.file)) ? fs.readFileSync(path.join(root, "prove-your-case", item.file), "utf8") : "";
-    for (const marker of ["case-path", "story-step", "constitution-step", "toolbox-rule", "toolbox-decide", "toolbox-remember", "toolbox-terms", "EVIDENCE THIS SIDE CAN USE", "My rule is that government should"]) {
+    for (const marker of ["case-path", "story-step", "constitution-step", "toolbox-rule", "toolbox-decide", "toolbox-remember", "toolbox-terms", "EVIDENCE THIS SIDE CAN USE", "A ruling is a legal decision", "Government should be allowed to ___ only when ___"]) {
       if (!caseHtml.includes(marker)) errors.push(`Prove Your Case ${id} is missing page component: ${marker}`);
     }
     const localImage = item.image.replace(/^\.\.\//, "");
@@ -522,6 +526,9 @@ function validateProveYourCase() {
     if (config.proveCaseUnlocks?.[id] !== false) errors.push(`Prove Your Case ruling must begin teacher-locked: ${id}`);
     if (!/^https:\/\//.test(item.ruling?.source || "")) errors.push(`Invalid Prove Your Case decision source: ${id}`);
   });
+  for (const phrase of ["personal archive", "search rule", "Your teacher will", "custodial interrogation", "Court.s decision"]) {
+    if (proveCaseSource.includes(phrase)) errors.push(`Prove Your Case contains unclear or teacher-facing wording: ${phrase}`);
+  }
   for (const marker of ["admin-prove-case-unlocks", "data-prove-case-unlock", "proveCaseUnlocks"]) {
     if (!html.includes(marker) && !fs.readFileSync(path.join(root, "app.js"), "utf8").includes(marker)) errors.push(`Missing Prove Your Case teacher control: ${marker}`);
   }
