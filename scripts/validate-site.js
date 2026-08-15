@@ -518,9 +518,11 @@ function validateProveYourCase() {
     if (item.toolbox?.terms?.length !== 3) errors.push(`Prove Your Case ${id} must define exactly three legal terms.`);
     if (!fs.existsSync(path.join(root, "prove-your-case", item.file))) errors.push(`Missing Prove Your Case page: ${item.file}`);
     const caseHtml = fs.existsSync(path.join(root, "prove-your-case", item.file)) ? fs.readFileSync(path.join(root, "prove-your-case", item.file), "utf8") : "";
-    for (const marker of ["case-path", "story-step", "constitution-step", "toolbox-rule", "toolbox-decide", "toolbox-remember", "toolbox-terms", "EVIDENCE THIS SIDE CAN USE", "A ruling is a legal decision", "Government should be allowed to ___ only when ___"]) {
+    for (const marker of ["case-path", "story-step", "constitution-step", "toolbox-rule", "toolbox-decide", "toolbox-remember", "toolbox-terms", "ARE YOU STUCK OR NEED SOME IDEAS FOR YOUR ARGUMENT?", "EVIDENCE THIS SIDE CAN USE", "A ruling is a legal decision", "Government should be allowed to ___ only when ___"]) {
       if (!caseHtml.includes(marker)) errors.push(`Prove Your Case ${id} is missing page component: ${marker}`);
     }
+    if (caseHtml.indexOf('id="ruling-step"') > caseHtml.indexOf('id="arguments-step"')) errors.push(`Prove Your Case ${id} must place the student ruling before optional argument ideas.`);
+    if (!caseHtml.includes('<details class="case-stage arguments-stage"') || caseHtml.includes('<details class="case-stage arguments-stage" id="arguments-step" open')) errors.push(`Prove Your Case ${id} argument ideas must begin hidden in a details control.`);
     const localImage = item.image.replace(/^\.\.\//, "");
     if (!fs.existsSync(path.join(root, localImage))) errors.push(`Missing Prove Your Case illustration: ${localImage}`);
     if (config.proveCaseUnlocks?.[id] !== false) errors.push(`Prove Your Case ruling must begin teacher-locked: ${id}`);
