@@ -84,7 +84,7 @@ window.COURSE_DATA = {
           id: "civics-field-test",
           lesson: "ASSESSMENTS",
           title: "CIVICS FIELD GUIDE TEST",
-          url: "https://docs.google.com/forms/d/e/1FAIpQLSchtFHBKW3g1YxP38--uD3CmlffQFeL0ci-fd18Bfhr9vJQqA/viewform?usp=dialog"
+          url: "https://docs.google.com/forms/d/e/1FAIpQLSdX98tuYpjFju4prqoBvXgU56r_HYqeG_r7c3rbGLseW3aQrw/viewform?usp=publish-editor"
         },
         {
           id: "unit-0-synthesis",
