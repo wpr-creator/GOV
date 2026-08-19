@@ -3,6 +3,16 @@
   const item = window.PROVE_CASES.find(entry => entry.id === id);
   if (!item) return;
   const $ = selector => document.querySelector(selector);
+  function addTaskCue(stageSelector, instruction) {
+    const heading = document.querySelector(`${stageSelector} h2`);
+    if (!heading) return;
+    const cue = document.createElement("p");
+    cue.className = "task-cue";
+    const label = document.createElement("strong");
+    label.textContent = "DO THIS: ";
+    cue.append(label, instruction);
+    heading.after(cue);
+  }
   document.title = `${item.name} · Prove Your Case`;
   $("#case-topic").textContent = item.topic;
   $("#case-name").textContent = item.name;
@@ -28,6 +38,12 @@
     const definition = document.createElement("dd"); definition.textContent = meaning;
     $("#toolbox-terms").append(name, definition);
   });
+  addTaskCue("#story-step", "Read the story. On your worksheet, write who acted, what happened, and three facts.");
+  addTaskCue("#question-step", "Write the constitutional question in your own words.");
+  addTaskCue("#constitution-step", "Find the amendment. Copy its most important words. Explain them in your own words.");
+  addTaskCue("#ruling-step", "Choose a ruling. Support it with two facts and the Constitution.");
+  const rulingNote = document.querySelector("#ruling-step > p:not(.step):not(.task-cue)");
+  if (rulingNote) rulingNote.textContent = "Use the buttons for your quick choice. Write your evidence on the worksheet.";
   const choiceKey = `prove-case-choice-${id}`;
   let choice = localStorage.getItem(choiceKey) || "";
   const choiceStatus = $("#choice-status");
