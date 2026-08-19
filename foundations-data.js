@@ -93,6 +93,15 @@ window.FOUNDATIONS_DATA = {
       question: "When may public safety justify limiting an individual freedom?"
     },
     {
+      id: "gettysburg", title: "Gettysburg Address", author: "Abraham Lincoln", year: "1863",
+      standards: "12.1.3; 12.2.4; 12.10", units: ["gov-1", "gov-5", "gov-7"],
+      bigIdea: "American democracy must protect equality and self-government even during a national crisis.",
+      excerpt: "Government of the people, by the people, for the people, shall not perish from the earth.",
+      plain: "Lincoln argued that the Civil War tested whether a nation built on equality and government by the people could survive.",
+      why: "It connects the Declaration’s promise of equality to the Civil War, the end of slavery, and the continuing work of democracy.",
+      question: "What does Lincoln say the living must do to honor those who died at Gettysburg?"
+    },
+    {
       id: "birmingham", title: "Letter from Birmingham Jail", author: "Martin Luther King Jr.", year: "1963",
       standards: "12.2.4–12.2.5; 12.10", units: ["gov-5", "gov-7"],
       bigIdea: "Citizens may have a moral responsibility to challenge unjust laws through disciplined nonviolent action.",

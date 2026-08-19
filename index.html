@@ -23,9 +23,10 @@
   <meta name="twitter:image:alt" content="Principles of American Democracy beside a white civic building with tall columns.">
   <title>Principles of American Democracy</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260819-accessible-directions">
+  <link rel="stylesheet" href="styles.css?v=20260819-final-rosters">
   <script src="course-data.js?v=20260819-accessible-directions" defer></script>
-  <script src="foundations-data.js?v=20260812-case-guides" defer></script>
+  <script src="cp-rosters.js?v=20260819-final-rosters" defer></script>
+  <script src="foundations-data.js?v=20260819-gettysburg" defer></script>
   <script src="constitution-explorer-data.js" defer></script>
   <script src="rights-referee-data.js" defer></script>
   <script src="election-2026-data.js" defer></script>
@@ -33,7 +34,7 @@
   <script src="bill-journey-data.js?v=20260726-bill" defer></script>
   <script src="federalism-map-data.js?v=20260726-map" defer></script>
   <script src="founding-power-data.js" defer></script>
-  <script src="app.js?v=20260819-accessible-directions" defer></script>
+  <script src="app.js?v=20260819-final-rosters" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the course</a>
@@ -143,10 +144,16 @@
         <article class="dashboard-card exit-card">
           <div class="card-heading"><div><p class="eyebrow">END OF CLASS</p><h2>EXIT TICKET</h2></div></div>
           <p class="exit-question" id="exit-question">NO EXIT TICKET TODAY.</p>
-          <label for="exit-response" hidden>YOUR RESPONSE</label>
-          <textarea id="exit-response" rows="4" placeholder="TYPE YOUR RESPONSE…" disabled hidden></textarea>
-          <button class="exit-submit" type="button" disabled hidden>SUBMIT EXIT TICKET</button>
-          <p class="system-note" hidden></p>
+          <form id="exit-form" hidden>
+            <div class="exit-identity">
+              <label for="exit-period">YOUR PERIOD<select id="exit-period" required><option value="">CHOOSE YOUR PERIOD</option></select></label>
+              <label for="exit-student">YOUR NAME<select id="exit-student" required disabled><option value="">CHOOSE YOUR PERIOD FIRST</option></select></label>
+            </div>
+            <label for="exit-response">YOUR RESPONSE</label>
+            <textarea id="exit-response" rows="4" placeholder="TYPE YOUR RESPONSE…" required></textarea>
+            <button class="exit-submit" type="submit">SUBMIT EXIT TICKET</button>
+          </form>
+          <p class="system-note" id="exit-status" role="status" hidden></p>
         </article>
       </section>
     </section>

@@ -12,6 +12,7 @@ const config = JSON.parse(fs.readFileSync(path.join(root, "site-content.json"), 
 const context = { window: {} };
 vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, "course-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "cp-rosters.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "foundations-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "constitution-explorer-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "rights-referee-data.js"), "utf8"), context);
@@ -22,6 +23,7 @@ vm.runInContext(fs.readFileSync(path.join(root, "federalism-map-data.js"), "utf8
 vm.runInContext(fs.readFileSync(path.join(root, "founding-power-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "prove-your-case", "case-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
+const cpRosters = context.window.CP_GOV_ROSTERS;
 const foundations = context.window.FOUNDATIONS_DATA;
 const explorerSituations = context.window.CONSTITUTION_EXPLORER_DATA;
 const rightsCases = context.window.RIGHTS_REFEREE_DATA;
@@ -35,7 +37,7 @@ const foundationCases = context.window.FOUNDATIONS_DATA.cases;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "styles.css", "app.js", "course-data.js", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "styles.css", "app.js", "course-data.js", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -250,7 +252,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260819-accessible-directions") || !html.includes("app.js?v=20260819-accessible-directions") || !html.includes("course-data.js?v=20260819-accessible-directions")) {
+if (!html.includes("styles.css?v=20260819-final-rosters") || !html.includes("app.js?v=20260819-final-rosters") || !html.includes("course-data.js?v=20260819-accessible-directions")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -465,7 +467,25 @@ data.units.forEach(unit => {
   });
 });
 
-if (foundations.documents.length !== 10) errors.push(`Expected 10 foundational documents; found ${foundations.documents.length}.`);
+if (foundations.documents.length !== 11) errors.push(`Expected 11 foundational documents; found ${foundations.documents.length}.`);
+const gettysburg = foundations.documents.find(documentData => documentData.id === "gettysburg");
+if (!gettysburg || gettysburg.title !== "Gettysburg Address" || gettysburg.year !== "1863") errors.push("The Gettysburg Address document guide is missing or incomplete.");
+
+if (!cpRosters || Object.keys(cpRosters).sort().join(",") !== "1B,2A") errors.push("Final CP rosters must contain only periods 1B and 2A.");
+const rosterCounts = { "1B": 35, "2A": 23 };
+const rosterKeys = [];
+Object.entries(rosterCounts).forEach(([period, count]) => {
+  if (!Array.isArray(cpRosters?.[period]) || cpRosters[period].length !== count) errors.push(`Final roster ${period} must contain ${count} students.`);
+  cpRosters?.[period]?.forEach(name => rosterKeys.push(`${period}|${name}`));
+});
+if (new Set(rosterKeys).size !== rosterKeys.length) errors.push("The final CP rosters contain a duplicate student record.");
+if (!cpRosters?.["2A"]?.includes("Wilson, Teddi R.")) errors.push("Wilson, Teddi R. must be listed in period 2A.");
+if (cpRosters?.["1B"]?.includes("Wilson, Teddi R.")) errors.push("Wilson, Teddi R. must not be listed in period 1B.");
+if (!html.includes("cp-rosters.js?v=20260819-final-rosters")) errors.push("The student site is not loading the final CP roster data.");
+const exitScript = fs.readFileSync(path.join(root, "exit-ticket-script.gs"), "utf8");
+for (const marker of ["CP_GOV_ROSTERS", "Student name does not match the selected period.", "1xEPilYXFU_pQKEZfGj9M2V3CZmflhHGkU3GdKBXcWOk"]) {
+  if (!exitScript.includes(marker)) errors.push(`Exit-ticket collector is missing final-roster support: ${marker}`);
+}
 if (!Array.isArray(foundationCases) || foundationCases.length !== 9) errors.push(`Expected 9 student-friendly court case guides; found ${foundationCases?.length || 0}.`);
 foundationCases?.forEach((caseData, index) => {
   for (const key of ["slug", "title", "year", "topic", "question"]) {

@@ -1699,7 +1699,19 @@
   }
 
   function renderSiteContent() {
-    document.getElementById("exit-question").textContent = siteContent.exitQuestion || "NO EXIT TICKET TODAY.";
+    const exitQuestion = String(siteContent.exitQuestion || "").trim();
+    const exitEndpoint = String(siteContent.exitEndpoint || "").trim();
+    document.getElementById("exit-question").textContent = exitQuestion || "NO EXIT TICKET TODAY.";
+    const exitForm = document.getElementById("exit-form");
+    exitForm.hidden = !(exitQuestion && exitEndpoint);
+    document.getElementById("exit-status").hidden = true;
+
+    const periodSelect = document.getElementById("exit-period");
+    periodSelect.replaceChildren(new Option("CHOOSE YOUR PERIOD", ""));
+    Object.keys(window.CP_GOV_ROSTERS || {}).forEach(period => periodSelect.add(new Option(period, period)));
+    const studentSelect = document.getElementById("exit-student");
+    studentSelect.replaceChildren(new Option("CHOOSE YOUR PERIOD FIRST", ""));
+    studentSelect.disabled = true;
     const classroom = document.getElementById("classroom-link");
     classroom.href = siteContent.classroomUrl || "https://classroom.google.com/";
     const list = document.getElementById("upcoming-list");
@@ -2031,6 +2043,7 @@
       currentUnit: document.getElementById("admin-current-unit").value,
       unitUnlocks,
       exitQuestion: document.getElementById("admin-exit-question").value.trim(),
+      exitEndpoint: siteContent.exitEndpoint || "",
       upcoming,
       classroomUrl: document.getElementById("admin-classroom-link").value.trim(),
       agendaTitle: document.getElementById("admin-agenda-title").value.trim().toUpperCase() || "AGENDA",
@@ -2231,6 +2244,42 @@
     event.preventDefault();
     if (location.hash === "#election-2026") showView("election-2026");
     else location.hash = "election-2026";
+  });
+  document.getElementById("exit-period").addEventListener("change", event => {
+    const studentSelect = document.getElementById("exit-student");
+    const names = window.CP_GOV_ROSTERS?.[event.target.value] || [];
+    studentSelect.replaceChildren(new Option(names.length ? "CHOOSE YOUR NAME" : "CHOOSE YOUR PERIOD FIRST", ""));
+    names.forEach(name => studentSelect.add(new Option(name, name)));
+    studentSelect.disabled = !names.length;
+  });
+  document.getElementById("exit-form").addEventListener("submit", async event => {
+    event.preventDefault();
+    const button = event.currentTarget.querySelector("button");
+    const status = document.getElementById("exit-status");
+    button.disabled = true;
+    button.textContent = "SAVING…";
+    status.hidden = false;
+    status.textContent = "SAVING YOUR RESPONSE…";
+    try {
+      await fetch(siteContent.exitEndpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          period: document.getElementById("exit-period").value,
+          name: document.getElementById("exit-student").value,
+          question: siteContent.exitQuestion,
+          response: document.getElementById("exit-response").value.trim()
+        })
+      });
+      status.textContent = "RESPONSE SENT. YOU MAY SUBMIT AGAIN IF YOUR TEACHER ASKS.";
+      document.getElementById("exit-response").value = "";
+    } catch (error) {
+      status.textContent = "YOUR RESPONSE COULD NOT BE SENT. COPY YOUR ANSWER AND TRY AGAIN.";
+    } finally {
+      button.disabled = false;
+      button.textContent = "SUBMIT EXIT TICKET";
+    }
   });
   window.setInterval(renderAgendaDate, 60000);
 

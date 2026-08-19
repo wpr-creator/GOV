@@ -1,0 +1,28 @@
+// Final CP Government rosters secured August 19, 2026.
+// Static GitHub Pages data is inspectable; these names are not private authentication.
+window.CP_GOV_ROSTERS = {
+  "1B": [
+    "Ali, Harun F.", "Barberena, Maya", "Black, Jeshaiah A.",
+    "Buduan, Connielyn G.", "Burnette, Suriyana A.", "Carrillo, Luis F.",
+    "Castillo, Mia", "Chavez, Arturo", "Curtis, Maya A.",
+    "Gabriel, Gavin Florence E.", "Garcia, Jorge E.", "Garcia Olivares, Emmanuel",
+    "Gungon, Edward", "Gutierrez, Erik", "Hernandez, Nataly R.",
+    "Lara, Sophia L.", "Laroya, Emma I.", "Limbrick, Isaac L.",
+    "Maqueda, Elizabeth", "Marquez, John M.", "McRae, Bailey R.",
+    "Nostrates, Azrielle O.", "Ofoegbu, David C.", "Ortegon, Angelo E.",
+    "Peters, Maliya", "Ramirez, Astrid M.", "Rodriguez, Yesenia M.",
+    "Rodriguez Cruz, Kailey J.", "Rogers, Blessing L.", "Ruiz Jimenez, Rafael",
+    "Santos, Nayeli S.", "Santos, Noah A.", "Solares, Evalicia",
+    "Thomas, Lyric", "Vargas-Toledo, Javier E."
+  ],
+  "2A": [
+    "Amargo, Kianna F.", "Banuelos, Manuel", "Bati, Arriana Marie D.",
+    "Coleman, Dakobi J.", "Dietrich, Nicole Rae F.", "Elico, Francesca",
+    "Flores, Yaritza D.", "Gastelum, Gabriel A.", "Gutierrez Villa, Leslie",
+    "Holloway, Jeveah", "Mora Garcia, Jazmin A.", "Pangilinan, Bryson Roman G.",
+    "Paule, Demien Ross V.", "Resendiz, Damian A.", "Rodriguez Aguilar, Steven O.",
+    "Sakamoto, Alani M.", "Santillan Ruiz, Grecia G.", "Santos, Leslie I.",
+    "Santoyo, Miguel A.", "Sonico, Nicco C.", "Tamayo, Lily A.", "Thach, Aimy",
+    "Wilson, Teddi R."
+  ]
+};
