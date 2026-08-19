@@ -37,7 +37,7 @@ const foundationCases = context.window.FOUNDATIONS_DATA.cases;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "styles.css", "app.js", "course-data.js", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "styles.css", "app.js", "course-data.js", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -252,7 +252,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260819-final-rosters") || !html.includes("app.js?v=20260819-final-rosters") || !html.includes("course-data.js?v=20260819-accessible-directions")) {
+if (!html.includes("styles.css?v=20260819-full-doc-readers") || !html.includes("app.js?v=20260819-full-doc-readers") || !html.includes("course-data.js?v=20260819-accessible-directions")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -470,6 +470,25 @@ data.units.forEach(unit => {
 if (foundations.documents.length !== 11) errors.push(`Expected 11 foundational documents; found ${foundations.documents.length}.`);
 const gettysburg = foundations.documents.find(documentData => documentData.id === "gettysburg");
 if (!gettysburg || gettysburg.title !== "Gettysburg Address" || gettysburg.year !== "1863") errors.push("The Gettysburg Address document guide is missing or incomplete.");
+const visibleDocuments = foundations.documents.filter(documentData => documentData.file);
+if (visibleDocuments.length !== 2 || visibleDocuments.map(documentData => documentData.id).sort().join(",") !== "declaration,gettysburg") {
+  errors.push("Only the Declaration of Independence and Gettysburg Address may be visible in the document library.");
+}
+for (const documentData of visibleDocuments) {
+  if (!fs.existsSync(path.join(root, documentData.file))) errors.push(`Missing full document reader: ${documentData.file}`);
+}
+const declarationReader = fs.readFileSync(path.join(root, "documents", "declaration-of-independence.html"), "utf8");
+const gettysburgReader = fs.readFileSync(path.join(root, "documents", "gettysburg-address.html"), "utf8");
+for (const marker of ["READ THE FULL DOCUMENT", "foundations.documents.filter(documentData => documentData.file)"]) {
+  if (!fs.readFileSync(path.join(root, "app.js"), "utf8").includes(marker)) errors.push(`The direct full-document card behavior is missing: ${marker}`);
+}
+for (const [name, reader, markers] of [
+  ["Declaration", declarationReader, ["When in the Course of human events", "He has refused his Assent to Laws", "we mutually pledge to each other our Lives", "WORD HELP"]],
+  ["Gettysburg", gettysburgReader, ["Four score and seven years ago", "government of the people, by the people, for the people", "WORD HELP"]]
+]) {
+  markers.forEach(marker => { if (!reader.includes(marker)) errors.push(`${name} full-text reader is missing: ${marker}`); });
+  if (/\bAP\b|EXAM|STANDARD/.test(reader)) errors.push(`${name} reader contains AP or test-facing clutter.`);
+}
 
 if (!cpRosters || Object.keys(cpRosters).sort().join(",") !== "1B,2A") errors.push("Final CP rosters must contain only periods 1B and 2A.");
 const rosterCounts = { "1B": 35, "2A": 23 };

@@ -207,16 +207,15 @@
     sourceHeading.innerHTML = "<div><p class=\"eyebrow\">OPEN AS YOU NEED THEM</p><h2>UNIT SOURCES</h2></div>";
     const sourceGrid = document.createElement("div");
     sourceGrid.className = "unit-source-grid";
-    foundations.documents.filter(documentData => documentData.units.includes(unit.id)).forEach(documentData => {
-      const button = document.createElement("button");
-      button.type = "button";
+    foundations.documents.filter(documentData => documentData.file && documentData.units.includes(unit.id)).forEach(documentData => {
+      const button = document.createElement("a");
+      button.href = documentData.file;
       button.className = "unit-source";
       const label = document.createElement("strong");
       label.textContent = documentData.title.toUpperCase();
       const meta = document.createElement("span");
-      meta.textContent = `${documentData.year} · DOCUMENT GUIDE`;
+      meta.textContent = `${documentData.year} · FULL DOCUMENT READER`;
       button.append(label, meta);
-      button.addEventListener("click", () => openDocument(documentData, button));
       sourceGrid.appendChild(button);
     });
     if (foundations.amendments.some(amendment => amendment[4].includes(unit.id))) {
@@ -602,7 +601,7 @@
   function renderDocuments() {
     const grid = document.getElementById("document-grid");
     grid.replaceChildren();
-    foundations.documents.forEach(documentData => {
+    foundations.documents.filter(documentData => documentData.file).forEach(documentData => {
       const card = document.createElement("article");
       card.className = "document-card";
       const meta = document.createElement("p");
@@ -612,10 +611,10 @@
       title.textContent = documentData.title.toUpperCase();
       const idea = document.createElement("p");
       idea.textContent = documentData.bigIdea;
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = "OPEN DOCUMENT GUIDE →";
-      button.addEventListener("click", () => openDocument(documentData, button));
+      const button = document.createElement("a");
+      button.className = "document-open";
+      button.href = documentData.file;
+      button.textContent = "READ THE FULL DOCUMENT →";
       card.append(meta, title, idea, button);
       grid.appendChild(card);
     });

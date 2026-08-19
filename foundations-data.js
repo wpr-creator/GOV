@@ -12,7 +12,7 @@ window.FOUNDATIONS_DATA = {
   ],
   documents: [
     {
-      id: "declaration", title: "Declaration of Independence", author: "Thomas Jefferson", year: "1776",
+      id: "declaration", title: "Declaration of Independence", author: "Thomas Jefferson", year: "1776", file: "documents/declaration-of-independence.html",
       standards: "12.1.3; 12.10", units: ["gov-1", "gov-7"],
       bigIdea: "Government has legitimate power when it protects rights and receives permission from the people.",
       excerpt: "We hold these truths to be self-evident, that all men are created equal… [and] are endowed… with certain unalienable Rights.",
@@ -93,7 +93,7 @@ window.FOUNDATIONS_DATA = {
       question: "When may public safety justify limiting an individual freedom?"
     },
     {
-      id: "gettysburg", title: "Gettysburg Address", author: "Abraham Lincoln", year: "1863",
+      id: "gettysburg", title: "Gettysburg Address", author: "Abraham Lincoln", year: "1863", file: "documents/gettysburg-address.html",
       standards: "12.1.3; 12.2.4; 12.10", units: ["gov-1", "gov-5", "gov-7"],
       bigIdea: "American democracy must protect equality and self-government even during a national crisis.",
       excerpt: "Government of the people, by the people, for the people, shall not perish from the earth.",

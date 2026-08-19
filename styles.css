@@ -278,7 +278,7 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .document-card h3 { margin: .7rem 0; font-size: 1.35rem; }
 .document-card > p:not(.document-meta) { margin: 0 0 1rem; color: var(--muted); font-weight: 650; }
 .document-card .standard-tag { width: max-content; margin-top: auto; }
-.document-card button { min-height: 46px; margin-top: 1rem; border: 0; color: var(--white); background: var(--black); cursor: pointer; font-size: .76rem; font-weight: 950; }
+.document-card button, .document-card .document-open { min-height: 46px; margin-top: 1rem; padding:.8rem 1rem; display:flex;align-items:center;justify-content:center;border:0;color:var(--white);background:var(--black);cursor:pointer;font-size:.76rem;font-weight:950;text-decoration:none; }
 .foundation-dialog { position: fixed; z-index: 800; inset: 0; padding: 1rem; display: grid; place-items: center; background: rgba(0,0,0,.82); }
 .foundation-dialog-card { width: min(760px, 100%); max-height: calc(100vh - 2rem); padding: clamp(1.4rem, 4vw, 2.5rem); overflow: auto; background: var(--paper); border: 6px solid var(--white); position: relative; }
 .foundation-dialog-close { position: absolute; top: .7rem; right: .7rem; width: 46px; height: 46px; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-size: 1.7rem; }
