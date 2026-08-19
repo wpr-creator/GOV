@@ -3,10 +3,10 @@
   "unitUnlocks": {
     "gov-0": true,
     "gov-1": true,
-    "gov-2": true,
-    "gov-3": true,
-    "gov-4": true,
-    "gov-5": true,
+    "gov-2": false,
+    "gov-3": false,
+    "gov-4": false,
+    "gov-5": false,
     "gov-6": false,
     "gov-7": false
   },
