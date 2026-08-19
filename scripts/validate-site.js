@@ -250,7 +250,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260812-unit0-order") || !html.includes("app.js?v=20260812-unit0-order") || !html.includes("course-data.js?v=20260812-unit0-order")) {
+if (!html.includes("styles.css?v=20260819-accessible-directions") || !html.includes("app.js?v=20260819-accessible-directions") || !html.includes("course-data.js?v=20260819-accessible-directions")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {

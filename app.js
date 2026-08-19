@@ -195,6 +195,10 @@
     question.textContent = unit.question;
     header.append(eyebrow, title, question);
 
+    const startCue = document.createElement("p");
+    startCue.className = "unit-start-cue";
+    startCue.innerHTML = "<strong>START HERE</strong><span>Open the lesson at the top. Open one assignment at a time. Use the check button to mark finished work.</span>";
+
     const unitSources = document.createElement("section");
     unitSources.className = "unit-sources";
     unitSources.setAttribute("aria-label", "Sources for this unit");
@@ -314,7 +318,7 @@
       });
     }
 
-    container.appendChild(header);
+    container.append(header, startCue);
     if (unit.id !== "gov-0" && sourceGrid.children.length) container.append(unitSources);
     if (unit.resources?.length) container.append(resources);
   }
