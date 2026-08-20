@@ -552,7 +552,7 @@ function validateProveYourCase() {
   expected.forEach(id => {
     const item = proveCases?.find(entry => entry.id === id);
     if (!item) { errors.push(`Missing Prove Your Case data: ${id}`); return; }
-    for (const field of ["file", "name", "year", "topic", "amendments", "image", "alt", "teaser", "question", "worksheet", "story", "notice", "constitution", "toolbox", "sideA", "sideB", "prompts", "ruling"]) if (!item[field]) errors.push(`Incomplete Prove Your Case ${id}: ${field}`);
+    for (const field of ["file", "name", "year", "topic", "amendments", "image", "alt", "teaser", "question", "worksheet", "story", "notice", "constitution", "toolbox", "sideA", "sideB", "prompts", "ruling", "aftermath"]) if (!item[field]) errors.push(`Incomplete Prove Your Case ${id}: ${field}`);
     for (const field of ["actor", "action", "question"]) if (!item.worksheet?.[field]) errors.push(`Incomplete Prove Your Case worksheet help ${id}: ${field}`);
     if (!/^Does the Constitution allow the government to\b/.test(item.worksheet?.question || "")) errors.push(`Prove Your Case ${id} worksheet question must complete the worksheet sentence starter.`);
     for (const field of ["rule", "decide", "remember", "terms"]) if (!item.toolbox?.[field]) errors.push(`Incomplete Prove Your Case toolbox ${id}: ${field}`);
@@ -568,6 +568,8 @@ function validateProveYourCase() {
     if (!fs.existsSync(path.join(root, localImage))) errors.push(`Missing Prove Your Case illustration: ${localImage}`);
     if (config.proveCaseUnlocks?.[id] !== false) errors.push(`Prove Your Case ruling must begin teacher-locked: ${id}`);
     if (!/^https:\/\//.test(item.ruling?.source || "")) errors.push(`Invalid Prove Your Case decision source: ${id}`);
+    for (const field of ["status", "text", "source"]) if (!item.aftermath?.[field]) errors.push(`Incomplete Prove Your Case aftermath ${id}: ${field}`);
+    if (!/^https:\/\//.test(item.aftermath?.source || "")) errors.push(`Invalid Prove Your Case aftermath source: ${id}`);
   });
   for (const phrase of ["personal archive", "search rule", "Your teacher will", "custodial interrogation", "Court.s decision"]) {
     if (proveCaseSource.includes(phrase)) errors.push(`Prove Your Case contains unclear or teacher-facing wording: ${phrase}`);

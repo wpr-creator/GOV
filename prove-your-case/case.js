@@ -120,6 +120,14 @@
     $("#decision-reason").textContent = item.ruling.reason;
     $("#decision-nuance").textContent = item.ruling.nuance;
     $("#decision-source").href = item.ruling.source;
+    const aftermath = document.createElement("section");
+    aftermath.className = "aftermath";
+    const aftermathHeading = document.createElement("h3"); aftermathHeading.textContent = "WHAT HAPPENED NEXT?";
+    const aftermathStatus = document.createElement("span"); aftermathStatus.className = "aftermath-status"; aftermathStatus.textContent = item.aftermath.status;
+    const aftermathText = document.createElement("p"); aftermathText.textContent = item.aftermath.text;
+    const aftermathSource = document.createElement("a"); aftermathSource.href = item.aftermath.source; aftermathSource.target = "_blank"; aftermathSource.rel = "noopener"; aftermathSource.textContent = "CHECK THE FOLLOW-UP SOURCE ↗";
+    aftermath.append(aftermathHeading, aftermathStatus, aftermathText, aftermathSource);
+    $("#decision-source").before(aftermath);
     renderComparison();
   }
   renderChoice(); loadUnlock();
