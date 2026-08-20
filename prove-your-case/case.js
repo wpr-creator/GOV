@@ -30,6 +30,28 @@
     });
     return box;
   }
+  function makeRightsCheck() {
+    const section = document.createElement("section");
+    section.className = "rights-check";
+    const heading = document.createElement("h3"); heading.textContent = "3 · KEEP THESE TWO THINGS SEPARATE";
+    const intro = document.createElement("p"); intro.textContent = "The person's action explains why the government became involved. The government's action is what you test using the Constitution.";
+    const grid = document.createElement("div"); grid.className = "rights-check-grid";
+    const person = document.createElement("article");
+    const personHeading = document.createElement("h4"); personHeading.textContent = item.id === "mahanoy" || item.id === "earls" ? "THE STUDENT'S ACTION" : "THE PERSON'S ACTION";
+    const personText = document.createElement("p"); personText.textContent = item.worksheet.personAction;
+    person.append(personHeading, personText);
+    const government = document.createElement("article");
+    const governmentHeading = document.createElement("h4"); governmentHeading.textContent = item.id === "mahanoy" || item.id === "earls" ? "THE PUBLIC SCHOOL'S ACTION" : "THE GOVERNMENT'S ACTION";
+    const governmentText = document.createElement("p"); governmentText.textContent = item.worksheet.action;
+    government.append(governmentHeading, governmentText);
+    grid.append(person, government);
+    const focus = document.createElement("p"); focus.className = "rights-focus";
+    const focusLabel = document.createElement("strong"); focusLabel.textContent = "WHAT YOU ARE DECIDING: ";
+    focus.append(focusLabel, item.worksheet.question);
+    const reminder = document.createElement("p"); reminder.className = "rights-reminder"; reminder.textContent = "A person can do something wrong and still have constitutional rights. Finding a rights violation does not automatically mean the person is innocent or immediately goes free.";
+    section.append(heading, intro, grid, focus, reminder);
+    return section;
+  }
   document.title = `${item.name} · Prove Your Case`;
   $("#case-topic").textContent = item.topic;
   $("#case-name").textContent = item.name;
@@ -63,7 +85,7 @@
   addTaskCue("#ruling-step", "Follow the worksheet in order. Choose your ruling before building your reasons.");
   const storyCue = document.querySelector("#story-step .task-cue");
   storyCue.after(makeWorksheetHelp([["1 · WHO TO WRITE:", item.worksheet.actor]]));
-  $("#case-story").after(makeWorksheetHelp([["3 · WHAT THE GOVERNMENT DID:", item.worksheet.action]]));
+  $("#case-story").after(makeRightsCheck());
   document.querySelector("#story-step .panel h2").textContent = "2 · WHAT HAPPENED?";
   document.querySelector("#story-step .panel.dark h2").textContent = "4 · THREE FACTS THAT MATTER";
   document.querySelector("#question-step .task-cue").insertAdjacentHTML("afterend", '<p class="copy-label">WRITE THIS ON YOUR WORKSHEET</p>');

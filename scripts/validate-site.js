@@ -553,7 +553,7 @@ function validateProveYourCase() {
     const item = proveCases?.find(entry => entry.id === id);
     if (!item) { errors.push(`Missing Prove Your Case data: ${id}`); return; }
     for (const field of ["file", "name", "year", "topic", "amendments", "image", "alt", "teaser", "question", "worksheet", "story", "notice", "constitution", "toolbox", "sideA", "sideB", "prompts", "ruling", "aftermath"]) if (!item[field]) errors.push(`Incomplete Prove Your Case ${id}: ${field}`);
-    for (const field of ["actor", "action", "question"]) if (!item.worksheet?.[field]) errors.push(`Incomplete Prove Your Case worksheet help ${id}: ${field}`);
+    for (const field of ["actor", "personAction", "action", "question"]) if (!item.worksheet?.[field]) errors.push(`Incomplete Prove Your Case worksheet help ${id}: ${field}`);
     if (!/^Does the Constitution allow the government to\b/.test(item.worksheet?.question || "")) errors.push(`Prove Your Case ${id} worksheet question must complete the worksheet sentence starter.`);
     for (const field of ["rule", "decide", "remember", "terms"]) if (!item.toolbox?.[field]) errors.push(`Incomplete Prove Your Case toolbox ${id}: ${field}`);
     if (item.toolbox?.terms?.length !== 3) errors.push(`Prove Your Case ${id} must define exactly three legal terms.`);
