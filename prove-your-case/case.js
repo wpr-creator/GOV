@@ -13,6 +13,25 @@
     cue.append(label, instruction);
     heading.after(cue);
   }
+  function addWorksheetHelp(stageSelector, entries) {
+    const cue = document.querySelector(`${stageSelector} .task-cue`);
+    if (!cue) return;
+    const box = document.createElement("section");
+    box.className = "worksheet-help";
+    const heading = document.createElement("h3");
+    heading.textContent = "WRITE THIS ON YOUR WORKSHEET";
+    box.append(heading);
+    entries.forEach(([labelText, answerText]) => {
+      const entry = document.createElement("div");
+      const label = document.createElement("strong");
+      label.textContent = labelText;
+      const answer = document.createElement("p");
+      answer.textContent = answerText;
+      entry.append(label, answer);
+      box.append(entry);
+    });
+    cue.after(box);
+  }
   document.title = `${item.name} · Prove Your Case`;
   $("#case-topic").textContent = item.topic;
   $("#case-name").textContent = item.name;
@@ -38,10 +57,12 @@
     const definition = document.createElement("dd"); definition.textContent = meaning;
     $("#toolbox-terms").append(name, definition);
   });
-  addTaskCue("#story-step", "Read the story. On your worksheet, write who acted, what happened, and three facts.");
-  addTaskCue("#question-step", "Write the constitutional question in your own words.");
-  addTaskCue("#constitution-step", "Find the amendment. Copy its most important words. Explain them in your own words.");
-  addTaskCue("#ruling-step", "Choose a ruling. Support it with two facts and the Constitution.");
+  addTaskCue("#story-step", "Copy the government actor and government action below. Then choose three facts from FACTS THAT MATTER.");
+  addTaskCue("#question-step", "Copy the completed question below onto your worksheet.");
+  addTaskCue("#constitution-step", "Write the amendment name. Copy the words in quotation marks. Then choose two LEGAL TERMS and copy their meanings.");
+  addTaskCue("#ruling-step", "Choose a ruling. Use two FACTS THAT MATTER and the amendment to explain why.");
+  addWorksheetHelp("#story-step", [["WHO TO WRITE:", item.worksheet.actor], ["WHAT THE GOVERNMENT DID:", item.worksheet.action]]);
+  addWorksheetHelp("#question-step", [["DOES THE CONSTITUTION ALLOW THE GOVERNMENT TO…", item.worksheet.question.replace(/^Does the Constitution allow the government to\s*/i, "")]]);
   const rulingNote = document.querySelector("#ruling-step > p:not(.step):not(.task-cue)");
   if (rulingNote) rulingNote.textContent = "Use the buttons for your quick choice. Write your evidence on the worksheet.";
   const choiceKey = `prove-case-choice-${id}`;
