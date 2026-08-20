@@ -72,7 +72,7 @@
   });
   addTaskCue("#story-step", "Follow the worksheet from top to bottom. Copy the government actor, read what happened, copy the government action, and choose three facts.");
   addTaskCue("#question-step", "Copy this complete question onto your worksheet.");
-  addTaskCue("#constitution-step", "Follow the boxes in order: amendment, important words, meaning, and two legal words.");
+  addTaskCue("#constitution-step", "Use this order: amendment, important words, meaning, then two legal words.");
   addTaskCue("#ruling-step", "Follow the worksheet in order. Choose your ruling before building your reasons.");
   const storyCue = document.querySelector("#story-step .task-cue");
   storyCue.after(makeActorLine());
