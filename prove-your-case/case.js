@@ -9,32 +9,23 @@
     const cue = document.createElement("p");
     cue.className = "task-cue";
     const label = document.createElement("strong");
-    label.textContent = "DO THIS: ";
+    label.textContent = "WORKSHEET GUIDE: ";
     cue.append(label, instruction);
     heading.after(cue);
   }
-  function makeWorksheetHelp(entries) {
-    const box = document.createElement("section");
-    box.className = "worksheet-help";
-    const heading = document.createElement("h3");
-    heading.textContent = "WRITE THIS ON YOUR WORKSHEET";
-    box.append(heading);
-    entries.forEach(([labelText, answerText]) => {
-      const entry = document.createElement("div");
-      const label = document.createElement("strong");
-      label.textContent = labelText;
-      const answer = document.createElement("p");
-      answer.textContent = answerText;
-      entry.append(label, answer);
-      box.append(entry);
-    });
-    return box;
+  function makeActorLine() {
+    const line = document.createElement("p");
+    line.className = "actor-line";
+    const label = document.createElement("strong"); label.textContent = "GOVERNMENT ACTOR";
+    const answer = document.createElement("span"); answer.textContent = item.worksheet.actor;
+    line.append(label, answer);
+    return line;
   }
   function makeRightsCheck() {
     const section = document.createElement("section");
     section.className = "rights-check";
-    const heading = document.createElement("h3"); heading.textContent = "3 · KEEP THESE TWO THINGS SEPARATE";
-    const intro = document.createElement("p"); intro.textContent = "The person's action explains why the government became involved. The government's action is what you test using the Constitution.";
+    const heading = document.createElement("h3"); heading.textContent = "TWO ACTIONS. ONE RIGHTS QUESTION.";
+    const intro = document.createElement("p"); intro.textContent = "First understand what the person did. Then judge what the government did.";
     const grid = document.createElement("div"); grid.className = "rights-check-grid";
     const person = document.createElement("article");
     const personHeading = document.createElement("h4"); personHeading.textContent = item.id === "mahanoy" || item.id === "earls" ? "THE STUDENT'S ACTION" : "THE PERSON'S ACTION";
@@ -46,7 +37,7 @@
     government.append(governmentHeading, governmentText);
     grid.append(person, government);
     const focus = document.createElement("p"); focus.className = "rights-focus";
-    const focusLabel = document.createElement("strong"); focusLabel.textContent = "WHAT YOU ARE DECIDING: ";
+    const focusLabel = document.createElement("strong"); focusLabel.textContent = "THE RIGHTS QUESTION: ";
     focus.append(focusLabel, item.worksheet.question);
     const reminder = document.createElement("p"); reminder.className = "rights-reminder"; reminder.textContent = "A person can do something wrong and still have constitutional rights. Finding a rights violation does not automatically mean the person is innocent or immediately goes free.";
     section.append(heading, intro, grid, focus, reminder);
@@ -84,11 +75,10 @@
   addTaskCue("#constitution-step", "Follow the boxes in order: amendment, important words, meaning, and two legal words.");
   addTaskCue("#ruling-step", "Follow the worksheet in order. Choose your ruling before building your reasons.");
   const storyCue = document.querySelector("#story-step .task-cue");
-  storyCue.after(makeWorksheetHelp([["1 · WHO TO WRITE:", item.worksheet.actor]]));
+  storyCue.after(makeActorLine());
   $("#case-story").after(makeRightsCheck());
-  document.querySelector("#story-step .panel h2").textContent = "2 · WHAT HAPPENED?";
-  document.querySelector("#story-step .panel.dark h2").textContent = "4 · THREE FACTS THAT MATTER";
-  document.querySelector("#question-step .task-cue").insertAdjacentHTML("afterend", '<p class="copy-label">WRITE THIS ON YOUR WORKSHEET</p>');
+  document.querySelector("#story-step .panel h2").textContent = "WHAT HAPPENED?";
+  document.querySelector("#story-step .panel.dark h2").textContent = "THREE FACTS THAT MATTER";
   const termsBox = document.querySelector(".terms-box");
   document.querySelector(".toolbox").prepend(termsBox);
   termsBox.querySelector("h3").textContent = "CHOOSE TWO LEGAL WORDS";
