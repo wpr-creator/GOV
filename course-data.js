@@ -150,9 +150,8 @@ window.COURSE_DATA = {
           id: "unit-1-guided-notes",
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "1.01 GUIDED NOTES",
-          url: "",
-          note: "LINK COMING SOON",
-          awaitingLink: true,
+          url: "https://docs.google.com/document/d/1efiOIBhTD7cywNVgOfesO7gX1QhN7p9XNLKDW8B6ZaM/edit?tab=t.0",
+          note: "OPEN THE GOOGLE DOC",
           kind: "notes"
         }
       ]
