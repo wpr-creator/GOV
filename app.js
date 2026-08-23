@@ -77,12 +77,12 @@
     }
   }
 
-  function createUnitZeroCheck(resource, unlocked) {
+  function createCompletionCheck(resource, unlocked) {
     const completion = loadUnitZeroCompletion();
     const check = document.createElement("button");
     const checked = Boolean(completion[resource.id]);
     check.type = "button";
-    check.className = "unit-zero-check";
+    check.className = "unit-completion-check";
     check.disabled = !unlocked;
     check.setAttribute("aria-label", `${checked ? "Mark incomplete" : "Mark complete"}: ${resource.title}`);
     check.setAttribute("aria-pressed", String(checked));
@@ -195,12 +195,6 @@
     question.textContent = unit.question;
     header.append(eyebrow, title, question);
 
-    const startCue = document.createElement("p");
-    startCue.className = "unit-start-cue";
-    startCue.innerHTML = unit.id === "gov-0"
-      ? "<strong>START HERE</strong><span>Open the lesson at the top. Open one assignment at a time. Use the check button to mark finished work.</span>"
-      : "<strong>START HERE</strong><span>Begin with the first section below. Open one reading or assignment at a time.</span>";
-
     const unitSources = document.createElement("section");
     unitSources.className = "unit-sources";
     unitSources.setAttribute("aria-label", "Sources for this unit");
@@ -271,6 +265,8 @@
           const unlocked = assignmentIsUnlocked(resource.id, resourceUrl);
           const card = document.createElement(unlocked ? "a" : "div");
           card.className = "unit-resource";
+          const resourceKind = resource.kind || (lesson === "ASSESSMENTS" ? "assessment" : "");
+          if (resourceKind) card.classList.add(`resource-${resourceKind}`);
           if (unlocked) {
             card.href = resourceUrl;
             if (!resourceUrl.startsWith("#")) {
@@ -298,6 +294,12 @@
           const resourceTitle = document.createElement("strong");
           resourceTitle.textContent = resource.title;
           card.append(resourceTitle);
+          if (resourceKind) {
+            const kindLabel = document.createElement("span");
+            kindLabel.className = "resource-kind";
+            kindLabel.textContent = resourceKind === "text" ? "READING" : resourceKind === "notes" ? "GUIDED NOTES" : resourceKind.toUpperCase();
+            card.append(kindLabel);
+          }
           if (resource.note) {
             const resourceNote = document.createElement("span");
             resourceNote.textContent = resource.note;
@@ -308,21 +310,17 @@
             resourceStatus.textContent = "COMING SOON";
             card.append(resourceStatus);
           }
-          if (unit.id === "gov-0") {
-            const item = document.createElement("div");
-            item.className = "unit-zero-resource-item";
-            item.append(createUnitZeroCheck(resource, unlocked), card);
-            resourceGrid.appendChild(item);
-          } else {
-            resourceGrid.appendChild(card);
-          }
+          const item = document.createElement("div");
+          item.className = "unit-resource-item";
+          item.append(createCompletionCheck(resource, unlocked), card);
+          resourceGrid.appendChild(item);
         });
         group.append(lessonTitle, resourceGrid);
         resources.append(group);
       });
     }
 
-    container.append(header, startCue);
+    container.append(header);
     if (unit.id !== "gov-0" && unit.id !== "gov-1" && sourceGrid.children.length) container.append(unitSources);
     if (unit.resources?.length) container.append(resources);
   }

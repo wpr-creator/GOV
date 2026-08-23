@@ -241,7 +241,7 @@ if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${r
 const appCode = fs.readFileSync(path.join(root, "app.js"), "utf8");
 for (const completionFeature of [
   'const UNIT_ZERO_COMPLETION_KEY = "gov-unit0-completion-v1";',
-  "createUnitZeroCheck(resource, unlocked)",
+  "createCompletionCheck(resource, unlocked)",
   "localStorage.setItem(UNIT_ZERO_COMPLETION_KEY",
   'check.setAttribute("aria-pressed"',
   '"Mark incomplete" : "Mark complete"'
@@ -249,10 +249,14 @@ for (const completionFeature of [
   if (!appCode.includes(completionFeature)) errors.push(`Unit 0 completion behavior is missing: ${completionFeature}`);
 }
 const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
-for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
+for (const completionSelector of [".unit-resource-item", ".unit-completion-check", '.unit-completion-check[aria-pressed="true"]', ".unit-completion-check:focus-visible", ".unit-completion-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260819-full-doc-readers") || !html.includes("app.js?v=20260823-unit-1-launch") || !html.includes("course-data.js?v=20260823-unit-1-launch") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+for (const categorySelector of [".resource-text", ".resource-assignment", ".resource-notes", ".resource-assessment", ".resource-kind"]) {
+  if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
+}
+if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
+if (!html.includes("styles.css?v=20260823-unit-1-cards") || !html.includes("app.js?v=20260823-unit-1-cards") || !html.includes("course-data.js?v=20260823-unit-1-cards") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -292,9 +296,9 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|founding-power";
+const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
-  errors.push("Unit 1 must include all 1.01 resources and Where Does Power Come From in the intended order.");
+  errors.push("Unit 1 must include only the intended 1.01 resources in order.");
 }
 if (!Array.isArray(foundingPowerIdeas) || foundingPowerIdeas.length !== 7) {
   errors.push(`Expected 7 founding-power sources; found ${foundingPowerIdeas?.length || 0}.`);

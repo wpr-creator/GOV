@@ -110,28 +110,32 @@ window.COURSE_DATA = {
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "DECLARATION OF INDEPENDENCE",
           url: "documents/declaration-of-independence.html",
-          note: "FULL TEXT WITH WORD HELP"
+          note: "FULL TEXT WITH WORD HELP",
+          kind: "text"
         },
         {
           id: "constitution-preamble",
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "PREAMBLE TO THE CONSTITUTION",
           url: "documents/constitution-preamble.html",
-          note: "FULL TEXT WITH WORD HELP"
+          note: "FULL TEXT WITH WORD HELP",
+          kind: "text"
         },
         {
           id: "gettysburg-text",
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "GETTYSBURG ADDRESS",
           url: "documents/gettysburg-address.html",
-          note: "FULL TEXT WITH WORD HELP"
+          note: "FULL TEXT WITH WORD HELP",
+          kind: "text"
         },
         {
           id: "declaration-annotation",
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "DECLARATION ANNOTATION",
           url: "https://docs.google.com/document/d/1mo5aAq_GjYzHbtitMIpRZPDsaUxx3Fvbg-jzP_i5JEU/edit?tab=t.0",
-          note: "ASSIGNMENT"
+          note: "OPEN THE GOOGLE DOC",
+          kind: "assignment"
         },
         {
           id: "we-the-people",
@@ -139,7 +143,8 @@ window.COURSE_DATA = {
           title: "WE THE PEOPLE",
           url: "",
           note: "PROJECT · LINK COMING SOON",
-          awaitingLink: true
+          awaitingLink: true,
+          kind: "assignment"
         },
         {
           id: "unit-1-guided-notes",
@@ -147,13 +152,8 @@ window.COURSE_DATA = {
           title: "1.01 GUIDED NOTES",
           url: "",
           note: "LINK COMING SOON",
-          awaitingLink: true
-        },
-        {
-          id: "founding-power",
-          lesson: "UNIT 1 EXTENSION",
-          title: "WHERE DOES POWER COME FROM?",
-          url: "#founding-power"
+          awaitingLink: true,
+          kind: "notes"
         }
       ]
     },
