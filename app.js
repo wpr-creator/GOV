@@ -86,14 +86,14 @@
     check.disabled = !unlocked;
     check.setAttribute("aria-label", `${checked ? "Mark incomplete" : "Mark complete"}: ${resource.title}`);
     check.setAttribute("aria-pressed", String(checked));
-    check.textContent = checked ? "✓" : "";
+    check.textContent = checked ? "★" : "☆";
     check.addEventListener("click", () => {
       const nextCompletion = loadUnitZeroCompletion();
       const nextChecked = !Boolean(nextCompletion[resource.id]);
       if (nextChecked) nextCompletion[resource.id] = true;
       else delete nextCompletion[resource.id];
       saveUnitZeroCompletion(nextCompletion);
-      check.textContent = nextChecked ? "✓" : "";
+      check.textContent = nextChecked ? "★" : "☆";
       check.setAttribute("aria-pressed", String(nextChecked));
       check.setAttribute("aria-label", `${nextChecked ? "Mark incomplete" : "Mark complete"}: ${resource.title}`);
     });
