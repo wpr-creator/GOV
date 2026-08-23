@@ -252,7 +252,7 @@ const primaryStyles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 for (const completionSelector of [".unit-zero-resource-item", ".unit-zero-check", '.unit-zero-check[aria-pressed="true"]', ".unit-zero-check:focus-visible", ".unit-zero-check:disabled"]) {
   if (!primaryStyles.includes(completionSelector)) errors.push(`Unit 0 completion styling is missing: ${completionSelector}`);
 }
-if (!html.includes("styles.css?v=20260819-full-doc-readers") || !html.includes("app.js?v=20260819-full-doc-readers") || !html.includes("course-data.js?v=20260819-accessible-directions")) {
+if (!html.includes("styles.css?v=20260819-full-doc-readers") || !html.includes("app.js?v=20260819-full-doc-readers") || !html.includes("course-data.js?v=20260823-unit-1-ideals")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -446,7 +446,13 @@ data.units.forEach(unit => unit.lessons.forEach(lesson => {
     errors.push(`${unit.number} contains teacher-facing lesson language.`);
   }
 }));
-if (!Array.isArray(data.words) || data.words.length !== 63) errors.push(`Expected 63 plain-language glossary terms; found ${data.words?.length || 0}.`);
+if (!Array.isArray(data.words) || data.words.length !== 67) errors.push(`Expected 67 plain-language glossary terms; found ${data.words?.length || 0}.`);
+const requiredUnitOneTerms = ["Natural rights", "Social contract", "Popular sovereignty", "Limited government", "Consent of the governed", "Republicanism", "Equality"];
+for (const term of requiredUnitOneTerms) {
+  const entry = data.words?.find(word => word[0] === term);
+  if (!entry) errors.push(`Missing required Unit 1 glossary term: ${term}.`);
+  else if (entry[4] !== "gov-1") errors.push(`Required glossary term must belong to Unit 1: ${term}.`);
+}
 data.words?.forEach((word, index) => {
   if (word.length !== 5 || word.some(value => !String(value).trim()) || !data.units.some(unit => unit.id === word[4])) {
     errors.push(`Glossary term ${index + 1} is incomplete or has an unknown unit.`);
