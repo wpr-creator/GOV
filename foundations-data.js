@@ -39,6 +39,15 @@ window.FOUNDATIONS_DATA = {
       question: "Why might a democracy intentionally make important decisions difficult?"
     },
     {
+      id: "preamble", title: "Preamble to the Constitution", author: "Constitutional Convention", year: "1787", file: "documents/constitution-preamble.html",
+      standards: "12.1.3–12.1.5", units: ["gov-1"],
+      bigIdea: "The Constitution begins by naming the people as the source of government power and listing the new government’s goals.",
+      excerpt: "We the People of the United States, in Order to form a more perfect Union…",
+      plain: "The people create the government to pursue justice, peace, safety, well-being, and liberty.",
+      why: "It states the founding promises that the Constitution is meant to serve.",
+      question: "Which goal in the Preamble matters most for a democracy?"
+    },
+    {
       id: "fed10", title: "Federalist No. 10", author: "James Madison", year: "1787",
       standards: "12.1.5; 12.6.1", units: ["gov-2", "gov-3"],
       bigIdea: "Factions are unavoidable, so a large republic should prevent any one faction from dominating.",

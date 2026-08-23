@@ -99,12 +99,56 @@ window.COURSE_DATA = {
       question: "Where did American ideas about government and rights come from?",
       standards: "Gov 12.1.1–12.1.3",
       lessons: [
+        ["1.01 — The Founding Promise", "What promises define American democracy?", "Gov 12.1.3", "Connect the Declaration of Independence, the Constitution’s Preamble, and the Gettysburg Address to rights, equality, and government by the people.", "Read the three documents and complete the lesson assignments"],
         ["Ideas Behind American Government", "Which older ideas shaped American government?", "Gov 12.1.1", "Connect ideas from Greece, Rome, England, Locke, Montesquieu, Machiavelli, and Blackstone to American government.", "Match each idea to an American example"],
         ["Democracy’s Promise and Risks", "What can democracy do well—and what can go wrong?", "Gov 12.1.2", "Use Tocqueville’s observations to examine equality, majority power, and participation.", "Explain one promise and one risk"],
-        ["Rights and the Public Good", "Should government protect individual freedom or serve the common good?", "Gov 12.1.3", "Compare the public good with individual rights.", "Explain how a democracy needs both"],
-        ["The Declaration of Independence", "What makes government legitimate?", "Gov 12.1.3", "Connect natural rights, equality, and consent of the governed to the Declaration of Independence.", "Use the Declaration to answer the unit question"]
+        ["Rights and the Public Good", "Should government protect individual freedom or serve the common good?", "Gov 12.1.3", "Compare the public good with individual rights.", "Explain how a democracy needs both"]
       ],
       resources: [
+        {
+          id: "declaration-text",
+          lesson: "1.01 — THE FOUNDING PROMISE",
+          title: "DECLARATION OF INDEPENDENCE",
+          url: "documents/declaration-of-independence.html",
+          note: "FULL TEXT WITH WORD HELP"
+        },
+        {
+          id: "constitution-preamble",
+          lesson: "1.01 — THE FOUNDING PROMISE",
+          title: "PREAMBLE TO THE CONSTITUTION",
+          url: "documents/constitution-preamble.html",
+          note: "FULL TEXT WITH WORD HELP"
+        },
+        {
+          id: "gettysburg-text",
+          lesson: "1.01 — THE FOUNDING PROMISE",
+          title: "GETTYSBURG ADDRESS",
+          url: "documents/gettysburg-address.html",
+          note: "FULL TEXT WITH WORD HELP"
+        },
+        {
+          id: "declaration-annotation",
+          lesson: "1.01 — THE FOUNDING PROMISE",
+          title: "DECLARATION ANNOTATION",
+          url: "https://docs.google.com/document/d/1mo5aAq_GjYzHbtitMIpRZPDsaUxx3Fvbg-jzP_i5JEU/edit?tab=t.0",
+          note: "ASSIGNMENT"
+        },
+        {
+          id: "we-the-people",
+          lesson: "1.01 — THE FOUNDING PROMISE",
+          title: "WE THE PEOPLE",
+          url: "",
+          note: "PROJECT · LINK COMING SOON",
+          awaitingLink: true
+        },
+        {
+          id: "unit-1-guided-notes",
+          lesson: "1.01 — THE FOUNDING PROMISE",
+          title: "1.01 GUIDED NOTES",
+          url: "",
+          note: "LINK COMING SOON",
+          awaitingLink: true
+        },
         {
           id: "founding-power",
           lesson: "UNIT 1 EXTENSION",

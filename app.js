@@ -197,7 +197,9 @@
 
     const startCue = document.createElement("p");
     startCue.className = "unit-start-cue";
-    startCue.innerHTML = "<strong>START HERE</strong><span>Open the lesson at the top. Open one assignment at a time. Use the check button to mark finished work.</span>";
+    startCue.innerHTML = unit.id === "gov-0"
+      ? "<strong>START HERE</strong><span>Open the lesson at the top. Open one assignment at a time. Use the check button to mark finished work.</span>"
+      : "<strong>START HERE</strong><span>Begin with the first section below. Open one reading or assignment at a time.</span>";
 
     const unitSources = document.createElement("section");
     unitSources.className = "unit-sources";
@@ -265,6 +267,7 @@
         resourceGrid.className = "unit-resource-grid";
         lessonResources.forEach(resource => {
           const resourceUrl = siteContent.assignmentUrls?.[resource.id] ?? resource.url;
+          const awaitingLink = Boolean(resource.awaitingLink && siteContent.assignmentUnlocks?.[resource.id] && !resourceUrl);
           const unlocked = assignmentIsUnlocked(resource.id, resourceUrl);
           const card = document.createElement(unlocked ? "a" : "div");
           card.className = "unit-resource";
@@ -286,9 +289,11 @@
                 window.location.hash = "home";
               });
             }
-          } else {
+          } else if (!awaitingLink) {
             card.classList.add("placeholder");
             card.setAttribute("aria-disabled", "true");
+          } else {
+            card.classList.add("awaiting-link");
           }
           const resourceTitle = document.createElement("strong");
           resourceTitle.textContent = resource.title;
@@ -298,7 +303,7 @@
             resourceNote.textContent = resource.note;
             card.append(resourceNote);
           }
-          if (!unlocked) {
+          if (!unlocked && !awaitingLink) {
             const resourceStatus = document.createElement("span");
             resourceStatus.textContent = "COMING SOON";
             card.append(resourceStatus);
@@ -318,7 +323,7 @@
     }
 
     container.append(header, startCue);
-    if (unit.id !== "gov-0" && sourceGrid.children.length) container.append(unitSources);
+    if (unit.id !== "gov-0" && unit.id !== "gov-1" && sourceGrid.children.length) container.append(unitSources);
     if (unit.resources?.length) container.append(resources);
   }
 
