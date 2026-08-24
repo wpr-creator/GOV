@@ -258,7 +258,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260824-democracy-roots") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260824-roots-label") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -313,6 +313,9 @@ if (config.assignmentUnlocks?.["we-the-people"] !== false || config.assignmentUn
 const rootsActivity = unitOne?.resources?.find(resource => resource.id === "roots-activity");
 if (rootsActivity?.url !== "roots-of-democracy.html" || config.assignmentUrls?.["roots-activity"] !== "roots-of-democracy.html" || config.assignmentUnlocks?.["roots-activity"] !== false) {
   errors.push("The Unit 1 Roots Activity must exist and remain locked.");
+}
+if (rootsActivity?.title !== "1.02 GUIDED NOTES" || rootsActivity?.note !== "ROOTS ACTIVITY") {
+  errors.push("The locked Roots Activity card must be labeled as 1.02 Guided Notes.");
 }
 const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
 if (!Array.isArray(democracyRoots) || democracyRoots.map(rootData => rootData.name).join("|") !== expectedRootNames.join("|")) {

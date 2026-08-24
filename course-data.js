@@ -156,9 +156,9 @@ window.COURSE_DATA = {
         {
           id: "roots-activity",
           lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
-          title: "ROOTS ACTIVITY",
+          title: "1.02 GUIDED NOTES",
           url: "roots-of-democracy.html",
-          note: "INTERACTIVE",
+          note: "ROOTS ACTIVITY",
           kind: "assignment"
         }
       ]
