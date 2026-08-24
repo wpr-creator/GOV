@@ -47,7 +47,7 @@
     "constitution-preamble": true,
     "gettysburg-text": true,
     "declaration-annotation": true,
-    "we-the-people": true,
+    "we-the-people": false,
     "unit-1-guided-notes": true,
     "federalism-map": true,
     "constitution-explorer": true,
@@ -57,7 +57,9 @@
     "presidential-power": true,
     "rights-referee": true
   },
-  "assignmentUnlockAt": {},
+  "assignmentUnlockAt": {
+    "we-the-people": "2026-08-26T08:30:00-07:00"
+  },
   "assignmentUrls": {
     "classroom": "https://classroom.google.com/",
     "course-site": "https://wpr-creator.github.io/GOV/",
@@ -76,6 +78,7 @@
     "constitution-preamble": "documents/constitution-preamble.html",
     "gettysburg-text": "documents/gettysburg-address.html",
     "declaration-annotation": "https://docs.google.com/document/d/1mo5aAq_GjYzHbtitMIpRZPDsaUxx3Fvbg-jzP_i5JEU/edit?tab=t.0",
+    "we-the-people": "https://docs.google.com/document/d/1dmSVCh_E25a9eKVJ57mPFZafeykSWMrBYqJi61CjsKI/edit?usp=sharing",
     "unit-1-guided-notes": "https://docs.google.com/document/d/1efiOIBhTD7cywNVgOfesO7gX1QhN7p9XNLKDW8B6ZaM/edit?tab=t.0",
     "federalism-map": "#federalism-map",
     "constitution-explorer": "#constitution-explorer",

@@ -141,9 +141,8 @@ window.COURSE_DATA = {
           id: "we-the-people",
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "WE THE PEOPLE",
-          url: "",
-          note: "PROJECT · LINK COMING SOON",
-          awaitingLink: true,
+          url: "https://docs.google.com/document/d/1dmSVCh_E25a9eKVJ57mPFZafeykSWMrBYqJi61CjsKI/edit?usp=sharing",
+          note: "PROJECT · OPENS WEDNESDAY AT 8:30 AM",
           kind: "assignment"
         },
         {

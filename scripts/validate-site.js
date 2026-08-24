@@ -256,7 +256,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260823-guided-notes") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260824-we-the-people") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -299,6 +299,14 @@ const unitOne = data.units.find(unit => unit.id === "gov-1");
 const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include only the intended 1.01 resources in order.");
+}
+const weThePeople = unitOne?.resources?.find(resource => resource.id === "we-the-people");
+const weThePeopleUrl = "https://docs.google.com/document/d/1dmSVCh_E25a9eKVJ57mPFZafeykSWMrBYqJi61CjsKI/edit?usp=sharing";
+if (weThePeople?.url !== weThePeopleUrl || config.assignmentUrls?.["we-the-people"] !== weThePeopleUrl) {
+  errors.push("We the People must use the assigned CP Government project document.");
+}
+if (config.assignmentUnlocks?.["we-the-people"] !== false || config.assignmentUnlockAt?.["we-the-people"] !== "2026-08-26T08:30:00-07:00") {
+  errors.push("We the People must unlock Wednesday, August 26, 2026 at 8:30 AM Pacific Time.");
 }
 if (!Array.isArray(foundingPowerIdeas) || foundingPowerIdeas.length !== 7) {
   errors.push(`Expected 7 founding-power sources; found ${foundingPowerIdeas?.length || 0}.`);
