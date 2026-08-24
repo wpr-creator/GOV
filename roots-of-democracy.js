@@ -36,14 +36,14 @@
     influence.innerHTML = `<b>HOW IT INFLUENCED AMERICA</b>${root.influence}`;
     const unitedStates = document.createElement("span");
     unitedStates.className = "root-explanation root-us";
-    unitedStates.innerHTML = `<b>WHAT IT MEANS FOR THE UNITED STATES</b>${root.unitedStates}`;
+    unitedStates.innerHTML = `<b>WHAT IT MEANS FOR THE U.S.</b>${root.unitedStates}`;
     const ideas = document.createElement("span");
     ideas.className = "root-ideas";
-    ideas.innerHTML = `<b>CONNECTS TO</b>${root.treeIdeas.join(" · ")}`;
+    ideas.innerHTML = `<b>WHAT IDEAL IT CONNECTS TO</b>${root.treeIdeas.join(" · ")}`;
     const close = document.createElement("span");
     close.className = "root-action";
     close.textContent = "TURN BACK ↩";
-    back.append(icon, name, influence, unitedStates, ideas, close);
+    back.append(icon, name, influence, ideas, unitedStates, close);
 
     inner.append(front, back);
     card.append(inner);
