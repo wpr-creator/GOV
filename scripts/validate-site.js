@@ -322,7 +322,7 @@ if (!Array.isArray(democracyRoots) || democracyRoots.map(rootData => rootData.na
   errors.push("The Roots Activity needs all seven historical roots in the intended order.");
 }
 democracyRoots?.forEach((rootData, index) => {
-  for (const key of ["id", "name", "icon", "imageAlt", "influence", "today", "treeIdeas"]) {
+  for (const key of ["id", "name", "icon", "imageAlt", "influence", "unitedStates", "treeIdeas"]) {
     if (!rootData[key] || (Array.isArray(rootData[key]) && !rootData[key].length)) errors.push(`Democracy root ${index + 1} is missing ${key}.`);
   }
 });

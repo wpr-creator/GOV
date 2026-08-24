@@ -50,7 +50,7 @@ h1 { margin: 0; max-width: 800px; font-size: clamp(2.5rem,7vw,5.7rem); line-heig
 .root-back strong { font-size: 1.05rem; }
 .root-explanation { max-width: 520px; display: grid; gap: .18rem; font-size: .86rem; font-weight: 700; line-height: 1.38; }
 .root-explanation b { color: var(--red); font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif; font-size: .62rem; letter-spacing: .08em; }
-.root-today { padding-top: .55rem; border-top: 2px solid var(--blue); }
+.root-us { padding-top: .55rem; border-top: 2px solid var(--blue); }
 .root-ideas { display: grid; gap: .2rem; color: var(--blue); font-size: .72rem; font-weight: 950; letter-spacing: .035em; }
 .root-ideas b { color: var(--red); font-size: .62rem; letter-spacing: .1em; }
 .root-card:focus-visible { outline: 5px solid var(--red); outline-offset: 5px; }
