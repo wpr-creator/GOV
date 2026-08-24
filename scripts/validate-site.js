@@ -499,6 +499,13 @@ data.words?.forEach((word, index) => {
   }
 });
 if (!data.units.some(unit => unit.id === config.currentUnit)) errors.push(`Unknown currentUnit: ${config.currentUnit}`);
+const expectedUpcoming = [
+  "WE THE PEOPLE PROJECT|OPENS WEDNESDAY · 8:30 AM",
+  "ROOTS OF AMERICAN DEMOCRACY WORKSHEET|COMING SOON"
+];
+if (config.upcoming?.map(item => `${item.title}|${item.date}`).join("\n") !== expectedUpcoming.join("\n")) {
+  errors.push("The homepage upcoming activities must show the two current Unit 1 activities.");
+}
 data.units.forEach(unit => {
   if (typeof config.unitUnlocks?.[unit.id] !== "boolean") errors.push(`Unit ${unit.id} needs a true or false unlock setting.`);
 });
