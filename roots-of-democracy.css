@@ -3,7 +3,7 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Arial Black", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif; line-height: 1.5; }
 button, a { font: inherit; }
-p, .root-connection, .how-to { font-family: Arial, Helvetica, sans-serif; }
+p, .root-explanation, .how-to { font-family: Arial, Helvetica, sans-serif; }
 h1, h2, h3, .page-header strong { text-transform: uppercase; }
 .skip-link { position: fixed; z-index: 20; top: .5rem; left: .5rem; padding: .7rem 1rem; color: #fff; background: #000; transform: translateY(-150%); }
 .skip-link:focus { transform: none; }
@@ -36,7 +36,7 @@ h1 { margin: 0; max-width: 800px; font-size: clamp(2.5rem,7vw,5.7rem); line-heig
 .activity-heading h2 { margin: 0; font-size: clamp(1.7rem,4vw,2.7rem); }
 #root-progress { margin: 0; color: var(--blue); font-size: .78rem; font-weight: 950; letter-spacing: .08em; }
 .root-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; }
-.root-card { min-height: 310px; padding: 0; position: relative; color: inherit; background: transparent; border: 0; cursor: pointer; perspective: 1100px; }
+.root-card { min-height: 430px; padding: 0; position: relative; color: inherit; background: transparent; border: 0; cursor: pointer; perspective: 1100px; }
 .root-card-inner { width: 100%; height: 100%; position: absolute; inset: 0; display: block; transition: transform .5s ease; transform-style: preserve-3d; }
 .root-card[aria-pressed="true"] .root-card-inner { transform: rotateY(180deg); }
 .root-face { position: absolute; inset: 0; padding: 1.4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .8rem; text-align: center; border: 4px solid #000; border-radius: 12px 12px 42% 42% / 12px 12px 20% 20%; backface-visibility: hidden; }
@@ -46,9 +46,11 @@ h1 { margin: 0; max-width: 800px; font-size: clamp(2.5rem,7vw,5.7rem); line-heig
 .root-front strong { max-width: 360px; font-size: clamp(1.3rem,3vw,2rem); line-height: 1; }
 .root-action { font-size: .7rem; font-weight: 950; letter-spacing: .08em; }
 .root-back { background: var(--cream); transform: rotateY(180deg); }
-.root-back svg { width: 84px; height: 84px; flex: 0 0 auto; fill: none; stroke: #000; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.root-back svg { width: 68px; height: 68px; flex: 0 0 auto; fill: none; stroke: #000; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
 .root-back strong { font-size: 1.05rem; }
-.root-connection { max-width: 520px; font-size: .93rem; font-weight: 750; line-height: 1.42; }
+.root-explanation { max-width: 520px; display: grid; gap: .18rem; font-size: .86rem; font-weight: 700; line-height: 1.38; }
+.root-explanation b { color: var(--red); font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif; font-size: .62rem; letter-spacing: .08em; }
+.root-today { padding-top: .55rem; border-top: 2px solid var(--blue); }
 .root-ideas { display: grid; gap: .2rem; color: var(--blue); font-size: .72rem; font-weight: 950; letter-spacing: .035em; }
 .root-ideas b { color: var(--red); font-size: .62rem; letter-spacing: .1em; }
 .root-card:focus-visible { outline: 5px solid var(--red); outline-offset: 5px; }
@@ -56,5 +58,5 @@ h1 { margin: 0; max-width: 800px; font-size: clamp(2.5rem,7vw,5.7rem); line-heig
 .how-to { margin-top: 1.5rem; padding: 1rem; background: #fff; border: 3px solid var(--blue); font-size: .9rem; font-weight: 750; line-height: 1.45; }
 .how-to strong { color: var(--red); }
 @media (max-width: 700px) { .root-grid { grid-template-columns: 1fr; } .root-card:last-child { grid-column: auto; } .ideal-list { grid-template-columns: 1fr; } .trunk { min-height: 570px; } .activity-heading { align-items: start; flex-direction: column; } }
-@media (max-width: 440px) { .page { width: min(100% - 1rem,1180px); } .page-header strong { display:none; } .root-card { min-height: 350px; } }
+@media (max-width: 440px) { .page { width: min(100% - 1rem,1180px); } .page-header strong { display:none; } .root-card { min-height: 500px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .root-card-inner { transition: none; } }

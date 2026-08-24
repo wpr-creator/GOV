@@ -31,16 +31,19 @@
     icon.append(use);
     const name = document.createElement("strong");
     name.textContent = root.name;
-    const connection = document.createElement("span");
-    connection.className = "root-connection";
-    connection.textContent = root.connection;
+    const influence = document.createElement("span");
+    influence.className = "root-explanation";
+    influence.innerHTML = `<b>HOW IT INFLUENCED AMERICA</b>${root.influence}`;
+    const today = document.createElement("span");
+    today.className = "root-explanation root-today";
+    today.innerHTML = `<b>WHAT IT MEANS FOR YOU</b>${root.today}`;
     const ideas = document.createElement("span");
     ideas.className = "root-ideas";
     ideas.innerHTML = `<b>CONNECTS TO</b>${root.treeIdeas.join(" · ")}`;
     const close = document.createElement("span");
     close.className = "root-action";
     close.textContent = "TURN BACK ↩";
-    back.append(icon, name, connection, ideas, close);
+    back.append(icon, name, influence, today, ideas, close);
 
     inner.append(front, back);
     card.append(inner);
