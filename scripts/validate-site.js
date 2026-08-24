@@ -21,6 +21,7 @@ vm.runInContext(fs.readFileSync(path.join(root, "presidential-power-data.js"), "
 vm.runInContext(fs.readFileSync(path.join(root, "bill-journey-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "federalism-map-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "founding-power-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "roots-of-democracy-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "prove-your-case", "case-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const cpRosters = context.window.CP_GOV_ROSTERS;
@@ -32,12 +33,13 @@ const presidentialPowerCases = context.window.PRESIDENTIAL_POWER_DATA;
 const billJourneyData = context.window.BILL_JOURNEY_DATA;
 const federalismMapData = context.window.FEDERALISM_MAP_DATA;
 const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
+const democracyRoots = context.window.DEMOCRACY_ROOTS;
 const proveCases = context.window.PROVE_CASES;
 const foundationCases = context.window.FOUNDATIONS_DATA.cases;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "styles.css", "app.js", "course-data.js", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "roots-of-democracy.html", "roots-of-democracy.css", "roots-of-democracy.js", "roots-of-democracy-data.js", "styles.css", "app.js", "course-data.js", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -256,7 +258,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260824-we-the-people") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260824-democracy-roots") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -296,7 +298,7 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes";
+const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include only the intended 1.01 resources in order.");
 }
@@ -307,6 +309,28 @@ if (weThePeople?.url !== weThePeopleUrl || config.assignmentUrls?.["we-the-peopl
 }
 if (config.assignmentUnlocks?.["we-the-people"] !== false || config.assignmentUnlockAt?.["we-the-people"] !== "2026-08-26T08:30:00-07:00") {
   errors.push("We the People must unlock Wednesday, August 26, 2026 at 8:30 AM Pacific Time.");
+}
+const rootsActivity = unitOne?.resources?.find(resource => resource.id === "roots-activity");
+if (rootsActivity?.url !== "roots-of-democracy.html" || config.assignmentUrls?.["roots-activity"] !== "roots-of-democracy.html" || config.assignmentUnlocks?.["roots-activity"] !== false) {
+  errors.push("The Unit 1 Roots Activity must exist and remain locked.");
+}
+const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
+if (!Array.isArray(democracyRoots) || democracyRoots.map(rootData => rootData.name).join("|") !== expectedRootNames.join("|")) {
+  errors.push("The Roots Activity needs all seven historical roots in the intended order.");
+}
+democracyRoots?.forEach((rootData, index) => {
+  for (const key of ["id", "name", "icon", "imageAlt", "connection", "treeIdeas"]) {
+    if (!rootData[key] || (Array.isArray(rootData[key]) && !rootData[key].length)) errors.push(`Democracy root ${index + 1} is missing ${key}.`);
+  }
+});
+const rootsHtml = fs.readFileSync(path.join(root, "roots-of-democracy.html"), "utf8");
+const rootsCode = fs.readFileSync(path.join(root, "roots-of-democracy.js"), "utf8");
+for (const marker of ["SIX DEMOCRATIC IDEALS", "NATURAL RIGHTS", "SOCIAL CONTRACT", "POPULAR SOVEREIGNTY", "LIMITED GOVERNMENT", "CONSENT OF THE GOVERNED", "REPUBLICANISM", "prefers-reduced-motion"]) {
+  const source = marker === "prefers-reduced-motion" ? fs.readFileSync(path.join(root, "roots-of-democracy.css"), "utf8") : rootsHtml;
+  if (!source.includes(marker)) errors.push(`The Roots Activity is missing: ${marker}`);
+}
+for (const marker of ["aria-pressed", "aria-label", "root-progress", "TURN OVER"]) {
+  if (!rootsCode.includes(marker)) errors.push(`The Roots Activity interaction is missing: ${marker}`);
 }
 if (!Array.isArray(foundingPowerIdeas) || foundingPowerIdeas.length !== 7) {
   errors.push(`Expected 7 founding-power sources; found ${foundingPowerIdeas?.length || 0}.`);

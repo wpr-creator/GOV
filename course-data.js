@@ -100,7 +100,7 @@ window.COURSE_DATA = {
       standards: "Gov 12.1.1–12.1.3",
       lessons: [
         ["1.01 — The Founding Promise", "What promises define American democracy?", "Gov 12.1.3", "Connect the Declaration of Independence, the Constitution’s Preamble, and the Gettysburg Address to rights, equality, and government by the people.", "Read the three documents and complete the lesson assignments"],
-        ["Ideas Behind American Government", "Which older ideas shaped American government?", "Gov 12.1.1", "Connect ideas from Greece, Rome, England, Locke, Montesquieu, Machiavelli, and Blackstone to American government.", "Match each idea to an American example"],
+        ["1.02 — The Roots of American Democracy", "Which older ideas shaped American democracy?", "Gov 12.1.1", "Connect ideas from Greece, Rome, English traditions, Locke, Montesquieu, Machiavelli, and Blackstone to American democratic ideals.", "Complete the Roots Activity"],
         ["Democracy’s Promise and Risks", "What can democracy do well—and what can go wrong?", "Gov 12.1.2", "Use Tocqueville’s observations to examine equality, majority power, and participation.", "Explain one promise and one risk"],
         ["Rights and the Public Good", "Should government protect individual freedom or serve the common good?", "Gov 12.1.3", "Compare the public good with individual rights.", "Explain how a democracy needs both"]
       ],
@@ -152,6 +152,14 @@ window.COURSE_DATA = {
           url: "https://docs.google.com/document/d/1efiOIBhTD7cywNVgOfesO7gX1QhN7p9XNLKDW8B6ZaM/edit?tab=t.0",
           note: "OPEN THE GOOGLE DOC",
           kind: "notes"
+        },
+        {
+          id: "roots-activity",
+          lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
+          title: "ROOTS ACTIVITY",
+          url: "roots-of-democracy.html",
+          note: "INTERACTIVE",
+          kind: "assignment"
         }
       ]
     },
