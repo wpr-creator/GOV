@@ -1,8 +1,10 @@
 :root { --ink:#0b0b0b; --paper:#fff; --red:#9f2634; --blue:#163f70; --cream:#f8f4e9; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Arial Narrow", "Roboto Condensed", Arial, sans-serif; }
+body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Arial Black", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif; line-height: 1.5; }
 button, a { font: inherit; }
+p, .root-connection, .how-to { font-family: Arial, Helvetica, sans-serif; }
+h1, h2, h3, .page-header strong { text-transform: uppercase; }
 .skip-link { position: fixed; z-index: 20; top: .5rem; left: .5rem; padding: .7rem 1rem; color: #fff; background: #000; transform: translateY(-150%); }
 .skip-link:focus { transform: none; }
 .page-header { min-height: 72px; padding: .8rem clamp(1rem,4vw,3rem); display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: #fff; background: #000; border-bottom: 6px solid var(--red); }
