@@ -258,7 +258,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260824-roots-label") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260824-roots-resources") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -298,7 +298,7 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity";
+const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|unit-1-02-guided-notes|roots-activity";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include only the intended 1.01 resources in order.");
 }
@@ -314,8 +314,13 @@ const rootsActivity = unitOne?.resources?.find(resource => resource.id === "root
 if (rootsActivity?.url !== "roots-of-democracy.html" || config.assignmentUrls?.["roots-activity"] !== "roots-of-democracy.html" || config.assignmentUnlocks?.["roots-activity"] !== false) {
   errors.push("The Unit 1 Roots Activity must exist and remain locked.");
 }
-if (rootsActivity?.title !== "1.02 GUIDED NOTES" || rootsActivity?.note !== "ROOTS ACTIVITY") {
-  errors.push("The locked Roots Activity card must be labeled as 1.02 Guided Notes.");
+if (rootsActivity?.title !== "ROOTS ACTIVITY" || rootsActivity?.note !== "INTERACTIVE") {
+  errors.push("The locked interactive page must have its own Roots Activity card.");
+}
+const rootsGuidedNotes = unitOne?.resources?.find(resource => resource.id === "unit-1-02-guided-notes");
+const rootsGuidedNotesUrl = "https://docs.google.com/document/d/1V1kZears6GoAditg4PluLZfQ80OStHDYzoa4m4WC6M0/edit?tab=t.0";
+if (rootsGuidedNotes?.url !== rootsGuidedNotesUrl || config.assignmentUrls?.["unit-1-02-guided-notes"] !== rootsGuidedNotesUrl || config.assignmentUnlocks?.["unit-1-02-guided-notes"] !== true) {
+  errors.push("The open 1.02 Guided Notes card must use the assigned Google Doc.");
 }
 const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
 if (!Array.isArray(democracyRoots) || democracyRoots.map(rootData => rootData.name).join("|") !== expectedRootNames.join("|")) {

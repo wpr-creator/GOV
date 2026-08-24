@@ -154,11 +154,19 @@ window.COURSE_DATA = {
           kind: "notes"
         },
         {
-          id: "roots-activity",
+          id: "unit-1-02-guided-notes",
           lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
           title: "1.02 GUIDED NOTES",
+          url: "https://docs.google.com/document/d/1V1kZears6GoAditg4PluLZfQ80OStHDYzoa4m4WC6M0/edit?tab=t.0",
+          note: "OPEN THE GOOGLE DOC",
+          kind: "notes"
+        },
+        {
+          id: "roots-activity",
+          lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
+          title: "ROOTS ACTIVITY",
           url: "roots-of-democracy.html",
-          note: "ROOTS ACTIVITY",
+          note: "INTERACTIVE",
           kind: "assignment"
         }
       ]
