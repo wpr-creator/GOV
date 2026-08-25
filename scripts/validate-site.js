@@ -240,6 +240,12 @@ const expectedFirstBellAssignments = [
 if (firstBell?.resources?.map(resource => `${resource.id}|${resource.lesson}|${resource.title}`).join("\n") !== expectedFirstBellAssignments.join("\n")) {
   errors.push("First Bell assignments are missing, mislabeled, or out of lesson order.");
 }
+for (const assessmentId of ["mr-smith-reflection", "civics-field-test"]) {
+  const assessment = firstBell?.resources?.find(resource => resource.id === assessmentId);
+  if (assessment?.url !== "" || assessment?.note !== "SEE MR. ROGERS" || assessment?.awaitingLink !== true || config.assignmentUrls?.[assessmentId] !== "") {
+    errors.push(`Unit 0 assessment must be visible without a link and say See Mr. Rogers: ${assessmentId}`);
+  }
+}
 const appCode = fs.readFileSync(path.join(root, "app.js"), "utf8");
 for (const completionFeature of [
   'const UNIT_ZERO_COMPLETION_KEY = "gov-unit0-completion-v1";',
@@ -258,7 +264,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260824-roots-resources") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260825-unit-0-assessments") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {

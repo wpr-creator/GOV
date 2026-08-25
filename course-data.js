@@ -66,7 +66,9 @@ window.COURSE_DATA = {
           id: "mr-smith-reflection",
           lesson: "ASSESSMENTS",
           title: "MR. SMITH GOES TO WASHINGTON EXTENSION",
-          url: "https://docs.google.com/forms/d/e/1FAIpQLSfEvttJqyYGUOLTLTgbdpf4Uzxm4h7OUafD6nk2GZwo5HANiA/viewform?usp=publish-editor"
+          url: "",
+          note: "SEE MR. ROGERS",
+          awaitingLink: true
         },
         {
           id: "presidential-yearbook",
@@ -84,7 +86,9 @@ window.COURSE_DATA = {
           id: "civics-field-test",
           lesson: "ASSESSMENTS",
           title: "CIVICS FIELD GUIDE TEST",
-          url: "https://docs.google.com/forms/d/e/1FAIpQLSdX98tuYpjFju4prqoBvXgU56r_HYqeG_r7c3rbGLseW3aQrw/viewform?usp=publish-editor"
+          url: "",
+          note: "SEE MR. ROGERS",
+          awaitingLink: true
         },
         {
           id: "unit-0-synthesis",
