@@ -626,7 +626,7 @@ function validateProveYourCase() {
     if (!caseHtml.includes('<details class="case-stage arguments-stage"') || caseHtml.includes('<details class="case-stage arguments-stage" id="arguments-step" open')) errors.push(`Prove Your Case ${id} argument ideas must begin hidden in a details control.`);
     const localImage = item.image.replace(/^\.\.\//, "");
     if (!fs.existsSync(path.join(root, localImage))) errors.push(`Missing Prove Your Case illustration: ${localImage}`);
-    if (config.proveCaseUnlocks?.[id] !== false) errors.push(`Prove Your Case ruling must begin teacher-locked: ${id}`);
+    if (config.proveCaseUnlocks?.[id] !== true) errors.push(`Prove Your Case result must be open: ${id}`);
     if (!/^https:\/\//.test(item.ruling?.source || "")) errors.push(`Invalid Prove Your Case decision source: ${id}`);
     for (const field of ["status", "text", "source"]) if (!item.aftermath?.[field]) errors.push(`Incomplete Prove Your Case aftermath ${id}: ${field}`);
     if (!/^https:\/\//.test(item.aftermath?.source || "")) errors.push(`Invalid Prove Your Case aftermath source: ${id}`);
