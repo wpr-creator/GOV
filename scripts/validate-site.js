@@ -306,9 +306,9 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|unit-1-02-guided-notes|roots-activity";
+const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|unit-1-02-guided-notes|roots-activity|unit-1-03-guided-notes|history-lesson";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
-  errors.push("Unit 1 must include only the intended 1.01 resources in order.");
+  errors.push("Unit 1 must include the intended 1.01–1.03 resources in order.");
 }
 const weThePeople = unitOne?.resources?.find(resource => resource.id === "we-the-people");
 const weThePeopleUrl = "https://docs.google.com/document/d/1dmSVCh_E25a9eKVJ57mPFZafeykSWMrBYqJi61CjsKI/edit?usp=sharing";
@@ -330,6 +330,20 @@ const rootsGuidedNotesUrl = "https://docs.google.com/document/d/1V1kZears6GoAdit
 if (rootsGuidedNotes?.url !== rootsGuidedNotesUrl || config.assignmentUrls?.["unit-1-02-guided-notes"] !== rootsGuidedNotesUrl || config.assignmentUnlocks?.["unit-1-02-guided-notes"] !== true) {
   errors.push("The open 1.02 Guided Notes card must use the assigned Google Doc.");
 }
+const historyLesson = unitOne?.resources?.find(resource => resource.id === "history-lesson");
+if (historyLesson?.url !== "history-lesson.html" || config.assignmentUrls?.["history-lesson"] !== "history-lesson.html" || config.assignmentUnlocks?.["history-lesson"] !== false) {
+  errors.push("The Unit 1 History Lesson must exist and remain locked.");
+}
+const historyNotes = unitOne?.resources?.find(resource => resource.id === "unit-1-03-guided-notes");
+if (historyNotes?.url !== "" || historyNotes?.awaitingLink !== true || config.assignmentUnlocks?.["unit-1-03-guided-notes"] !== false) {
+  errors.push("The 1.03 Guided Notes card must remain a locked link placeholder.");
+}
+const historyReader = fs.readFileSync(path.join(root, "history-lesson.html"), "utf8");
+for (const marker of ["THE ARTICLES OF CONFEDERATION", "FIVE MAJOR FLAWS", "SHAYS’ REBELLION", "MAJOR COMPROMISES", "THE RATIFICATION BATTLE", "BILL OF RIGHTS", "FEDERALIST 10, 51, AND 78", "BRUTUS 1"]) {
+  if (!historyReader.includes(marker)) errors.push(`The History Lesson is missing: ${marker}`);
+}
+if ((historyReader.match(/<article class="moment/g) || []).length !== 10) errors.push("The History Lesson must contain ten timeline moments.");
+if ((historyReader.match(/<symbol id="image-/g) || []).length !== 10) errors.push("The History Lesson must contain ten local timeline illustrations.");
 const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
 if (!Array.isArray(democracyRoots) || democracyRoots.map(rootData => rootData.name).join("|") !== expectedRootNames.join("|")) {
   errors.push("The Roots Activity needs all seven historical roots in the intended order.");

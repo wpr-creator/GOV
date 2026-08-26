@@ -105,7 +105,7 @@ window.COURSE_DATA = {
       lessons: [
         ["1.01 — The Founding Promise", "What promises define American democracy?", "Gov 12.1.3", "Connect the Declaration of Independence, the Constitution’s Preamble, and the Gettysburg Address to rights, equality, and government by the people.", "Read the three documents and complete the lesson assignments"],
         ["1.02 — The Roots of American Democracy", "Which older ideas shaped American democracy?", "Gov 12.1.1", "Connect ideas from Greece, Rome, English traditions, Locke, Montesquieu, Machiavelli, and Blackstone to American democratic ideals.", "Complete the Roots Activity"],
-        ["Democracy’s Promise and Risks", "What can democracy do well—and what can go wrong?", "Gov 12.1.2", "Use Tocqueville’s observations to examine equality, majority power, and participation.", "Explain one promise and one risk"],
+        ["1.03 — The History Lesson", "How did the United States replace a weak national government without creating another tyranny?", "Gov 12.1.4", "Follow the story from independence and the Articles of Confederation through the Constitutional Convention, ratification, and the Bill of Rights.", "Explain how the Constitution created a stronger government and limited its power"],
         ["Rights and the Public Good", "Should government protect individual freedom or serve the common good?", "Gov 12.1.3", "Compare the public good with individual rights.", "Explain how a democracy needs both"]
       ],
       resources: [
@@ -171,6 +171,23 @@ window.COURSE_DATA = {
           title: "ROOTS ACTIVITY",
           url: "roots-of-democracy.html",
           note: "INTERACTIVE",
+          kind: "assignment"
+        },
+        {
+          id: "unit-1-03-guided-notes",
+          lesson: "1.03 — THE HISTORY LESSON",
+          title: "1.03 GUIDED NOTES",
+          url: "",
+          note: "LINK COMING SOON",
+          kind: "notes",
+          awaitingLink: true
+        },
+        {
+          id: "history-lesson",
+          lesson: "1.03 — THE HISTORY LESSON",
+          title: "THE HISTORY LESSON",
+          url: "history-lesson.html",
+          note: "VERTICAL TIMELINE",
           kind: "assignment"
         }
       ]
