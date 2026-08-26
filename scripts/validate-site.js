@@ -547,6 +547,14 @@ for (const documentData of visibleDocuments) {
 const declarationReader = fs.readFileSync(path.join(root, "documents", "declaration-of-independence.html"), "utf8");
 const preambleReader = fs.readFileSync(path.join(root, "documents", "constitution-preamble.html"), "utf8");
 const gettysburgReader = fs.readFileSync(path.join(root, "documents", "gettysburg-address.html"), "utf8");
+const declarationEvidenceHeading = declarationReader.indexOf("3 &middot; THE EVIDENCE AGAINST THE KING");
+const declarationEvidenceLead = declarationReader.indexOf("The history of the present King of Great Britain");
+const declarationFirstGrievance = declarationReader.indexOf("He has refused his Assent to Laws");
+if (!(declarationEvidenceHeading < declarationEvidenceLead && declarationEvidenceLead < declarationFirstGrievance)) {
+  errors.push("The Declaration's evidence lead must begin section 3 before the grievances.");
+}
+if (declarationReader.includes('class="highlight"')) errors.push("The Declaration reader must not highlight or underline original text.");
+if (!declarationReader.includes('class="support"')) errors.push("The Declaration reader must keep its side annotations.");
 for (const marker of ["READ THE FULL DOCUMENT", "foundations.documents.filter(documentData => documentData.file)"]) {
   if (!fs.readFileSync(path.join(root, "app.js"), "utf8").includes(marker)) errors.push(`The direct full-document card behavior is missing: ${marker}`);
 }
