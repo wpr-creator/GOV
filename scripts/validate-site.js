@@ -523,6 +523,7 @@ data.units.forEach(unit => {
   if (typeof config.unitUnlocks?.[unit.id] !== "boolean") errors.push(`Unit ${unit.id} needs a true or false unlock setting.`);
 });
 if (!config.unitUnlocks?.[config.currentUnit]) errors.push("The current unit must also be open in unitUnlocks.");
+if (config.exitQuestion && !/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(config.exitEndpoint || "")) errors.push("An active exit ticket must use a deployed GOV Apps Script endpoint.");
 if (!config.assignmentUrls || typeof config.assignmentUrls !== "object") errors.push("assignmentUrls must be an object.");
 data.units.forEach(unit => {
   for (const key of ["id", "number", "title", "question", "standards", "lessons"]) {
@@ -586,12 +587,9 @@ for (const marker of ['fetch("content.json", { cache: "no-store" })', "populateE
   if (!appCode.includes(marker)) errors.push(`Exit-ticket behavior changed or missing: ${marker}`);
 }
 const exitScript = fs.readFileSync(path.join(root, "exit-ticket-script.gs"), "utf8");
-for (const marker of ["CP_GOV_ROSTERS", "Student name does not match the selected period.", "1xEPilYXFU_pQKEZfGj9M2V3CZmflhHGkU3GdKBXcWOk", "Period 1B", "Period 2A", "All Responses", "writeToTab(ss, TABS[period], row)"]) {
+for (const marker of ["ROSTER_TAB = 'Rosters'", "studentIsOnRoster", "Student name does not match the selected period.", "1xEPilYXFU_pQKEZfGj9M2V3CZmflhHGkU3GdKBXcWOk", "Period 1B", "Period 2A", "All Responses", "writeToTab(ss, TABS[period], row)"]) {
   if (!exitScript.includes(marker)) errors.push(`Exit-ticket collector is missing final-roster support: ${marker}`);
 }
-const exitScriptContext = {};
-vm.runInNewContext(`${exitScript}\nthis.__rosters = CP_GOV_ROSTERS;`, exitScriptContext);
-if (JSON.stringify(exitScriptContext.__rosters) !== JSON.stringify(cpRosters)) errors.push("The exit-ticket collector roster is out of sync with the published roster.");
 if (!Array.isArray(foundationCases) || foundationCases.length !== 9) errors.push(`Expected 9 student-friendly court case guides; found ${foundationCases?.length || 0}.`);
 foundationCases?.forEach((caseData, index) => {
   for (const key of ["slug", "title", "year", "topic", "question"]) {

@@ -10,8 +10,8 @@
     "gov-6": false,
     "gov-7": false
   },
-  "exitQuestion": "",
-  "exitEndpoint": "",
+  "exitQuestion": "CASE CLOSED? ⚖\n\n• What case did your team investigate?\n• What did the Supreme Court decide?\n• Did the Court rule with you—or did you dissent?\n• Final call: Did the Court get it right? Why or why not? Use one fact from the case.",
+  "exitEndpoint": "https://script.google.com/macros/s/AKfycbzbCXosor6y6izuKwbsg_CRlY6Zyy32HU40vg_pkf4-l4FD-vGNzBC32kMV-f3JeetWag/exec",
   "upcoming": [
     {
       "title": "WE THE PEOPLE PROJECT",

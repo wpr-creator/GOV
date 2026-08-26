@@ -14,29 +14,7 @@ const TABS = {
 };
 const HEADERS = ['Date', 'Period', 'Student Name', 'Question', 'Response', 'Submission Timestamp'];
 
-const CP_GOV_ROSTERS = {
-  '1B': [
-    'Ali, Harun F.', 'Barberena, Maya', 'Black, Jeshaiah A.', 'Buduan, Connielyn G.',
-    'Burnette, Suriyana A.', 'Carrillo, Luis F.', 'Castillo, Mia', 'Chavez, Arturo',
-    'Curtis, Maya A.', 'Gabriel, Gavin Florence E.', 'Garcia, Jorge E.',
-    'Garcia Olivares, Emmanuel', 'Gungon, Edward', 'Gutierrez, Erik', 'Hernandez, Nataly R.',
-    'Lara, Sophia L.', 'Laroya, Emma I.', 'Limbrick, Isaac L.', 'Maqueda, Elizabeth',
-    'Marquez, John M.', 'McRae, Bailey R.', 'Nostrates, Azrielle O.', 'Ofoegbu, David C.',
-    'Ortegon, Angelo E.', 'Peters, Maliya', 'Ramirez, Astrid M.', 'Rodriguez, Yesenia M.',
-    'Rodriguez Cruz, Kailey J.', 'Rogers, Blessing L.', 'Ruiz Jimenez, Rafael',
-    'Santos, Nayeli S.', 'Santos, Noah A.', 'Solares, Evalicia', 'Thomas, Lyric',
-    'Vargas-Toledo, Javier E.'
-  ],
-  '2A': [
-    'Amargo, Kianna F.', 'Banuelos, Manuel', 'Bati, Arriana Marie D.', 'Coleman, Dakobi J.',
-    'Dietrich, Nicole Rae F.', 'Elico, Francesca', 'Flores, Yaritza D.', 'Gastelum, Gabriel A.',
-    'Gutierrez Villa, Leslie', 'Holloway, Jeveah', 'Mora Garcia, Jazmin A.',
-    'Pangilinan, Bryson Roman G.', 'Paule, Demien Ross V.', 'Resendiz, Damian A.',
-    'Rodriguez Aguilar, Steven O.', 'Sakamoto, Alani M.', 'Santillan Ruiz, Grecia G.',
-    'Santos, Leslie I.', 'Santoyo, Miguel A.', 'Sonico, Nicco C.', 'Tamayo, Lily A.',
-    'Thach, Aimy', 'Wilson, Teddi R.'
-  ]
-};
+const ROSTER_TAB = 'Rosters';
 
 // ════════════════════════════════════════════════════════════
 
@@ -47,9 +25,7 @@ function doPost(e) {
     const period = String(body.period || '').trim();
     const name = String(body.name || '').trim();
     const response = String(body.response || '').trim();
-    const roster = CP_GOV_ROSTERS[period];
-
-    if (!roster || !roster.includes(name)) throw new Error('Student name does not match the selected period.');
+    if (!studentIsOnRoster(ss, period, name)) throw new Error('Student name does not match the selected period.');
     const question = String(body.question || '').trim();
     if (response.length < 5) throw new Error('Response must contain at least five characters.');
     if (!question) throw new Error('Exit-ticket question is required.');
@@ -75,6 +51,18 @@ function doPost(e) {
       .createTextOutput(JSON.stringify({ result: 'error', message: err.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+function studentIsOnRoster(ss, period, name) {
+  if (!TABS[period] || !name) return false;
+  const rosterSheet = ss.getSheetByName(ROSTER_TAB);
+  if (!rosterSheet) throw new Error('Rosters tab is missing.');
+  const lastRow = rosterSheet.getLastRow();
+  if (lastRow < 2) return false;
+  const rows = rosterSheet.getRange(2, 1, lastRow - 1, 2).getDisplayValues();
+  return rows.some(function(row) {
+    return String(row[0]).trim() === period && String(row[1]).trim() === name;
+  });
 }
 
 function writeToTab(ss, tabName, row) {
