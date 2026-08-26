@@ -343,7 +343,12 @@ for (const marker of ["THE ARTICLES OF CONFEDERATION", "FIVE MAJOR FLAWS", "SHAY
   if (!historyReader.includes(marker)) errors.push(`The History Lesson is missing: ${marker}`);
 }
 if ((historyReader.match(/<article class="moment/g) || []).length !== 10) errors.push("The History Lesson must contain ten timeline moments.");
-if ((historyReader.match(/<symbol id="image-/g) || []).length !== 10) errors.push("The History Lesson must contain ten local timeline illustrations.");
+const historyImages = [...historyReader.matchAll(/<img src="(assets\/history-lesson\/[^"]+\.jpg)" alt="([^"]+)"/g)];
+if (historyImages.length !== 10) errors.push("The History Lesson must contain ten local woodcut timeline illustrations with alt text.");
+historyImages.forEach(([, imagePath, imageAlt]) => {
+  if (!fs.existsSync(path.join(root, imagePath))) errors.push(`Missing History Lesson illustration: ${imagePath}`);
+  if (imageAlt.length < 25) errors.push(`History Lesson illustration needs useful alt text: ${imagePath}`);
+});
 const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
 if (!Array.isArray(democracyRoots) || democracyRoots.map(rootData => rootData.name).join("|") !== expectedRootNames.join("|")) {
   errors.push("The Roots Activity needs all seven historical roots in the intended order.");
