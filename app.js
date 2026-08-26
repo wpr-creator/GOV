@@ -22,6 +22,7 @@
   const UNIT_ZERO_COMPLETION_KEY = "gov-unit0-completion-v1";
   const GITHUB_CONTENT_URL = "https://api.github.com/repos/wpr-creator/GOV/contents/site-content.json";
   let currentUnitId = "gov-0";
+  let exitRoster = Object.entries(window.CP_GOV_ROSTERS || {}).map(([id, students]) => ({ id, label: `Period ${id}`, students }));
   let lastFocused = null;
   let siteContent = { currentUnit: "gov-0", unitUnlocks: {}, exitQuestion: "", upcoming: [], classroomUrl: "", agendaTitle: "AGENDA", agendaText: "COMING SOON.", assignmentUnlocks: {}, assignmentUnlockAt: {}, assignmentUrls: {}, proveCaseUnlocks: {} };
   const proveCaseLabels = [["miranda", "MIRANDA v. ARIZONA"], ["riley", "RILEY v. CALIFORNIA"], ["mahanoy", "MAHANOY AREA SCHOOL DISTRICT v. B.L."], ["carpenter", "CARPENTER v. UNITED STATES"], ["earls", "BOARD OF EDUCATION v. EARLS"], ["miller", "MILLER v. ALABAMA"]];
@@ -1705,15 +1706,20 @@
     const exitEndpoint = String(siteContent.exitEndpoint || "").trim();
     document.getElementById("exit-question").textContent = exitQuestion || "NO EXIT TICKET TODAY.";
     const exitForm = document.getElementById("exit-form");
-    exitForm.hidden = !(exitQuestion && exitEndpoint);
-    document.getElementById("exit-status").hidden = true;
+    exitForm.hidden = !exitQuestion;
+    const exitStatus = document.getElementById("exit-status");
+    exitStatus.textContent = exitQuestion
+      ? (exitEndpoint ? "CHOOSE YOUR CLASS PERIOD AND NAME." : "THE EXIT TICKET IS TEMPORARILY UNAVAILABLE. SEE MR. ROGERS.")
+      : "";
 
     const periodSelect = document.getElementById("exit-period");
     periodSelect.replaceChildren(new Option("CHOOSE YOUR PERIOD", ""));
-    Object.keys(window.CP_GOV_ROSTERS || {}).forEach(period => periodSelect.add(new Option(period, period)));
+    exitRoster.forEach(period => periodSelect.add(new Option(period.label, period.id)));
     const studentSelect = document.getElementById("exit-student");
     studentSelect.replaceChildren(new Option("CHOOSE YOUR PERIOD FIRST", ""));
     studentSelect.disabled = true;
+    document.getElementById("exit-response").value = "";
+    validateExitTicket();
     const classroom = document.getElementById("classroom-link");
     classroom.href = siteContent.classroomUrl || "https://classroom.google.com/";
     const list = document.getElementById("upcoming-list");
@@ -1736,6 +1742,39 @@
         list.appendChild(row);
       });
     }
+  }
+
+  function populateExitStudents() {
+    const periodId = document.getElementById("exit-period").value;
+    const studentSelect = document.getElementById("exit-student");
+    const period = exitRoster.find(item => item.id === periodId);
+    studentSelect.replaceChildren(new Option(period ? "CHOOSE YOUR NAME" : "CHOOSE YOUR PERIOD FIRST", ""));
+    (period?.students || []).forEach(name => studentSelect.add(new Option(name, name)));
+    studentSelect.disabled = !period;
+    validateExitTicket();
+  }
+
+  function validateExitTicket() {
+    const ready = Boolean(
+      String(siteContent.exitEndpoint || "").trim() &&
+      document.getElementById("exit-period").value &&
+      document.getElementById("exit-student").value &&
+      document.getElementById("exit-response").value.trim().length >= 5
+    );
+    document.querySelector(".exit-submit").disabled = !ready;
+  }
+
+  async function loadExitRoster() {
+    try {
+      const response = await fetch("content.json", { cache: "no-store" });
+      if (!response.ok) throw new Error(`Roster HTTP ${response.status}`);
+      const content = await response.json();
+      if (!Array.isArray(content.periods)) throw new Error("Roster periods are missing");
+      exitRoster = content.periods;
+    } catch (error) {
+      console.warn("Published roster could not be loaded; using synchronized fallback.", error);
+    }
+    renderSiteContent();
   }
 
   function renderAgendaDate() {
@@ -2247,40 +2286,42 @@
     if (location.hash === "#election-2026") showView("election-2026");
     else location.hash = "election-2026";
   });
-  document.getElementById("exit-period").addEventListener("change", event => {
-    const studentSelect = document.getElementById("exit-student");
-    const names = window.CP_GOV_ROSTERS?.[event.target.value] || [];
-    studentSelect.replaceChildren(new Option(names.length ? "CHOOSE YOUR NAME" : "CHOOSE YOUR PERIOD FIRST", ""));
-    names.forEach(name => studentSelect.add(new Option(name, name)));
-    studentSelect.disabled = !names.length;
-  });
+  document.getElementById("exit-period").addEventListener("change", populateExitStudents);
+  document.getElementById("exit-student").addEventListener("change", validateExitTicket);
+  document.getElementById("exit-response").addEventListener("input", validateExitTicket);
   document.getElementById("exit-form").addEventListener("submit", async event => {
     event.preventDefault();
     const button = event.currentTarget.querySelector("button");
     const status = document.getElementById("exit-status");
+    const payload = {
+      date: new Date().toLocaleDateString("en-US"),
+      period: document.getElementById("exit-period").value,
+      name: document.getElementById("exit-student").value,
+      question: String(siteContent.exitQuestion || "").trim(),
+      response: document.getElementById("exit-response").value.trim(),
+      submittedAt: new Date().toISOString()
+    };
+    if (!siteContent.exitEndpoint || !payload.period || !payload.name || !payload.question || payload.response.length < 5) {
+      validateExitTicket();
+      return;
+    }
     button.disabled = true;
-    button.textContent = "SAVING…";
-    status.hidden = false;
-    status.textContent = "SAVING YOUR RESPONSE…";
+    button.textContent = "SUBMITTING…";
+    status.textContent = "SENDING YOUR RESPONSE…";
     try {
       await fetch(siteContent.exitEndpoint, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          period: document.getElementById("exit-period").value,
-          name: document.getElementById("exit-student").value,
-          question: siteContent.exitQuestion,
-          response: document.getElementById("exit-response").value.trim()
-        })
+        body: JSON.stringify(payload)
       });
-      status.textContent = "RESPONSE SENT. YOU MAY SUBMIT AGAIN IF YOUR TEACHER ASKS.";
+      status.textContent = `SUBMITTED FOR ${payload.name.toUpperCase()}. THANK YOU.`;
       document.getElementById("exit-response").value = "";
     } catch (error) {
       status.textContent = "YOUR RESPONSE COULD NOT BE SENT. COPY YOUR ANSWER AND TRY AGAIN.";
     } finally {
-      button.disabled = false;
       button.textContent = "SUBMIT EXIT TICKET";
+      validateExitTicket();
     }
   });
   window.setInterval(renderAgendaDate, 60000);
@@ -2299,4 +2340,5 @@
   loadConfig();
   loadHistory();
   loadPresidentFacts();
+  loadExitRoster();
 })();

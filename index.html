@@ -23,9 +23,9 @@
   <meta name="twitter:image:alt" content="Principles of American Democracy beside a white civic building with tall columns.">
   <title>Principles of American Democracy</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260823-flag-stars">
+  <link rel="stylesheet" href="styles.css?v=20260826-exit-ticket">
   <script src="course-data.js?v=20260825-unit-0-assessments" defer></script>
-  <script src="cp-rosters.js?v=20260819-final-rosters" defer></script>
+  <script src="cp-rosters.js?v=20260826-exit-ticket" defer></script>
   <script src="foundations-data.js?v=20260823-unit-1-launch" defer></script>
   <script src="constitution-explorer-data.js" defer></script>
   <script src="rights-referee-data.js" defer></script>
@@ -34,7 +34,7 @@
   <script src="bill-journey-data.js?v=20260726-bill" defer></script>
   <script src="federalism-map-data.js?v=20260726-map" defer></script>
   <script src="founding-power-data.js" defer></script>
-  <script src="app.js?v=20260823-flag-stars" defer></script>
+  <script src="app.js?v=20260826-exit-ticket" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the course</a>
@@ -81,6 +81,21 @@
           <a class="primary-action" id="current-action" href="#units">OPEN UNIT 0 <span aria-hidden="true">→</span></a>
         </div>
       </section>
+
+      <article class="dashboard-card exit-card">
+        <div class="card-heading"><div><p class="eyebrow">END OF CLASS</p><h2>EXIT TICKET</h2></div></div>
+        <p class="exit-question" id="exit-question">NO EXIT TICKET TODAY.</p>
+        <form id="exit-form" hidden>
+          <div class="exit-identity">
+            <label for="exit-period">CLASS PERIOD<select id="exit-period" required><option value="">CHOOSE YOUR PERIOD</option></select></label>
+            <label for="exit-student">YOUR NAME<select id="exit-student" required disabled><option value="">CHOOSE YOUR PERIOD FIRST</option></select></label>
+          </div>
+          <label for="exit-response">YOUR RESPONSE</label>
+          <textarea id="exit-response" rows="4" placeholder="TYPE YOUR RESPONSE…" required minlength="5"></textarea>
+          <button class="exit-submit" type="submit" disabled>SUBMIT EXIT TICKET</button>
+        </form>
+        <p class="system-note" id="exit-status" role="status"></p>
+      </article>
 
       <section class="home-dashboard" aria-label="Course tools">
         <article class="dashboard-card history-card">
@@ -141,20 +156,6 @@
           </div>
         </article>
 
-        <article class="dashboard-card exit-card">
-          <div class="card-heading"><div><p class="eyebrow">END OF CLASS</p><h2>EXIT TICKET</h2></div></div>
-          <p class="exit-question" id="exit-question">NO EXIT TICKET TODAY.</p>
-          <form id="exit-form" hidden>
-            <div class="exit-identity">
-              <label for="exit-period">YOUR PERIOD<select id="exit-period" required><option value="">CHOOSE YOUR PERIOD</option></select></label>
-              <label for="exit-student">YOUR NAME<select id="exit-student" required disabled><option value="">CHOOSE YOUR PERIOD FIRST</option></select></label>
-            </div>
-            <label for="exit-response">YOUR RESPONSE</label>
-            <textarea id="exit-response" rows="4" placeholder="TYPE YOUR RESPONSE…" required></textarea>
-            <button class="exit-submit" type="submit">SUBMIT EXIT TICKET</button>
-          </form>
-          <p class="system-note" id="exit-status" role="status" hidden></p>
-        </article>
       </section>
     </section>
 

@@ -82,7 +82,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .primary-action { min-height: 52px; padding: .8rem 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--white); background: var(--black); border-radius: 3px; text-decoration: none; font-weight: 900; }
 .primary-action:hover { background: var(--charcoal); }
 
-.home-dashboard { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-areas: "history history history history history history history history upcoming upcoming upcoming upcoming" "election election election election election election election links links links links links" "exit exit exit exit exit exit exit exit exit exit exit exit"; gap: 1.2rem; align-items: stretch; }
+.home-dashboard { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-areas: "history history history history history history history history upcoming upcoming upcoming upcoming" "election election election election election election election links links links links links"; gap: 1.2rem; align-items: stretch; }
 .dashboard-card { padding: 1.5rem; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0,0,0,.05); }
 .card-heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 2px solid var(--black); }
 .card-heading h2 { margin: 0; font-size: 1.35rem; }
@@ -112,14 +112,14 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .compact-course-link > a { min-height: 44px; padding: .55rem .7rem; display: inline-flex; align-items: center; gap: .3rem; color: var(--white); background: var(--black); text-decoration: none; font-size: .72rem; font-weight: 900; }
 .compact-code { grid-column: 1 / -1; margin: 0; padding: .45rem .6rem; display: flex; align-items: center; justify-content: space-between; gap: .6rem; background: var(--stone); font-size: .68rem; font-weight: 900; }
 .compact-code code { font-size: .85rem; letter-spacing: .08em; text-transform: none; user-select: all; }
-.exit-card { grid-area: exit; }
-.exit-question { padding: 1rem; background: var(--stone); font-weight: 750; }
+.exit-card { margin: 1.2rem 0; }
+.exit-question { padding: 1rem; background: var(--stone); font-weight: 750; white-space: pre-line; }
 .exit-card label { display: block; margin: 1rem 0 .4rem; font-size: .76rem; font-weight: 900; }
 .exit-identity { display: grid; grid-template-columns: 1fr 2fr; gap: .75rem; }
 .exit-card select, .exit-card textarea, .admin-panel textarea, .admin-panel input, .admin-panel select { width: 100%; min-height: 48px; margin-top: .4rem; padding: .8rem; border: 1px solid var(--stone-dark); background: var(--white); color: var(--black); font: 700 .95rem Arial, sans-serif; }
 .exit-submit { min-height: 48px; margin-top: .7rem; padding: .7rem 1rem; border: 0; color: var(--white); background: var(--black); font-weight: 900; }
 .exit-submit:disabled { color: #777; background: var(--stone); }
-.system-note { margin: .55rem 0 0; color: var(--muted); font-size: .72rem; font-weight: 700; }
+.system-note { min-height: 1.1em; margin: .55rem 0 0; color: var(--muted); font-size: .72rem; font-weight: 700; }
 
 .section-heading { margin-bottom: 1.4rem; display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
 .section-heading h2 { margin: 0; font-size: clamp(1.8rem, 3.5vw, 3rem); letter-spacing: -.04em; }
@@ -626,7 +626,7 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .lesson { grid-template-columns: 46px 1fr; }
   .standard-tag { grid-column: 2; width: max-content; }
   .home-dashboard { grid-template-columns: 1fr; }
-  .home-dashboard { grid-template-areas: "history" "upcoming" "election" "links" "exit"; }
+  .home-dashboard { grid-template-areas: "history" "upcoming" "election" "links"; }
   .election-tracker-layout { grid-template-columns: 1fr; }
   .election-countdown strong { font-size: clamp(6rem, 32vw, 9rem); }
   .history-card, .exit-card { grid-column: 1; }

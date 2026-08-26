@@ -7,10 +7,12 @@
 
 const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1xEPilYXFU_pQKEZfGj9M2V3CZmflhHGkU3GdKBXcWOk/edit';
 
-// ── STEP 2: Set the sheet tab name ──
-// This is the tab at the bottom of your Google Sheet
-// Change if needed (default is "Sheet1")
-const SHEET_TAB = 'Exit Tickets';
+const TABS = {
+  '1B': 'Period 1B',
+  '2A': 'Period 2A',
+  'all': 'All Responses'
+};
+const HEADERS = ['Date', 'Period', 'Student Name', 'Question', 'Response', 'Submission Timestamp'];
 
 const CP_GOV_ROSTERS = {
   '1B': [
@@ -41,18 +43,6 @@ const CP_GOV_ROSTERS = {
 function doPost(e) {
   try {
     const ss = SpreadsheetApp.openByUrl(SHEET_URL);
-    let sheet = ss.getSheetByName(SHEET_TAB);
-
-    // Create the sheet tab if it doesn't exist yet
-    if (!sheet) {
-      sheet = ss.insertSheet(SHEET_TAB);
-      // Add header row on first run
-      sheet.appendRow(['Date', 'Period', 'Student Name', 'Question', 'Response', 'Timestamp']);
-      sheet.getRange(1, 1, 1, 6).setFontWeight('bold').setBackground('#1a2e5a').setFontColor('#ffffff');
-      sheet.setFrozenRows(1);
-    }
-
-    // Parse the incoming data
     const body = JSON.parse(e.postData.contents);
     const period = String(body.period || '').trim();
     const name = String(body.name || '').trim();
@@ -60,17 +50,21 @@ function doPost(e) {
     const roster = CP_GOV_ROSTERS[period];
 
     if (!roster || !roster.includes(name)) throw new Error('Student name does not match the selected period.');
-    if (!response) throw new Error('Response is required.');
+    const question = String(body.question || '').trim();
+    if (response.length < 5) throw new Error('Response must contain at least five characters.');
+    if (!question) throw new Error('Exit-ticket question is required.');
 
-    // Append a new row
-    sheet.appendRow([
+    const timestamp = body.submittedAt || new Date().toISOString();
+    const row = [
       body.date || new Date().toLocaleDateString('en-US'),
       period,
       name,
-      body.question || '',
+      question,
       response,
-      new Date().toLocaleString('en-US')
-    ]);
+      timestamp
+    ];
+    writeToTab(ss, TABS[period], row);
+    writeToTab(ss, TABS.all, row);
 
     return ContentService
       .createTextOutput(JSON.stringify({ result: 'success' }))
@@ -81,6 +75,26 @@ function doPost(e) {
       .createTextOutput(JSON.stringify({ result: 'error', message: err.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+function writeToTab(ss, tabName, row) {
+  let sheet = ss.getSheetByName(tabName);
+  if (!sheet) {
+    sheet = ss.insertSheet(tabName);
+    sheet.appendRow(HEADERS);
+    sheet.getRange(1, 1, 1, HEADERS.length)
+      .setFontWeight('bold')
+      .setBackground('#1a2e5a')
+      .setFontColor('#ffffff');
+    sheet.setFrozenRows(1);
+    sheet.setColumnWidth(1, 90);
+    sheet.setColumnWidth(2, 70);
+    sheet.setColumnWidth(3, 180);
+    sheet.setColumnWidth(4, 300);
+    sheet.setColumnWidth(5, 400);
+    sheet.setColumnWidth(6, 180);
+  }
+  sheet.appendRow(row);
 }
 
 // Handles browser test pings (GET requests)

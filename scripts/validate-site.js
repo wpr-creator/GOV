@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const crypto = require("crypto");
 
 const root = path.resolve(__dirname, "..");
 const errors = [];
@@ -9,6 +10,7 @@ const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const civicSelfieHtml = fs.readFileSync(path.join(root, "civic-selfie.html"), "utf8");
 const presidentialYearbookHtml = fs.readFileSync(path.join(root, "presidential-yearbook.html"), "utf8");
 const config = JSON.parse(fs.readFileSync(path.join(root, "site-content.json"), "utf8"));
+const publishedRoster = JSON.parse(fs.readFileSync(path.join(root, "content.json"), "utf8"));
 const context = { window: {} };
 vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, "course-data.js"), "utf8"), context);
@@ -39,7 +41,7 @@ const foundationCases = context.window.FOUNDATIONS_DATA.cases;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "roots-of-democracy.html", "roots-of-democracy.css", "roots-of-democracy.js", "roots-of-democracy-data.js", "styles.css", "app.js", "course-data.js", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "roots-of-democracy.html", "roots-of-democracy.css", "roots-of-democracy.js", "roots-of-democracy-data.js", "styles.css", "app.js", "course-data.js", "content.json", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -264,7 +266,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260823-flag-stars") || !html.includes("app.js?v=20260823-flag-stars") || !html.includes("course-data.js?v=20260825-unit-0-assessments") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260826-exit-ticket") || !html.includes("app.js?v=20260826-exit-ticket") || !html.includes("course-data.js?v=20260825-unit-0-assessments") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -556,21 +558,40 @@ for (const [name, reader, markers] of [
   if (/\bAP\b|EXAM|STANDARD/.test(reader)) errors.push(`${name} reader contains AP or test-facing clutter.`);
 }
 
-if (!cpRosters || Object.keys(cpRosters).sort().join(",") !== "1B,2A") errors.push("Final CP rosters must contain only periods 1B and 2A.");
+if (!cpRosters || Object.keys(cpRosters).sort().join(",") !== "1B,2A") errors.push("Final CP fallback rosters must contain only periods 1B and 2A.");
+if (!Array.isArray(publishedRoster.periods) || publishedRoster.periods.map(period => period.id).join(",") !== "1B,2A") errors.push("Published CP rosters must contain periods 1B and 2A in order.");
+const publishedByPeriod = Object.fromEntries((publishedRoster.periods || []).map(period => [period.id, period.students]));
 const rosterCounts = { "1B": 35, "2A": 23 };
 const rosterKeys = [];
 Object.entries(rosterCounts).forEach(([period, count]) => {
   if (!Array.isArray(cpRosters?.[period]) || cpRosters[period].length !== count) errors.push(`Final roster ${period} must contain ${count} students.`);
-  cpRosters?.[period]?.forEach(name => rosterKeys.push(`${period}|${name}`));
+  if (!Array.isArray(publishedByPeriod[period]) || publishedByPeriod[period].length !== count) errors.push(`Published roster ${period} must contain ${count} students.`);
+  publishedByPeriod[period]?.forEach(name => {
+    rosterKeys.push(`${period}|${name}`);
+    if (name !== name.trim() || !name.includes(",")) errors.push(`Malformed student name in period ${period}: ${name}`);
+  });
 });
 if (new Set(rosterKeys).size !== rosterKeys.length) errors.push("The final CP rosters contain a duplicate student record.");
-if (!cpRosters?.["2A"]?.includes("Wilson, Teddi R.")) errors.push("Wilson, Teddi R. must be listed in period 2A.");
-if (cpRosters?.["1B"]?.includes("Wilson, Teddi R.")) errors.push("Wilson, Teddi R. must not be listed in period 1B.");
-if (!html.includes("cp-rosters.js?v=20260819-final-rosters")) errors.push("The student site is not loading the final CP roster data.");
+if (JSON.stringify(publishedByPeriod) !== JSON.stringify(cpRosters)) errors.push("Published and fallback CP rosters are out of sync.");
+const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publishedRoster.periods)).digest("hex");
+if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
+if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
+if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260826-exit-ticket") || !html.includes("styles.css?v=20260826-exit-ticket")) errors.push("Exit-ticket cache versions are not current.");
+for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"', 'id="exit-response"', 'minlength="5"', 'class="exit-submit" type="submit" disabled', 'id="exit-status" role="status"']) {
+  if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);
+}
+if (!(html.indexOf('class="now-panel"') < html.indexOf('class="dashboard-card exit-card"') && html.indexOf('class="dashboard-card exit-card"') < html.indexOf('class="home-dashboard"'))) errors.push("The exit ticket must appear directly below the current-unit card.");
+for (const marker of ['fetch("content.json", { cache: "no-store" })', "populateExitStudents", "validateExitTicket", "submittedAt: new Date().toISOString()", "body: JSON.stringify(payload)"]) {
+  if (!appCode.includes(marker)) errors.push(`Exit-ticket behavior changed or missing: ${marker}`);
+}
 const exitScript = fs.readFileSync(path.join(root, "exit-ticket-script.gs"), "utf8");
-for (const marker of ["CP_GOV_ROSTERS", "Student name does not match the selected period.", "1xEPilYXFU_pQKEZfGj9M2V3CZmflhHGkU3GdKBXcWOk"]) {
+for (const marker of ["CP_GOV_ROSTERS", "Student name does not match the selected period.", "1xEPilYXFU_pQKEZfGj9M2V3CZmflhHGkU3GdKBXcWOk", "Period 1B", "Period 2A", "All Responses", "writeToTab(ss, TABS[period], row)"]) {
   if (!exitScript.includes(marker)) errors.push(`Exit-ticket collector is missing final-roster support: ${marker}`);
 }
+const exitScriptContext = {};
+vm.runInNewContext(`${exitScript}\nthis.__rosters = CP_GOV_ROSTERS;`, exitScriptContext);
+if (JSON.stringify(exitScriptContext.__rosters) !== JSON.stringify(cpRosters)) errors.push("The exit-ticket collector roster is out of sync with the published roster.");
 if (!Array.isArray(foundationCases) || foundationCases.length !== 9) errors.push(`Expected 9 student-friendly court case guides; found ${foundationCases?.length || 0}.`);
 foundationCases?.forEach((caseData, index) => {
   for (const key of ["slug", "title", "year", "topic", "question"]) {
