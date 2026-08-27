@@ -586,8 +586,13 @@ for (const [name, reader, markers] of [
   ["Gettysburg", gettysburgReader, ["Four score and seven years ago", "government of the people, by the people, for the people", "WORD HELP"]]
 ]) {
   markers.forEach(marker => { if (!reader.includes(marker)) errors.push(`${name} full-text reader is missing: ${marker}`); });
-  if (/\bAP\b|EXAM|STANDARD/.test(reader)) errors.push(`${name} reader contains AP or test-facing clutter.`);
+  if (/\b(?:AP|EXAM|STANDARD)\b/.test(reader)) errors.push(`${name} reader contains AP or test-facing clutter.`);
 }
+for (const promise of ["FORM A MORE PERFECT UNION", "ESTABLISH JUSTICE", "INSURE DOMESTIC TRANQUILITY", "PROVIDE FOR THE COMMON DEFENCE", "PROMOTE THE GENERAL WELFARE", "SECURE THE BLESSINGS OF LIBERTY"]) {
+  if (!preambleReader.includes(promise)) errors.push(`Preamble reader is missing its promise: ${promise}`);
+}
+if ((preambleReader.match(/class="promise-card"/g) || []).length !== 6) errors.push("The Preamble reader must explain exactly six promises.");
+if ((preambleReader.match(/<b>MEANING<\/b>/g) || []).length !== 6 || (preambleReader.match(/<b>EXAMPLE<\/b>/g) || []).length !== 6) errors.push("Every Preamble promise needs one meaning and one example.");
 
 if (!cpRosters || Object.keys(cpRosters).sort().join(",") !== "1B,2A") errors.push("Final CP fallback rosters must contain only periods 1B and 2A.");
 if (!Array.isArray(publishedRoster.periods) || publishedRoster.periods.map(period => period.id).join(",") !== "1B,2A") errors.push("Published CP rosters must contain periods 1B and 2A in order.");
