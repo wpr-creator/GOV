@@ -114,7 +114,6 @@ window.COURSE_DATA = {
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "DECLARATION OF INDEPENDENCE",
           url: "documents/declaration-of-independence.html",
-          note: "FULL TEXT WITH WORD HELP",
           kind: "text"
         },
         {
@@ -122,7 +121,6 @@ window.COURSE_DATA = {
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "PREAMBLE TO THE CONSTITUTION",
           url: "documents/constitution-preamble.html",
-          note: "FULL TEXT WITH WORD HELP",
           kind: "text"
         },
         {
@@ -130,7 +128,6 @@ window.COURSE_DATA = {
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "GETTYSBURG ADDRESS",
           url: "documents/gettysburg-address.html",
-          note: "FULL TEXT WITH WORD HELP",
           kind: "text"
         },
         {
@@ -138,7 +135,6 @@ window.COURSE_DATA = {
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "DECLARATION ANNOTATION",
           url: "https://docs.google.com/document/d/1mo5aAq_GjYzHbtitMIpRZPDsaUxx3Fvbg-jzP_i5JEU/edit?tab=t.0",
-          note: "OPEN THE GOOGLE DOC",
           kind: "assignment"
         },
         {
@@ -146,15 +142,13 @@ window.COURSE_DATA = {
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "WE THE PEOPLE",
           url: "https://docs.google.com/document/d/1dmSVCh_E25a9eKVJ57mPFZafeykSWMrBYqJi61CjsKI/edit?usp=sharing",
-          note: "PROJECT · OPENS WEDNESDAY AT 8:30 AM",
-          kind: "assignment"
+          kind: "project"
         },
         {
           id: "unit-1-guided-notes",
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "1.01 GUIDED NOTES",
           url: "https://docs.google.com/document/d/1efiOIBhTD7cywNVgOfesO7gX1QhN7p9XNLKDW8B6ZaM/edit?tab=t.0",
-          note: "OPEN THE GOOGLE DOC",
           kind: "notes"
         },
         {
@@ -162,7 +156,6 @@ window.COURSE_DATA = {
           lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
           title: "1.02 GUIDED NOTES",
           url: "https://docs.google.com/document/d/1V1kZears6GoAditg4PluLZfQ80OStHDYzoa4m4WC6M0/edit?tab=t.0",
-          note: "OPEN THE GOOGLE DOC",
           kind: "notes"
         },
         {
@@ -170,15 +163,13 @@ window.COURSE_DATA = {
           lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
           title: "ROOTS ACTIVITY",
           url: "roots-of-democracy.html",
-          note: "INTERACTIVE",
-          kind: "assignment"
+          kind: "activity"
         },
         {
           id: "unit-1-03-guided-notes",
           lesson: "1.03 — THE HISTORY LESSON",
           title: "1.03 GUIDED NOTES",
           url: "",
-          note: "LINK COMING SOON",
           kind: "notes",
           awaitingLink: true
         },
@@ -187,8 +178,7 @@ window.COURSE_DATA = {
           lesson: "1.03 — THE HISTORY LESSON",
           title: "THE HISTORY LESSON",
           url: "history-lesson.html",
-          note: "VERTICAL TIMELINE",
-          kind: "assignment"
+          kind: "activity"
         }
       ]
     },

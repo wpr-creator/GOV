@@ -186,10 +186,10 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .unit-resource strong { font-size: 1rem; }
 .unit-resource span { color: var(--stone); font-size: .75rem; font-weight: 850; letter-spacing: .04em; }
 .unit-resource.resource-text { color: #0b315d; background: #e9f2ff; border-color: #24558c; }
-.unit-resource.resource-assignment { color: #661721; background: #fff0f1; border-color: #a62b38; }
+.unit-resource.resource-assignment, .unit-resource.resource-project, .unit-resource.resource-activity { color: #661721; background: #fff0f1; border-color: #a62b38; }
 .unit-resource.resource-notes { color: #111; background: #fff; border-color: #24558c; }
 .unit-resource.resource-assessment { color: #fff; background: #781d29; border-color: #0b315d; }
-.unit-resource.resource-text span, .unit-resource.resource-assignment span, .unit-resource.resource-notes span, .unit-resource.resource-assessment span { color: inherit; }
+.unit-resource.resource-text span, .unit-resource.resource-assignment span, .unit-resource.resource-project span, .unit-resource.resource-activity span, .unit-resource.resource-notes span, .unit-resource.resource-assessment span { color: inherit; }
 .unit-resource .resource-kind { width: max-content; margin-bottom: .15rem; padding: .15rem .4rem; border: 1px solid currentColor; font-size: .66rem; letter-spacing: .08em; order: -1; }
 .unit-resource.placeholder { color: var(--black); background: var(--stone); border: 1px dashed var(--stone-dark); }
 .unit-resource.placeholder span { color: var(--muted); }

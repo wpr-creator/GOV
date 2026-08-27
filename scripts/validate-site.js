@@ -266,7 +266,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260826-exit-ticket") || !html.includes("app.js?v=20260826-exit-ticket") || !html.includes("course-data.js?v=20260825-unit-0-assessments") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260827-resource-labels") || !html.includes("app.js?v=20260827-resource-labels") || !html.includes("course-data.js?v=20260827-resource-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -322,8 +322,8 @@ const rootsActivity = unitOne?.resources?.find(resource => resource.id === "root
 if (rootsActivity?.url !== "roots-of-democracy.html" || config.assignmentUrls?.["roots-activity"] !== "roots-of-democracy.html" || config.assignmentUnlocks?.["roots-activity"] !== false) {
   errors.push("The Unit 1 Roots Activity must exist and remain locked.");
 }
-if (rootsActivity?.title !== "ROOTS ACTIVITY" || rootsActivity?.note !== "INTERACTIVE") {
-  errors.push("The locked interactive page must have its own Roots Activity card.");
+if (rootsActivity?.title !== "ROOTS ACTIVITY" || rootsActivity?.kind !== "activity" || rootsActivity?.note) {
+  errors.push("The locked interactive page must have a simply labeled Roots Activity card.");
 }
 const rootsGuidedNotes = unitOne?.resources?.find(resource => resource.id === "unit-1-02-guided-notes");
 const rootsGuidedNotesUrl = "https://docs.google.com/document/d/1V1kZears6GoAditg4PluLZfQ80OStHDYzoa4m4WC6M0/edit?tab=t.0";
@@ -335,8 +335,11 @@ if (historyLesson?.url !== "history-lesson.html" || config.assignmentUrls?.["his
   errors.push("The Unit 1 History Lesson must exist and remain locked.");
 }
 const historyNotes = unitOne?.resources?.find(resource => resource.id === "unit-1-03-guided-notes");
-if (historyNotes?.url !== "" || historyNotes?.awaitingLink !== true || config.assignmentUnlocks?.["unit-1-03-guided-notes"] !== false) {
+if (historyNotes?.url !== "" || historyNotes?.awaitingLink !== true || historyNotes?.note || config.assignmentUnlocks?.["unit-1-03-guided-notes"] !== false) {
   errors.push("The 1.03 Guided Notes card must remain a locked link placeholder.");
+}
+for (const resource of unitOne?.resources || []) {
+  if (resource.note) errors.push(`Unit 1 resource ${resource.id} must use only its plain type label.`);
 }
 const historyReader = fs.readFileSync(path.join(root, "history-lesson.html"), "utf8");
 for (const marker of ["THE ARTICLES OF CONFEDERATION", "FIVE MAJOR FLAWS", "SHAYS’ REBELLION", "MAJOR COMPROMISES", "THE RATIFICATION BATTLE", "BILL OF RIGHTS", "FEDERALIST 10, 51, AND 78", "BRUTUS 1"]) {
@@ -605,7 +608,7 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260826-exit-ticket") || !html.includes("styles.css?v=20260826-exit-ticket")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260827-resource-labels") || !html.includes("styles.css?v=20260827-resource-labels")) errors.push("Exit-ticket cache versions are not current.");
 for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"', 'id="exit-response"', 'minlength="5"', 'class="exit-submit" type="submit" disabled', 'id="exit-status" role="status"']) {
   if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);
 }
