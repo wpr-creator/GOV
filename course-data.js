@@ -152,6 +152,13 @@ window.COURSE_DATA = {
           kind: "notes"
         },
         {
+          id: "founding-ideals-review",
+          lesson: "1.01 — THE FOUNDING PROMISE",
+          title: "SIX IDEALS REVIEW",
+          url: "founding-ideals-review.html",
+          kind: "activity"
+        },
+        {
           id: "unit-1-02-guided-notes",
           lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
           title: "1.02 GUIDED NOTES",

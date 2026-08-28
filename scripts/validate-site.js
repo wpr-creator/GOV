@@ -24,6 +24,7 @@ vm.runInContext(fs.readFileSync(path.join(root, "bill-journey-data.js"), "utf8")
 vm.runInContext(fs.readFileSync(path.join(root, "federalism-map-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "founding-power-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "roots-of-democracy-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "founding-ideals-review-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "prove-your-case", "case-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const cpRosters = context.window.CP_GOV_ROSTERS;
@@ -36,12 +37,13 @@ const billJourneyData = context.window.BILL_JOURNEY_DATA;
 const federalismMapData = context.window.FEDERALISM_MAP_DATA;
 const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
 const democracyRoots = context.window.DEMOCRACY_ROOTS;
+const idealsReviewData = context.window.FOUNDING_IDEALS_REVIEW_DATA;
 const proveCases = context.window.PROVE_CASES;
 const foundationCases = context.window.FOUNDATIONS_DATA.cases;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "roots-of-democracy.html", "roots-of-democracy.css", "roots-of-democracy.js", "roots-of-democracy-data.js", "styles.css", "app.js", "course-data.js", "content.json", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "roots-of-democracy.html", "roots-of-democracy.css", "roots-of-democracy.js", "roots-of-democracy-data.js", "founding-ideals-review.html", "founding-ideals-review.css", "founding-ideals-review.js", "founding-ideals-review-data.js", "styles.css", "app.js", "course-data.js", "content.json", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -266,7 +268,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260827-resource-labels") || !html.includes("app.js?v=20260827-resource-labels") || !html.includes("course-data.js?v=20260827-resource-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260827-resource-labels") || !html.includes("app.js?v=20260827-resource-labels") || !html.includes("course-data.js?v=20260828-ideals-review") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -306,7 +308,7 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|unit-1-02-guided-notes|roots-activity|unit-1-03-guided-notes|history-lesson";
+const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|founding-ideals-review|unit-1-02-guided-notes|roots-activity|unit-1-03-guided-notes|history-lesson";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include the intended 1.01–1.03 resources in order.");
 }
@@ -334,6 +336,18 @@ const historyLesson = unitOne?.resources?.find(resource => resource.id === "hist
 if (historyLesson?.url !== "history-lesson.html" || config.assignmentUrls?.["history-lesson"] !== "history-lesson.html" || config.assignmentUnlocks?.["history-lesson"] !== false) {
   errors.push("The Unit 1 History Lesson must exist and remain locked.");
 }
+const idealsReview = unitOne?.resources?.find(resource => resource.id === "founding-ideals-review");
+if (idealsReview?.url !== "founding-ideals-review.html" || idealsReview?.kind !== "activity" || config.assignmentUrls?.["founding-ideals-review"] !== "founding-ideals-review.html" || config.assignmentUnlocks?.["founding-ideals-review"] !== true) {
+  errors.push("The open Six Ideals Review activity must appear in lesson 1.01.");
+}
+const expectedIdealNames = ["NATURAL RIGHTS", "EQUALITY", "SOCIAL CONTRACT", "POPULAR SOVEREIGNTY", "LIMITED GOVERNMENT", "REPUBLICANISM"];
+if (idealsReviewData?.ideals?.map(ideal => ideal.name).join("|") !== expectedIdealNames.join("|")) errors.push("The review must include all six intended democratic ideals.");
+if (idealsReviewData?.missions?.map(mission => mission.id).join("|") !== "declaration|constitution|gettysburg") errors.push("The review must contain Declaration, Constitution, and Gettysburg missions.");
+const reviewQuestions = idealsReviewData?.missions?.flatMap(mission => mission.questions || []) || [];
+if (reviewQuestions.length !== 12) errors.push(`The review must contain 12 evidence questions; found ${reviewQuestions.length}.`);
+reviewQuestions.forEach(question => {
+  if (!question.excerpt || !question.answer || !question.explanation || !question.hint || question.options?.length !== 3 || !question.options.includes(question.answer)) errors.push(`Review question ${question.id || "unknown"} is incomplete.`);
+});
 const historyNotes = unitOne?.resources?.find(resource => resource.id === "unit-1-03-guided-notes");
 if (historyNotes?.url !== "" || historyNotes?.awaitingLink !== true || historyNotes?.note || config.assignmentUnlocks?.["unit-1-03-guided-notes"] !== false) {
   errors.push("The 1.03 Guided Notes card must remain a locked link placeholder.");
