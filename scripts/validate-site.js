@@ -268,7 +268,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260828-review-layout") || !html.includes("app.js?v=20260828-review-layout") || !html.includes("course-data.js?v=20260828-ideals-review") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260828-review-layout") || !html.includes("app.js?v=20260828-review-layout") || !html.includes("course-data.js?v=20260828-core-vocabulary") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -543,8 +543,8 @@ data.units.forEach(unit => unit.lessons.forEach(lesson => {
     errors.push(`${unit.number} contains teacher-facing lesson language.`);
   }
 }));
-if (!Array.isArray(data.words) || data.words.length !== 67) errors.push(`Expected 67 plain-language glossary terms; found ${data.words?.length || 0}.`);
-const requiredUnitOneTerms = ["Natural rights", "Social contract", "Popular sovereignty", "Limited government", "Consent of the governed", "Republicanism", "Equality"];
+if (!Array.isArray(data.words) || data.words.length !== 70) errors.push(`Expected 70 plain-language glossary terms; found ${data.words?.length || 0}.`);
+const requiredUnitOneTerms = ["Natural rights", "Social contract", "Popular sovereignty", "Limited government", "Consent of the governed", "Republicanism", "Equality", "Direct democracy", "Republic", "Enlightenment"];
 for (const term of requiredUnitOneTerms) {
   const entry = data.words?.find(word => word[0] === term);
   if (!entry) errors.push(`Missing required Unit 1 glossary term: ${term}.`);
