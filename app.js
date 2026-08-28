@@ -313,6 +313,7 @@
           }
           const item = document.createElement("div");
           item.className = "unit-resource-item";
+          item.dataset.resourceId = resource.id;
           item.append(createCompletionCheck(resource, unlocked), card);
           resourceGrid.appendChild(item);
         });
