@@ -18,7 +18,7 @@ window.FOUNDING_IDEALS_REVIEW_DATA = {
           id: "dec-rights",
           source: "DECLARATION OF INDEPENDENCE · 1776",
           excerpt: "They are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.",
-          options: ["natural-rights", "limited-government", "republicanism"],
+          options: ["limited-government", "natural-rights", "republicanism"],
           answer: "natural-rights",
           hint: "Look for rights people have before government gives them anything.",
           explanation: "The Declaration says people already have rights, including life and liberty. That is the idea of natural rights."
@@ -27,7 +27,7 @@ window.FOUNDING_IDEALS_REVIEW_DATA = {
           id: "dec-equality",
           source: "DECLARATION OF INDEPENDENCE · 1776",
           excerpt: "We hold these truths to be self-evident, that all men are created equal.",
-          options: ["equality", "social-contract", "republicanism"],
+          options: ["social-contract", "republicanism", "equality"],
           answer: "equality",
           hint: "Focus on the words “created equal.”",
           explanation: "The claim that people are created equal rejects the idea that anyone is born with a natural right to rule others."
@@ -45,7 +45,7 @@ window.FOUNDING_IDEALS_REVIEW_DATA = {
           id: "dec-sovereignty",
           source: "DECLARATION OF INDEPENDENCE · 1776",
           excerpt: "Governments are instituted among Men, deriving their just powers from the consent of the governed.",
-          options: ["popular-sovereignty", "natural-rights", "republicanism"],
+          options: ["natural-rights", "popular-sovereignty", "republicanism"],
           answer: "popular-sovereignty",
           hint: "Who gives government its power?",
           explanation: "Government receives legitimate power from the people it governs. The people are the source of power."
@@ -62,7 +62,7 @@ window.FOUNDING_IDEALS_REVIEW_DATA = {
           id: "con-people",
           source: "CONSTITUTION · PREAMBLE · 1787",
           excerpt: "We the People of the United States ... do ordain and establish this Constitution.",
-          options: ["popular-sovereignty", "limited-government", "equality"],
+          options: ["limited-government", "equality", "popular-sovereignty"],
           answer: "popular-sovereignty",
           hint: "Who is creating the Constitution?",
           explanation: "“We the People” presents the people—not a king—as the source of the Constitution’s authority."
@@ -71,7 +71,7 @@ window.FOUNDING_IDEALS_REVIEW_DATA = {
           id: "con-contract",
           source: "CONSTITUTION · PREAMBLE · 1787",
           excerpt: "Establish Justice, insure domestic Tranquility ... and secure the Blessings of Liberty.",
-          options: ["social-contract", "republicanism", "equality"],
+          options: ["republicanism", "social-contract", "equality"],
           answer: "social-contract",
           hint: "This list explains what people expect government to do for them.",
           explanation: "The Preamble lists what the government is created to provide, including justice, order, and liberty. That reflects a social contract."
@@ -89,7 +89,7 @@ window.FOUNDING_IDEALS_REVIEW_DATA = {
           id: "con-house",
           source: "CONSTITUTION · ARTICLE I · 1787",
           excerpt: "The House of Representatives shall be composed of Members chosen every second Year by the People of the several States.",
-          options: ["republicanism", "social-contract", "natural-rights"],
+          options: ["social-contract", "natural-rights", "republicanism"],
           answer: "republicanism",
           hint: "The people choose someone to govern and make laws for them.",
           explanation: "Voters choose representatives to serve in the House. That is republicanism."
@@ -98,7 +98,7 @@ window.FOUNDING_IDEALS_REVIEW_DATA = {
           id: "con-republic",
           source: "CONSTITUTION · ARTICLE IV · 1787",
           excerpt: "The United States shall guarantee to every State in this Union a Republican Form of Government.",
-          options: ["republicanism", "popular-sovereignty", "limited-government"],
+          options: ["popular-sovereignty", "republicanism", "limited-government"],
           answer: "republicanism",
           hint: "A republican government uses elected representatives.",
           explanation: "The Constitution promises every state a republican government in which people govern through representatives."
@@ -124,7 +124,7 @@ window.FOUNDING_IDEALS_REVIEW_DATA = {
           id: "get-rights",
           source: "GETTYSBURG ADDRESS · 1863",
           excerpt: "That this nation, under God, shall have a new birth of freedom.",
-          options: ["natural-rights", "limited-government", "republicanism"],
+          options: ["limited-government", "republicanism", "natural-rights"],
           answer: "natural-rights",
           hint: "Which ideal is most directly connected to freedom and liberty?",
           explanation: "Lincoln’s “new birth of freedom” connects the nation’s future to liberty, a natural right."

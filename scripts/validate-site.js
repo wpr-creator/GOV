@@ -351,6 +351,11 @@ if (reviewQuestions.length !== 12) errors.push(`The review must contain 12 evide
 reviewQuestions.forEach(question => {
   if (!question.excerpt || !question.answer || !question.explanation || !question.hint || question.options?.length !== 3 || !question.options.includes(question.answer)) errors.push(`Review question ${question.id || "unknown"} is incomplete.`);
 });
+const reviewAnswerPositions = reviewQuestions.reduce((counts, question) => {
+  counts[question.options.indexOf(question.answer)] += 1;
+  return counts;
+}, [0, 0, 0]);
+if (reviewAnswerPositions.join("|") !== "4|4|4") errors.push(`Review answers must be balanced across all three positions; found ${reviewAnswerPositions.join("|")}.`);
 const historyNotes = unitOne?.resources?.find(resource => resource.id === "unit-1-03-guided-notes");
 if (historyNotes?.url !== "" || historyNotes?.awaitingLink !== true || historyNotes?.note || config.assignmentUnlocks?.["unit-1-03-guided-notes"] !== false) {
   errors.push("The 1.03 Guided Notes card must remain a locked link placeholder.");
