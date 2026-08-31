@@ -121,7 +121,7 @@ window.COURSE_DATA = {
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "SIX IDEALS REVIEW",
           url: "founding-ideals-review.html",
-          kind: "activity"
+          kind: "practice"
         },
         {
           id: "declaration-text",

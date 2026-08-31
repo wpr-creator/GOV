@@ -263,8 +263,8 @@
         const categoryDefinitions = [
           ["assessments", "ASSESSMENTS", kind => kind === "assessment"],
           ["assignments", "ASSIGNMENTS & PROJECTS", kind => ["assignment", "project", "activity", "activity-notes"].includes(kind)],
-          ["notes", "GUIDED NOTES", kind => kind === "notes"],
-          ["resources", "READINGS & RESOURCES", kind => !["assessment", "assignment", "project", "activity", "activity-notes", "notes"].includes(kind)]
+          ["notes", "GUIDED NOTES & PRACTICE", kind => ["notes", "practice"].includes(kind)],
+          ["resources", "READINGS & RESOURCES", kind => !["assessment", "assignment", "project", "activity", "activity-notes", "notes", "practice"].includes(kind)]
         ];
         categoryDefinitions.forEach(([categoryId, categoryLabel, matchesCategory]) => {
           const categoryResources = lessonResources.filter(resource => matchesCategory(resourceKindFor(resource)));
