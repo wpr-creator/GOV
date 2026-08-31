@@ -298,7 +298,7 @@
           if (resourceKind) {
             const kindLabel = document.createElement("span");
             kindLabel.className = "resource-kind";
-            kindLabel.textContent = resourceKind === "text" ? "TEXT" : resourceKind === "notes" ? "GUIDED NOTES" : resourceKind.toUpperCase();
+            kindLabel.textContent = resourceKind === "text" ? "TEXT" : resourceKind === "notes" ? "GUIDED NOTES" : resourceKind === "activity-notes" ? "ACTIVITY + NOTES" : resourceKind.toUpperCase();
             card.append(kindLabel);
           }
           if (resource.note) {

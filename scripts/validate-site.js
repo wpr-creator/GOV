@@ -268,7 +268,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260828-review-layout") || !html.includes("app.js?v=20260828-review-layout") || !html.includes("course-data.js?v=20260828-core-vocabulary") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260831-unit-one-order") || !html.includes("app.js?v=20260831-unit-one-order") || !html.includes("course-data.js?v=20260831-unit-one-order") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -308,7 +308,7 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|founding-ideals-review|unit-1-02-guided-notes|roots-activity|unit-1-03-guided-notes|history-lesson";
+const expectedUnitOneResources = "if-you-ran-the-place|founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|unit-1-03-guided-notes|history-lesson";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include the intended 1.01–1.03 resources in order.");
 }
@@ -324,13 +324,15 @@ const rootsActivity = unitOne?.resources?.find(resource => resource.id === "root
 if (rootsActivity?.url !== "roots-of-democracy.html" || config.assignmentUrls?.["roots-activity"] !== "roots-of-democracy.html" || config.assignmentUnlocks?.["roots-activity"] !== false) {
   errors.push("The Unit 1 Roots Activity must exist and remain locked.");
 }
-if (rootsActivity?.title !== "ROOTS ACTIVITY" || rootsActivity?.kind !== "activity" || rootsActivity?.note) {
-  errors.push("The locked interactive page must have a simply labeled Roots Activity card.");
+if (rootsActivity?.title !== "ROOTS OF AMERICAN DEMOCRACY" || rootsActivity?.kind !== "activity-notes" || rootsActivity?.note) {
+  errors.push("The locked 1.02 page must be one combined Roots of American Democracy activity-and-notes card.");
 }
-const rootsGuidedNotes = unitOne?.resources?.find(resource => resource.id === "unit-1-02-guided-notes");
-const rootsGuidedNotesUrl = "https://docs.google.com/document/d/1V1kZears6GoAditg4PluLZfQ80OStHDYzoa4m4WC6M0/edit?tab=t.0";
-if (rootsGuidedNotes?.url !== rootsGuidedNotesUrl || config.assignmentUrls?.["unit-1-02-guided-notes"] !== rootsGuidedNotesUrl || config.assignmentUnlocks?.["unit-1-02-guided-notes"] !== true) {
-  errors.push("The open 1.02 Guided Notes card must use the assigned Google Doc.");
+if (unitOne?.resources?.some(resource => resource.id === "unit-1-02-guided-notes") || "unit-1-02-guided-notes" in (config.assignmentUrls || {}) || "unit-1-02-guided-notes" in (config.assignmentUnlocks || {})) {
+  errors.push("The separate 1.02 Guided Notes card must remain removed.");
+}
+const ranThePlace = unitOne?.resources?.find(resource => resource.id === "if-you-ran-the-place");
+if (ranThePlace?.lesson !== "UNIT 1 PROJECT" || ranThePlace?.title !== "IF YOU RAN THE PLACE" || ranThePlace?.kind !== "project" || ranThePlace?.url !== "" || config.assignmentUrls?.["if-you-ran-the-place"] !== "" || config.assignmentUnlocks?.["if-you-ran-the-place"] !== false) {
+  errors.push("If You Ran the Place must be a locked coming-soon project above lesson 1.01.");
 }
 const historyLesson = unitOne?.resources?.find(resource => resource.id === "history-lesson");
 if (historyLesson?.url !== "history-lesson.html" || config.assignmentUrls?.["history-lesson"] !== "history-lesson.html" || config.assignmentUnlocks?.["history-lesson"] !== false) {
@@ -341,7 +343,7 @@ if (idealsReview?.url !== "founding-ideals-review.html" || idealsReview?.kind !=
   errors.push("The open Six Ideals Review activity must appear in lesson 1.01.");
 }
 if (!fs.readFileSync(path.join(root, "app.js"), "utf8").includes("item.dataset.resourceId = resource.id") || !fs.readFileSync(path.join(root, "styles.css"), "utf8").includes('.unit-resource-item[data-resource-id="founding-ideals-review"]')) {
-  errors.push("The Six Ideals Review card must be centered beneath the other six lesson 1.01 resources.");
+  errors.push("The Six Ideals Review card must be centered at the top of lesson 1.01.");
 }
 const expectedIdealNames = ["NATURAL RIGHTS", "EQUALITY", "SOCIAL CONTRACT", "POPULAR SOVEREIGNTY", "LIMITED GOVERNMENT", "REPUBLICANISM"];
 if (idealsReviewData?.ideals?.map(ideal => ideal.name).join("|") !== expectedIdealNames.join("|")) errors.push("The review must include all six intended democratic ideals.");
@@ -635,7 +637,7 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260828-review-layout") || !html.includes("styles.css?v=20260828-review-layout")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260831-unit-one-order") || !html.includes("styles.css?v=20260831-unit-one-order")) errors.push("Exit-ticket cache versions are not current.");
 for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"', 'id="exit-response"', 'minlength="5"', 'class="exit-submit" type="submit" disabled', 'id="exit-status" role="status"']) {
   if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);
 }

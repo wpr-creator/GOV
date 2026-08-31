@@ -110,6 +110,20 @@ window.COURSE_DATA = {
       ],
       resources: [
         {
+          id: "if-you-ran-the-place",
+          lesson: "UNIT 1 PROJECT",
+          title: "IF YOU RAN THE PLACE",
+          url: "",
+          kind: "project"
+        },
+        {
+          id: "founding-ideals-review",
+          lesson: "1.01 — THE FOUNDING PROMISE",
+          title: "SIX IDEALS REVIEW",
+          url: "founding-ideals-review.html",
+          kind: "activity"
+        },
+        {
           id: "declaration-text",
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "DECLARATION OF INDEPENDENCE",
@@ -152,25 +166,11 @@ window.COURSE_DATA = {
           kind: "notes"
         },
         {
-          id: "founding-ideals-review",
-          lesson: "1.01 — THE FOUNDING PROMISE",
-          title: "SIX IDEALS REVIEW",
-          url: "founding-ideals-review.html",
-          kind: "activity"
-        },
-        {
-          id: "unit-1-02-guided-notes",
-          lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
-          title: "1.02 GUIDED NOTES",
-          url: "https://docs.google.com/document/d/1V1kZears6GoAditg4PluLZfQ80OStHDYzoa4m4WC6M0/edit?tab=t.0",
-          kind: "notes"
-        },
-        {
           id: "roots-activity",
           lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
-          title: "ROOTS ACTIVITY",
+          title: "ROOTS OF AMERICAN DEMOCRACY",
           url: "roots-of-democracy.html",
-          kind: "activity"
+          kind: "activity-notes"
         },
         {
           id: "unit-1-03-guided-notes",
