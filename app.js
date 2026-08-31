@@ -258,15 +258,30 @@
         if (lesson === "ASSESSMENTS") group.classList.add("assessment-group");
         const lessonTitle = document.createElement("h2");
         lessonTitle.textContent = lesson;
-        const resourceGrid = document.createElement("div");
-        resourceGrid.className = "unit-resource-grid";
-        lessonResources.forEach(resource => {
+        group.append(lessonTitle);
+        const resourceKindFor = resource => resource.kind || (lesson === "ASSESSMENTS" ? "assessment" : "");
+        const categoryDefinitions = [
+          ["assessments", "ASSESSMENTS", kind => kind === "assessment"],
+          ["assignments", "ASSIGNMENTS & PROJECTS", kind => ["assignment", "project", "activity", "activity-notes"].includes(kind)],
+          ["notes", "GUIDED NOTES", kind => kind === "notes"],
+          ["resources", "READINGS & RESOURCES", kind => !["assessment", "assignment", "project", "activity", "activity-notes", "notes"].includes(kind)]
+        ];
+        categoryDefinitions.forEach(([categoryId, categoryLabel, matchesCategory]) => {
+          const categoryResources = lessonResources.filter(resource => matchesCategory(resourceKindFor(resource)));
+          if (!categoryResources.length) return;
+          const category = document.createElement("section");
+          category.className = `unit-resource-category category-${categoryId}`;
+          const categoryTitle = document.createElement("h3");
+          categoryTitle.textContent = categoryLabel;
+          const resourceGrid = document.createElement("div");
+          resourceGrid.className = "unit-resource-grid";
+          categoryResources.forEach(resource => {
           const resourceUrl = siteContent.assignmentUrls?.[resource.id] ?? resource.url;
           const awaitingLink = Boolean(resource.awaitingLink && siteContent.assignmentUnlocks?.[resource.id] && !resourceUrl);
           const unlocked = assignmentIsUnlocked(resource.id, resourceUrl);
           const card = document.createElement(unlocked ? "a" : "div");
           card.className = "unit-resource";
-          const resourceKind = resource.kind || (lesson === "ASSESSMENTS" ? "assessment" : "");
+          const resourceKind = resourceKindFor(resource);
           if (resourceKind) card.classList.add(`resource-${resourceKind}`);
           if (unlocked) {
             card.href = resourceUrl;
@@ -316,8 +331,10 @@
           item.dataset.resourceId = resource.id;
           item.append(createCompletionCheck(resource, unlocked), card);
           resourceGrid.appendChild(item);
+          });
+          category.append(categoryTitle, resourceGrid);
+          group.append(category);
         });
-        group.append(lessonTitle, resourceGrid);
         resources.append(group);
       });
     }
