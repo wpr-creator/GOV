@@ -321,11 +321,11 @@ if (config.assignmentUnlocks?.["we-the-people"] !== false || config.assignmentUn
   errors.push("We the People must unlock Wednesday, August 26, 2026 at 8:30 AM Pacific Time.");
 }
 const rootsActivity = unitOne?.resources?.find(resource => resource.id === "roots-activity");
-if (rootsActivity?.url !== "roots-of-democracy.html" || config.assignmentUrls?.["roots-activity"] !== "roots-of-democracy.html" || config.assignmentUnlocks?.["roots-activity"] !== false) {
-  errors.push("The Unit 1 Roots Activity must exist and remain locked.");
+if (rootsActivity?.url !== "roots-of-democracy.html" || config.assignmentUrls?.["roots-activity"] !== "roots-of-democracy.html" || config.assignmentUnlocks?.["roots-activity"] !== true) {
+  errors.push("The Unit 1 Roots Activity must exist and remain open.");
 }
 if (rootsActivity?.title !== "ROOTS OF AMERICAN DEMOCRACY" || rootsActivity?.kind !== "activity-notes" || rootsActivity?.note) {
-  errors.push("The locked 1.02 page must be one combined Roots of American Democracy activity-and-notes card.");
+  errors.push("The open 1.02 page must be one combined Roots of American Democracy activity-and-notes card.");
 }
 if (unitOne?.resources?.some(resource => resource.id === "unit-1-02-guided-notes") || "unit-1-02-guided-notes" in (config.assignmentUrls || {}) || "unit-1-02-guided-notes" in (config.assignmentUnlocks || {})) {
   errors.push("The separate 1.02 Guided Notes card must remain removed.");
