@@ -6,9 +6,9 @@
   <meta name="color-scheme" content="light">
   <title>Root Connections · Principles of American Democracy</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="roots-connections.css?v=20260901-launch">
-  <script src="roots-connections-data.js?v=20260901-launch" defer></script>
-  <script src="roots-connections.js?v=20260901-launch" defer></script>
+  <link rel="stylesheet" href="roots-connections.css?v=20260901-simplified">
+  <script src="roots-connections-data.js?v=20260901-simplified" defer></script>
+  <script src="roots-connections.js?v=20260901-simplified" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the practice</a>
@@ -17,8 +17,8 @@
     <header class="hero">
       <p class="eyebrow">1.02 · PRACTICE</p>
       <h1>ROOT CONNECTIONS</h1>
-      <p>Build a bridge from each historical root to a democratic ideal and the United States today.</p>
-      <div class="how-play"><span>1 · READ THE ROOT</span><span>2 · CONNECT THE IDEALS</span><span>3 · BUILD THE U.S. CONNECTION</span></div>
+      <p>Use a symbol and one short clue to connect each historical root to its democratic ideals.</p>
+      <div class="how-play"><span>1 · SEE THE ROOT</span><span>2 · CHOOSE ONE IDEAL</span><span>3 · SEE THE U.S. CONNECTION</span></div>
     </header>
 
     <section class="root-picker" id="root-picker" aria-labelledby="picker-title">
@@ -31,28 +31,23 @@
       <div class="bridge">
         <article class="station station-root">
           <p class="station-number">1 · THE ROOT</p>
-          <h2 id="root-name"></h2>
-          <p id="root-idea"></p>
+          <div class="root-identity"><span class="root-symbol" id="root-symbol" aria-hidden="true"></span><div><h2 id="root-name"></h2><p id="root-idea"></p></div></div>
         </article>
 
         <section class="station station-ideals" aria-labelledby="ideals-title">
-          <p class="station-number">2 · CONNECTED IDEALS</p>
-          <h3 id="ideals-title">CHOOSE EVERY IDEAL THIS ROOT HELPED SHAPE.</h3>
-          <p class="support">Some roots connect to more than one ideal.</p>
+          <p class="station-number">2 · MAKE THE CONNECTION</p>
+          <h3 id="ideals-title">CHOOSE ONE CONNECTED IDEAL.</h3>
+          <p class="support" id="round-help"></p>
           <div class="ideal-options" id="ideal-options"></div>
-          <button type="button" class="check-button" id="check-ideals" disabled>CHECK MY IDEALS</button>
           <div class="feedback" id="ideal-feedback" role="status" aria-live="polite" hidden></div>
+          <div class="matched-ideals" id="matched-ideals" aria-label="Connected ideals"></div>
+          <button type="button" class="next-button" id="next-connection" hidden>NEXT CONNECTION →</button>
         </section>
 
         <section class="station station-us" id="us-station" aria-labelledby="us-title" hidden>
           <p class="station-number">3 · THE U.S. TODAY</p>
-          <h3 id="us-title">BUILD THE CONNECTION.</h3>
-          <p class="support">Choose the three phrase tiles in the order that makes one clear statement.</p>
-          <div class="connection-slots" id="connection-slots" aria-label="Your U.S. connection"></div>
-          <div class="phrase-bank" id="phrase-bank" aria-label="Phrase tiles"></div>
-          <div class="connection-actions"><button type="button" id="undo-tile">UNDO LAST TILE</button><button type="button" class="check-button" id="check-connection" disabled>CHECK MY CONNECTION</button></div>
-          <div class="feedback" id="connection-feedback" role="status" aria-live="polite" hidden></div>
-          <button type="button" class="next-button" id="next-root" hidden>NEXT ROOT →</button>
+          <div class="us-connection"><span aria-hidden="true">🇺🇸</span><div><h3 id="us-title">WHAT THIS MEANS IN THE U.S.</h3><p id="us-meaning"></p></div></div>
+          <button type="button" class="next-button" id="next-root">NEXT ROOT →</button>
         </section>
       </div>
     </section>
