@@ -199,11 +199,11 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .unit-resource.placeholder span { color: var(--muted); }
 .unit-resource-item { min-width: 0; display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: .75rem; align-items: stretch; }
 .unit-resource-item .unit-resource { min-width: 0; }
-.unit-completion-check { width: 92px; min-height: 0; aspect-ratio: 1; align-self: center; padding: 0; display: grid; place-items: center; color: #174f8a; background: repeating-linear-gradient(to bottom, #fff 0 11px, #b32635 11px 22px); border: 5px solid #174f8a; border-radius: 4px; cursor: pointer; font: 950 4.6rem/1 Arial, sans-serif; text-shadow: 0 0 2px #fff, 0 0 5px #fff; }
-.unit-completion-check:hover { color: #0b315d; border-color: #b32635; filter: brightness(.97); }
-.unit-completion-check[aria-pressed="true"] { color: #fff; background: #174f8a; border-color: #b32635; text-shadow: none; }
+.unit-completion-check { width: 92px; min-height: 0; aspect-ratio: 1; align-self: center; padding: 0; display: grid; place-items: center; color: #174f8a; background: #fff; border: 4px solid #174f8a; border-radius: 4px; cursor: pointer; font: 950 4.6rem/1 Arial, sans-serif; text-shadow: none; }
+.unit-completion-check:hover { color: #0b315d; border-color: #0b315d; background: #f4f8fc; }
+.unit-completion-check[aria-pressed="true"] { color: #fff; background: #174f8a; border-color: #174f8a; text-shadow: none; }
 .unit-completion-check:focus-visible { outline: 4px solid var(--slate); outline-offset: 3px; }
-.unit-completion-check:disabled { color: #737373; background: #fff; border-color: #737373; cursor: not-allowed; text-shadow: none; }
+.unit-completion-check:disabled { color: #a6a6a6; background: #fff; border-color: #b8b8b8; cursor: not-allowed; text-shadow: none; }
 .president-tools { margin-bottom: 1rem; padding: 1rem; background: var(--stone); border-radius: var(--radius); }
 .president-tools label { display: block; margin-bottom: .4rem; font-size: .75rem; font-weight: 950; letter-spacing: .08em; }
 .president-tools input { width: 100%; min-height: 50px; padding: .75rem .9rem; border: 2px solid var(--black); background: var(--white); font: inherit; font-weight: 750; }
