@@ -173,6 +173,13 @@ window.COURSE_DATA = {
           kind: "activity-notes"
         },
         {
+          id: "roots-connections-practice",
+          lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
+          title: "ROOT CONNECTIONS",
+          url: "roots-connections.html",
+          kind: "practice"
+        },
+        {
           id: "unit-1-03-guided-notes",
           lesson: "1.03 — THE HISTORY LESSON",
           title: "1.03 GUIDED NOTES",

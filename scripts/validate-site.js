@@ -25,6 +25,7 @@ vm.runInContext(fs.readFileSync(path.join(root, "federalism-map-data.js"), "utf8
 vm.runInContext(fs.readFileSync(path.join(root, "founding-power-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "roots-of-democracy-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "founding-ideals-review-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "roots-connections-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "prove-your-case", "case-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const cpRosters = context.window.CP_GOV_ROSTERS;
@@ -38,12 +39,13 @@ const federalismMapData = context.window.FEDERALISM_MAP_DATA;
 const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
 const democracyRoots = context.window.DEMOCRACY_ROOTS;
 const idealsReviewData = context.window.FOUNDING_IDEALS_REVIEW_DATA;
+const rootsConnectionsData = context.window.ROOTS_CONNECTIONS_DATA;
 const proveCases = context.window.PROVE_CASES;
 const foundationCases = context.window.FOUNDATIONS_DATA.cases;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "roots-of-democracy.html", "roots-of-democracy.css", "roots-of-democracy.js", "roots-of-democracy-data.js", "founding-ideals-review.html", "founding-ideals-review.css", "founding-ideals-review.js", "founding-ideals-review-data.js", "styles.css", "app.js", "course-data.js", "content.json", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "roots-of-democracy.html", "roots-of-democracy.css", "roots-of-democracy.js", "roots-of-democracy-data.js", "roots-connections.html", "roots-connections.css", "roots-connections.js", "roots-connections-data.js", "founding-ideals-review.html", "founding-ideals-review.css", "founding-ideals-review.js", "founding-ideals-review-data.js", "styles.css", "app.js", "course-data.js", "content.json", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -268,7 +270,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260831-notes-practice") || !html.includes("course-data.js?v=20260831-notes-practice") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260831-notes-practice") || !html.includes("course-data.js?v=20260901-roots-connections") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -308,7 +310,7 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "if-you-ran-the-place|founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|unit-1-03-guided-notes|history-lesson";
+const expectedUnitOneResources = "if-you-ran-the-place|founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|roots-connections-practice|unit-1-03-guided-notes|history-lesson";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include the intended 1.01–1.03 resources in order.");
 }
@@ -327,6 +329,22 @@ if (rootsActivity?.url !== "roots-of-democracy.html" || config.assignmentUrls?.[
 if (rootsActivity?.title !== "ROOTS OF AMERICAN DEMOCRACY" || rootsActivity?.kind !== "activity-notes" || rootsActivity?.note) {
   errors.push("The open 1.02 page must be one combined Roots of American Democracy activity-and-notes card.");
 }
+const rootsPractice = unitOne?.resources?.find(resource => resource.id === "roots-connections-practice");
+if (rootsPractice?.lesson !== "1.02 — THE ROOTS OF AMERICAN DEMOCRACY" || rootsPractice?.title !== "ROOT CONNECTIONS" || rootsPractice?.url !== "roots-connections.html" || rootsPractice?.kind !== "practice" || config.assignmentUrls?.["roots-connections-practice"] !== "roots-connections.html" || config.assignmentUnlocks?.["roots-connections-practice"] !== true) {
+  errors.push("The open Root Connections practice must appear with lesson 1.02.");
+}
+const expectedPracticeRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
+if (rootsConnectionsData?.roots?.map(rootItem => rootItem.name).join("|") !== expectedPracticeRootNames.join("|")) errors.push("Root Connections must include all seven named roots in order.");
+rootsConnectionsData?.roots?.forEach(rootItem => {
+  if (!rootItem.rootIdea || !rootItem.ideals?.length || rootItem.usParts?.length !== 3 || rootItem.tileOrder?.slice().sort().join("|") !== "0|1|2") errors.push(`Root Connections entry is incomplete: ${rootItem.name || "unknown"}.`);
+});
+const rootsPracticeCode = fs.readFileSync(path.join(root, "roots-connections.js"), "utf8");
+const rootsPracticeHtml = fs.readFileSync(path.join(root, "roots-connections.html"), "utf8");
+for (const marker of ["THE ROOT", "CONNECTED IDEALS", "THE U.S. TODAY", "CHECK MY IDEALS", "CHECK MY CONNECTION", "prefers-reduced-motion"]) {
+  const source = marker === "prefers-reduced-motion" ? `${rootsPracticeCode}\n${fs.readFileSync(path.join(root, "roots-connections.css"), "utf8")}` : rootsPracticeHtml;
+  if (!source.includes(marker)) errors.push(`Root Connections is missing: ${marker}`);
+}
+if (rootsPracticeCode.includes("Math.random")) errors.push("Root Connections must not randomize answer order in the browser.");
 if (unitOne?.resources?.some(resource => resource.id === "unit-1-02-guided-notes") || "unit-1-02-guided-notes" in (config.assignmentUrls || {}) || "unit-1-02-guided-notes" in (config.assignmentUnlocks || {})) {
   errors.push("The separate 1.02 Guided Notes card must remain removed.");
 }
