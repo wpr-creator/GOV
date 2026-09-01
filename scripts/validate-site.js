@@ -270,7 +270,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260831-notes-practice") || !html.includes("course-data.js?v=20260901-roots-connections") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260831-notes-practice") || !html.includes("course-data.js?v=20260901-roots-review-card") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -330,7 +330,7 @@ if (rootsActivity?.title !== "ROOTS OF AMERICAN DEMOCRACY" || rootsActivity?.kin
   errors.push("The open 1.02 page must be one combined Roots of American Democracy activity-and-notes card.");
 }
 const rootsPractice = unitOne?.resources?.find(resource => resource.id === "roots-connections-practice");
-if (rootsPractice?.lesson !== "1.02 — THE ROOTS OF AMERICAN DEMOCRACY" || rootsPractice?.title !== "ROOT CONNECTIONS" || rootsPractice?.url !== "roots-connections.html" || rootsPractice?.kind !== "practice" || config.assignmentUrls?.["roots-connections-practice"] !== "roots-connections.html" || config.assignmentUnlocks?.["roots-connections-practice"] !== true) {
+if (rootsPractice?.lesson !== "1.02 — THE ROOTS OF AMERICAN DEMOCRACY" || rootsPractice?.title !== "ROOTS CONNECTIONS REVIEW" || rootsPractice?.url !== "roots-connections.html" || rootsPractice?.kind !== "practice" || config.assignmentUrls?.["roots-connections-practice"] !== "roots-connections.html" || config.assignmentUnlocks?.["roots-connections-practice"] !== true) {
   errors.push("The open Root Connections practice must appear with lesson 1.02.");
 }
 const expectedPracticeRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];

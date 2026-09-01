@@ -175,7 +175,7 @@ window.COURSE_DATA = {
         {
           id: "roots-connections-practice",
           lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
-          title: "ROOT CONNECTIONS",
+          title: "ROOTS CONNECTIONS REVIEW",
           url: "roots-connections.html",
           kind: "practice"
         },
