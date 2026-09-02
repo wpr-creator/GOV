@@ -43,6 +43,8 @@ h1,h2,h3,.page-header,.eyebrow,.chapter,.date,.key b,.answer b,.section-label{te
 .glossary-link:hover::after,.glossary-link:focus-visible::after{opacity:1;transform:translate(-50%,0)}
 .glossary-link:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .next{padding:1rem;border-left:7px solid var(--red);background:var(--cream);font-weight:700}
+.deep-link{width:100%;min-height:52px;margin-top:1.25rem;padding:.75rem 1rem;display:flex;align-items:center;justify-content:center;color:#fff;background:#000;border:3px solid #000;font-family:"Arial Black",Arial,sans-serif;font-size:.78rem;letter-spacing:.05em;text-align:center;text-decoration:none}
+.deep-link:hover,.deep-link:focus-visible{color:#000;background:#fff;outline:3px solid var(--red);outline-offset:3px}
 .key,.answer{margin-top:1.2rem;padding:1rem;display:grid;gap:.2rem;color:#fff;background:var(--blue);border:4px solid #000}
 .key b,.answer b{font-size:.7rem;letter-spacing:.12em}
 .two-column,.debate{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}

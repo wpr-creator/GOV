@@ -26,6 +26,7 @@ vm.runInContext(fs.readFileSync(path.join(root, "founding-power-data.js"), "utf8
 vm.runInContext(fs.readFileSync(path.join(root, "roots-of-democracy-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "founding-ideals-review-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "roots-connections-data.js"), "utf8"), context);
+vm.runInContext(fs.readFileSync(path.join(root, "history-section-data.js"), "utf8"), context);
 vm.runInContext(fs.readFileSync(path.join(root, "prove-your-case", "case-data.js"), "utf8"), context);
 const data = context.window.COURSE_DATA;
 const cpRosters = context.window.CP_GOV_ROSTERS;
@@ -40,12 +41,13 @@ const foundingPowerIdeas = context.window.FOUNDING_POWER_DATA;
 const democracyRoots = context.window.DEMOCRACY_ROOTS;
 const idealsReviewData = context.window.FOUNDING_IDEALS_REVIEW_DATA;
 const rootsConnectionsData = context.window.ROOTS_CONNECTIONS_DATA;
+const historySectionData = context.window.HISTORY_SECTION_DATA;
 const proveCases = context.window.PROVE_CASES;
 const foundationCases = context.window.FOUNDATIONS_DATA.cases;
 const portraitManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "portraits.json"), "utf8"));
 const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "presidents", "president-facts.json"), "utf8"));
 
-for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "roots-of-democracy.html", "roots-of-democracy.css", "roots-of-democracy.js", "roots-of-democracy-data.js", "roots-connections.html", "roots-connections.css", "roots-connections.js", "roots-connections-data.js", "founding-ideals-review.html", "founding-ideals-review.css", "founding-ideals-review.js", "founding-ideals-review-data.js", "styles.css", "app.js", "course-data.js", "content.json", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
+for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "roots-of-democracy.html", "roots-of-democracy.css", "roots-of-democracy.js", "roots-of-democracy-data.js", "roots-connections.html", "roots-connections.css", "roots-connections.js", "roots-connections-data.js", "founding-ideals-review.html", "founding-ideals-review.css", "founding-ideals-review.js", "founding-ideals-review-data.js", "history-lesson.html", "history-lesson.css", "history-lesson.js", "history-section.html", "history-section.css", "history-section.js", "history-section-data.js", "styles.css", "app.js", "course-data.js", "content.json", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -405,6 +407,27 @@ for (const forbidden of ["TOPIC 1.3", "TOPIC 1.4", "TOPIC 1.5", "AP CONNECTION",
 for (const marker of ["COURSE_DATA?.words", "glossary-link", "?glossary=", "#words", "data-definition"]) {
   const source = marker === "glossary-link" || marker === "data-definition" ? `${historyCode}\n${fs.readFileSync(path.join(root, "history-lesson.css"), "utf8")}` : historyCode;
   if (!source.includes(marker)) errors.push(`The History Lesson glossary links are missing: ${marker}`);
+}
+const historyTopics = ["articles", "crisis", "convention", "compromises", "debate", "rights"];
+if (Object.keys(historySectionData || {}).join("|") !== historyTopics.join("|")) errors.push("The History Lesson needs all six section readers in order.");
+historyTopics.forEach((topic, index) => {
+  const section = historySectionData?.[topic];
+  if (!section || section.number !== String(index + 2).padStart(2, "0")) errors.push(`History reader ${topic} has the wrong section number.`);
+  for (const key of ["years", "label", "title", "image", "imageAlt", "bigIdea", "opening", "sections", "vocabulary", "teach"]) {
+    if (!section?.[key] || (Array.isArray(section[key]) && !section[key].length)) errors.push(`History reader ${topic} is missing ${key}.`);
+  }
+  if (!historyReader.includes(`history-section.html?topic=${topic}`)) errors.push(`The main timeline is missing the ${topic} reader link.`);
+  if (!fs.existsSync(path.join(root, section?.image || "missing"))) errors.push(`History reader ${topic} has a missing image.`);
+  if ((section?.opening || "").length < 140) errors.push(`History reader ${topic} needs a fuller opening explanation.`);
+  if ((section?.teach || []).length < 4) errors.push(`History reader ${topic} needs at least four teaching checks.`);
+});
+const historySectionHtml = fs.readFileSync(path.join(root, "history-section.html"), "utf8");
+const historySectionCode = fs.readFileSync(path.join(root, "history-section.js"), "utf8");
+for (const marker of ["BIG IDEA", "THE STORY", "ACADEMIC VOCABULARY", "BE READY TO TEACH", "FULL TIMELINE"]) {
+  if (!historySectionHtml.includes(marker)) errors.push(`The section reader template is missing: ${marker}`);
+}
+for (const marker of ["HISTORY_SECTION_DATA", "URLSearchParams", "glossary-link", "previous-section", "next-section"]) {
+  if (!historySectionCode.includes(marker)) errors.push(`The section reader behavior is missing: ${marker}`);
 }
 const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
 if (!Array.isArray(democracyRoots) || democracyRoots.map(rootData => rootData.name).join("|") !== expectedRootNames.join("|")) {
