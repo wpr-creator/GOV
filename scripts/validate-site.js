@@ -388,16 +388,19 @@ for (const resource of unitOne?.resources || []) {
   if (resource.note) errors.push(`Unit 1 resource ${resource.id} must use only its plain type label.`);
 }
 const historyReader = fs.readFileSync(path.join(root, "history-lesson.html"), "utf8");
-for (const marker of ["THE ARTICLES OF CONFEDERATION", "FIVE MAJOR FLAWS", "SHAYS’ REBELLION", "MAJOR COMPROMISES", "THE RATIFICATION BATTLE", "BILL OF RIGHTS", "FEDERALIST 10, 51, AND 78", "BRUTUS 1"]) {
+for (const marker of ["THE ARTICLES OF CONFEDERATION", "NO TAX POWER", "SHAYS’ REBELLION", "MAJOR COMPROMISES", "THE RATIFICATION DEBATE", "BILL OF RIGHTS", "Federalist No. 10", "Brutus No. 1", "THE WHOLE STORY"]) {
   if (!historyReader.includes(marker)) errors.push(`The History Lesson is missing: ${marker}`);
 }
-if ((historyReader.match(/<article class="moment/g) || []).length !== 10) errors.push("The History Lesson must contain ten timeline moments.");
+if ((historyReader.match(/<article class="moment/g) || []).length !== 7) errors.push("The History Lesson must contain seven timeline moments.");
 const historyImages = [...historyReader.matchAll(/<img src="(assets\/history-lesson\/[^"]+\.jpg)" alt="([^"]+)"/g)];
-if (historyImages.length !== 10) errors.push("The History Lesson must contain ten local woodcut timeline illustrations with alt text.");
+if (historyImages.length !== 7) errors.push("The History Lesson must contain seven local woodcut timeline illustrations with alt text.");
 historyImages.forEach(([, imagePath, imageAlt]) => {
   if (!fs.existsSync(path.join(root, imagePath))) errors.push(`Missing History Lesson illustration: ${imagePath}`);
   if (imageAlt.length < 25) errors.push(`History Lesson illustration needs useful alt text: ${imagePath}`);
 });
+for (const forbidden of ["TOPIC 1.3", "TOPIC 1.4", "TOPIC 1.5", "AP CONNECTION", "READ FEDERALIST", "READ BRUTUS"]) {
+  if (historyReader.includes(forbidden)) errors.push(`The CP History Lesson must not include AP-only label: ${forbidden}`);
+}
 const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
 if (!Array.isArray(democracyRoots) || democracyRoots.map(rootData => rootData.name).join("|") !== expectedRootNames.join("|")) {
   errors.push("The Roots Activity needs all seven historical roots in the intended order.");
