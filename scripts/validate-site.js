@@ -270,7 +270,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260831-notes-practice") || !html.includes("course-data.js?v=20260901-roots-review-card") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260902-history-glossary") || !html.includes("course-data.js?v=20260901-roots-review-card") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -388,6 +388,7 @@ for (const resource of unitOne?.resources || []) {
   if (resource.note) errors.push(`Unit 1 resource ${resource.id} must use only its plain type label.`);
 }
 const historyReader = fs.readFileSync(path.join(root, "history-lesson.html"), "utf8");
+const historyCode = fs.readFileSync(path.join(root, "history-lesson.js"), "utf8");
 for (const marker of ["THE ARTICLES OF CONFEDERATION", "NO TAX POWER", "SHAYS’ REBELLION", "MAJOR COMPROMISES", "THE RATIFICATION DEBATE", "BILL OF RIGHTS", "Federalist No. 10", "Brutus No. 1", "THE WHOLE STORY"]) {
   if (!historyReader.includes(marker)) errors.push(`The History Lesson is missing: ${marker}`);
 }
@@ -400,6 +401,10 @@ historyImages.forEach(([, imagePath, imageAlt]) => {
 });
 for (const forbidden of ["TOPIC 1.3", "TOPIC 1.4", "TOPIC 1.5", "AP CONNECTION", "READ FEDERALIST", "READ BRUTUS"]) {
   if (historyReader.includes(forbidden)) errors.push(`The CP History Lesson must not include AP-only label: ${forbidden}`);
+}
+for (const marker of ["COURSE_DATA?.words", "glossary-link", "?glossary=", "#words", "data-definition"]) {
+  const source = marker === "glossary-link" || marker === "data-definition" ? `${historyCode}\n${fs.readFileSync(path.join(root, "history-lesson.css"), "utf8")}` : historyCode;
+  if (!source.includes(marker)) errors.push(`The History Lesson glossary links are missing: ${marker}`);
 }
 const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
 if (!Array.isArray(democracyRoots) || democracyRoots.map(rootData => rootData.name).join("|") !== expectedRootNames.join("|")) {
@@ -662,7 +667,7 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260831-notes-practice") || !html.includes("styles.css?v=20260831-dark-civic-cards")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260902-history-glossary") || !html.includes("styles.css?v=20260831-dark-civic-cards")) errors.push("Exit-ticket cache versions are not current.");
 for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"', 'id="exit-response"', 'minlength="5"', 'class="exit-submit" type="submit" disabled', 'id="exit-status" role="status"']) {
   if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);
 }

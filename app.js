@@ -31,7 +31,11 @@
   let devKeys = "";
   let amendmentFilter = "current";
   let glossaryFilter = "current";
-  let glossaryQuery = "";
+  const initialGlossaryTerm = new URLSearchParams(location.search).get("glossary")?.trim() || "";
+  let glossaryQuery = initialGlossaryTerm.toLowerCase();
+  let glossaryExactQuery = Boolean(initialGlossaryTerm);
+  if (initialGlossaryTerm) glossaryFilter = "all";
+  if (initialGlossaryTerm) document.getElementById("glossary-search").value = initialGlossaryTerm;
   let presidentFacts = [];
   let presidentQuery = "";
   let explorerIndex = 0;
@@ -349,7 +353,8 @@
     const matches = data.words.filter(word => {
       const inUnit = glossaryFilter === "all" || word[4] === currentUnitId;
       const text = `${word[0]} ${word[2]} ${word[3]}`.toLowerCase();
-      return inUnit && text.includes(glossaryQuery);
+      const queryMatches = glossaryExactQuery ? word[0].toLowerCase() === glossaryQuery : text.includes(glossaryQuery);
+      return inUnit && queryMatches;
     });
     matches.forEach(word => {
       const button = document.createElement("button");
@@ -2264,6 +2269,7 @@
   dialog.querySelector(".dialog-close").addEventListener("click", closeWord);
   dialog.addEventListener("click", event => { if (event.target === dialog) closeWord(); });
   document.getElementById("glossary-search").addEventListener("input", event => {
+    glossaryExactQuery = false;
     glossaryQuery = event.target.value.trim().toLowerCase();
     renderWords();
   });
