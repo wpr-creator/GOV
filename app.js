@@ -249,6 +249,13 @@
         resourceGroups.get(lesson).push(resource);
       });
       const resourceGroupEntries = [...resourceGroups.entries()];
+      if (unit.id === "gov-1") {
+        resourceGroupEntries.sort(([lessonA], [lessonB]) => {
+          if (lessonA === "UNIT 1 PROJECT") return -1;
+          if (lessonB === "UNIT 1 PROJECT") return 1;
+          return lessonB.localeCompare(lessonA, undefined, { numeric: true });
+        });
+      }
       if (unit.id === "gov-0") {
         const unitZeroOrder = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "ASSESSMENTS"];
         resourceGroupEntries.sort(([lessonA], [lessonB]) => {
