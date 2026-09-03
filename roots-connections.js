@@ -61,9 +61,6 @@
     document.getElementById("root-number").textContent = `ROOT ${activeIndex + 1} OF ${data.roots.length}`;
     document.getElementById("root-symbol").textContent = root.symbol;
     document.getElementById("root-name").textContent = root.name;
-    document.getElementById("root-idea").textContent = root.rootIdea;
-    document.getElementById("reminder-symbol").textContent = root.symbol;
-    document.getElementById("reminder-root").textContent = root.name;
     document.getElementById("us-meaning").textContent = root.usMeaning;
     renderRound();
     workspace.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "start" });
@@ -74,9 +71,7 @@
     const round = root.rounds[roundIndex];
     idealFeedback.hidden = true;
     nextConnectionButton.hidden = true;
-    document.getElementById("round-help").textContent = root.rounds.length === 1
-      ? "This root has one connection."
-      : `CONNECTION ${roundIndex + 1} OF ${root.rounds.length} · Choose one answer.`;
+    document.getElementById("round-help").textContent = round.clue;
     idealOptions.replaceChildren();
     round.options.forEach(idealName => {
       const ideal = data.ideals[idealName];
@@ -99,7 +94,7 @@
       button.classList.add("wrong");
       button.disabled = true;
       idealFeedback.className = "feedback try-again";
-      idealFeedback.innerHTML = `<b>TRY AGAIN</b>Look at the root reminder. Which meaning matches it best?`;
+      idealFeedback.innerHTML = `<b>TRY AGAIN</b>Read the historical clue again. Which ideal expresses the same idea?`;
       idealFeedback.hidden = false;
       return;
     }

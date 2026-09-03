@@ -338,19 +338,17 @@ if (rootsPractice?.lesson !== "1.02 — THE ROOTS OF AMERICAN DEMOCRACY" || root
 const expectedPracticeRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
 if (rootsConnectionsData?.roots?.map(rootItem => rootItem.name).join("|") !== expectedPracticeRootNames.join("|")) errors.push("Root Connections must include all seven named roots in order.");
 rootsConnectionsData?.roots?.forEach(rootItem => {
-  if (!rootItem.symbol || !rootItem.rootIdea || !rootItem.usMeaning || !rootItem.rounds?.length || !rootItem.rounds.every(round => round.options?.length === 3 && round.options.includes(round.answer))) errors.push(`Root Connections entry is incomplete: ${rootItem.name || "unknown"}.`);
+  if (!rootItem.symbol || !rootItem.rootIdea || !rootItem.usMeaning || !rootItem.rounds?.length || !rootItem.rounds.every(round => round.clue?.length >= 55 && round.options?.length === 3 && round.options.includes(round.answer))) errors.push(`Root Connections entry is incomplete: ${rootItem.name || "unknown"}.`);
 });
 const rootsPracticeCode = fs.readFileSync(path.join(root, "roots-connections.js"), "utf8");
 const rootsPracticeHtml = fs.readFileSync(path.join(root, "roots-connections.html"), "utf8");
-for (const marker of ["THE ROOT", "MAKE THE CONNECTION", "BUILD THIS CONNECTION", "ROOT · PERSON, PLACE, OR TRADITION", "THE ROOT’S IDEA", "DEMOCRATIC IDEAL", "THE U.S. TODAY", "CHOOSE ONE CONNECTED IDEAL", "WHAT THIS MEANS IN THE U.S.", "prefers-reduced-motion"]) {
+for (const marker of ["THE ROOT", "MAKE THE CONNECTION", "WHICH IDEAL MATCHES THIS CLUE?", "THE U.S. TODAY", "WHAT THIS MEANS IN THE U.S.", "prefers-reduced-motion"]) {
   const source = marker === "prefers-reduced-motion" ? `${rootsPracticeCode}\n${fs.readFileSync(path.join(root, "roots-connections.css"), "utf8")}` : rootsPracticeHtml;
   if (!source.includes(marker)) errors.push(`Root Connections is missing: ${marker}`);
 }
 if (rootsPracticeCode.includes("Math.random")) errors.push("Root Connections must not randomize answer order in the browser.");
-if (!rootsPracticeHtml.includes("20260902-visible-reminder") || rootsPracticeHtml.includes("phrase-bank") || rootsPracticeHtml.includes("CHECK MY CONNECTION")) errors.push("Root Connections must use the visible-reminder, one-ideal-at-a-time version.");
-for (const marker of ["reminder-symbol", "reminder-root", "root-idea"]) {
-  if (!rootsPracticeCode.includes(marker)) errors.push(`Root Connections reminder is missing dynamic content: ${marker}`);
-}
+if (!rootsPracticeHtml.includes("20260902-historical-clues") || rootsPracticeHtml.includes("phrase-bank") || rootsPracticeHtml.includes("CHECK MY CONNECTION") || rootsPracticeHtml.includes("BUILD THIS CONNECTION")) errors.push("Root Connections must use historical clues, one ideal at a time.");
+if (!rootsPracticeCode.includes("round.clue")) errors.push("Root Connections must show a clue written for each individual ideal.");
 if (unitOne?.resources?.some(resource => resource.id === "unit-1-02-guided-notes") || "unit-1-02-guided-notes" in (config.assignmentUrls || {}) || "unit-1-02-guided-notes" in (config.assignmentUnlocks || {})) {
   errors.push("The separate 1.02 Guided Notes card must remain removed.");
 }
