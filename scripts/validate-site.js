@@ -348,7 +348,7 @@ for (const marker of ["THE ROOT", "MAKE THE CONNECTION", "BUILD THIS CONNECTION"
 }
 if (rootsPracticeCode.includes("Math.random")) errors.push("Root Connections must not randomize answer order in the browser.");
 if (!rootsPracticeHtml.includes("20260902-visible-reminder") || rootsPracticeHtml.includes("phrase-bank") || rootsPracticeHtml.includes("CHECK MY CONNECTION")) errors.push("Root Connections must use the visible-reminder, one-ideal-at-a-time version.");
-for (const marker of ["reminder-symbol", "reminder-root", "reminder-idea"]) {
+for (const marker of ["reminder-symbol", "reminder-root", "root-idea"]) {
   if (!rootsPracticeCode.includes(marker)) errors.push(`Root Connections reminder is missing dynamic content: ${marker}`);
 }
 if (unitOne?.resources?.some(resource => resource.id === "unit-1-02-guided-notes") || "unit-1-02-guided-notes" in (config.assignmentUrls || {}) || "unit-1-02-guided-notes" in (config.assignmentUnlocks || {})) {
