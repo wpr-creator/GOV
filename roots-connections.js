@@ -62,6 +62,9 @@
     document.getElementById("root-symbol").textContent = root.symbol;
     document.getElementById("root-name").textContent = root.name;
     document.getElementById("root-idea").textContent = root.rootIdea;
+    document.getElementById("reminder-symbol").textContent = root.symbol;
+    document.getElementById("reminder-root").textContent = root.name;
+    document.getElementById("reminder-idea").textContent = root.rootIdea;
     document.getElementById("us-meaning").textContent = root.usMeaning;
     renderRound();
     workspace.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "start" });
