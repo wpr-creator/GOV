@@ -347,9 +347,9 @@ for (const marker of ["THE ROOT", "MAKE THE CONNECTION", "WHICH IDEAL MATCHES TH
   if (!source.includes(marker)) errors.push(`Root Connections is missing: ${marker}`);
 }
 if (rootsPracticeCode.includes("Math.random")) errors.push("Root Connections must not randomize answer order in the browser.");
-if (!rootsPracticeHtml.includes("20260902-connection-chain") || rootsPracticeHtml.includes("phrase-bank") || rootsPracticeHtml.includes("CHECK MY CONNECTION") || rootsPracticeHtml.includes("BUILD THIS CONNECTION") || rootsPracticeHtml.includes("NEXT CONNECTION")) errors.push("Root Connections must build a visible chain of historical clues and ideals.");
+if (!rootsPracticeHtml.includes("20260902-clean-results") || rootsPracticeHtml.includes("phrase-bank") || rootsPracticeHtml.includes("CHECK MY CONNECTION") || rootsPracticeHtml.includes("BUILD THIS CONNECTION") || rootsPracticeHtml.includes("NEXT CONNECTION")) errors.push("Root Connections must use the compact result sequence.");
 if (!rootsPracticeCode.includes("round.clue")) errors.push("Root Connections must show a clue written for each individual ideal.");
-for (const marker of ["completed-connection", "completed-clue", "completed-ideal", "root.rounds[index].clue"]) {
+for (const marker of ["completed-connection", "completed-ideal", "ROOT CONNECTIONS COMPLETE", "idealOptions.hidden = true"]) {
   if (!rootsPracticeCode.includes(marker)) errors.push(`Root Connections chain is missing: ${marker}`);
 }
 if (unitOne?.resources?.some(resource => resource.id === "unit-1-02-guided-notes") || "unit-1-02-guided-notes" in (config.assignmentUrls || {}) || "unit-1-02-guided-notes" in (config.assignmentUnlocks || {})) {

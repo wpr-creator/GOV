@@ -67,6 +67,9 @@
   function renderRound() {
     const root = data.roots[activeIndex];
     const round = root.rounds[roundIndex];
+    document.getElementById("ideals-title").textContent = "WHICH IDEAL MATCHES THIS CLUE?";
+    document.getElementById("round-help").hidden = false;
+    idealOptions.hidden = false;
     idealFeedback.hidden = true;
     document.getElementById("round-help").textContent = round.clue;
     idealOptions.replaceChildren();
@@ -114,12 +117,10 @@
 
   function renderMatched() {
     matchedIdeals.replaceChildren();
-    const root = data.roots[activeIndex];
-    matched.forEach((idealName, index) => {
+    matched.forEach(idealName => {
       const badge = document.createElement("div");
       badge.className = "completed-connection";
-      badge.innerHTML = `<span class="completed-clue"></span><b aria-hidden="true">→</b><span class="completed-ideal"><i aria-hidden="true"></i><strong></strong><small></small></span>`;
-      badge.querySelector(".completed-clue").textContent = root.rounds[index].clue;
+      badge.innerHTML = `<span class="completed-ideal"><i aria-hidden="true"></i><strong></strong><small></small></span>`;
       badge.querySelector("i").textContent = data.ideals[idealName].symbol;
       badge.querySelector("strong").textContent = idealName;
       badge.querySelector("small").textContent = data.ideals[idealName].meaning;
@@ -132,6 +133,10 @@
     if (!state.completed.includes(root.id)) state.completed.push(root.id);
     saveState();
     renderPicker();
+    document.getElementById("ideals-title").textContent = "ROOT CONNECTIONS COMPLETE";
+    document.getElementById("round-help").hidden = true;
+    idealOptions.hidden = true;
+    idealFeedback.hidden = true;
     usStation.hidden = false;
     nextRootButton.textContent = state.completed.length === data.roots.length ? "SEE MY RESULTS →" : "NEXT ROOT →";
     usStation.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "start" });
