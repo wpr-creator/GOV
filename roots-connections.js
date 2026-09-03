@@ -9,7 +9,6 @@
   const idealOptions = document.getElementById("ideal-options");
   const idealFeedback = document.getElementById("ideal-feedback");
   const matchedIdeals = document.getElementById("matched-ideals");
-  const nextConnectionButton = document.getElementById("next-connection");
   const usStation = document.getElementById("us-station");
   const nextRootButton = document.getElementById("next-root");
   let state = loadState();
@@ -56,7 +55,6 @@
     finish.hidden = true;
     workspace.hidden = false;
     usStation.hidden = true;
-    nextConnectionButton.hidden = true;
     const root = data.roots[activeIndex];
     document.getElementById("root-number").textContent = `ROOT ${activeIndex + 1} OF ${data.roots.length}`;
     document.getElementById("root-symbol").textContent = root.symbol;
@@ -70,7 +68,6 @@
     const root = data.roots[activeIndex];
     const round = root.rounds[roundIndex];
     idealFeedback.hidden = true;
-    nextConnectionButton.hidden = true;
     document.getElementById("round-help").textContent = round.clue;
     idealOptions.replaceChildren();
     round.options.forEach(idealName => {
@@ -107,9 +104,9 @@
     renderMatched();
     const root = data.roots[activeIndex];
     if (roundIndex < root.rounds.length - 1) {
-      nextConnectionButton.textContent = "NEXT CONNECTION →";
-      nextConnectionButton.hidden = false;
-      nextConnectionButton.focus();
+      roundIndex += 1;
+      renderRound();
+      document.getElementById("ideals-title").scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "center" });
       return;
     }
     completeRoot();
@@ -117,11 +114,15 @@
 
   function renderMatched() {
     matchedIdeals.replaceChildren();
-    matched.forEach(idealName => {
+    const root = data.roots[activeIndex];
+    matched.forEach((idealName, index) => {
       const badge = document.createElement("div");
-      badge.innerHTML = `<span aria-hidden="true"></span><strong></strong>`;
-      badge.querySelector("span").textContent = data.ideals[idealName].symbol;
+      badge.className = "completed-connection";
+      badge.innerHTML = `<span class="completed-clue"></span><b aria-hidden="true">→</b><span class="completed-ideal"><i aria-hidden="true"></i><strong></strong><small></small></span>`;
+      badge.querySelector(".completed-clue").textContent = root.rounds[index].clue;
+      badge.querySelector("i").textContent = data.ideals[idealName].symbol;
       badge.querySelector("strong").textContent = idealName;
+      badge.querySelector("small").textContent = data.ideals[idealName].meaning;
       matchedIdeals.append(badge);
     });
   }
@@ -159,7 +160,6 @@
 
   function reduceMotion() { return matchMedia("(prefers-reduced-motion: reduce)").matches; }
 
-  nextConnectionButton.addEventListener("click", () => { roundIndex += 1; renderRound(); document.getElementById("ideals-title").scrollIntoView({ behavior: "auto", block: "center" }); });
   nextRootButton.addEventListener("click", goNextRoot);
   document.getElementById("back-roots").addEventListener("click", showPicker);
   document.getElementById("review-again").addEventListener("click", showPicker);

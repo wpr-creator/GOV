@@ -347,8 +347,11 @@ for (const marker of ["THE ROOT", "MAKE THE CONNECTION", "WHICH IDEAL MATCHES TH
   if (!source.includes(marker)) errors.push(`Root Connections is missing: ${marker}`);
 }
 if (rootsPracticeCode.includes("Math.random")) errors.push("Root Connections must not randomize answer order in the browser.");
-if (!rootsPracticeHtml.includes("20260902-historical-clues") || rootsPracticeHtml.includes("phrase-bank") || rootsPracticeHtml.includes("CHECK MY CONNECTION") || rootsPracticeHtml.includes("BUILD THIS CONNECTION")) errors.push("Root Connections must use historical clues, one ideal at a time.");
+if (!rootsPracticeHtml.includes("20260902-connection-chain") || rootsPracticeHtml.includes("phrase-bank") || rootsPracticeHtml.includes("CHECK MY CONNECTION") || rootsPracticeHtml.includes("BUILD THIS CONNECTION") || rootsPracticeHtml.includes("NEXT CONNECTION")) errors.push("Root Connections must build a visible chain of historical clues and ideals.");
 if (!rootsPracticeCode.includes("round.clue")) errors.push("Root Connections must show a clue written for each individual ideal.");
+for (const marker of ["completed-connection", "completed-clue", "completed-ideal", "root.rounds[index].clue"]) {
+  if (!rootsPracticeCode.includes(marker)) errors.push(`Root Connections chain is missing: ${marker}`);
+}
 if (unitOne?.resources?.some(resource => resource.id === "unit-1-02-guided-notes") || "unit-1-02-guided-notes" in (config.assignmentUrls || {}) || "unit-1-02-guided-notes" in (config.assignmentUnlocks || {})) {
   errors.push("The separate 1.02 Guided Notes card must remain removed.");
 }
