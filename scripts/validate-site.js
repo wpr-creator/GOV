@@ -360,8 +360,8 @@ if (ranThePlace?.lesson !== "UNIT 1 PROJECT" || ranThePlace?.title !== "IF YOU R
   errors.push("If You Ran the Place must be a locked coming-soon project above lesson 1.01.");
 }
 const historyLesson = unitOne?.resources?.find(resource => resource.id === "history-lesson");
-if (historyLesson?.url !== "history-lesson.html" || config.assignmentUrls?.["history-lesson"] !== "history-lesson.html" || config.assignmentUnlocks?.["history-lesson"] !== false) {
-  errors.push("The Unit 1 History Lesson must exist and remain locked.");
+if (historyLesson?.url !== "history-lesson.html" || config.assignmentUrls?.["history-lesson"] !== "history-lesson.html" || config.assignmentUnlocks?.["history-lesson"] !== true) {
+  errors.push("The Unit 1 History Lesson must exist and remain open.");
 }
 const idealsReview = unitOne?.resources?.find(resource => resource.id === "founding-ideals-review");
 if (idealsReview?.url !== "founding-ideals-review.html" || idealsReview?.kind !== "practice" || config.assignmentUrls?.["founding-ideals-review"] !== "founding-ideals-review.html" || config.assignmentUnlocks?.["founding-ideals-review"] !== true) {
