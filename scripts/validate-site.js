@@ -399,6 +399,10 @@ for (const marker of ["THE ARTICLES OF CONFEDERATION", "NO TAX POWER", "SHAYS’
   if (!historyReader.includes(marker)) errors.push(`The History Lesson is missing: ${marker}`);
 }
 if ((historyReader.match(/<article class="moment/g) || []).length !== 7) errors.push("The History Lesson must contain seven timeline moments.");
+for (let sectionNumber = 1; sectionNumber <= 7; sectionNumber += 1) {
+  if (!historyReader.includes(`SECTION ${String(sectionNumber).padStart(2, "0")}`)) errors.push(`The History Lesson is missing the visible label for section ${sectionNumber}.`);
+}
+if (!historyReader.includes("history-lesson.css?v=20260903-section-numbers")) errors.push("The History Lesson section-number styles are not current.");
 const historyImages = [...historyReader.matchAll(/<img src="(assets\/history-lesson\/[^"]+\.jpg)" alt="([^"]+)"/g)];
 if (historyImages.length !== 7) errors.push("The History Lesson must contain seven local woodcut timeline illustrations with alt text.");
 historyImages.forEach(([, imagePath, imageAlt]) => {
@@ -430,6 +434,7 @@ const historySectionCode = fs.readFileSync(path.join(root, "history-section.js")
 for (const marker of ["BIG IDEA", "THE STORY", "ACADEMIC VOCABULARY", "BE READY TO TEACH", "FULL TIMELINE"]) {
   if (!historySectionHtml.includes(marker)) errors.push(`The section reader template is missing: ${marker}`);
 }
+if (!historySectionHtml.includes("history-section.css?v=20260903-section-numbers")) errors.push("The detailed History Lesson section-number styles are not current.");
 for (const marker of ["HISTORY_SECTION_DATA", "URLSearchParams", "glossary-link", "previous-section", "next-section"]) {
   if (!historySectionCode.includes(marker)) errors.push(`The section reader behavior is missing: ${marker}`);
 }
