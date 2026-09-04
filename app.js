@@ -145,6 +145,11 @@
       return;
     }
     showView(valid ? routeName : "home");
+    const returnLesson = new URLSearchParams(location.search).get("lesson");
+    if (returnLesson && data.units.some(unit => unit.id === routeName)) {
+      const section = [...document.querySelectorAll(".unit-resource-group")].find(group => group.querySelector("h2")?.textContent === returnLesson);
+      if (section) requestAnimationFrame(() => { section.focus({ preventScroll: true }); section.scrollIntoView(); });
+    }
   }
 
   function unitState(unit) {
@@ -268,7 +273,7 @@
       const jumpLabel = document.createElement("label");
       jumpLabel.className = "lesson-jump";
       jumpLabel.htmlFor = lessonJump.id;
-      jumpLabel.append("GO TO LESSON ", lessonJump);
+      jumpLabel.append("JUMP TO A LESSON ", lessonJump);
       const jumpPrompt = document.createElement("option");
       jumpPrompt.value = "";
       jumpPrompt.textContent = "CHOOSE A LESSON";
@@ -283,7 +288,7 @@
       if (resourceGroupEntries.length > 1) resources.append(jumpLabel);
       const checklistNote = document.createElement("p");
       checklistNote.className = "checklist-note";
-      checklistNote.textContent = "MY CHECKLIST · Stars save your progress on this device. They do not submit work.";
+      checklistNote.textContent = "MY CHECKLIST · Stars are saved in this browser. They do not submit work to the teacher.";
       resources.append(checklistNote);
       resourceGroupEntries.forEach(([lesson, lessonResources], lessonIndex) => {
         const group = document.createElement("section");
@@ -324,6 +329,11 @@
           if (resourceKind) card.classList.add(`resource-${resourceKind}`);
           if (unlocked) {
             card.href = resourceUrl;
+            if (new URL(resourceUrl, location.href).origin === location.origin) {
+              card.addEventListener("click", () => {
+                try { sessionStorage.setItem("gov-lesson-return", JSON.stringify({ unit: unit.id, lesson })); } catch (_) {}
+              });
+            }
             if (new URL(resourceUrl, location.href).origin !== location.origin) {
               card.target = "_blank";
               card.rel = "noopener";
@@ -1765,6 +1775,7 @@
     document.getElementById("exit-question").textContent = exitQuestion || "NO EXIT TICKET TODAY.";
     const exitForm = document.getElementById("exit-form");
     exitForm.hidden = !exitQuestion;
+    exitForm.closest(".exit-card").hidden = !exitQuestion;
     const exitStatus = document.getElementById("exit-status");
     exitStatus.textContent = exitQuestion
       ? (exitEndpoint ? "CHOOSE YOUR CLASS PERIOD AND NAME." : "THE EXIT TICKET IS TEMPORARILY UNAVAILABLE. SEE MR. ROGERS.")
@@ -1940,13 +1951,16 @@
     document.getElementById("current-action").firstChild.textContent = `OPEN ${current.number.toUpperCase()} `;
     const currentLessonAction = document.getElementById("current-lesson-action");
     const latestLesson = [...(current.resources || [])]
-      .filter(resource => /^\d+\.\d+/.test(resource.lesson || "") && ["activity", "activity-notes"].includes(resource.kind))
+      .filter(resource => /^\d+\.\d+/.test(resource.lesson || ""))
       .sort((a, b) => b.lesson.localeCompare(a.lesson, undefined, { numeric: true }))
       .find(resource => assignmentIsUnlocked(resource.id, siteContent.assignmentUrls?.[resource.id] ?? resource.url));
     currentLessonAction.hidden = !latestLesson;
     if (latestLesson) {
       currentLessonAction.href = siteContent.assignmentUrls?.[latestLesson.id] ?? latestLesson.url;
       currentLessonAction.textContent = `OPEN ${latestLesson.lesson}`;
+      currentLessonAction.onclick = () => {
+        try { sessionStorage.setItem("gov-lesson-return", JSON.stringify({ unit: current.id, lesson: latestLesson.lesson })); } catch (_) {}
+      };
     }
     renderSiteContent();
     renderAgendaDate();
@@ -2378,16 +2392,16 @@
     button.textContent = "SUBMITTING…";
     status.textContent = "SENDING YOUR RESPONSE…";
     try {
-      await fetch(siteContent.exitEndpoint, {
+      const result = await fetch(siteContent.exitEndpoint, {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload)
       });
-      status.textContent = `SUBMITTED FOR ${payload.name.toUpperCase()}. THANK YOU.`;
+      if (!result.ok || (await result.json()).result !== "success") throw new Error("Save not confirmed");
+      status.textContent = "SUBMITTED TO MR. ROGERS. THANK YOU.";
       document.getElementById("exit-response").value = "";
     } catch (error) {
-      status.textContent = "YOUR RESPONSE COULD NOT BE SENT. COPY YOUR ANSWER AND TRY AGAIN.";
+      status.textContent = "SAVING COULD NOT BE CONFIRMED. YOUR ANSWER IS STILL HERE. COPY IT BEFORE TRYING AGAIN, OR CHECK WITH MR. ROGERS.";
     } finally {
       button.textContent = "SUBMIT EXIT TICKET";
       validateExitTicket();
