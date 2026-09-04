@@ -34,7 +34,8 @@
   <script src="bill-journey-data.js?v=20260726-bill" defer></script>
   <script src="federalism-map-data.js?v=20260726-map" defer></script>
   <script src="founding-power-data.js" defer></script>
-  <script src="app.js?v=20260903-unit-one-order" defer></script>
+  <link rel="stylesheet" href="classroom-layout.css?v=20260903-apg-layout">
+  <script src="app.js?v=20260903-apg-layout" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the course</a>
@@ -78,6 +79,7 @@
           <h2 id="now-title">Loading current unit…</h2>
         </div>
         <div class="next-step">
+          <a class="primary-action current-lesson-action" id="current-lesson-action" hidden></a>
           <a class="primary-action" id="current-action" href="#units">OPEN UNIT 0 <span aria-hidden="true">→</span></a>
         </div>
       </section>
@@ -98,24 +100,6 @@
       </article>
 
       <section class="home-dashboard" aria-label="Course tools">
-        <article class="dashboard-card history-card">
-          <div class="card-heading">
-            <div><p class="eyebrow">TODAY</p><h2>THIS DAY IN POLITICS</h2></div>
-            <span class="date-badge" id="history-date">TODAY</span>
-          </div>
-          <div class="history-body">
-            <div class="history-year" id="history-year">—</div>
-            <div>
-              <p id="history-text">LOADING TODAY’S POLITICAL HISTORY…</p>
-              <a class="history-source" id="history-source" href="#" target="_blank" rel="noopener" hidden>SOURCE ↗</a>
-            </div>
-          </div>
-          <div class="history-controls">
-            <button type="button" id="history-prev">← PREVIOUS</button>
-            <button type="button" id="history-next">NEXT →</button>
-          </div>
-        </article>
-
         <article class="dashboard-card upcoming-card">
           <div class="card-heading"><div><p class="eyebrow">PLAN AHEAD</p><h2>UPCOMING ASSIGNMENTS</h2></div></div>
           <div id="upcoming-list" class="upcoming-list"></div>
@@ -141,6 +125,24 @@
               <p>Connect campaigns, participation, and public policy to the choices California voters will make.</p>
               <a class="primary-action" id="home-election-link" href="#election-2026">OPEN ELECTION TRACKER <span aria-hidden="true">→</span></a>
             </div>
+          </div>
+        </article>
+
+        <article class="dashboard-card history-card">
+          <div class="card-heading">
+            <div><p class="eyebrow">TODAY</p><h2>THIS DAY IN POLITICS</h2></div>
+            <span class="date-badge" id="history-date">TODAY</span>
+          </div>
+          <div class="history-body">
+            <div class="history-year" id="history-year">—</div>
+            <div>
+              <p id="history-text">LOADING TODAY’S POLITICAL HISTORY…</p>
+              <a class="history-source" id="history-source" href="#" target="_blank" rel="noopener" hidden>SOURCE ↗</a>
+            </div>
+          </div>
+          <div class="history-controls">
+            <button type="button" id="history-prev">← PREVIOUS</button>
+            <button type="button" id="history-next">NEXT →</button>
           </div>
         </article>
 

@@ -1,0 +1,66 @@
+/* Shared classroom look, adapted from APG without AP-only tools. */
+:root {
+  --ink: #17202b;
+  --black: #182838;
+  --charcoal: #263b52;
+  --slate: #884646;
+  --paper: #f1eee7;
+  --white: #fffdf8;
+  --stone: #dce5eb;
+  --stone-dark: #738592;
+  --muted: #535b63;
+  --line: #c5c4bf;
+  --locked: #e3e5e4;
+}
+.site-header { border-bottom: 4px solid #2b4f78; }
+.hero { min-height: 410px; padding: clamp(2rem, 4vw, 3.25rem); grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr); border-radius: 8px; }
+.hero h1 { font-size: clamp(2.6rem, 5.3vw, 4.9rem); }
+.hero-visual { width: min(335px, 100%); }
+.now-panel { margin-bottom: 2rem; margin-top: -38px; }
+.next-step { display: grid; gap: .65rem; }
+.current-lesson-action { background: #2b4f78; }
+.current-lesson-action:hover { background: #163f70; }
+.home-dashboard { grid-template-areas: "upcoming upcoming upcoming upcoming upcoming upcoming upcoming upcoming upcoming upcoming upcoming upcoming" "election election election election election election election history history history history history" "links links links links links links links links links links links links"; }
+.upcoming-card { display: grid; grid-template-columns: auto 1fr auto; gap: 1.25rem; align-items: center; }
+.upcoming-card .card-heading { padding: 0; border: 0; }
+.upcoming-card .card-heading h2 { font-size: 1rem; }
+.upcoming-card .upcoming-unit-link { margin: 0; }
+.upcoming-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.upcoming-row { padding: .3rem 0; border: 0; flex-wrap: wrap; font-size: .85rem; }
+.history-body { grid-template-columns: 1fr; gap: .8rem; }
+.history-year { font-size: 3rem; letter-spacing: -.04em; }
+.card-heading { flex-wrap: wrap; }
+.election-tracker-layout { grid-template-columns: minmax(170px, .7fr) minmax(0, 1.3fr); }
+.election-tracker-card .election-countdown strong { font-size: clamp(4rem, 6vw, 5.5rem); }
+.election-tracker-copy h3 { font-size: 1.35rem; }
+.election-tracker-copy { padding: 1.3rem; }
+.course-links-card { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; }
+.course-links-card .card-heading { border: 0; padding: 0; }
+.course-link-list { padding: 0; }
+.exit-card:has(#exit-form[hidden]) { padding: .8rem 1.2rem; }
+.exit-card:has(#exit-form[hidden]) .card-heading,
+.exit-card:has(#exit-form[hidden]) #exit-status { display: none; }
+.exit-card:has(#exit-form[hidden]) .exit-question { margin: 0; padding: 0; background: none; font-size: .85rem; }
+.lesson-jump { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; margin: 1.25rem 0 .75rem; font-size: .85rem; }
+.lesson-jump select { min-height: 48px; max-width: 100%; padding: .6rem; border: 2px solid #2b4f78; background: #fff; color: var(--ink); font: inherit; }
+.checklist-note { margin: .75rem 0 1.5rem; color: var(--muted); font-size: .85rem; }
+.unit-resource-group { scroll-margin-top: 1.5rem; }
+.unit-resource-item { grid-template-columns: 48px minmax(0, 1fr); gap: .65rem; }
+.unit-completion-check { width: 48px; min-height: 48px; border-width: 3px; font-size: 2.3rem; }
+@media (max-width: 900px) {
+  .upcoming-card { grid-template-columns: 1fr; }
+  .upcoming-card .upcoming-unit-link { width: max-content; }
+  .home-dashboard { grid-template-columns: 1fr; grid-template-areas: "upcoming" "election" "history" "links"; }
+}
+@media (max-width: 620px) {
+  .hero { min-height: auto; padding: 2rem 1.4rem 3rem; grid-template-columns: 1fr; }
+  .hero-visual { width: min(230px, 85%); }
+  .hero h1 { font-size: clamp(2rem, 8.7vw, 3.3rem); overflow-wrap: anywhere; }
+  .now-panel { margin-top: -24px; grid-template-columns: 1fr; }
+  .upcoming-list, .election-tracker-layout, .course-links-card { grid-template-columns: 1fr; }
+  .unit-resource-item { grid-template-columns: 44px minmax(0, 1fr); gap: .5rem; }
+  .unit-completion-check { width: 44px; min-height: 44px; font-size: 2.1rem; }
+  .unit-resource { padding: .85rem; }
+  .compact-course-link { grid-template-columns: auto minmax(0, 1fr); }
+  .compact-course-link > a { grid-column: 1 / -1; justify-content: center; }
+}

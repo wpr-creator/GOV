@@ -263,9 +263,37 @@
           return rank(lessonB) - rank(lessonA);
         });
       }
-      resourceGroupEntries.forEach(([lesson, lessonResources]) => {
+      const lessonJump = document.createElement("select");
+      lessonJump.id = `lesson-jump-${unit.id}`;
+      const jumpLabel = document.createElement("label");
+      jumpLabel.className = "lesson-jump";
+      jumpLabel.htmlFor = lessonJump.id;
+      jumpLabel.append("GO TO LESSON ", lessonJump);
+      const jumpPrompt = document.createElement("option");
+      jumpPrompt.value = "";
+      jumpPrompt.textContent = "CHOOSE A LESSON";
+      lessonJump.append(jumpPrompt);
+      lessonJump.addEventListener("change", () => {
+        const destination = document.getElementById(lessonJump.value);
+        if (destination) {
+          destination.focus({ preventScroll: true });
+          destination.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      });
+      if (resourceGroupEntries.length > 1) resources.append(jumpLabel);
+      const checklistNote = document.createElement("p");
+      checklistNote.className = "checklist-note";
+      checklistNote.textContent = "MY CHECKLIST · Stars save your progress on this device. They do not submit work.";
+      resources.append(checklistNote);
+      resourceGroupEntries.forEach(([lesson, lessonResources], lessonIndex) => {
         const group = document.createElement("section");
         group.className = "unit-resource-group";
+        group.id = `${unit.id}-lesson-${lessonIndex}`;
+        group.tabIndex = -1;
+        const jumpOption = document.createElement("option");
+        jumpOption.value = group.id;
+        jumpOption.textContent = lesson;
+        lessonJump.append(jumpOption);
         if (lesson === "ASSESSMENTS") group.classList.add("assessment-group");
         const lessonTitle = document.createElement("h2");
         lessonTitle.textContent = lesson;
@@ -296,7 +324,7 @@
           if (resourceKind) card.classList.add(`resource-${resourceKind}`);
           if (unlocked) {
             card.href = resourceUrl;
-            if (!resourceUrl.startsWith("#")) {
+            if (new URL(resourceUrl, location.href).origin !== location.origin) {
               card.target = "_blank";
               card.rel = "noopener";
             }
@@ -1910,6 +1938,16 @@
     document.getElementById("now-title").textContent = current.title.toUpperCase();
     document.getElementById("current-action").href = `#${current.id}`;
     document.getElementById("current-action").firstChild.textContent = `OPEN ${current.number.toUpperCase()} `;
+    const currentLessonAction = document.getElementById("current-lesson-action");
+    const latestLesson = [...(current.resources || [])]
+      .filter(resource => /^\d+\.\d+/.test(resource.lesson || "") && ["activity", "activity-notes"].includes(resource.kind))
+      .sort((a, b) => b.lesson.localeCompare(a.lesson, undefined, { numeric: true }))
+      .find(resource => assignmentIsUnlocked(resource.id, siteContent.assignmentUrls?.[resource.id] ?? resource.url));
+    currentLessonAction.hidden = !latestLesson;
+    if (latestLesson) {
+      currentLessonAction.href = siteContent.assignmentUrls?.[latestLesson.id] ?? latestLesson.url;
+      currentLessonAction.textContent = `OPEN ${latestLesson.lesson}`;
+    }
     renderSiteContent();
     renderAgendaDate();
     renderUnits();
