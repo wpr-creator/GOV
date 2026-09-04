@@ -1794,6 +1794,7 @@
     const list = document.getElementById("upcoming-list");
     list.replaceChildren();
     const items = Array.isArray(siteContent.upcoming) ? siteContent.upcoming : [];
+    list.closest(".upcoming-card").hidden = !items.length;
     if (!items.length) {
       const empty = document.createElement("p");
       empty.className = "empty-state";

@@ -272,7 +272,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260904-usability") || !html.includes("course-data.js?v=20260901-roots-review-card") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260904-close-exit") || !html.includes("course-data.js?v=20260901-roots-review-card") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -620,13 +620,7 @@ data.words?.forEach((word, index) => {
   }
 });
 if (!data.units.some(unit => unit.id === config.currentUnit)) errors.push(`Unknown currentUnit: ${config.currentUnit}`);
-const expectedUpcoming = [
-  "WE THE PEOPLE PROJECT|OPENS WEDNESDAY · 8:30 AM",
-  "ROOTS OF AMERICAN DEMOCRACY WORKSHEET|COMING SOON"
-];
-if (config.upcoming?.map(item => `${item.title}|${item.date}`).join("\n") !== expectedUpcoming.join("\n")) {
-  errors.push("The homepage upcoming activities must show the two current Unit 1 activities.");
-}
+if (!Array.isArray(config.upcoming)) errors.push("Upcoming activities must be a list, which may be empty.");
 data.units.forEach(unit => {
   if (typeof config.unitUnlocks?.[unit.id] !== "boolean") errors.push(`Unit ${unit.id} needs a true or false unlock setting.`);
 });
@@ -699,7 +693,7 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260904-usability") || !html.includes("styles.css?v=20260831-dark-civic-cards")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260904-close-exit") || !html.includes("styles.css?v=20260831-dark-civic-cards")) errors.push("Exit-ticket cache versions are not current.");
 if (!html.includes("classroom-layout.css?v=20260903-apg-layout") || !fs.existsSync(path.join(root, "classroom-layout.css"))) errors.push("The CP classroom layout stylesheet is missing.");
 for (const marker of ["current-lesson-action", "lesson-jump", "MY CHECKLIST", "new URL(resourceUrl, location.href).origin !== location.origin"]) {
   if (!appCode.includes(marker)) errors.push(`CP classroom navigation is missing: ${marker}`);

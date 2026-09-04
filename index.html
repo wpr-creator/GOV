@@ -35,7 +35,7 @@
   <script src="federalism-map-data.js?v=20260726-map" defer></script>
   <script src="founding-power-data.js" defer></script>
   <link rel="stylesheet" href="classroom-layout.css?v=20260903-apg-layout">
-  <script src="app.js?v=20260904-usability" defer></script>
+  <script src="app.js?v=20260904-close-exit" defer></script>
 <link rel="stylesheet" href="shared-navigation.css?v=20260904-usability"><script src="shared-navigation.js?v=20260904-usability" defer></script></head>
 <body>
   <a class="skip-link" href="#main">Skip to the course</a>
@@ -84,7 +84,7 @@
         </div>
       </section>
 
-      <article class="dashboard-card exit-card">
+      <article class="dashboard-card exit-card" hidden>
         <div class="card-heading"><div><p class="eyebrow">END OF CLASS</p><h2>EXIT TICKET</h2></div></div>
         <p class="exit-question" id="exit-question">NO EXIT TICKET TODAY.</p>
         <form id="exit-form" hidden>
@@ -100,7 +100,7 @@
       </article>
 
       <section class="home-dashboard" aria-label="Course tools">
-        <article class="dashboard-card upcoming-card">
+        <article class="dashboard-card upcoming-card" hidden>
           <div class="card-heading"><div><p class="eyebrow">PLAN AHEAD</p><h2>UPCOMING ASSIGNMENTS</h2></div></div>
           <div id="upcoming-list" class="upcoming-list"></div>
           <a class="primary-action upcoming-unit-link" href="#gov-1">OPEN UNIT 1 <span aria-hidden="true">→</span></a>
