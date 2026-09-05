@@ -1,4 +1,20 @@
 (() => {
+  document.querySelectorAll(".moment").forEach(moment => {
+    const visual = moment.querySelector(":scope > .visual");
+    const story = moment.querySelector(":scope > .story");
+    if (!visual || !story) return;
+    const card = document.createElement("div");
+    card.className = "moment-card";
+    visual.before(card);
+    card.append(visual, story);
+  });
+  const observedMoments = [...document.querySelectorAll(".moment")];
+  if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add("is-seen");
+    }), { rootMargin: "0px 0px -12%" });
+    observedMoments.forEach(moment => observer.observe(moment));
+  } else observedMoments.forEach(moment => moment.classList.add("is-seen"));
   const glossaryWords = Array.isArray(window.COURSE_DATA?.words)
     ? [...window.COURSE_DATA.words].sort((a, b) => b[0].length - a[0].length)
     : [];

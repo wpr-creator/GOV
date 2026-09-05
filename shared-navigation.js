@@ -2,7 +2,7 @@
   const root = new URL("./", document.currentScript.src);
   const page = location.pathname.slice(root.pathname.length);
   const isHome = !page || page === "index.html";
-  const unit = /^(documents\/|roots-|history-|founding-ideals)/.test(page) ? "gov-1" : "gov-0";
+  const unit = /^(documents\/|roots-|history-|founding-ideals|changing-the-constitution)/.test(page) ? "gov-1" : "gov-0";
   let context;
   try { context = JSON.parse(sessionStorage.getItem("gov-lesson-return") || "null"); } catch (_) {}
   const back = new URL("index.html", root);

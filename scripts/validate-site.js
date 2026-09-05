@@ -272,7 +272,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260904-close-exit") || !html.includes("course-data.js?v=20260901-roots-review-card") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260904-close-exit") || !html.includes("course-data.js?v=20260905-article-v") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -312,7 +312,7 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "if-you-ran-the-place|founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|roots-connections-practice|unit-1-03-guided-notes|history-lesson";
+const expectedUnitOneResources = "if-you-ran-the-place|founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|roots-connections-practice|unit-1-03-guided-notes|history-lesson|changing-the-constitution";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include the intended 1.01–1.03 resources in order.");
 }
@@ -435,6 +435,18 @@ for (const marker of ["BIG IDEA", "THE STORY", "ACADEMIC VOCABULARY", "BE READY 
   if (!historySectionHtml.includes(marker)) errors.push(`The section reader template is missing: ${marker}`);
 }
 if (!historySectionHtml.includes("history-section.css?v=20260903-section-numbers")) errors.push("The detailed History Lesson section-number styles are not current.");
+const changingHtml = fs.readFileSync(path.join(root, "changing-the-constitution.html"), "utf8");
+const changingCode = fs.readFileSync(path.join(root, "changing-the-constitution.js"), "utf8");
+const changingRules = require(path.join(root, "changing-the-constitution-rules.js"));
+for (const marker of ["CHANGE THE UNCHANGEABLE", "GATE ONE · PROPOSAL", "GATE TWO · RATIFICATION", "ARTICLE V RATIFICATION", "THE KEY IDEA"]) {
+  if (!changingHtml.includes(marker)) errors.push(`Changing the Constitution is missing: ${marker}`);
+}
+for (const forbidden of ["AP Government", "AP CONNECTION", "course-shell", "docs/articles-of-confederation.html"]) {
+  if (changingHtml.includes(forbidden)) errors.push(`Changing the Constitution contains AP-only material: ${forbidden}`);
+}
+if (!changingRules.congressProposal(290, 67) || changingRules.congressProposal(289, 67) || !changingRules.statesProposal(34) || changingRules.statesProposal(33) || !changingRules.ratification(38) || changingRules.ratification(37)) errors.push("Article V threshold rules are incorrect.");
+if (!changingCode.includes("prefers-reduced-motion") || !changingHtml.includes("shared-navigation.js")) errors.push("Changing the Constitution needs accessible motion and GOV navigation.");
+if (!historyReader.includes("history-lesson-apg.css?v=20260905-textbook-design") || !historyCode.includes('card.className = "moment-card"')) errors.push("The History Lesson is missing its textbook timeline design.");
 for (const marker of ["HISTORY_SECTION_DATA", "URLSearchParams", "glossary-link", "previous-section", "next-section"]) {
   if (!historySectionCode.includes(marker)) errors.push(`The section reader behavior is missing: ${marker}`);
 }

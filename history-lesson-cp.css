@@ -1,0 +1,20 @@
+.date {
+  width: 118px;
+}
+
+.date span {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.2rem;
+  font-style: normal;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 700px) {
+  .date {
+    width: auto;
+  }
+
+  .date span {
+    font-size: 1.05rem;
+  }
+}

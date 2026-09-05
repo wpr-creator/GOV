@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="An interactive Principles of American Democracy activity about Article V and the constitutional amendment process.">
+  <title>Change the Unchangeable — Principles of American Democracy</title>
+  <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="changing-the-constitution.css?v=20260905-unchangeable">
+  <script src="changing-the-constitution-rules.js?v=20260905" defer></script>
+  <script src="changing-the-constitution.js?v=20260905-clean-comparison" defer></script>
+  <link rel="stylesheet" href="shared-navigation.css?v=20260904-usability">
+  <script src="shared-navigation.js?v=20260904-usability" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#comic">Skip to the activity</a>
+
+  <main id="comic">
+    <header class="hero">
+      <p class="kicker">1.03 · ARTICLE V</p>
+      <h1>CHANGE THE UNCHANGEABLE<span>TRACE AN AMENDMENT FROM IDEA TO CONSTITUTION</span></h1>
+      <p class="hero-lede"><strong>ARTICLE V</strong> created the official steps for changing the Constitution. Change is possible, but it takes broad agreement. This stops one temporary political majority from quickly rewriting the nation’s most important rules.</p>
+      <a href="#proposal">ENTER THE PROCESS ↓</a>
+    </header>
+
+    <section class="comic-panel opening" aria-labelledby="big-idea-title">
+      <div class="panel-number">01</div>
+      <div>
+        <p class="kicker">THE BIG IDEA</p>
+        <h2 id="big-idea-title">CHANGE IS POSSIBLE.<br>CHANGE IS NOT EASY.</h2>
+        <p>Article V separates an amendment into two jobs. First, the idea must be <strong>PROPOSED</strong>. Then the states must <strong>RATIFY</strong>, or formally approve, it.</p>
+        <div class="equation" aria-label="Two thirds propose, then three fourths ratify"><b>⅔</b><span>PROPOSE</span><i>→</i><b>¾</b><span>RATIFY</span></div>
+      </div>
+    </section>
+
+    <section class="comic-panel stage" id="proposal" aria-labelledby="proposal-title">
+      <div class="panel-number">02</div>
+      <div class="stage-copy">
+        <p class="kicker">GATE ONE · PROPOSAL</p>
+        <h2 id="proposal-title">HOW WILL YOUR AMENDMENT BEGIN?</h2>
+        <p>Choose one way to propose an amendment. Congress must reach two-thirds in both chambers, or two-thirds of the states must call a convention.</p>
+        <div class="route-choices" role="group" aria-label="Choose a proposal route">
+          <button type="button" data-proposal="congress" aria-pressed="false"><span>ROUTE A</span><strong>CONGRESS</strong><small>⅔ of the House <em>and</em> ⅔ of the Senate</small></button>
+          <button type="button" data-proposal="states" aria-pressed="false"><span>ROUTE B</span><strong>THE STATES</strong><small>⅔ of state legislatures call a convention</small></button>
+        </div>
+        <div class="test-box" id="proposal-test" hidden>
+          <p class="speech" id="proposal-explainer"></p>
+          <div class="number-choices" id="proposal-numbers" role="group" aria-label="Test proposal support"></div>
+          <p class="verdict" id="proposal-verdict" role="status" aria-live="polite">Choose a vote total to test the gate.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="down-arrow" aria-hidden="true">↓</div>
+
+    <section class="comic-panel stage is-locked" id="ratification" aria-labelledby="ratification-title">
+      <div class="panel-number">03</div>
+      <div class="stage-copy">
+        <p class="kicker">GATE TWO · RATIFICATION</p>
+        <h2 id="ratification-title">NOW WIN THE STATES.</h2>
+        <p class="lock-copy" id="ratification-lock">Clear the proposal gate to unlock ratification.</p>
+        <div id="ratification-content" hidden>
+          <p>The amendment is only a proposal until <strong>THREE-FOURTHS OF THE STATES</strong> ratify it. Congress chooses which of these two methods the states will use.</p>
+          <div class="route-choices" role="group" aria-label="Choose a ratification route">
+            <button type="button" data-ratification="legislatures" aria-pressed="false"><span>ROUTE A</span><strong>STATE LEGISLATURES</strong><small>Elected state lawmakers vote</small></button>
+            <button type="button" data-ratification="conventions" aria-pressed="false"><span>ROUTE B</span><strong>STATE CONVENTIONS</strong><small>Special state conventions vote</small></button>
+          </div>
+          <div class="test-box" id="ratification-test" hidden>
+            <p class="speech">There are 50 states. Which total reaches the <strong>three-fourths</strong> requirement?</p>
+            <div class="number-choices" role="group" aria-label="Test ratification support">
+              <button type="button" data-ratify-count="37"><strong>37</strong><span>STATES</span></button>
+              <button type="button" data-ratify-count="38"><strong>38</strong><span>STATES</span></button>
+              <button type="button" data-ratify-count="44"><strong>44</strong><span>STATES</span></button>
+            </div>
+            <p class="verdict" id="ratification-verdict" role="status" aria-live="polite">Choose a state total to test the gate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="success-panel" id="success" hidden aria-labelledby="success-title">
+      <p class="stamp">AMENDMENT CLEARS ARTICLE V</p>
+      <h2 id="success-title"><span>⅔</span> PROPOSED.<br><span>¾</span> RATIFIED.</h2>
+      <p>An amendment must complete <strong>one proposal route</strong> and <strong>one ratification route</strong>. A simple majority is never enough.</p>
+    </section>
+
+    <section class="comic-panel comparison" id="articles-comparison" aria-labelledby="comparison-title">
+      <div class="panel-number">04</div>
+      <div>
+        <p class="kicker">THE OLD RULE</p>
+        <h2 id="comparison-title">THE ARTICLES MADE CHANGE NEARLY IMPOSSIBLE.</h2>
+        <p>Under the <a href="history-section.html?topic=articles"><strong>ARTICLES OF CONFEDERATION</strong></a>, an amendment needed every state to agree. One holdout could stop the entire change.</p>
+        <div class="versus">
+          <article><p>ARTICLES OF CONFEDERATION</p><strong>13 / 13</strong><span>UNANIMOUS APPROVAL</span></article>
+          <b>VS.</b>
+          <article><p>ARTICLE V RATIFICATION</p><strong>¾</strong><span>BROAD AGREEMENT, NOT UNANIMITY</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="takeaway" aria-labelledby="takeaway-title">
+      <p class="kicker">THE KEY IDEA</p>
+      <h2 id="takeaway-title">ABLE TO CHANGE—BUT PROTECTED.</h2>
+      <p>Article V balances two goals. The Constitution must be able to change when the country needs change. One temporary political majority should not be able to rewrite its basic rules quickly.</p>
+      <strong class="final-line">TWO-THIRDS PROPOSED;<br>THREE-FOURTHS RATIFIED.</strong>
+      <button type="button" id="reset">START THE ROUTES AGAIN</button>
+    </section>
+  </main>
+</body>
+</html>

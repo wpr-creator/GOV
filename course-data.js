@@ -193,6 +193,13 @@ window.COURSE_DATA = {
           title: "THE HISTORY LESSON",
           url: "history-lesson.html",
           kind: "activity"
+        },
+        {
+          id: "changing-the-constitution",
+          lesson: "1.03 — THE HISTORY LESSON",
+          title: "CHANGE THE UNCHANGEABLE",
+          url: "changing-the-constitution.html",
+          kind: "practice"
         }
       ]
     },
