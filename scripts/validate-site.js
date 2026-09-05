@@ -272,7 +272,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260904-close-exit") || !html.includes("course-data.js?v=20260905-article-v") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260831-dark-civic-cards") || !html.includes("app.js?v=20260904-close-exit") || !html.includes("course-data.js?v=20260905-hide-ran-place") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -312,7 +312,7 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "if-you-ran-the-place|founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|roots-connections-practice|unit-1-03-guided-notes|history-lesson|changing-the-constitution";
+const expectedUnitOneResources = "founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|roots-connections-practice|unit-1-03-guided-notes|history-lesson|changing-the-constitution";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include the intended 1.01–1.03 resources in order.");
 }
@@ -356,8 +356,8 @@ if (unitOne?.resources?.some(resource => resource.id === "unit-1-02-guided-notes
   errors.push("The separate 1.02 Guided Notes card must remain removed.");
 }
 const ranThePlace = unitOne?.resources?.find(resource => resource.id === "if-you-ran-the-place");
-if (ranThePlace?.lesson !== "UNIT 1 PROJECT" || ranThePlace?.title !== "IF YOU RAN THE PLACE" || ranThePlace?.kind !== "project" || ranThePlace?.url !== "" || config.assignmentUrls?.["if-you-ran-the-place"] !== "" || config.assignmentUnlocks?.["if-you-ran-the-place"] !== false) {
-  errors.push("If You Ran the Place must be a locked coming-soon project above lesson 1.01.");
+if (ranThePlace || config.assignmentUrls?.["if-you-ran-the-place"] !== "" || config.assignmentUnlocks?.["if-you-ran-the-place"] !== false) {
+  errors.push("If You Ran the Place must stay saved for later but hidden from the Unit 1 page.");
 }
 const historyLesson = unitOne?.resources?.find(resource => resource.id === "history-lesson");
 if (historyLesson?.url !== "history-lesson.html" || config.assignmentUrls?.["history-lesson"] !== "history-lesson.html" || config.assignmentUnlocks?.["history-lesson"] !== true) {

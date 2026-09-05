@@ -110,13 +110,6 @@ window.COURSE_DATA = {
       ],
       resources: [
         {
-          id: "if-you-ran-the-place",
-          lesson: "UNIT 1 PROJECT",
-          title: "IF YOU RAN THE PLACE",
-          url: "",
-          kind: "project"
-        },
-        {
           id: "founding-ideals-review",
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "SIX IDEALS REVIEW",
