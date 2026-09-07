@@ -41,7 +41,7 @@
         const word = glossaryByTerm.get(match[0].toLowerCase());
         fragment.append(node.nodeValue.slice(cursor, match.index));
         const link = document.createElement("a");
-        link.className = "glossary-link";
+        link.className = "glossary-term";
         link.href = `./?glossary=${encodeURIComponent(word[0])}#words`;
         link.dataset.definition = word[2];
         link.setAttribute("aria-label", `${match[0]}: ${word[2]} Open this glossary entry.`);

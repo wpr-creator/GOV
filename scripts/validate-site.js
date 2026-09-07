@@ -400,9 +400,8 @@ for (const marker of ["THE ARTICLES OF CONFEDERATION", "NO TAX POWER", "SHAYS’
 }
 if ((historyReader.match(/<article class="moment/g) || []).length !== 7) errors.push("The History Lesson must contain seven timeline moments.");
 for (let sectionNumber = 1; sectionNumber <= 7; sectionNumber += 1) {
-  if (!historyReader.includes(`SECTION ${String(sectionNumber).padStart(2, "0")}`)) errors.push(`The History Lesson is missing the visible label for section ${sectionNumber}.`);
+  if (!historyReader.includes(`<span>${String(sectionNumber).padStart(2, "0")}</span>`)) errors.push(`The History Lesson is missing the visible label for section ${sectionNumber}.`);
 }
-if (!historyReader.includes("history-lesson.css?v=20260903-section-numbers")) errors.push("The History Lesson section-number styles are not current.");
 const historyImages = [...historyReader.matchAll(/<img src="(assets\/history-lesson\/[^"]+\.jpg)" alt="([^"]+)"/g)];
 if (historyImages.length !== 7) errors.push("The History Lesson must contain seven local woodcut timeline illustrations with alt text.");
 historyImages.forEach(([, imagePath, imageAlt]) => {
@@ -412,8 +411,8 @@ historyImages.forEach(([, imagePath, imageAlt]) => {
 for (const forbidden of ["TOPIC 1.3", "TOPIC 1.4", "TOPIC 1.5", "AP CONNECTION", "READ FEDERALIST", "READ BRUTUS"]) {
   if (historyReader.includes(forbidden)) errors.push(`The CP History Lesson must not include AP-only label: ${forbidden}`);
 }
-for (const marker of ["COURSE_DATA?.words", "glossary-link", "?glossary=", "#words", "data-definition"]) {
-  const source = marker === "glossary-link" || marker === "data-definition" ? `${historyCode}\n${fs.readFileSync(path.join(root, "history-lesson.css"), "utf8")}` : historyCode;
+for (const marker of ["COURSE_DATA?.words", "glossary-term", "?glossary=", "#words", "data-definition"]) {
+  const source = marker === "glossary-term" || marker === "data-definition" ? `${historyCode}\n${fs.readFileSync(path.join(root, "history-lesson-apg.css"), "utf8")}` : historyCode;
   if (!source.includes(marker)) errors.push(`The History Lesson glossary links are missing: ${marker}`);
 }
 const historyTopics = ["articles", "crisis", "convention", "compromises", "debate", "rights"];
@@ -446,7 +445,7 @@ for (const forbidden of ["AP Government", "AP CONNECTION", "course-shell", "docs
 }
 if (!changingRules.congressProposal(290, 67) || changingRules.congressProposal(289, 67) || !changingRules.statesProposal(34) || changingRules.statesProposal(33) || !changingRules.ratification(38) || changingRules.ratification(37)) errors.push("Article V threshold rules are incorrect.");
 if (!changingCode.includes("prefers-reduced-motion") || !changingHtml.includes("shared-navigation.js")) errors.push("Changing the Constitution needs accessible motion and GOV navigation.");
-if (!historyReader.includes("history-lesson-apg.css?v=20260905-textbook-design") || !historyCode.includes('card.className = "moment-card"')) errors.push("The History Lesson is missing its textbook timeline design.");
+if (!historyReader.includes("history-lesson-apg.css?v=20260907-exact-apg-design") || !historyReader.includes("history-lesson-gov-compat.css?v=20260907") || historyReader.includes("history-lesson.css") || historyReader.includes("history-lesson-cp.css") || !historyCode.includes('card.className = "moment-card"')) errors.push("The History Lesson is missing its exact AP-style textbook timeline design.");
 for (const marker of ["HISTORY_SECTION_DATA", "URLSearchParams", "glossary-link", "previous-section", "next-section"]) {
   if (!historySectionCode.includes(marker)) errors.push(`The section reader behavior is missing: ${marker}`);
 }
