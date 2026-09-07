@@ -445,7 +445,7 @@ for (const forbidden of ["AP Government", "AP CONNECTION", "course-shell", "docs
 }
 if (!changingRules.congressProposal(290, 67) || changingRules.congressProposal(289, 67) || !changingRules.statesProposal(34) || changingRules.statesProposal(33) || !changingRules.ratification(38) || changingRules.ratification(37)) errors.push("Article V threshold rules are incorrect.");
 if (!changingCode.includes("prefers-reduced-motion") || !changingHtml.includes("shared-navigation.js")) errors.push("Changing the Constitution needs accessible motion and GOV navigation.");
-if (!historyReader.includes("history-lesson-apg.css?v=20260907-exact-apg-design") || !historyReader.includes("history-lesson-gov-compat.css?v=20260907") || historyReader.includes("history-lesson.css") || historyReader.includes("history-lesson-cp.css") || !historyCode.includes('card.className = "moment-card"')) errors.push("The History Lesson is missing its exact AP-style textbook timeline design.");
+if (!historyReader.includes("history-lesson-apg.css?v=20260907-exact-apg-design") || !historyReader.includes("history-lesson-gov-compat.css?v=20260907") || !historyReader.includes("history-lesson.js?v=20260907-timeline-trace") || historyReader.includes("history-lesson.css") || historyReader.includes("history-lesson-cp.css") || !historyCode.includes('card.className = "moment-card"') || !historyCode.includes('timeline.style.setProperty("--trace"')) errors.push("The History Lesson is missing its exact AP-style textbook timeline design and scroll trace.");
 for (const marker of ["HISTORY_SECTION_DATA", "URLSearchParams", "glossary-link", "previous-section", "next-section"]) {
   if (!historySectionCode.includes(marker)) errors.push(`The section reader behavior is missing: ${marker}`);
 }
