@@ -192,7 +192,8 @@ window.COURSE_DATA = {
           lesson: "1.03 — THE HISTORY LESSON",
           title: "CHANGE THE UNCHANGEABLE",
           url: "changing-the-constitution.html",
-          kind: "practice"
+          kind: "notes",
+          kindLabel: "EXTENDED NOTES"
         }
       ]
     },
