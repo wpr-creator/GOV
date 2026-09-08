@@ -394,32 +394,22 @@ for (const resource of unitOne?.resources || []) {
   if (resource.note) errors.push(`Unit 1 resource ${resource.id} must use only its plain type label.`);
 }
 const historyReader = fs.readFileSync(path.join(root, "history-lesson.html"), "utf8");
-const historyCode = fs.readFileSync(path.join(root, "history-lesson.js"), "utf8");
-for (const marker of ["THE ARTICLES OF CONFEDERATION", "NO TAX POWER", "SHAYS’ REBELLION", "MAJOR COMPROMISES", "THE RATIFICATION DEBATE", "BILL OF RIGHTS", "Federalist No. 10", "Brutus No. 1", "THE WHOLE STORY"]) {
+for (const marker of ["THE HISTORY LESSON", "ESSENTIAL QUESTION", "THE BIG IDEA", "SEVEN PARTS OF THE STORY", "FREEDOM FROM TYRANNY", "THE ARTICLES OF CONFEDERATION", "PROBLEMS UNDER THE ARTICLES", "THE CONSTITUTIONAL SOLUTION", "CONSTITUTIONAL COMPROMISES", "THE RATIFICATION DEBATE", "RATIFICATION AND THE BILL OF RIGHTS"]) {
   if (!historyReader.includes(marker)) errors.push(`The History Lesson is missing: ${marker}`);
 }
-if ((historyReader.match(/<article class="moment/g) || []).length !== 7) errors.push("The History Lesson must contain seven timeline moments.");
+if ((historyReader.match(/<a class="section-card"/g) || []).length !== 7) errors.push("The History Lesson hub must contain seven section cards.");
 for (let sectionNumber = 1; sectionNumber <= 7; sectionNumber += 1) {
   if (!historyReader.includes(`<span>${String(sectionNumber).padStart(2, "0")}</span>`)) errors.push(`The History Lesson is missing the visible label for section ${sectionNumber}.`);
 }
-const historyImages = [...historyReader.matchAll(/<img src="(assets\/history-lesson\/[^"]+\.jpg)" alt="([^"]+)"/g)];
-if (historyImages.length !== 7) errors.push("The History Lesson must contain seven local woodcut timeline illustrations with alt text.");
-historyImages.forEach(([, imagePath, imageAlt]) => {
-  if (!fs.existsSync(path.join(root, imagePath))) errors.push(`Missing History Lesson illustration: ${imagePath}`);
-  if (imageAlt.length < 25) errors.push(`History Lesson illustration needs useful alt text: ${imagePath}`);
-});
+if (!historyReader.includes("history-hub.css?v=20260908-seven-section-hub") || !historyReader.includes("history-lesson-apg.css?v=20260908-seven-section-hub")) errors.push("The History Lesson must use the current seven-section hub design.");
 for (const forbidden of ["TOPIC 1.3", "TOPIC 1.4", "TOPIC 1.5", "AP CONNECTION", "READ FEDERALIST", "READ BRUTUS"]) {
   if (historyReader.includes(forbidden)) errors.push(`The CP History Lesson must not include AP-only label: ${forbidden}`);
 }
-for (const marker of ["COURSE_DATA?.words", "glossary-term", "?glossary=", "#words", "data-definition"]) {
-  const source = marker === "glossary-term" || marker === "data-definition" ? `${historyCode}\n${fs.readFileSync(path.join(root, "history-lesson-apg.css"), "utf8")}` : historyCode;
-  if (!source.includes(marker)) errors.push(`The History Lesson glossary links are missing: ${marker}`);
-}
-const historyTopics = ["articles", "crisis", "convention", "compromises", "debate", "rights"];
-if (Object.keys(historySectionData || {}).join("|") !== historyTopics.join("|")) errors.push("The History Lesson needs all six section readers in order.");
+const historyTopics = ["independence", "articles", "crisis", "convention", "compromises", "debate", "rights"];
+if (Object.keys(historySectionData || {}).join("|") !== historyTopics.join("|")) errors.push("The History Lesson needs all seven section readers in order.");
 historyTopics.forEach((topic, index) => {
   const section = historySectionData?.[topic];
-  if (!section || section.number !== String(index + 2).padStart(2, "0")) errors.push(`History reader ${topic} has the wrong section number.`);
+  if (!section || section.number !== String(index + 1).padStart(2, "0")) errors.push(`History reader ${topic} has the wrong section number.`);
   for (const key of ["years", "label", "title", "image", "imageAlt", "bigIdea", "opening", "sections", "vocabulary", "teach"]) {
     if (!section?.[key] || (Array.isArray(section[key]) && !section[key].length)) errors.push(`History reader ${topic} is missing ${key}.`);
   }
@@ -447,7 +437,6 @@ for (const forbidden of ["AP Government", "AP CONNECTION", "course-shell", "docs
 }
 if (!changingRules.congressProposal(290, 67) || changingRules.congressProposal(289, 67) || !changingRules.statesProposal(34) || changingRules.statesProposal(33) || !changingRules.ratification(38) || changingRules.ratification(37)) errors.push("Article V threshold rules are incorrect.");
 if (!changingCode.includes("prefers-reduced-motion") || !changingHtml.includes("shared-navigation.js")) errors.push("Changing the Constitution needs accessible motion and GOV navigation.");
-if (!historyReader.includes("history-lesson-apg.css?v=20260907-exact-apg-design") || !historyReader.includes("history-lesson-gov-compat.css?v=20260907") || !historyReader.includes("history-lesson.js?v=20260907-timeline-trace") || historyReader.includes("history-lesson.css") || historyReader.includes("history-lesson-cp.css") || !historyCode.includes('card.className = "moment-card"') || !historyCode.includes('timeline.style.setProperty("--trace"')) errors.push("The History Lesson is missing its exact AP-style textbook timeline design and scroll trace.");
 for (const marker of ["HISTORY_SECTION_DATA", "URLSearchParams", "glossary-link", "previous-section", "next-section"]) {
   if (!historySectionCode.includes(marker)) errors.push(`The section reader behavior is missing: ${marker}`);
 }
