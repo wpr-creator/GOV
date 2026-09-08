@@ -401,7 +401,7 @@ if ((historyReader.match(/<a class="section-card"/g) || []).length !== 7) errors
 for (let sectionNumber = 1; sectionNumber <= 7; sectionNumber += 1) {
   if (!historyReader.includes(`<span>${String(sectionNumber).padStart(2, "0")}</span>`)) errors.push(`The History Lesson is missing the visible label for section ${sectionNumber}.`);
 }
-if (!historyReader.includes("history-hub.css?v=20260908-seven-section-hub") || !historyReader.includes("history-lesson-apg.css?v=20260908-seven-section-hub")) errors.push("The History Lesson must use the current seven-section hub design.");
+if (!historyReader.includes("history-hub.css?v=20260908-clear-sections") || !historyReader.includes("history-lesson-apg.css?v=20260908-seven-section-hub")) errors.push("The History Lesson must use the current seven-section hub design.");
 for (const forbidden of ["TOPIC 1.3", "TOPIC 1.4", "TOPIC 1.5", "AP CONNECTION", "READ FEDERALIST", "READ BRUTUS"]) {
   if (historyReader.includes(forbidden)) errors.push(`The CP History Lesson must not include AP-only label: ${forbidden}`);
 }
