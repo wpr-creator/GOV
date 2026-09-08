@@ -16,12 +16,15 @@
   image.alt = content.imageAlt;
 
   const sections = document.getElementById("reader-sections");
-  content.sections.forEach(section => {
+  content.sections.forEach((section, index) => {
     const article = document.createElement("article");
     article.className = "reader-card";
+    const part = document.createElement("p");
+    part.className = "reader-part";
+    part.textContent = `PART ${index + 1} OF 4`;
     const heading = document.createElement("h2");
     heading.textContent = section.heading;
-    article.append(heading);
+    article.append(part, heading);
     if (section.text) {
       const paragraph = document.createElement("p");
       paragraph.textContent = section.text;
@@ -36,6 +39,14 @@
       });
       article.append(list);
     }
+    const check = document.createElement("div");
+    check.className = "explain-check";
+    const checkHeading = document.createElement("h3");
+    checkHeading.textContent = "CAN YOU EXPLAIN IT?";
+    const checkText = document.createElement("p");
+    checkText.textContent = content.teach[index];
+    check.append(checkHeading, checkText);
+    article.append(check);
     sections.append(article);
   });
 
@@ -49,13 +60,6 @@
     wrapper.append(name, meaning);
     vocabulary.append(wrapper);
   });
-  const teach = document.getElementById("teach-list");
-  content.teach.forEach(text => {
-    const item = document.createElement("li");
-    item.textContent = text;
-    teach.append(item);
-  });
-
   const index = order.indexOf(topic);
   const previous = document.getElementById("previous-section");
   const next = document.getElementById("next-section");

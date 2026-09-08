@@ -25,7 +25,7 @@ window.HISTORY_SECTION_DATA = {
       { heading: "WHY THIS DESIGN MADE SENSE", text: "Americans had just fought a powerful central government. They designed the Articles to protect state power and prevent another national ruler from taking control." }
     ],
     vocabulary: [["CONFEDERATION", "A partnership in which member states keep most power."], ["CONGRESS", "The national lawmaking body."], ["AMENDMENT", "A formal change to a governing document."]],
-    teach: ["Explain why Americans wanted the states to keep most of the power.", "Name two things Congress could do under the Articles.", "Explain why every state had one vote in Congress.", "Explain that there was no president or national court system."]
+    teach: ["Explain why Americans wanted the states to keep most of the power.", "Name two things Congress could do under the Articles.", "Explain how Congress worked and why there was no president or national court system.", "Explain how fear of tyranny led Americans to create a weak national government."]
   },
   crisis: {
     number: "03", years: "1780s", label: "THE PROBLEMS", title: "WHY THE ARTICLES FAILED",
@@ -39,7 +39,7 @@ window.HISTORY_SECTION_DATA = {
       { heading: "THE DEEPER LESSON", text: "Liberty can be threatened by a government that is too powerful. It can also be threatened when government is too weak to protect rights, property, public safety, or the rule of law." }
     ],
     vocabulary: [["REVENUE", "Money a government collects to pay for public work."], ["EXECUTIVE BRANCH", "The branch responsible for carrying out laws."], ["JUDICIAL BRANCH", "The branch that interprets laws and settles legal disputes."]],
-    teach: ["Explain why having a job is not enough when a government lacks the power to carry it out.", "Describe at least three weaknesses of the Articles.", "Explain what happened during Shays’ Rebellion.", "Explain why the rebellion made some Americans want a stronger national government."]
+    teach: ["Describe at least three weaknesses of the Articles and explain how they stopped Congress from doing its job.", "Explain what caused Shays’ Rebellion and what the farmers did.", "Explain why the rebellion made some Americans believe the national government was too weak.", "Explain how liberty can be threatened by a government that is too powerful or too weak."]
   },
   convention: {
     number: "04", years: "1787", label: "A NEW PLAN", title: "THE CONSTITUTIONAL CONVENTION",
@@ -53,7 +53,7 @@ window.HISTORY_SECTION_DATA = {
       { heading: "THE DESIGN PROBLEM", text: "The delegates believed people need government because communities need laws and order. They also believed people who hold office may misuse power. The Constitution therefore gives government real authority while placing barriers between leaders and absolute power." }
     ],
     vocabulary: [["SEPARATION OF POWERS", "Government power is divided among different branches."], ["CHECKS AND BALANCES", "Each branch can limit certain powers of the other branches."], ["FEDERALISM", "Power is shared by the national and state governments."], ["SUPREMACY CLAUSE", "Valid federal laws take priority when a state law conflicts with them."]],
-    teach: ["Explain why the delegates decided to replace the Articles.", "Explain the main job of each branch: legislative, executive, and judicial.", "Give two ways the Constitution made the national government stronger.", "Explain how separation of powers, checks and balances, and federalism prevent one part of government from holding all the power."]
+    teach: ["Explain which problems under the Articles convinced delegates that the country needed a new plan.", "Explain the main job of each branch and how the three branches made the national government stronger.", "Explain how separation of powers, checks and balances, and federalism prevent one part of government from holding all the power.", "Explain how the Constitution gives government enough power to act while placing limits on that power."]
   },
   compromises: {
     number: "05", years: "1787", label: "THE DEALS", title: "THE CONSTITUTIONAL COMPROMISES",
@@ -67,7 +67,7 @@ window.HISTORY_SECTION_DATA = {
       { heading: "THE AMENDMENT PROCESS", text: "Under the Articles, every state had to approve a change. Article V created a process that is still difficult but does not require complete agreement. An amendment needs broad support at both the national and state levels." }
     ],
     vocabulary: [["COMPROMISE", "An agreement in which different sides each accept part of what the other side wants."], ["REPRESENTATION", "Speaking and making decisions for other people in government."], ["ELECTORAL COLLEGE", "The state-based system that formally chooses the president."], ["AMENDMENT", "A formal change or addition to the Constitution."]],
-    teach: ["Name the disagreement that each major compromise tried to solve.", "Explain how the Great Compromise created the House and Senate.", "Explain how the slavery compromises gave more political power to slave states.", "Explain how a compromise can settle a disagreement while still being unfair or unjust."]
+    teach: ["Explain how the Great Compromise settled the dispute between large and small states by creating the House and Senate.", "Explain how the slavery compromises protected slavery and gave more political power to slave states.", "Explain why the delegates created the Electoral College to choose the president.", "Explain how Article V made constitutional change difficult but still possible."]
   },
   debate: {
     number: "06", years: "1787–88", label: "THE RATIFICATION DEBATE", title: "FEDERALISTS AND ANTI-FEDERALISTS",
@@ -75,14 +75,13 @@ window.HISTORY_SECTION_DATA = {
     bigIdea: "Federalists and Anti-Federalists both wanted to protect liberty. They disagreed about whether a weak or powerful national government was more dangerous.",
     opening: "Writing the Constitution did not make it law. Special conventions in at least nine states had to ratify, or formally approve, it. Supporters and opponents used speeches, newspapers, pamphlets, and public meetings to persuade voters.",
     sections: [
-      { heading: "THE FEDERALIST POSITION", text: "Federalists supported ratification. They believed experience under the Articles proved that the country needed a government able to tax, regulate trade, enforce laws, provide defense, and respond to national problems. They argued that separated branches, checks and balances, elections, and federalism would prevent tyranny." },
-      { heading: "FEDERALIST NO. 10", text: "James Madison discussed factions—groups of people united by an interest or belief. A faction might use government to harm other people’s rights. Madison argued that a large republic would contain many competing groups, making it harder for one faction to control the entire government." },
-      { heading: "THE ANTI-FEDERALIST POSITION", text: "Anti-Federalists opposed the Constitution or demanded changes before supporting it. They feared that a distant national government would favor powerful people, weaken the states, maintain a standing army, and use broadly worded powers to expand its own authority. Their strongest complaint was that the Constitution did not include a clear list of protected individual rights." },
-      { heading: "BRUTUS NO. 1", text: "The writer called Brutus warned that such a large republic would be too distant from ordinary citizens. Brutus also argued that the Necessary and Proper Clause and Supremacy Clause could allow national power to grow while state power became weaker." },
-      { heading: "THE QUESTION UNDER THE ARGUMENT", text: "Federalists asked: How can liberty survive if government cannot act? Anti-Federalists asked: How can liberty survive if national power keeps growing? The debate was not liberty against tyranny. It was a disagreement about the safest way to protect liberty." }
+      { heading: "THE CONSTITUTION NEEDED APPROVAL", text: "The delegates signed the Constitution, but that did not make it law. Special conventions in at least nine states had to ratify, or formally approve, it. Federalists and Anti-Federalists tried to persuade the people through speeches, newspapers, pamphlets, and public meetings." },
+      { heading: "THE FEDERALIST ARGUMENT", text: "Federalists supported ratification. They said the Articles proved that the country needed a government able to tax, regulate trade, enforce laws, provide defense, and solve national problems. In Federalist No. 10, James Madison argued that a large republic would contain many competing factions, making it harder for one group to control the whole government." },
+      { heading: "THE ANTI-FEDERALIST ARGUMENT", text: "Anti-Federalists opposed the Constitution or demanded changes. They feared that a distant national government would weaken the states and expand its own power. In Brutus No. 1, an author using the name Brutus warned that a very large republic would be too distant from ordinary citizens. Anti-Federalists also demanded a clear list of protected rights." },
+      { heading: "THE SAME GOAL, DIFFERENT FEARS", text: "Both sides wanted to protect liberty and prevent tyranny. Federalists feared a government too weak to act. Anti-Federalists feared a national government powerful enough to abuse rights. They disagreed about which danger was greater." }
     ],
     vocabulary: [["RATIFY", "To formally approve a constitution or agreement."], ["FACTION", "A group united by an interest or belief that tries to influence government."], ["FEDERALIST", "A person who supported ratification of the Constitution."], ["ANTI-FEDERALIST", "A person who opposed the Constitution or demanded stronger protections before ratification."]],
-    teach: ["Explain why the Constitution needed approval from nine states.", "Explain the Federalist argument, including Madison’s point in Federalist No. 10.", "Explain the Anti-Federalist argument, including the warning in Brutus No. 1.", "Explain the concern both sides shared: preventing tyranny and protecting liberty."]
+    teach: ["Explain why the Constitution needed approval from nine states before it could take effect.", "Explain why Federalists supported a stronger national government and how Madison said a large republic could control factions.", "Explain why Anti-Federalists feared national power and why they demanded written protection for individual rights.", "Explain how both sides wanted to protect liberty but feared different dangers."]
   },
   rights: {
     number: "07", years: "1788–91", label: "THE FINAL AGREEMENT", title: "RATIFICATION AND THE BILL OF RIGHTS",
@@ -96,6 +95,6 @@ window.HISTORY_SECTION_DATA = {
       { heading: "WHOSE IDEAS WON?", text: "The final system included ideas from both sides. Federalists gained a stronger national government. Anti-Federalist pressure helped produce written protections for individual rights. The argument over national power, state power, and liberty continues in American politics." }
     ],
     vocabulary: [["BILL OF RIGHTS", "The first ten amendments, which protect important freedoms and legal rights."], ["AMENDMENT", "A formal change or addition to the Constitution."], ["CIVIL LIBERTY", "A freedom the government must respect."], ["INCORPORATION", "Using the Fourteenth Amendment to require states to protect Bill of Rights freedoms."]],
-    teach: ["Explain what changed in 1788, 1789, and 1791.", "Explain why Federalists promised to add a Bill of Rights.", "Name at least three freedoms or legal rights protected by the Bill of Rights.", "Explain how the final system included a stronger government and written protections for individual rights."]
+    teach: ["Explain what changed in 1788, 1789, and 1791.", "Name at least three freedoms or legal rights protected by the Bill of Rights and explain why they were written down.", "Explain that the Bill of Rights first limited only the federal government and later protected people from state governments through the Fourteenth Amendment.", "Explain how the final system included the stronger government Federalists wanted and the written protections Anti-Federalists demanded."]
   }
 };

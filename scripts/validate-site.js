@@ -416,14 +416,14 @@ historyTopics.forEach((topic, index) => {
   if (!historyReader.includes(`history-section.html?topic=${topic}`)) errors.push(`The main timeline is missing the ${topic} reader link.`);
   if (!fs.existsSync(path.join(root, section?.image || "missing"))) errors.push(`History reader ${topic} has a missing image.`);
   if ((section?.opening || "").length < 140) errors.push(`History reader ${topic} needs a fuller opening explanation.`);
-  if ((section?.teach || []).length < 4) errors.push(`History reader ${topic} needs at least four teaching checks.`);
+  if ((section?.sections || []).length !== 4 || (section?.teach || []).length !== 4) errors.push(`History reader ${topic} needs exactly four ordered story parts and four matching teaching checks.`);
 });
 const historySectionHtml = fs.readFileSync(path.join(root, "history-section.html"), "utf8");
 const historySectionCode = fs.readFileSync(path.join(root, "history-section.js"), "utf8");
-for (const marker of ["BIG IDEA", "THE STORY", "ACADEMIC VOCABULARY", "BE READY TO TEACH", "FULL TIMELINE"]) {
+for (const marker of ["BIG IDEA", "THE STORY", "ACADEMIC VOCABULARY", "FULL TIMELINE"]) {
   if (!historySectionHtml.includes(marker)) errors.push(`The section reader template is missing: ${marker}`);
 }
-if (!historySectionHtml.includes("history-section.css?v=20260903-section-numbers")) errors.push("The detailed History Lesson section-number styles are not current.");
+if (!historySectionHtml.includes("history-section.css?v=20260908-integrated-teaching") || !historySectionHtml.includes("history-section-hub-theme.css?v=20260908-integrated-teaching")) errors.push("The detailed History Lesson teaching-part styles are not current.");
 const changingHtml = fs.readFileSync(path.join(root, "changing-the-constitution.html"), "utf8");
 const changingCode = fs.readFileSync(path.join(root, "changing-the-constitution.js"), "utf8");
 const changingRules = require(path.join(root, "changing-the-constitution-rules.js"));
@@ -439,6 +439,9 @@ if (!changingRules.congressProposal(290, 67) || changingRules.congressProposal(2
 if (!changingCode.includes("prefers-reduced-motion") || !changingHtml.includes("shared-navigation.js")) errors.push("Changing the Constitution needs accessible motion and GOV navigation.");
 for (const marker of ["HISTORY_SECTION_DATA", "URLSearchParams", "glossary-link", "previous-section", "next-section"]) {
   if (!historySectionCode.includes(marker)) errors.push(`The section reader behavior is missing: ${marker}`);
+}
+for (const marker of ["PART ${index + 1} OF 4", "CAN YOU EXPLAIN IT?", "content.teach[index]"]) {
+  if (!historySectionCode.includes(marker)) errors.push(`The section reader must place each teaching check inside its matching story part: ${marker}`);
 }
 const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
 if (!Array.isArray(democracyRoots) || democracyRoots.map(rootData => rootData.name).join("|") !== expectedRootNames.join("|")) {
