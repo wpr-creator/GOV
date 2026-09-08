@@ -323,7 +323,7 @@ window.COURSE_DATA = {
   ],
   words: [
     ["Government", "G", "The people and institutions authorized to make and carry out public decisions.", "A city government decides how to provide local services.", "gov-0"],
-    ["Politics", "P", "The process people use to influence public decisions and government action.", "Residents use politics when they organize support for a new law.", "gov-0"],
+    ["Politics", "P", "The process through which people compete, cooperate, and make decisions about government power and public policy.", "Residents use politics when they organize support for a new law.", "gov-0"],
     ["Civics", "C", "The study of citizenship, government, rights, and participation.", "Learning how to contact a representative is part of civics.", "gov-0"],
     ["Political ideology", "I", "A connected set of beliefs about government, society, and the economy.", "A person's political ideology can shape views about taxes, rights, and public services.", "gov-0"],
     ["Political spectrum", "↔", "A way to compare political beliefs across general positions, such as liberal, moderate, and conservative.", "Two people may fall in different places on the political spectrum and disagree about government's role.", "gov-0"],
