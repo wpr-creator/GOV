@@ -34,9 +34,8 @@ h1, h2, h3, .page-header, .eyebrow, .section-kicker, .section-number { font-fami
 .reader-card { border-color:#000; background:#fff; box-shadow:5px 5px 0 var(--wash); }
 .reader-card:nth-child(even) { background:var(--wash); }
 .reader-card:nth-child(3n+1), .reader-card:nth-child(3n+2) { border-top-color:#000; }
-.reader-card .reader-part { font-family:"Arial Narrow",Arial,sans-serif; }
-.explain-check { background:#fff; border:3px solid #000; border-left:10px solid #000; }
-.reader-card:nth-child(odd) .explain-check { background:var(--wash); }
+.teaching-point { font-family:"Arial Narrow",Arial,sans-serif; }
+.explain-check { background:#fff; border:3px solid #000; }
 .vocabulary { background:var(--wash); box-shadow:7px 7px 0 #000; }
 .vocabulary dt { color:#000; font-family:"Arial Narrow",Arial,sans-serif; letter-spacing:.06em; }
 .teach-it { border:5px double #000; background:#fff; }

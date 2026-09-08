@@ -423,7 +423,7 @@ const historySectionCode = fs.readFileSync(path.join(root, "history-section.js")
 for (const marker of ["BIG IDEA", "THE STORY", "ACADEMIC VOCABULARY", "FULL TIMELINE"]) {
   if (!historySectionHtml.includes(marker)) errors.push(`The section reader template is missing: ${marker}`);
 }
-if (!historySectionHtml.includes("history-section.css?v=20260908-integrated-teaching") || !historySectionHtml.includes("history-section-hub-theme.css?v=20260908-integrated-teaching")) errors.push("The detailed History Lesson teaching-part styles are not current.");
+if (!historySectionHtml.includes("history-section.css?v=20260908-apg-teaching-points") || !historySectionHtml.includes("history-section-hub-theme.css?v=20260908-apg-teaching-points")) errors.push("The detailed History Lesson teaching-point styles are not current.");
 const changingHtml = fs.readFileSync(path.join(root, "changing-the-constitution.html"), "utf8");
 const changingCode = fs.readFileSync(path.join(root, "changing-the-constitution.js"), "utf8");
 const changingRules = require(path.join(root, "changing-the-constitution-rules.js"));
@@ -440,7 +440,7 @@ if (!changingCode.includes("prefers-reduced-motion") || !changingHtml.includes("
 for (const marker of ["HISTORY_SECTION_DATA", "URLSearchParams", "glossary-link", "previous-section", "next-section"]) {
   if (!historySectionCode.includes(marker)) errors.push(`The section reader behavior is missing: ${marker}`);
 }
-for (const marker of ["PART ${index + 1} OF 4", "CAN YOU EXPLAIN IT?", "content.teach[index]"]) {
+for (const marker of ["TEACHING POINT ${index + 1} OF 4", "CAN YOU EXPLAIN IT?", "content.teach[index]"]) {
   if (!historySectionCode.includes(marker)) errors.push(`The section reader must place each teaching check inside its matching story part: ${marker}`);
 }
 const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];

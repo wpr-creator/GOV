@@ -20,8 +20,8 @@
     const article = document.createElement("article");
     article.className = "reader-card";
     const part = document.createElement("p");
-    part.className = "reader-part";
-    part.textContent = `PART ${index + 1} OF 4`;
+    part.className = "teaching-point";
+    part.textContent = `TEACHING POINT ${index + 1} OF 4`;
     const heading = document.createElement("h2");
     heading.textContent = section.heading;
     article.append(part, heading);
@@ -39,9 +39,9 @@
       });
       article.append(list);
     }
-    const check = document.createElement("div");
+    const check = document.createElement("aside");
     check.className = "explain-check";
-    const checkHeading = document.createElement("h3");
+    const checkHeading = document.createElement("strong");
     checkHeading.textContent = "CAN YOU EXPLAIN IT?";
     const checkText = document.createElement("p");
     checkText.textContent = content.teach[index];

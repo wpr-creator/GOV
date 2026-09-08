@@ -11,7 +11,7 @@ window.HISTORY_SECTION_DATA = {
       { heading: "THE IMPORTANT QUESTION", text: "After rejecting British rule, Americans had to create a government strong enough to work without creating another tyranny." }
     ],
     vocabulary: [["NATURAL RIGHTS", "Basic rights every person has."], ["POPULAR SOVEREIGNTY", "The people are the source of government power."], ["CONSENT", "Permission or agreement."], ["TYRANNY", "Government that abuses power and violates rights."]],
-    teach: ["Explain which rights the Declaration says government should protect.", "Explain that government gets its power from the people.", "Explain why government power must have limits.", "Explain the challenge after independence: create a government that could work without creating another tyranny."]
+    teach: ["What are natural rights, and what should government do with them?", "Where does government power come from?", "Why must government power have limits?", "What challenge did Americans face after they won independence?"]
   },
   articles: {
     number: "02", years: "1781", label: "THE FIRST GOVERNMENT", title: "THE ARTICLES OF CONFEDERATION",
@@ -22,10 +22,10 @@ window.HISTORY_SECTION_DATA = {
       { heading: "WHY DID STATES KEEP MOST POWER?", text: "Each state saw itself as independent and wanted to control its own laws, taxes, and economy. Americans also wanted to prevent a new central government from becoming like the British monarchy." },
       { heading: "WHAT COULD CONGRESS DO?", bullets: ["Declare war and make peace", "Make treaties with other countries", "Coin, or produce, money", "Manage relations with other nations and Native nations", "Ask states for soldiers and money"] },
       { heading: "HOW WAS IT ORGANIZED?", bullets: ["Congress was the only national branch.", "There was no president to enforce national decisions.", "There was no national court system to settle disputes.", "Every state received one vote, whether its population was large or small.", "Nine of thirteen states had to approve major laws. All thirteen had to approve an amendment."] },
-      { heading: "WHY THIS DESIGN MADE SENSE", text: "Americans had just fought a powerful central government. They designed the Articles to protect state power and prevent another national ruler from taking control." }
+      { heading: "THE TRADEOFF", text: "The Articles protected state power and made another national ruler less likely. The tradeoff was a national government that depended on the states and could not solve many problems on its own." }
     ],
     vocabulary: [["CONFEDERATION", "A partnership in which member states keep most power."], ["CONGRESS", "The national lawmaking body."], ["AMENDMENT", "A formal change to a governing document."]],
-    teach: ["Explain why Americans wanted the states to keep most of the power.", "Name two things Congress could do under the Articles.", "Explain how Congress worked and why there was no president or national court system.", "Explain how fear of tyranny led Americans to create a weak national government."]
+    teach: ["Why did Americans want the states to keep most of the power?", "What were two things Congress could do under the Articles?", "How was the national government organized, and what important parts did it lack?", "How did protecting state power make the national government weak?"]
   },
   crisis: {
     number: "03", years: "1780s", label: "THE PROBLEMS", title: "WHY THE ARTICLES FAILED",
@@ -39,7 +39,7 @@ window.HISTORY_SECTION_DATA = {
       { heading: "THE DEEPER LESSON", text: "Liberty can be threatened by a government that is too powerful. It can also be threatened when government is too weak to protect rights, property, public safety, or the rule of law." }
     ],
     vocabulary: [["REVENUE", "Money a government collects to pay for public work."], ["EXECUTIVE BRANCH", "The branch responsible for carrying out laws."], ["JUDICIAL BRANCH", "The branch that interprets laws and settles legal disputes."]],
-    teach: ["Describe at least three weaknesses of the Articles and explain how they stopped Congress from doing its job.", "Explain what caused Shays’ Rebellion and what the farmers did.", "Explain why the rebellion made some Americans believe the national government was too weak.", "Explain how liberty can be threatened by a government that is too powerful or too weak."]
+    teach: ["What were three weaknesses people could see under the Articles?", "What caused Shays’ Rebellion, and what did the farmers do?", "What did the rebellion show about the national government’s ability to act?", "How can both too much government power and too little government power threaten liberty?"]
   },
   convention: {
     number: "04", years: "1787", label: "A NEW PLAN", title: "THE CONSTITUTIONAL CONVENTION",
@@ -53,7 +53,7 @@ window.HISTORY_SECTION_DATA = {
       { heading: "THE DESIGN PROBLEM", text: "The delegates believed people need government because communities need laws and order. They also believed people who hold office may misuse power. The Constitution therefore gives government real authority while placing barriers between leaders and absolute power." }
     ],
     vocabulary: [["SEPARATION OF POWERS", "Government power is divided among different branches."], ["CHECKS AND BALANCES", "Each branch can limit certain powers of the other branches."], ["FEDERALISM", "Power is shared by the national and state governments."], ["SUPREMACY CLAUSE", "Valid federal laws take priority when a state law conflicts with them."]],
-    teach: ["Explain which problems under the Articles convinced delegates that the country needed a new plan.", "Explain the main job of each branch and how the three branches made the national government stronger.", "Explain how separation of powers, checks and balances, and federalism prevent one part of government from holding all the power.", "Explain how the Constitution gives government enough power to act while placing limits on that power."]
+    teach: ["What powers did the national government need to solve the problems under the Articles?", "What is the main job of each of the three branches?", "How do separation of powers, checks and balances, and federalism limit the new government?", "How did the Constitution make government strong enough to act without giving one part all the power?"]
   },
   compromises: {
     number: "05", years: "1787", label: "THE DEALS", title: "THE CONSTITUTIONAL COMPROMISES",
@@ -67,7 +67,7 @@ window.HISTORY_SECTION_DATA = {
       { heading: "THE AMENDMENT PROCESS", text: "Under the Articles, every state had to approve a change. Article V created a process that is still difficult but does not require complete agreement. An amendment needs broad support at both the national and state levels." }
     ],
     vocabulary: [["COMPROMISE", "An agreement in which different sides each accept part of what the other side wants."], ["REPRESENTATION", "Speaking and making decisions for other people in government."], ["ELECTORAL COLLEGE", "The state-based system that formally chooses the president."], ["AMENDMENT", "A formal change or addition to the Constitution."]],
-    teach: ["Explain how the Great Compromise settled the dispute between large and small states by creating the House and Senate.", "Explain how the slavery compromises protected slavery and gave more political power to slave states.", "Explain why the delegates created the Electoral College to choose the president.", "Explain how Article V made constitutional change difficult but still possible."]
+    teach: ["How did the Great Compromise settle the disagreement between large and small states?", "How did the slavery compromises protect slavery and give slave states more political power?", "What disagreement did the Electoral College try to settle?", "How did Article V make change possible without making it easy?"]
   },
   debate: {
     number: "06", years: "1787–88", label: "THE RATIFICATION DEBATE", title: "FEDERALISTS AND ANTI-FEDERALISTS",
@@ -81,7 +81,7 @@ window.HISTORY_SECTION_DATA = {
       { heading: "THE SAME GOAL, DIFFERENT FEARS", text: "Both sides wanted to protect liberty and prevent tyranny. Federalists feared a government too weak to act. Anti-Federalists feared a national government powerful enough to abuse rights. They disagreed about which danger was greater." }
     ],
     vocabulary: [["RATIFY", "To formally approve a constitution or agreement."], ["FACTION", "A group united by an interest or belief that tries to influence government."], ["FEDERALIST", "A person who supported ratification of the Constitution."], ["ANTI-FEDERALIST", "A person who opposed the Constitution or demanded stronger protections before ratification."]],
-    teach: ["Explain why the Constitution needed approval from nine states before it could take effect.", "Explain why Federalists supported a stronger national government and how Madison said a large republic could control factions.", "Explain why Anti-Federalists feared national power and why they demanded written protection for individual rights.", "Explain how both sides wanted to protect liberty but feared different dangers."]
+    teach: ["Why did Federalists and Anti-Federalists have to persuade the public?", "How did Federalists use the Articles and Federalist No. 10 to defend the Constitution?", "Why did Anti-Federalists oppose the Constitution, and what did Brutus No. 1 warn about?", "What goal did both sides share, and what danger did each side fear most?"]
   },
   rights: {
     number: "07", years: "1788–91", label: "THE FINAL AGREEMENT", title: "RATIFICATION AND THE BILL OF RIGHTS",
@@ -89,12 +89,12 @@ window.HISTORY_SECTION_DATA = {
     bigIdea: "The Constitution created a stronger national government. The Bill of Rights added written rules protecting individual freedoms from government power.",
     opening: "Federalists won enough support for the Constitution to take effect, but Anti-Federalist criticism shaped what happened next. Several states ratified while recommending amendments that would protect individual liberty.",
     sections: [
-      { heading: "THE RATIFICATION TIMELINE", bullets: ["1788: New Hampshire became the ninth state to ratify, meeting the requirement for the Constitution to take effect.", "1789: The new Congress met, and George Washington began serving as president.", "1789: James Madison introduced amendments based partly on protections requested by the states.", "1791: The states ratified ten amendments known as the Bill of Rights."] },
-      { heading: "WHAT DID THE BILL OF RIGHTS DO?", text: "The first ten amendments protect freedoms such as religion, speech, press, assembly, and petition. They also protect people accused of crimes and place rules on searches, punishments, and government use of private property." },
-      { heading: "WHO DID IT LIMIT?", text: "At first, the Bill of Rights restricted only the federal government. It did not automatically apply to state or local governments. After the Fourteenth Amendment was ratified in 1868, the Supreme Court gradually required states to respect most Bill of Rights protections." },
-      { heading: "WHOSE IDEAS WON?", text: "The final system included ideas from both sides. Federalists gained a stronger national government. Anti-Federalist pressure helped produce written protections for individual rights. The argument over national power, state power, and liberty continues in American politics." }
+      { heading: "THE CONSTITUTION TAKES EFFECT", text: "In 1788, New Hampshire became the ninth state to ratify the Constitution. That gave the Constitution enough approval to take effect. In 1789, the new Congress met and George Washington began serving as president. The stronger national government was now operating." },
+      { heading: "A PROMISE OF PROTECTED RIGHTS", text: "Anti-Federalists had warned that the Constitution did not clearly protect individual rights. To gain support for ratification, Federalists promised that the new Congress would consider amendments. In 1789, James Madison introduced amendments based partly on protections requested by the states." },
+      { heading: "THE BILL OF RIGHTS", text: "In 1791, the states ratified ten amendments known as the Bill of Rights. They protect freedoms such as religion, speech, press, assembly, and petition. They also protect people accused of crimes and place rules on searches, punishments, and government use of private property." },
+      { heading: "WHO MUST FOLLOW THESE RIGHTS?", text: "At first, the Bill of Rights limited only the federal government. It did not automatically apply to state or local governments. After the Fourteenth Amendment was ratified in 1868, the Supreme Court gradually required states and local governments to follow most Bill of Rights protections too." }
     ],
     vocabulary: [["BILL OF RIGHTS", "The first ten amendments, which protect important freedoms and legal rights."], ["AMENDMENT", "A formal change or addition to the Constitution."], ["CIVIL LIBERTY", "A freedom the government must respect."], ["INCORPORATION", "Using the Fourteenth Amendment to require states to protect Bill of Rights freedoms."]],
-    teach: ["Explain what changed in 1788, 1789, and 1791.", "Name at least three freedoms or legal rights protected by the Bill of Rights and explain why they were written down.", "Explain that the Bill of Rights first limited only the federal government and later protected people from state governments through the Fourteenth Amendment.", "Explain how the final system included the stronger government Federalists wanted and the written protections Anti-Federalists demanded."]
+    teach: ["What happened in 1788 and 1789 that put the new government into operation?", "Why did Federalists promise to add written protections for individual rights?", "What are three freedoms or legal rights protected by the Bill of Rights?", "Who did the Bill of Rights limit at first, and how did that change after the Fourteenth Amendment?"]
   }
 };
