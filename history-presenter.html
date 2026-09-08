@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Presenter View · The History Lesson</title>
+  <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="shared-navigation.css?v=20260904-usability">
+  <link rel="stylesheet" href="history-presenter.css?v=20260908">
+  <script src="shared-navigation.js?v=20260904-usability" defer></script>
+  <script src="history-section-data.js?v=20260908" defer></script>
+  <script src="history-presenter.js?v=20260908" defer></script>
+</head>
+<body>
+  <main class="presenter" aria-live="polite">
+    <header class="presenter-bar">
+      <a href="history-lesson.html" class="back-link">← SEVEN SECTIONS</a>
+      <p>THE HISTORY LESSON</p>
+      <button id="fullscreen-button" type="button">FULL SCREEN</button>
+    </header>
+
+    <section class="slide" id="slide" aria-labelledby="slide-title">
+      <div class="slide-number" id="slide-number">01</div>
+      <div class="slide-content">
+        <p class="slide-label" id="slide-label">SECTION 1 · 1776</p>
+        <h1 id="slide-title">WHAT SHOULD GOVERNMENT PROTECT?</h1>
+        <div class="big-idea">
+          <p>THE BIG IDEA</p>
+          <h2 id="slide-big-idea">The Declaration said that people have rights and that government gets its power from the people.</h2>
+        </div>
+      </div>
+    </section>
+
+    <footer class="presenter-controls">
+      <button id="previous-button" type="button" aria-label="Previous section">← PREVIOUS</button>
+      <div class="progress" id="progress" aria-label="Slideshow progress"></div>
+      <p><span id="current-slide">1</span> / 7</p>
+      <button id="next-button" type="button">NEXT →</button>
+    </footer>
+  </main>
+</body>
+</html>

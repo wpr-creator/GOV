@@ -1,6 +1,6 @@
 window.HISTORY_SECTION_DATA = {
   independence: {
-    number: "01", years: "1776", label: "THE FOUNDING STANDARD", title: "WHAT SHOULD GOVERNMENT PROTECT?",
+    number: "01", years: "1776", label: "THE FOUNDING STANDARD", title: "WHAT SHOULD GOVERNMENT PROTECT?", presenterTitle: "FREEDOM FROM TYRANNY",
     image: "assets/history-lesson/01-declaration.jpg", imageAlt: "Woodcut-style illustration of a declaration, quill, and broken royal crown.",
     bigIdea: "The Declaration said that people have rights and that government gets its power from the people.",
     opening: "The Declaration of Independence did more than announce a break from Britain. It explained why government is legitimate and when people may replace it.",
@@ -14,7 +14,7 @@ window.HISTORY_SECTION_DATA = {
     teach: ["What are natural rights, and what should government do with them?", "Where does government power come from?", "Why must government power have limits?", "What challenge did Americans face after they won independence?"]
   },
   articles: {
-    number: "02", years: "1781", label: "THE FIRST GOVERNMENT", title: "THE ARTICLES OF CONFEDERATION",
+    number: "02", years: "1781", label: "THE FIRST GOVERNMENT", title: "THE ARTICLES OF CONFEDERATION", presenterTitle: "THE ARTICLES OF CONFEDERATION",
     image: "assets/history-lesson/02-articles.jpg", imageAlt: "Woodcut-style illustration of thirteen state shields joined by a fragile chain.",
     bigIdea: "The Articles created the first U.S. government, but the states kept most of the power.",
     opening: "After declaring independence, Americans needed a way for thirteen states to work together. They also remembered how Britain had abused centralized power. Their solution was the Articles of Confederation, the first written plan for the national government.",
@@ -28,7 +28,7 @@ window.HISTORY_SECTION_DATA = {
     teach: ["Why did Americans want the states to keep most of the power?", "What were two things Congress could do under the Articles?", "How was the national government organized, and what important parts did it lack?", "How did protecting state power make the national government weak?"]
   },
   crisis: {
-    number: "03", years: "1780s", label: "THE PROBLEMS", title: "WHY THE ARTICLES FAILED",
+    number: "03", years: "1780s", label: "THE PROBLEMS", title: "WHY THE ARTICLES FAILED", presenterTitle: "PROBLEMS UNDER THE ARTICLES",
     image: "assets/history-lesson/04-shays.jpg", imageAlt: "Woodcut-style illustration of Massachusetts farmers protesting outside a closed courthouse.",
     bigIdea: "The national government had important jobs, but it lacked the money and power to do them well.",
     opening: "Winning independence did not end the country’s problems. The United States owed war debts, states argued about trade, and foreign governments questioned whether Congress could keep its promises. The Articles made it very difficult for the country to respond as one nation.",
@@ -42,7 +42,7 @@ window.HISTORY_SECTION_DATA = {
     teach: ["What were three weaknesses people could see under the Articles?", "What caused Shays’ Rebellion, and what did the farmers do?", "What did the rebellion show about the national government’s ability to act?", "How can both too much government power and too little government power threaten liberty?"]
   },
   convention: {
-    number: "04", years: "1787", label: "A NEW PLAN", title: "THE CONSTITUTIONAL CONVENTION",
+    number: "04", years: "1787", label: "A NEW PLAN", title: "THE CONSTITUTIONAL CONVENTION", presenterTitle: "THE CONSTITUTIONAL SOLUTION",
     image: "assets/history-lesson/05-convention.jpg", imageAlt: "Woodcut-style illustration of delegates debating around a table at the Constitutional Convention.",
     bigIdea: "The delegates replaced the Articles with the Constitution. The new government was stronger, but its power was divided and limited.",
     opening: "In May 1787, delegates met in Philadelphia. Congress had authorized them to revise the Articles. The delegates met in private, debated the failures of the old system, and decided to write a completely new plan of government.",
@@ -56,7 +56,7 @@ window.HISTORY_SECTION_DATA = {
     teach: ["What powers did the national government need to solve the problems under the Articles?", "What is the main job of each of the three branches?", "How do separation of powers, checks and balances, and federalism limit the new government?", "How did the Constitution make government strong enough to act without giving one part all the power?"]
   },
   compromises: {
-    number: "05", years: "1787", label: "THE DEALS", title: "THE CONSTITUTIONAL COMPROMISES",
+    number: "05", years: "1787", label: "THE DEALS", title: "THE CONSTITUTIONAL COMPROMISES", presenterTitle: "CONSTITUTIONAL COMPROMISES",
     image: "assets/history-lesson/06-compromises.jpg", imageAlt: "Woodcut-style illustration of delegates shaking hands beneath a balance representing large and small states.",
     bigIdea: "Compromises helped the delegates finish the Constitution, but some agreements—especially those protecting slavery—were deeply unjust.",
     opening: "The delegates agreed that the Articles had failed, but they disagreed about the new government. Large and small states wanted different kinds of representation. Delegates also fought over slavery, presidential elections, and how the Constitution could be changed.",
@@ -70,7 +70,7 @@ window.HISTORY_SECTION_DATA = {
     teach: ["How did the Great Compromise settle the disagreement between large and small states?", "How did the slavery compromises protect slavery and give slave states more political power?", "What disagreement did the Electoral College try to settle?", "How did Article V make change possible without making it easy?"]
   },
   debate: {
-    number: "06", years: "1787–88", label: "THE RATIFICATION DEBATE", title: "FEDERALISTS AND ANTI-FEDERALISTS",
+    number: "06", years: "1787–88", label: "THE RATIFICATION DEBATE", title: "FEDERALISTS AND ANTI-FEDERALISTS", presenterTitle: "THE RATIFICATION DEBATE",
     image: "assets/history-lesson/09-debate.jpg", imageAlt: "Woodcut-style illustration of Federalist and Anti-Federalist speakers debating before undecided listeners.",
     bigIdea: "Federalists and Anti-Federalists both wanted to protect liberty. They disagreed about whether a weak or powerful national government was more dangerous.",
     opening: "Writing the Constitution did not make it law. Special conventions in at least nine states had to ratify, or formally approve, it. Supporters and opponents used speeches, newspapers, pamphlets, and public meetings to persuade voters.",
@@ -84,7 +84,7 @@ window.HISTORY_SECTION_DATA = {
     teach: ["Why did Federalists and Anti-Federalists have to persuade the public?", "How did Federalists use the Articles and Federalist No. 10 to defend the Constitution?", "Why did Anti-Federalists oppose the Constitution, and what did Brutus No. 1 warn about?", "What goal did both sides share, and what danger did each side fear most?"]
   },
   rights: {
-    number: "07", years: "1788–91", label: "THE FINAL AGREEMENT", title: "RATIFICATION AND THE BILL OF RIGHTS",
+    number: "07", years: "1788–91", label: "THE FINAL AGREEMENT", title: "RATIFICATION AND THE BILL OF RIGHTS", presenterTitle: "RATIFICATION AND THE BILL OF RIGHTS",
     image: "assets/history-lesson/10-rights.jpg", imageAlt: "Woodcut-style illustration of citizens receiving news of ratification and the Bill of Rights.",
     bigIdea: "The Constitution created a stronger national government. The Bill of Rights added written rules protecting individual freedoms from government power.",
     opening: "Federalists won enough support for the Constitution to take effect, but Anti-Federalist criticism shaped what happened next. Several states ratified while recommending amendments that would protect individual liberty.",
