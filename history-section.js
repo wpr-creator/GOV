@@ -1,5 +1,5 @@
 (() => {
-  const order = ["articles", "crisis", "convention", "compromises", "debate", "rights"];
+  const order = ["independence", "articles", "crisis", "convention", "compromises", "debate", "rights"];
   const requestedTopic = new URLSearchParams(location.search).get("topic");
   const topic = order.includes(requestedTopic) ? requestedTopic : order[0];
   const content = window.HISTORY_SECTION_DATA[topic];

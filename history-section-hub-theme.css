@@ -1,0 +1,45 @@
+/* Carry the History Lesson's black-and-white woodcut system into every section. */
+:root { --ink:#090909; --paper:#fff; --red:#090909; --blue:#090909; --cream:#fafafa; --pale:#ececea; --wash:#ececea; }
+body {
+  color: var(--ink);
+  background-color: #fff;
+  background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,.11) 1px, transparent 1.2px);
+  background-size: 17px 17px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+h1, h2, h3, .page-header, .eyebrow, .section-kicker, .section-number { font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; }
+.page-header {
+  min-height: 58px;
+  color: #fff;
+  background: #000;
+  border-bottom: 1px solid #fff;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+.eyebrow, .section-kicker { color:#000; font-family:"Arial Narrow",Arial,sans-serif; letter-spacing:.16em; }
+.section-hero {
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border: 5px double #000;
+  background: #fff;
+  box-shadow: 9px 9px 0 var(--wash), 12px 12px 0 #000;
+}
+.section-hero figure { border:5px solid #000; box-shadow:7px 7px 0 #000; }
+.section-hero img { filter:grayscale(1) contrast(1.25); mix-blend-mode:multiply; }
+.big-idea { color:#fff; border:4px double #fff; outline:2px solid #000; background:#000; }
+.big-idea strong { color:#fff; font-family:"Arial Narrow",Arial,sans-serif; letter-spacing:.14em; }
+.reader-intro { background:#000; border:5px double #fff; outline:3px solid #000; }
+.reader-card { border-color:#000; background:#fff; box-shadow:5px 5px 0 var(--wash); }
+.reader-card:nth-child(even) { background:var(--wash); }
+.reader-card:nth-child(3n+1), .reader-card:nth-child(3n+2) { border-top-color:#000; }
+.vocabulary { background:var(--wash); box-shadow:7px 7px 0 #000; }
+.vocabulary dt { color:#000; font-family:"Arial Narrow",Arial,sans-serif; letter-spacing:.06em; }
+.teach-it { border:5px double #000; background:#fff; }
+.teach-it li::before { color:#000; }
+.section-nav a:hover, .section-nav a:focus-visible { outline:3px double #000; outline-offset:3px; }
+@media print {
+  body { background:#fff; }
+  .section-hero, .reader-card, .vocabulary { box-shadow:none; }
+}

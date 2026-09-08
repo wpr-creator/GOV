@@ -1,17 +1,31 @@
 window.HISTORY_SECTION_DATA = {
+  independence: {
+    number: "01", years: "1776", label: "THE FOUNDING STANDARD", title: "WHAT SHOULD GOVERNMENT PROTECT?",
+    image: "assets/history-lesson/01-declaration.jpg", imageAlt: "Woodcut-style illustration of a declaration, quill, and broken royal crown.",
+    bigIdea: "Americans believed government should protect rights and receive its power from the people.",
+    opening: "The Declaration of Independence did more than announce a break from Britain. It explained why government is legitimate and when people may replace it.",
+    sections: [
+      { heading: "NATURAL RIGHTS", text: "People are born with basic rights. Government does not create these rights. Its job is to protect them." },
+      { heading: "POWER FROM THE PEOPLE", text: "Government receives its authority from the people. This is popular sovereignty and consent of the governed." },
+      { heading: "LIMITED GOVERNMENT", text: "Government may not use power however it wants. When it repeatedly violates rights, the people may change or replace it." },
+      { heading: "THE IMPORTANT QUESTION", text: "After rejecting British rule, Americans had to create a government strong enough to work without creating another tyranny." }
+    ],
+    vocabulary: [["NATURAL RIGHTS", "Basic rights every person has."], ["POPULAR SOVEREIGNTY", "The people are the source of government power."], ["CONSENT", "Permission or agreement."], ["TYRANNY", "Government that abuses power and violates rights."]],
+    teach: ["What government should protect", "Where legitimate government power comes from", "Why government must have limits", "The problem Americans faced after independence"]
+  },
   articles: {
     number: "02", years: "1781", label: "THE FIRST GOVERNMENT", title: "THE ARTICLES OF CONFEDERATION",
     image: "assets/history-lesson/02-articles.jpg", imageAlt: "Woodcut-style illustration of thirteen state shields joined by a fragile chain.",
-    bigIdea: "The Articles created a national government that could represent the country but could not control the states.",
+    bigIdea: "The Articles created the first national government while allowing the states to keep most political power.",
     opening: "After declaring independence, Americans needed a way for thirteen states to work together. They also remembered how Britain had abused centralized power. Their solution was the Articles of Confederation, the first written plan for the national government.",
     sections: [
-      { heading: "WHY WAS IT SO WEAK?", text: "The weakness was intentional. Each state saw itself as independent and wanted to keep control of its own laws, taxes, and economy. Congress could act only when the states cooperated." },
+      { heading: "WHY DID STATES KEEP MOST POWER?", text: "Each state saw itself as independent and wanted to control its own laws, taxes, and economy. Americans also wanted to prevent a new central government from becoming like the British monarchy." },
       { heading: "WHAT COULD CONGRESS DO?", bullets: ["Declare war and make peace", "Make treaties with other countries", "Coin, or produce, money", "Manage relations with other nations and Native nations", "Ask states for soldiers and money"] },
       { heading: "HOW WAS IT ORGANIZED?", bullets: ["Congress was the only national branch.", "There was no president to enforce national decisions.", "There was no national court system to settle disputes.", "Every state received one vote, whether its population was large or small.", "Nine of thirteen states had to approve major laws. All thirteen had to approve an amendment."] },
-      { heading: "THE IMPORTANT CONNECTION", text: "The Articles reflected limited government because national power had strict limits. However, limits alone did not guarantee liberty. A government that could not raise money or enforce its decisions might also fail to protect the country and its people." }
+      { heading: "WHY THIS DESIGN MADE SENSE", text: "Americans had just fought a powerful central government. They designed the Articles to protect state power and prevent another national ruler from taking control." }
     ],
     vocabulary: [["CONFEDERATION", "A partnership in which member states keep most power."], ["CONGRESS", "The national lawmaking body."], ["AMENDMENT", "A formal change to a governing document."]],
-    teach: ["Why Americans intentionally made the national government weak", "Two things Congress could do", "Two important parts the government did not have", "Why needing every state to approve a change created a problem"]
+    teach: ["Why the states kept most power", "Two things Congress could do", "How Congress represented the states", "How the national government was organized"]
   },
   crisis: {
     number: "03", years: "1780s", label: "THE PROBLEMS", title: "WHY THE ARTICLES FAILED",
