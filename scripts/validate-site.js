@@ -416,7 +416,8 @@ historyTopics.forEach((topic, index) => {
   if (!historyReader.includes(`history-section.html?topic=${topic}`)) errors.push(`The main timeline is missing the ${topic} reader link.`);
   if (!fs.existsSync(path.join(root, section?.image || "missing"))) errors.push(`History reader ${topic} has a missing image.`);
   if ((section?.opening || "").length < 140) errors.push(`History reader ${topic} needs a fuller opening explanation.`);
-  if ((section?.sections || []).length !== 4 || (section?.teach || []).length !== 4) errors.push(`History reader ${topic} needs exactly four ordered story parts and four matching teaching checks.`);
+  const expectedParts = topic === "rights" ? 3 : 4;
+  if ((section?.sections || []).length !== expectedParts || (section?.teach || []).length !== expectedParts) errors.push(`History reader ${topic} needs ${expectedParts} ordered story parts and matching teaching checks.`);
   if ((section?.sections || []).some(part => !part.notesCue)) errors.push(`History reader ${topic} needs a guided-notes location for every teaching point.`);
 });
 const historySectionHtml = fs.readFileSync(path.join(root, "history-section.html"), "utf8");
@@ -441,7 +442,7 @@ if (!changingCode.includes("prefers-reduced-motion") || !changingHtml.includes("
 for (const marker of ["HISTORY_SECTION_DATA", "URLSearchParams", "glossary-link", "previous-section", "next-section"]) {
   if (!historySectionCode.includes(marker)) errors.push(`The section reader behavior is missing: ${marker}`);
 }
-for (const marker of ["TEACHING POINT ${index + 1} OF 4", "CAN YOU EXPLAIN IT?", "content.teach[index]"]) {
+for (const marker of ["TEACHING POINT ${index + 1} OF ${content.sections.length}", "CAN YOU EXPLAIN IT?", "content.teach[index]"]) {
   if (!historySectionCode.includes(marker)) errors.push(`The section reader must place each teaching check inside its matching story part: ${marker}`);
 }
 const expectedRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];

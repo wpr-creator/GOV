@@ -11,6 +11,7 @@
   setText("section-big-idea", content.bigIdea);
   setText("section-number", `SECTION ${content.number}`);
   setText("section-opening", content.opening);
+  setText("story-heading", `THE STORY IN ${content.sections.length === 3 ? "THREE" : "FOUR"} PARTS`);
   const image = document.getElementById("section-image");
   image.src = content.image;
   image.alt = content.imageAlt;
@@ -21,15 +22,16 @@
     article.className = "reader-card";
     const part = document.createElement("p");
     part.className = "teaching-point";
-    part.textContent = `TEACHING POINT ${index + 1} OF 4`;
+    part.textContent = `TEACHING POINT ${index + 1} OF ${content.sections.length}`;
     const heading = document.createElement("h2");
     heading.textContent = section.heading;
     const notesCue = document.createElement("p");
     notesCue.className = "notes-cue";
     const notesLabel = document.createElement("strong");
-    notesLabel.textContent = "GUIDED NOTES";
+    const isExtraDetail = section.notesCue.startsWith("EXTRA DETAIL · ");
+    notesLabel.textContent = isExtraDetail ? "EXTRA DETAIL" : "ON YOUR NOTES";
     const notesLocation = document.createElement("span");
-    notesLocation.textContent = section.notesCue;
+    notesLocation.textContent = isExtraDetail ? section.notesCue.replace("EXTRA DETAIL · ", "") : section.notesCue;
     notesCue.append(notesLabel, notesLocation);
     article.append(part, notesCue, heading);
     if (section.text) {
