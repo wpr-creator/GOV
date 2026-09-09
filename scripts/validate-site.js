@@ -417,13 +417,14 @@ historyTopics.forEach((topic, index) => {
   if (!fs.existsSync(path.join(root, section?.image || "missing"))) errors.push(`History reader ${topic} has a missing image.`);
   if ((section?.opening || "").length < 140) errors.push(`History reader ${topic} needs a fuller opening explanation.`);
   if ((section?.sections || []).length !== 4 || (section?.teach || []).length !== 4) errors.push(`History reader ${topic} needs exactly four ordered story parts and four matching teaching checks.`);
+  if ((section?.sections || []).some(part => !part.notesCue)) errors.push(`History reader ${topic} needs a guided-notes location for every teaching point.`);
 });
 const historySectionHtml = fs.readFileSync(path.join(root, "history-section.html"), "utf8");
 const historySectionCode = fs.readFileSync(path.join(root, "history-section.js"), "utf8");
 for (const marker of ["BIG IDEA", "THE STORY", "ACADEMIC VOCABULARY", "FULL TIMELINE"]) {
   if (!historySectionHtml.includes(marker)) errors.push(`The section reader template is missing: ${marker}`);
 }
-if (!historySectionHtml.includes("history-section.css?v=20260908-apg-teaching-points") || !historySectionHtml.includes("history-section-hub-theme.css?v=20260908-apg-teaching-points")) errors.push("The detailed History Lesson teaching-point styles are not current.");
+if (!historySectionHtml.includes("history-section.css?v=20260909-guided-notes-alignment") || !historySectionHtml.includes("history-section-hub-theme.css?v=20260909-guided-notes-alignment")) errors.push("The detailed History Lesson teaching-point styles are not current.");
 const changingHtml = fs.readFileSync(path.join(root, "changing-the-constitution.html"), "utf8");
 const changingCode = fs.readFileSync(path.join(root, "changing-the-constitution.js"), "utf8");
 const changingRules = require(path.join(root, "changing-the-constitution-rules.js"));

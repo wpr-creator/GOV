@@ -24,7 +24,14 @@
     part.textContent = `TEACHING POINT ${index + 1} OF 4`;
     const heading = document.createElement("h2");
     heading.textContent = section.heading;
-    article.append(part, heading);
+    const notesCue = document.createElement("p");
+    notesCue.className = "notes-cue";
+    const notesLabel = document.createElement("strong");
+    notesLabel.textContent = "GUIDED NOTES";
+    const notesLocation = document.createElement("span");
+    notesLocation.textContent = section.notesCue;
+    notesCue.append(notesLabel, notesLocation);
+    article.append(part, notesCue, heading);
     if (section.text) {
       const paragraph = document.createElement("p");
       paragraph.textContent = section.text;
