@@ -2396,13 +2396,23 @@
     button.textContent = "SUBMITTING…";
     status.textContent = "SENDING YOUR RESPONSE…";
     try {
-      await fetch(siteContent.exitEndpoint, {
-        method: "POST",
-        mode: "no-cors",
-        keepalive: true,
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload)
-      });
+      const body = JSON.stringify(payload);
+      let accepted = false;
+      if (typeof navigator.sendBeacon === "function") {
+        accepted = navigator.sendBeacon(
+          siteContent.exitEndpoint,
+          new Blob([body], { type: "text/plain;charset=utf-8" })
+        );
+      } else {
+        await fetch(siteContent.exitEndpoint, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body
+        });
+        accepted = true;
+      }
+      if (!accepted) throw new Error("Submission was not accepted for delivery");
       status.textContent = "SUBMITTED TO MR. ROGERS. THANK YOU.";
       document.getElementById("exit-response").value = "";
       event.currentTarget.hidden = true;

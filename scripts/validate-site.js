@@ -272,7 +272,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260909-ticket-submit-fix") || !html.includes("app.js?v=20260909-ticket-submit-fix") || !html.includes("course-data.js?v=20260908-politics-definition") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260909-ticket-beacon-fix") || !html.includes("app.js?v=20260909-ticket-beacon-fix") || !html.includes("course-data.js?v=20260908-politics-definition") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -700,7 +700,7 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260909-ticket-submit-fix") || !html.includes("styles.css?v=20260909-ticket-submit-fix")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260909-ticket-beacon-fix") || !html.includes("styles.css?v=20260909-ticket-beacon-fix")) errors.push("Exit-ticket cache versions are not current.");
 if (!html.includes("classroom-layout.css?v=20260903-apg-layout") || !fs.existsSync(path.join(root, "classroom-layout.css"))) errors.push("The CP classroom layout stylesheet is missing.");
 for (const marker of ["current-lesson-action", "lesson-jump", "MY CHECKLIST", "new URL(resourceUrl, location.href).origin !== location.origin"]) {
   if (!appCode.includes(marker)) errors.push(`CP classroom navigation is missing: ${marker}`);
@@ -709,7 +709,7 @@ for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"'
   if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);
 }
 if (!(html.indexOf('class="now-panel"') < html.indexOf('class="dashboard-card exit-card"') && html.indexOf('class="dashboard-card exit-card"') < html.indexOf('class="home-dashboard"'))) errors.push("The exit ticket must appear directly below the current-unit card.");
-for (const marker of ['fetch("content.json", { cache: "no-store" })', "populateExitStudents", "validateExitTicket", "submittedAt: new Date().toISOString()", 'mode: "no-cors"', "body: JSON.stringify(payload)", "confirmation.hidden = false"]) {
+for (const marker of ['fetch("content.json", { cache: "no-store" })', "populateExitStudents", "validateExitTicket", "submittedAt: new Date().toISOString()", "navigator.sendBeacon", 'type: "text/plain;charset=utf-8"', "confirmation.hidden = false"]) {
   if (!appCode.includes(marker)) errors.push(`Exit-ticket behavior changed or missing: ${marker}`);
 }
 const exitScript = fs.readFileSync(path.join(root, "exit-ticket-script.gs"), "utf8");
@@ -866,7 +866,7 @@ for (const folder of ["", "documents", "cases", "prove-your-case"]) {
     if (!page.includes("shared-navigation.js?v=20260904-usability") || !page.includes("shared-navigation.css?v=20260904-usability")) errors.push(`Shared navigation missing from ${folder}/${file}`);
   }
 }
-if (!appCode.includes('mode: "no-cors"') || !appCode.includes('keepalive: true')) errors.push("Exit tickets must use the Apps Script-compatible submission request.");
+if (!appCode.includes("navigator.sendBeacon") || !appCode.includes('mode: "no-cors"')) errors.push("Exit tickets must use an Apps Script-compatible submission request.");
 if (!appCode.includes('exitForm.closest(".exit-card").hidden = !exitQuestion')) errors.push("Closed exit ticket cards must be hidden.");
 if (!html.includes('id="exit-confirmation"') || !html.includes('assets/feedback/ticket-submitted.png') || !appCode.includes('confirmation.hidden = false') || !fs.existsSync(path.join(root, "assets", "feedback", "ticket-submitted.png"))) errors.push("A confirmed exit-ticket save must display the ticket-submitted graphic.");
 
