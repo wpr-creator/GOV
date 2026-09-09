@@ -1776,6 +1776,7 @@
     const exitForm = document.getElementById("exit-form");
     exitForm.hidden = !exitQuestion;
     exitForm.closest(".exit-card").hidden = !exitQuestion;
+    document.getElementById("exit-confirmation").hidden = true;
     const exitStatus = document.getElementById("exit-status");
     exitStatus.textContent = exitQuestion
       ? (exitEndpoint ? "CHOOSE YOUR CLASS PERIOD AND NAME." : "THE EXIT TICKET IS TEMPORARILY UNAVAILABLE. SEE MR. ROGERS.")
@@ -2377,6 +2378,8 @@
     event.preventDefault();
     const button = event.currentTarget.querySelector("button");
     const status = document.getElementById("exit-status");
+    const confirmation = document.getElementById("exit-confirmation");
+    confirmation.hidden = true;
     const payload = {
       date: new Date().toLocaleDateString("en-US"),
       period: document.getElementById("exit-period").value,
@@ -2401,6 +2404,8 @@
       if (!result.ok || (await result.json()).result !== "success") throw new Error("Save not confirmed");
       status.textContent = "SUBMITTED TO MR. ROGERS. THANK YOU.";
       document.getElementById("exit-response").value = "";
+      event.currentTarget.hidden = true;
+      confirmation.hidden = false;
     } catch (error) {
       status.textContent = "SAVING COULD NOT BE CONFIRMED. YOUR ANSWER IS STILL HERE. COPY IT BEFORE TRYING AGAIN, OR CHECK WITH MR. ROGERS.";
     } finally {

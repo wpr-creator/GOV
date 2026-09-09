@@ -119,6 +119,10 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .exit-card select, .exit-card textarea, .admin-panel textarea, .admin-panel input, .admin-panel select { width: 100%; min-height: 48px; margin-top: .4rem; padding: .8rem; border: 1px solid var(--stone-dark); background: var(--white); color: var(--black); font: 700 .95rem Arial, sans-serif; }
 .exit-submit { min-height: 48px; margin-top: .7rem; padding: .7rem 1rem; border: 0; color: var(--white); background: var(--black); font-weight: 900; }
 .exit-submit:disabled { color: #777; background: var(--stone); }
+.exit-confirmation { max-width: 680px; margin: 1.25rem auto .5rem; text-align: center; animation: ticket-arrive .42s ease-out both; }
+.exit-confirmation img { width: 100%; height: auto; display: block; }
+@keyframes ticket-arrive { from { opacity: 0; transform: translateY(12px) rotate(-1deg) scale(.96); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .exit-confirmation { animation: none; } }
 .system-note { min-height: 1.1em; margin: .55rem 0 0; color: var(--muted); font-size: .72rem; font-weight: 700; }
 
 .section-heading { margin-bottom: 1.4rem; display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
