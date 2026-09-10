@@ -2,6 +2,7 @@
 * { box-sizing:border-box; }
 html, body { min-height:100%; }
 body { margin:0; color:var(--black); background:var(--paper); font-family:Arial,Helvetica,sans-serif; }
+[hidden] { display:none!important; }
 .gov-shared-header, .gov-unit-return { display:none!important; }
 button, a { font:inherit; }
 button { cursor:pointer; }
@@ -13,6 +14,31 @@ button { cursor:pointer; }
 .presenter-bar button { padding:.55rem .8rem; justify-self:end; color:#fff; background:#000; border:0; }
 .slide { position:relative; min-height:0; padding:clamp(1.5rem,4vw,3.5rem); display:grid; place-items:center; overflow:auto; background-color:var(--paper); background-image:radial-gradient(circle at 1px 1px,rgba(0,0,0,.09) 1px,transparent 1.2px); background-size:17px 17px; }
 .slide-content { width:min(1280px,92vw); padding:clamp(1.5rem,4vw,3.25rem); color:#fff; background:#000; border:1px solid #000; border-bottom:12px solid var(--gray); border-radius:8px; box-shadow:0 18px 44px rgba(0,0,0,.18); }
+.intro-kicker { margin:0 0 1rem; color:#d2d2ce; font-size:clamp(.8rem,1.3vw,1rem); font-weight:900; letter-spacing:.16em; }
+.title-slide { min-height:min(700px,72vh); display:flex; flex-direction:column; justify-content:center; }
+.title-slide h1 { max-width:12ch; font-size:clamp(4rem,9vw,8.5rem); }
+.title-question { max-width:920px; margin-top:clamp(1.5rem,4vh,3rem); padding:clamp(1rem,2.2vw,1.75rem); color:#000; background:#fff; border-left:10px solid var(--focus); }
+.title-question p { margin:0 0 .4rem; color:#696969; font-weight:900; letter-spacing:.14em; }
+.title-question h2 { margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(1.35rem,2.6vw,2.35rem); line-height:1.25; text-wrap:balance; }
+.title-path { margin:clamp(1.4rem,3vh,2.2rem) 0 0; color:#d2d2ce; font-family:Impact,"Arial Black",sans-serif; font-size:clamp(1.2rem,2.4vw,2rem); letter-spacing:.035em; }
+.title-path span { padding:0 .55em; color:var(--focus); }
+.hook-slide { padding:0; display:grid; grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr); overflow:hidden; }
+.hook-art { min-height:620px; display:flex; align-items:flex-end; justify-content:center; background:#050505; border-right:1px solid #555; overflow:hidden; }
+.hook-art img { width:100%; height:100%; display:block; object-fit:cover; object-position:center top; filter:contrast(1.08); }
+.hook-copy { padding:clamp(1.5rem,4vw,3.25rem); align-self:center; }
+.hook-copy h1 { max-width:13ch; margin-bottom:clamp(1.2rem,2.5vh,1.8rem); font-size:clamp(2.7rem,5vw,5.4rem); }
+.hook-copy>p:not(.intro-kicker) { max-width:760px; margin:.75rem 0; color:#ededeb; font-size:clamp(1.05rem,1.65vw,1.35rem); line-height:1.45; }
+.hook-question { margin-top:clamp(1.2rem,3vh,2rem); padding:1rem 1.15rem; display:grid; gap:.4rem; color:#000; background:#fff; border-left:10px solid var(--focus); }
+.hook-question strong { color:#666; font-size:.78rem; letter-spacing:.14em; }
+.hook-question span { font-family:Georgia,"Times New Roman",serif; font-size:clamp(1.15rem,1.8vw,1.5rem); font-weight:700; line-height:1.3; }
+.bridge-slide { min-height:min(700px,72vh); display:flex; flex-direction:column; justify-content:center; }
+.bridge-slide h1 { max-width:16ch; font-size:clamp(3.2rem,6.5vw,6.5rem); }
+.bridge-slide>p:not(.intro-kicker) { max-width:1040px; color:#ededeb; font-size:clamp(1.15rem,2vw,1.6rem); line-height:1.45; }
+.bridge-lead { margin:1.4rem 0 .35rem!important; font-family:Georgia,"Times New Roman",serif; font-size:clamp(1.35rem,2.5vw,2.15rem)!important; font-weight:700; }
+.bridge-points { margin-top:clamp(1.1rem,2.5vh,1.8rem); display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.bridge-points p { margin:0; padding:1.15rem; display:grid; gap:.45rem; color:#000; background:#fff; border-top:8px solid var(--focus); }
+.bridge-points strong { font-family:Impact,"Arial Black",sans-serif; font-size:clamp(1.35rem,2vw,1.9rem); letter-spacing:.02em; }
+.bridge-points span { font-size:clamp(1rem,1.5vw,1.2rem); line-height:1.35; }
 .slide-heading { margin-bottom:clamp(1rem,2.2vh,1.5rem); padding-bottom:clamp(.8rem,1.6vh,1.15rem); display:flex; align-items:center; gap:1rem; border-bottom:1px solid #525456; }
 .slide-number { flex:0 0 auto; width:clamp(58px,6vw,78px); aspect-ratio:1; display:grid; place-items:center; color:#000; background:#dededb; font-family:Impact,"Arial Black",sans-serif; font-size:clamp(1.8rem,3vw,2.7rem); line-height:1; }
 .slide-label { margin:0; color:#dededb; font-size:clamp(.82rem,1.4vw,1.05rem); font-weight:900; letter-spacing:.14em; }
@@ -35,7 +61,7 @@ h1 { max-width:12ch; margin:0; font-family:Impact,"Arial Black",sans-serif; font
 .slide-dots button { width:1.2rem; min-height:1.2rem; padding:0; border:2px solid #fff; border-radius:50%; background:transparent; }
 .slide-dots button.is-current { background:#fff; transform:scale(1.15); }
 a:focus-visible, button:focus-visible { outline:4px solid var(--focus); outline-offset:4px; }
-@media(max-width:900px) { .slide-body { grid-template-columns:1fr; } h1 { max-width:18ch; } }
+@media(max-width:900px) { .slide-body { grid-template-columns:1fr; } h1 { max-width:18ch; } .hook-slide { grid-template-columns:1fr; } .hook-art { min-height:250px; max-height:32vh; } .hook-art img { object-position:center 18%; } .bridge-points { grid-template-columns:1fr; } }
 @media(max-width:760px) { .presenter-bar { grid-template-columns:1fr 1fr; } .presenter-bar p { display:none; } .presenter-controls { grid-template-columns:1fr auto 1fr; } .slide-dots { display:none; } .presenter-controls button:first-child { justify-self:start; } .presenter-controls button:last-child { justify-self:end; } }
-@media(max-width:480px) { .presenter-bar a, .presenter-bar button, .presenter-controls button { font-size:.75rem; } .slide { padding:1.25rem; } h1 { font-size:clamp(2.2rem,12vw,3.5rem); } .big-idea h2 { font-size:1.25rem; } .key-points li { font-size:1.25rem; } }
+@media(max-width:480px) { .presenter-bar a, .presenter-bar button, .presenter-controls button { font-size:.75rem; } .slide { padding:1.25rem; } .hook-slide { padding:0; } h1,.title-slide h1,.hook-copy h1,.bridge-slide h1 { font-size:clamp(2.2rem,12vw,3.5rem); } .big-idea h2 { font-size:1.25rem; } .key-points li { font-size:1.25rem; } .title-path { display:grid; grid-template-columns:1fr; gap:.15rem; } .title-path span { padding:0; transform:rotate(90deg); transform-origin:left center; } }
 @media(prefers-reduced-motion:reduce) { * { scroll-behavior:auto!important; } .slide-dots button.is-current { transform:none; } }

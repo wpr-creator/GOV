@@ -7,10 +7,10 @@
   <title>Presenter View · The History Lesson</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="shared-navigation.css?v=20260904-usability">
-  <link rel="stylesheet" href="history-presenter.css?v=20260910-key-points">
+  <link rel="stylesheet" href="history-presenter.css?v=20260910-intro-slides">
   <script src="shared-navigation.js?v=20260904-usability" defer></script>
   <script src="history-section-data.js?v=20260910-three-points" defer></script>
-  <script src="history-presenter.js?v=20260910-key-points" defer></script>
+  <script src="history-presenter.js?v=20260910-intro-slides" defer></script>
 </head>
 <body>
   <main class="presenter" aria-live="polite">
@@ -20,8 +20,41 @@
       <button id="fullscreen-button" type="button">FULL SCREEN</button>
     </header>
 
-    <section class="slide" id="slide" aria-labelledby="slide-title">
-      <div class="slide-content">
+    <section class="slide" id="slide">
+      <article class="slide-content title-slide" id="title-slide">
+        <p class="intro-kicker">GOVERNMENT 1.03 · FOUNDATIONS OF AMERICAN DEMOCRACY</p>
+        <h1>THE HISTORY LESSON</h1>
+        <div class="title-question">
+          <p>ESSENTIAL QUESTION</p>
+          <h2>How did the United States replace a weak national government without creating another tyranny?</h2>
+        </div>
+        <p class="title-path">TYRANNY <span>→</span> WEAK GOVERNMENT <span>→</span> BALANCED POWER</p>
+      </article>
+
+      <article class="slide-content hook-slide" id="hook-slide" hidden>
+        <div class="hook-art"><img src="assets/history-lesson/statue-liberty-hook.png" alt="Woodcut-style illustration of the Statue of Liberty raising her torch."></div>
+        <div class="hook-copy">
+          <p class="intro-kicker">THE HOOK</p>
+          <h1>THE COMPLETE OPPOSITE</h1>
+          <p><strong>Imagine this.</strong> You date someone who decides everything—where you go, what you watch, even what pizza you order.</p>
+          <p>When it ends, you want the opposite: <strong>someone who lets you choose.</strong></p>
+          <p>The next person never decides anything. Every answer is “Whatever you want.” Soon, <strong>you are doing all the work.</strong></p>
+          <div class="hook-question"><strong>THINK · PAIR · SHARE</strong><span>Why might someone choose the complete opposite after a frustrating experience?</span></div>
+        </div>
+      </article>
+
+      <article class="slide-content bridge-slide" id="bridge-slide" hidden>
+        <p class="intro-kicker">THE BRIDGE</p>
+        <h1>FROM ONE EXTREME TO ANOTHER</h1>
+        <p class="bridge-lead">The complete opposite can sound perfect—until it creates a different problem.</p>
+        <p>After independence, Americans made the same kind of move. They escaped a king, created a national government that could barely act, and then searched for a better balance.</p>
+        <div class="bridge-points">
+          <p><strong>ARTICLES OF CONFEDERATION</strong><span>Fear of control produced a weak national government.</span></p>
+          <p><strong>CONSTITUTION + RATIFICATION</strong><span>Americans asked whether stronger power could still protect liberty.</span></p>
+        </div>
+      </article>
+
+      <article class="slide-content section-slide" id="section-slide" hidden>
         <div class="slide-heading">
           <div class="slide-number" id="slide-number">01</div>
           <p class="slide-label" id="slide-label">SECTION 1 · 1776</p>
@@ -37,13 +70,13 @@
             <ol id="slide-key-points"></ol>
           </aside>
         </div>
-      </div>
+      </article>
     </section>
 
     <footer class="presenter-controls">
       <button id="previous-button" type="button" aria-label="Previous section">← PREVIOUS</button>
       <div class="slide-dots" id="progress" aria-label="Choose a slide"></div>
-      <p><span id="current-slide">1</span> / 7</p>
+      <p><span id="current-slide">1</span> / <span id="total-slides">10</span></p>
       <button id="next-button" type="button">NEXT →</button>
     </footer>
   </main>
