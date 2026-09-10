@@ -8,6 +8,7 @@
   const label = document.getElementById("slide-label");
   const title = document.getElementById("slide-title");
   const bigIdea = document.getElementById("slide-big-idea");
+  const keyPoints = document.getElementById("slide-key-points");
   const current = document.getElementById("current-slide");
   const previous = document.getElementById("previous-button");
   const next = document.getElementById("next-button");
@@ -29,6 +30,12 @@
     label.textContent = `SECTION ${index + 1} · ${slide.years}`;
     title.textContent = slide.presenterTitle || slide.title;
     bigIdea.textContent = slide.bigIdea;
+    keyPoints.replaceChildren();
+    (slide.presenterPoints || []).forEach(point => {
+      const item = document.createElement("li");
+      item.textContent = point;
+      keyPoints.append(item);
+    });
     current.textContent = index + 1;
     previous.disabled = index === 0;
     next.disabled = index === slides.length - 1;

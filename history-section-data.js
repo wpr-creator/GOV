@@ -3,6 +3,7 @@ window.HISTORY_SECTION_DATA = {
     number: "01", years: "1776", label: "THE FOUNDING STANDARD", title: "WHAT SHOULD GOVERNMENT PROTECT?", presenterTitle: "FREEDOM FROM TYRANNY",
     image: "assets/history-lesson/01-declaration.jpg", imageAlt: "Woodcut-style illustration of a declaration, quill, and broken royal crown.",
     bigIdea: "The Declaration said that people have rights and that government gets its power from the people.",
+    presenterPoints: ["PEOPLE HAVE NATURAL RIGHTS", "GOVERNMENT GETS POWER FROM THE PEOPLE", "GOVERNMENT MUST HAVE LIMITS", "PEOPLE MAY REPLACE A GOVERNMENT THAT ABUSES POWER"],
     opening: "The Declaration of Independence did more than announce a break from Britain. It explained why government is legitimate and when people may replace it.",
     sections: [
       { notesCue: "“People have rights…”", heading: "NATURAL RIGHTS", text: "People are born with basic rights. Government does not create these rights. Its job is to protect them." },
@@ -17,6 +18,7 @@ window.HISTORY_SECTION_DATA = {
     number: "02", years: "1781", label: "THE FIRST GOVERNMENT", title: "THE ARTICLES OF CONFEDERATION", presenterTitle: "THE ARTICLES OF CONFEDERATION",
     image: "assets/history-lesson/02-articles.jpg", imageAlt: "Woodcut-style illustration of thirteen state shields joined by a fragile chain.",
     bigIdea: "The Articles created the first U.S. government, but the states kept most of the power.",
+    presenterPoints: ["STATES KEPT MOST OF THE POWER", "CONGRESS WAS THE ONLY NATIONAL BRANCH", "EACH STATE HAD ONE VOTE", "ALL 13 STATES HAD TO APPROVE A CHANGE"],
     opening: "After declaring independence, Americans needed a way for thirteen states to work together. They also remembered how Britain had abused centralized power. Their solution was the Articles of Confederation, the first written plan for the national government.",
     sections: [
       { notesCue: "“The states kept most of the power.”", heading: "WHY DID STATES KEEP MOST POWER?", text: "Each state saw itself as independent and wanted to control its own laws, taxes, and economy. Americans also wanted to prevent a new central government from becoming like the British monarchy." },
@@ -31,6 +33,7 @@ window.HISTORY_SECTION_DATA = {
     number: "03", years: "1780s", label: "THE PROBLEMS", title: "WHY THE ARTICLES FAILED", presenterTitle: "PROBLEMS UNDER THE ARTICLES",
     image: "assets/history-lesson/04-shays.jpg", imageAlt: "Woodcut-style illustration of Massachusetts farmers protesting outside a closed courthouse.",
     bigIdea: "The national government had important jobs, but it lacked the money and power to do them well.",
+    presenterPoints: ["CONGRESS COULD NOT REQUIRE STATES TO PAY TAXES", "CONGRESS COULD NOT CONTROL TRADE", "THERE WAS NO PRESIDENT OR NATIONAL COURT SYSTEM", "SHAYS’ REBELLION EXPOSED THE GOVERNMENT’S WEAKNESS"],
     opening: "Winning independence did not end the country’s problems. The United States owed war debts, states argued about trade, and foreign governments questioned whether Congress could keep its promises. The Articles made it very difficult for the country to respond as one nation.",
     sections: [
       { notesCue: "“Five visible failures involved…”", heading: "FIVE FAILURES PEOPLE COULD SEE", bullets: ["Taxes: Congress could ask states for money but could not require payment.", "Trade: States taxed one another’s goods, while Congress could not create one national trade policy.", "Enforcement: Congress could make decisions but had no executive branch to carry them out.", "Courts: No national judicial branch existed to settle disputes between states.", "Money: States issued different currencies, making trade and debt harder to manage."] },
@@ -45,6 +48,7 @@ window.HISTORY_SECTION_DATA = {
     number: "04", years: "1787", label: "A NEW PLAN", title: "THE CONSTITUTIONAL CONVENTION", presenterTitle: "THE CONSTITUTIONAL SOLUTION",
     image: "assets/history-lesson/05-convention.jpg", imageAlt: "Woodcut-style illustration of delegates debating around a table at the Constitutional Convention.",
     bigIdea: "The delegates replaced the Articles with the Constitution. The new government was stronger, but its power was divided and limited.",
+    presenterPoints: ["THE DELEGATES WROTE A NEW PLAN", "THREE BRANCHES DIVIDED GOVERNMENT POWER", "CHECKS AND BALANCES LIMITED EACH BRANCH", "FEDERALISM SHARED POWER WITH THE STATES"],
     opening: "In May 1787, delegates met in Philadelphia. Congress had authorized them to revise the Articles. The delegates met in private, debated the failures of the old system, and decided to write a completely new plan of government.",
     sections: [
       { notesCue: "Problem Under the Articles", heading: "WHAT NEEDED TO CHANGE?", bullets: ["Congress needed dependable tax revenue.", "The country needed one system for trade between states and with other nations.", "Someone needed to enforce federal laws.", "National courts were needed to settle disputes and interpret federal law.", "The national government needed authority over states when states ignored valid national decisions."] },
@@ -59,6 +63,7 @@ window.HISTORY_SECTION_DATA = {
     number: "05", years: "1787", label: "THE DEALS", title: "THE CONSTITUTIONAL COMPROMISES", presenterTitle: "CONSTITUTIONAL COMPROMISES",
     image: "assets/history-lesson/06-compromises.jpg", imageAlt: "Woodcut-style illustration of delegates shaking hands beneath a balance representing large and small states.",
     bigIdea: "Compromises helped the delegates finish the Constitution, but some agreements—especially those protecting slavery—were deeply unjust.",
+    presenterPoints: ["THE HOUSE REPRESENTS POPULATION", "EACH STATE GETS TWO SENATORS", "SOME COMPROMISES PROTECTED SLAVERY", "THE ELECTORAL COLLEGE CHOOSES THE PRESIDENT"],
     opening: "The delegates agreed that the Articles had failed, but they disagreed about the new government. Large and small states wanted different kinds of representation. Delegates also fought over slavery, presidential elections, and how the Constitution could be changed.",
     sections: [
       { notesCue: "The Great Compromise table", heading: "THE GREAT COMPROMISE", text: "Large states wanted representation based on population. Small states wanted equal votes. The agreement created a two-house Congress: population determines seats in the House of Representatives, while every state receives two seats in the Senate." },
@@ -73,6 +78,7 @@ window.HISTORY_SECTION_DATA = {
     number: "06", years: "1787–88", label: "THE RATIFICATION DEBATE", title: "FEDERALISTS AND ANTI-FEDERALISTS", presenterTitle: "THE RATIFICATION DEBATE",
     image: "assets/history-lesson/09-debate.jpg", imageAlt: "Woodcut-style illustration of Federalist and Anti-Federalist speakers debating before undecided listeners.",
     bigIdea: "Federalists and Anti-Federalists both wanted to protect liberty. They disagreed about whether a weak or powerful national government was more dangerous.",
+    presenterPoints: ["FEDERALISTS WANTED A STRONGER NATIONAL GOVERNMENT", "ANTI-FEDERALISTS FEARED NATIONAL POWER", "BOTH SIDES WANTED TO PROTECT LIBERTY", "A BILL OF RIGHTS WAS PROMISED"],
     opening: "Writing the Constitution did not make it law. Special conventions in at least nine states had to ratify, or formally approve, it. Supporters and opponents used speeches, newspapers, pamphlets, and public meetings to persuade voters.",
     sections: [
       { notesCue: "“At least nine states had to RATIFY it.”", heading: "THE CONSTITUTION NEEDED APPROVAL", text: "The delegates signed the Constitution, but that did not make it law. Special conventions in at least nine states had to ratify, or formally approve, it. Federalists and Anti-Federalists tried to persuade the people through speeches, newspapers, pamphlets, and public meetings." },
@@ -87,6 +93,7 @@ window.HISTORY_SECTION_DATA = {
     number: "07", years: "1788–91", label: "THE FINAL AGREEMENT", title: "RATIFICATION AND THE BILL OF RIGHTS", presenterTitle: "RATIFICATION AND THE BILL OF RIGHTS",
     image: "assets/history-lesson/10-rights.jpg", imageAlt: "Woodcut-style illustration of citizens receiving news of ratification and the Bill of Rights.",
     bigIdea: "The Constitution created a stronger national government. The Bill of Rights added written rules protecting individual freedoms from government power.",
+    presenterPoints: ["NINE STATES PUT THE CONSTITUTION INTO EFFECT", "MADISON PROPOSED AMENDMENTS", "TEN AMENDMENTS BECAME THE BILL OF RIGHTS", "MOST RIGHTS LATER APPLIED TO THE STATES"],
     opening: "Federalists won enough support for the Constitution to take effect, but Anti-Federalist criticism shaped what happened next. Several states ratified while recommending amendments that would protect individual liberty.",
     sections: [
       { notesCue: "1788 and 1789 rows", heading: "THE CONSTITUTION TAKES EFFECT", text: "In 1788, New Hampshire became the ninth state to ratify the Constitution. That gave the Constitution enough approval to take effect. In 1789, the new Congress met and George Washington began serving as president. The stronger national government was now operating." },
