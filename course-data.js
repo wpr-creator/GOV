@@ -176,9 +176,8 @@ window.COURSE_DATA = {
           id: "unit-1-03-guided-notes",
           lesson: "1.03 — THE HISTORY LESSON",
           title: "1.03 GUIDED NOTES",
-          url: "",
-          kind: "notes",
-          awaitingLink: true
+          url: "https://docs.google.com/document/d/1x9UrTBVuUd6vtC31byrfgF-6sngyfiwcVbwhIAqomMk/edit?tab=t.0",
+          kind: "notes"
         },
         {
           id: "history-lesson",
@@ -190,17 +189,9 @@ window.COURSE_DATA = {
         {
           id: "history-review",
           lesson: "1.03 — THE HISTORY LESSON",
-          title: "HISTORY LESSON REVIEW",
+          title: "SAVE THE NEW NATION",
           url: "history-review.html",
           kind: "practice"
-        },
-        {
-          id: "changing-the-constitution",
-          lesson: "1.03 — THE HISTORY LESSON",
-          title: "CHANGE THE UNCHANGEABLE",
-          url: "changing-the-constitution.html",
-          kind: "notes",
-          kindLabel: "EXTENDED NOTES"
         }
       ]
     },

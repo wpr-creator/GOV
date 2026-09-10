@@ -4,21 +4,21 @@ window.HISTORY_REVIEW_DATA = {
       id: "articles",
       number: "01",
       title: "THE ARTICLES",
-      question: "What were the Articles of Confederation?",
-      questions: [
-        {
-          prompt: "What did the Articles of Confederation create?",
-          options: ["The first U.S. national government", "The Declaration of Independence", "The first ten amendments"],
-          answer: 0,
-          feedback: "The Articles created the first U.S. national government. The states kept most of the power."
-        },
-        {
-          prompt: "Why did the states keep most of the power?",
-          options: ["They wanted a president to control the states.", "They wanted to protect state independence and prevent another powerful national ruler.", "They wanted Congress to control all taxes and trade."],
-          answer: 1,
-          feedback: "Americans feared another powerful central government after British rule, so the Articles protected state power."
-        }
-      ]
+      question: "Sort what Congress could and could not do.",
+      sort: {
+        prompt: "Under the Articles, what could Congress do? What could it not do?",
+        items: [
+          { text: "DECLARE WAR AND MAKE PEACE", group: "could" },
+          { text: "MAKE TREATIES AND HANDLE FOREIGN RELATIONS", group: "could" },
+          { text: "COIN MONEY", group: "could" },
+          { text: "ASK STATES FOR MONEY AND SOLDIERS", group: "could" },
+          { text: "COLLECT TAXES DIRECTLY", group: "could-not" },
+          { text: "REGULATE TRADE BETWEEN STATES", group: "could-not" },
+          { text: "ENFORCE ITS OWN DECISIONS", group: "could-not" },
+          { text: "CREATE A PRESIDENT OR NATIONAL COURTS", group: "could-not" }
+        ],
+        feedback: "The Articles created the first U.S. government, but the national government depended on the states. That made it difficult to raise money, manage trade, enforce decisions, and solve national problems."
+      }
     },
     {
       id: "failures",

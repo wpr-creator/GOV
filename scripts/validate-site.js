@@ -52,7 +52,7 @@ const presidentFacts = JSON.parse(fs.readFileSync(path.join(root, "assets", "pre
 for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.html", "presidential-yearbook-assignments.js", "presidential-yearbook-reveal.js", "prove-your-case.html", "prove-your-case/case-data.js", "prove-your-case/case.js", "prove-your-case/case.css", "roots-of-democracy.html", "roots-of-democracy.css", "roots-of-democracy.js", "roots-of-democracy-data.js", "roots-connections.html", "roots-connections.css", "roots-connections-reminder.css", "roots-connections.js", "roots-connections-data.js", "founding-ideals-review.html", "founding-ideals-review.css", "founding-ideals-review.js", "founding-ideals-review-data.js", "history-lesson.html", "history-lesson.css", "history-lesson.js", "history-section.html", "history-section.css", "history-section.js", "history-section-data.js", "styles.css", "app.js", "course-data.js", "content.json", "cp-rosters.js", "exit-ticket-script.gs", "foundations-data.js", "documents/document-reader.css", "documents/declaration-of-independence.html", "documents/constitution-preamble.html", "documents/gettysburg-address.html", "constitution-explorer-data.js", "rights-referee-data.js", "election-2026-data.js", "presidential-power-data.js", "bill-journey-data.js", "federalism-map-data.js", "founding-power-data.js", "site-content.json", "us-politics-events.json", "assets/course-mark.svg", "assets/social-share.jpg", "assets/assignments/civic-selfie-example.png", "assets/assignments/presidential-yearbook-color-example.png", "assets/assignments/presidential-yearbook-word-example.png", "assets/cases/rights-referee-icons.svg", "assets/power/presidential-power-icons.svg", "assets/foundations/founding-power-icons.svg"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
-for (const file of ["history-review.html", "history-review.css", "history-review.js", "history-review-data.js"]) {
+for (const file of ["history-review.html", "history-review.css", "history-review-sort.css", "history-review.js", "history-review-data.js"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
 for (const socialTag of [
@@ -277,7 +277,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260909-ticket-beacon-fix") || !html.includes("app.js?v=20260909-ticket-beacon-fix") || !html.includes("course-data.js?v=20260910-history-review") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260909-ticket-beacon-fix") || !html.includes("app.js?v=20260909-ticket-beacon-fix") || !html.includes("course-data.js?v=20260910-articles-sort") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -317,7 +317,7 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|roots-connections-practice|unit-1-03-guided-notes|history-lesson|history-review|changing-the-constitution";
+const expectedUnitOneResources = "founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|roots-connections-practice|unit-1-03-guided-notes|history-lesson|history-review";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include the intended 1.01–1.03 resources in order.");
 }
@@ -369,7 +369,7 @@ if (historyLesson?.url !== "history-lesson.html" || config.assignmentUrls?.["his
   errors.push("The Unit 1 History Lesson must exist and remain open.");
 }
 const historyReview = unitOne?.resources?.find(resource => resource.id === "history-review");
-if (historyReview?.lesson !== "1.03 — THE HISTORY LESSON" || historyReview?.title !== "HISTORY LESSON REVIEW" || historyReview?.url !== "history-review.html" || historyReview?.kind !== "practice" || config.assignmentUrls?.["history-review"] !== "history-review.html" || config.assignmentUnlocks?.["history-review"] !== true) {
+if (historyReview?.lesson !== "1.03 — THE HISTORY LESSON" || historyReview?.title !== "SAVE THE NEW NATION" || historyReview?.url !== "history-review.html" || historyReview?.kind !== "practice" || config.assignmentUrls?.["history-review"] !== "history-review.html" || config.assignmentUnlocks?.["history-review"] !== true) {
   errors.push("The open History Lesson Review must appear as practice in lesson 1.03.");
 }
 if (historyReviewData?.checkpoints?.length !== 6) errors.push("History Lesson Review must contain six focused checkpoints.");
@@ -377,17 +377,19 @@ const historyReviewIds = historyReviewData?.checkpoints?.map(checkpoint => check
 if (historyReviewIds !== "articles|failures|great-compromise|amending|ratification|bill-of-rights") errors.push("History Lesson Review checkpoints must follow the notes key in order.");
 const historyAnswerPositions = [0, 0, 0];
 historyReviewData?.checkpoints?.forEach(checkpoint => {
-  if (checkpoint.questions?.length !== 2) errors.push(`History review checkpoint must have two questions: ${checkpoint.id || "unknown"}.`);
+  if (checkpoint.id !== "articles" && checkpoint.questions?.length !== 2) errors.push(`History review checkpoint must have two questions: ${checkpoint.id || "unknown"}.`);
   checkpoint.questions?.forEach(question => {
     if (question.options?.length !== 3 || !Number.isInteger(question.answer) || question.answer < 0 || question.answer > 2 || !question.feedback) errors.push(`History review question is incomplete: ${checkpoint.id || "unknown"}.`);
     else historyAnswerPositions[question.answer] += 1;
   });
 });
-if (historyAnswerPositions.join("|") !== "4|4|4") errors.push("History Lesson Review correct answers must be evenly distributed.");
+if (historyAnswerPositions.join("|") !== "3|3|4") errors.push("History Lesson Review multiple-choice answers must remain distributed across all three positions.");
+const articlesSort = historyReviewData?.checkpoints?.find(checkpoint => checkpoint.id === "articles")?.sort;
+if (articlesSort?.items?.length !== 8 || articlesSort.items.filter(item => item.group === "could").length !== 4 || articlesSort.items.filter(item => item.group === "could-not").length !== 4) errors.push("The Articles checkpoint must sort four powers Congress had and four powers it lacked.");
 const historyReviewHtml = fs.readFileSync(path.join(root, "history-review.html"), "utf8");
 const historyReviewCode = fs.readFileSync(path.join(root, "history-review.js"), "utf8");
-const historyReviewStyles = fs.readFileSync(path.join(root, "history-review.css"), "utf8");
-for (const marker of ["HISTORY CHECKPOINTS", "SIX CHECKPOINTS", "ANSWER TWO QUESTIONS", "gov-history-review-v1", "prefers-reduced-motion"]) {
+const historyReviewStyles = `${fs.readFileSync(path.join(root, "history-review.css"), "utf8")}\n${fs.readFileSync(path.join(root, "history-review-sort.css"), "utf8")}`;
+for (const marker of ["SAVE THE NEW NATION", "SIX CHECKPOINTS", "SOLVE THE CHALLENGE", "gov-history-review-v1", "prefers-reduced-motion", "CHECK MY SORT", "dragstart"]) {
   if (!`${historyReviewHtml}\n${historyReviewCode}\n${historyReviewStyles}`.includes(marker)) errors.push(`History Lesson Review is missing: ${marker}`);
 }
 if (historyReviewCode.includes("Math.random")) errors.push("History Lesson Review must not randomize answers in the browser.");
@@ -415,8 +417,9 @@ const reviewAnswerPositions = reviewQuestions.reduce((counts, question) => {
 }, [0, 0, 0]);
 if (reviewAnswerPositions.join("|") !== "4|4|4") errors.push(`Review answers must be balanced across all three positions; found ${reviewAnswerPositions.join("|")}.`);
 const historyNotes = unitOne?.resources?.find(resource => resource.id === "unit-1-03-guided-notes");
-if (historyNotes?.url !== "" || historyNotes?.awaitingLink !== true || historyNotes?.note || config.assignmentUnlocks?.["unit-1-03-guided-notes"] !== false) {
-  errors.push("The 1.03 Guided Notes card must remain a locked link placeholder.");
+const historyNotesUrl = "https://docs.google.com/document/d/1x9UrTBVuUd6vtC31byrfgF-6sngyfiwcVbwhIAqomMk/edit?tab=t.0";
+if (historyNotes?.url !== historyNotesUrl || historyNotes?.awaitingLink || historyNotes?.note || config.assignmentUrls?.["unit-1-03-guided-notes"] !== historyNotesUrl || config.assignmentUnlocks?.["unit-1-03-guided-notes"] !== true) {
+  errors.push("The open 1.03 Guided Notes card must link to the assigned document.");
 }
 for (const resource of unitOne?.resources || []) {
   if (resource.note) errors.push(`Unit 1 resource ${resource.id} must use only its plain type label.`);
@@ -463,7 +466,7 @@ const changingHtml = fs.readFileSync(path.join(root, "changing-the-constitution.
 const changingCode = fs.readFileSync(path.join(root, "changing-the-constitution.js"), "utf8");
 const changingRules = require(path.join(root, "changing-the-constitution-rules.js"));
 const changingResource = unitOne?.resources?.find(resource => resource.id === "changing-the-constitution");
-if (changingResource?.lesson !== "1.03 — THE HISTORY LESSON" || changingResource?.kind !== "notes" || changingResource?.kindLabel !== "EXTENDED NOTES" || config.assignmentUnlocks?.["changing-the-constitution"] !== false) errors.push("Change the Unchangeable must be locked coming-soon Extended Notes in lesson 1.03.");
+if (changingResource || config.assignmentUnlocks?.["changing-the-constitution"] !== false) errors.push("Change the Unchangeable must remain saved for later but hidden from Unit 1.");
 for (const marker of ["CHANGE THE UNCHANGEABLE", "GATE ONE · PROPOSAL", "GATE TWO · RATIFICATION", "ARTICLE V RATIFICATION", "THE KEY IDEA"]) {
   if (!changingHtml.includes(marker)) errors.push(`Changing the Constitution is missing: ${marker}`);
 }

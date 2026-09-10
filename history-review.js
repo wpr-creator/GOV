@@ -13,6 +13,7 @@
   let active = null;
   let questionIndex = 0;
   let answered = false;
+  let selectedSortItem = null;
 
   function loadProgress() {
     try {
@@ -54,7 +55,7 @@
       button.querySelector(".number").textContent = checkpoint.number;
       button.querySelector("strong").textContent = checkpoint.title;
       button.querySelector("p").textContent = checkpoint.question;
-      button.querySelector("small").textContent = complete ? "★ COMPLETE" : "2 QUESTIONS";
+      button.querySelector("small").textContent = complete ? "★ COMPLETE" : (checkpoint.sort ? "SORTING CHALLENGE" : "2 QUESTIONS");
       button.addEventListener("click", () => start(checkpoint));
       grid.append(button);
     });
@@ -66,8 +67,120 @@
     select.hidden = true;
     finish.hidden = true;
     workspace.hidden = false;
-    renderQuestion();
+    if (checkpoint.sort) renderSort();
+    else renderQuestion();
     workspace.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  }
+
+  function renderSort() {
+    answered = false;
+    selectedSortItem = null;
+    const activity = active.sort;
+    document.getElementById("checkpoint-label").textContent = `${active.number} · ${active.title}`;
+    document.getElementById("question-title").textContent = activity.prompt;
+    document.getElementById("question-progress").textContent = "SORT ALL 8 POWERS";
+    document.getElementById("question-progress-bar").style.width = "0%";
+    feedback.hidden = true;
+    nextButton.hidden = true;
+    answers.replaceChildren();
+    answers.className = "answers sort-activity";
+
+    const directions = document.createElement("p");
+    directions.className = "sort-directions";
+    directions.textContent = "Drag each power to a box. On a phone or keyboard, select a power and then select a box.";
+    const bank = document.createElement("div");
+    bank.className = "power-bank";
+    bank.setAttribute("aria-label", "Powers to sort");
+    const bins = document.createElement("div");
+    bins.className = "sort-bins";
+    [
+      ["could", "CONGRESS COULD"],
+      ["could-not", "CONGRESS COULD NOT"]
+    ].forEach(([group, label]) => {
+      const bin = document.createElement("div");
+      bin.className = `sort-bin ${group}`;
+      bin.dataset.group = group;
+      bin.tabIndex = 0;
+      bin.setAttribute("role", "button");
+      bin.setAttribute("aria-label", `${label}. Select this box to place the chosen power.`);
+      const heading = document.createElement("h3");
+      heading.textContent = label;
+      const list = document.createElement("div");
+      list.className = "sorted-list";
+      bin.append(heading, list);
+      bin.addEventListener("click", () => placeSelected(bin));
+      bin.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); placeSelected(bin); }
+      });
+      bin.addEventListener("dragover", event => event.preventDefault());
+      bin.addEventListener("drop", event => {
+        event.preventDefault();
+        const item = document.getElementById(event.dataTransfer.getData("text/plain"));
+        if (item) placeItem(item, bin);
+      });
+      bins.append(bin);
+    });
+    activity.items.forEach((item, index) => {
+      const power = document.createElement("button");
+      power.type = "button";
+      power.id = `power-${index}`;
+      power.className = "power-card";
+      power.textContent = item.text;
+      power.dataset.answer = item.group;
+      power.draggable = true;
+      power.addEventListener("dragstart", event => event.dataTransfer.setData("text/plain", power.id));
+      power.addEventListener("click", () => selectSortItem(power));
+      bank.append(power);
+    });
+    const check = document.createElement("button");
+    check.type = "button";
+    check.className = "check-sort";
+    check.textContent = "CHECK MY SORT";
+    check.disabled = true;
+    check.addEventListener("click", checkSort);
+    answers.append(directions, bank, bins, check);
+  }
+
+  function selectSortItem(item) {
+    document.querySelectorAll(".power-card.selected").forEach(card => card.classList.remove("selected"));
+    selectedSortItem = item;
+    item.classList.add("selected");
+    document.querySelectorAll(".sort-bin").forEach(bin => bin.classList.add("ready"));
+  }
+
+  function placeSelected(bin) {
+    if (selectedSortItem) placeItem(selectedSortItem, bin);
+  }
+
+  function placeItem(item, bin) {
+    bin.querySelector(".sorted-list").append(item);
+    item.dataset.placed = bin.dataset.group;
+    item.classList.remove("selected", "incorrect");
+    selectedSortItem = null;
+    document.querySelectorAll(".sort-bin").forEach(target => target.classList.remove("ready"));
+    const placed = answers.querySelectorAll(".power-card[data-placed]").length;
+    document.getElementById("question-progress-bar").style.width = `${placed / active.sort.items.length * 100}%`;
+    answers.querySelector(".check-sort").disabled = placed !== active.sort.items.length;
+  }
+
+  function checkSort() {
+    const incorrect = [...answers.querySelectorAll(".power-card")].filter(item => item.dataset.placed !== item.dataset.answer);
+    if (incorrect.length) {
+      incorrect.forEach(item => item.classList.add("incorrect"));
+      feedback.className = "feedback try-again";
+      feedback.textContent = `${incorrect.length} ${incorrect.length === 1 ? "POWER IS" : "POWERS ARE"} IN THE WRONG BOX. MOVE ${incorrect.length === 1 ? "IT" : "THEM"} AND CHECK AGAIN.`;
+      feedback.hidden = false;
+      return;
+    }
+    answered = true;
+    answers.querySelectorAll("button").forEach(button => { button.disabled = true; });
+    feedback.className = "feedback correct";
+    feedback.innerHTML = "<strong>SORT COMPLETE</strong>";
+    feedback.append(document.createTextNode(active.sort.feedback));
+    feedback.hidden = false;
+    nextButton.textContent = "FINISH CHECKPOINT →";
+    nextButton.hidden = false;
+    nextButton.focus();
   }
 
   function renderQuestion() {
@@ -81,6 +194,7 @@
     nextButton.hidden = true;
     nextButton.textContent = questionIndex === 1 ? "FINISH CHECKPOINT →" : "NEXT QUESTION →";
     answers.replaceChildren();
+    answers.className = "answers";
     question.options.forEach((option, optionIndex) => {
       const button = document.createElement("button");
       button.type = "button";
@@ -113,11 +227,19 @@
 
   function advance() {
     if (!answered) return;
+    if (active.sort) {
+      completeCheckpoint();
+      return;
+    }
     if (questionIndex === 0) {
       questionIndex = 1;
       renderQuestion();
       return;
     }
+    completeCheckpoint();
+  }
+
+  function completeCheckpoint() {
     if (!completed.includes(active.id)) completed.push(active.id);
     saveProgress();
     renderProgress();
@@ -125,7 +247,7 @@
     workspace.hidden = true;
     finish.hidden = false;
     document.getElementById("finish-title").textContent = active.title;
-    document.getElementById("finish-message").textContent = completed.length === 6 ? "You completed all six History Lesson checkpoints." : `${completed.length} of 6 checkpoints complete.`;
+    document.getElementById("finish-message").textContent = completed.length === 6 ? "You saved the new nation by completing all six checkpoints." : `${completed.length} of 6 checkpoints complete.`;
     finish.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   }
 
