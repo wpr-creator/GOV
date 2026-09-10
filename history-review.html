@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>History Lesson Review · Principles of American Democracy</title>
+  <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="history-review.css?v=20260910-launch">
+  <link rel="stylesheet" href="shared-navigation.css?v=20260904-usability">
+  <script src="shared-navigation.js?v=20260904-usability" defer></script>
+  <script src="history-review-data.js?v=20260910-launch" defer></script>
+  <script src="history-review.js?v=20260910-launch" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the review</a>
+  <header class="page-header"><a href="./#gov-1">← BACK TO UNIT 1</a><strong>PRINCIPLES OF AMERICAN DEMOCRACY</strong></header>
+  <main class="page" id="main" tabindex="-1">
+    <header class="hero">
+      <p class="eyebrow">1.03 · REVIEW</p>
+      <h1>HISTORY CHECKPOINTS</h1>
+      <p>Review the six ideas that connect the Articles of Confederation to the Bill of Rights.</p>
+      <div class="directions"><span>1 · CHOOSE A CHECKPOINT</span><span>2 · ANSWER TWO QUESTIONS</span><span>3 · EARN A STAR</span></div>
+    </header>
+
+    <section class="progress-card" aria-labelledby="progress-title">
+      <div><p class="eyebrow">YOUR PROGRESS</p><h2 id="progress-title">SIX CHECKPOINTS</h2></div>
+      <p id="progress-status" aria-live="polite">0 OF 6 COMPLETE</p>
+      <div class="stars" id="stars" aria-label="Checkpoint progress"></div>
+    </section>
+
+    <section id="checkpoint-select" aria-labelledby="checkpoint-title">
+      <p class="eyebrow">CHOOSE ONE</p>
+      <h2 id="checkpoint-title">REVIEW CHECKPOINTS</h2>
+      <div class="checkpoint-grid" id="checkpoint-grid"></div>
+    </section>
+
+    <section class="workspace" id="workspace" aria-labelledby="question-title" hidden>
+      <div class="workspace-top"><button type="button" id="back-button">← CHECKPOINTS</button><p id="question-progress"></p></div>
+      <div class="progress-track" aria-hidden="true"><span id="question-progress-bar"></span></div>
+      <article class="question-card">
+        <p class="checkpoint-label" id="checkpoint-label"></p>
+        <h2 id="question-title"></h2>
+        <div class="answers" id="answers"></div>
+        <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+        <button class="next-button" type="button" id="next-button" hidden>NEXT QUESTION →</button>
+      </article>
+    </section>
+
+    <section class="finish" id="finish" aria-labelledby="finish-title" hidden>
+      <p class="finish-star" aria-hidden="true">★</p>
+      <p class="eyebrow">CHECKPOINT COMPLETE</p>
+      <h2 id="finish-title"></h2>
+      <p id="finish-message"></p>
+      <button type="button" id="continue-review">CHOOSE ANOTHER CHECKPOINT</button>
+    </section>
+    <button class="reset-button" type="button" id="reset-button">RESET MY REVIEW PROGRESS</button>
+  </main>
+</body>
+</html>

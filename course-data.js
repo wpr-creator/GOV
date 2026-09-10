@@ -188,6 +188,13 @@ window.COURSE_DATA = {
           kind: "activity"
         },
         {
+          id: "history-review",
+          lesson: "1.03 — THE HISTORY LESSON",
+          title: "HISTORY LESSON REVIEW",
+          url: "history-review.html",
+          kind: "practice"
+        },
+        {
           id: "changing-the-constitution",
           lesson: "1.03 — THE HISTORY LESSON",
           title: "CHANGE THE UNCHANGEABLE",
