@@ -385,11 +385,11 @@ historyReviewData?.checkpoints?.forEach(checkpoint => {
 });
 if (historyAnswerPositions.join("|") !== "3|3|4") errors.push("History Lesson Review multiple-choice answers must remain distributed across all three positions.");
 const articlesSort = historyReviewData?.checkpoints?.find(checkpoint => checkpoint.id === "articles")?.sort;
-if (articlesSort?.items?.length !== 8 || articlesSort.items.filter(item => item.group === "could").length !== 4 || articlesSort.items.filter(item => item.group === "could-not").length !== 4) errors.push("The Articles checkpoint must sort four powers Congress had and four powers it lacked.");
+if (articlesSort?.items?.length !== 6 || articlesSort.items.filter(item => item.group === "could").length !== 2 || articlesSort.items.filter(item => item.group === "could-not").length !== 4) errors.push("The Articles checkpoint must sort two powers Congress had and four powers it lacked.");
 const historyReviewHtml = fs.readFileSync(path.join(root, "history-review.html"), "utf8");
 const historyReviewCode = fs.readFileSync(path.join(root, "history-review.js"), "utf8");
 const historyReviewStyles = `${fs.readFileSync(path.join(root, "history-review.css"), "utf8")}\n${fs.readFileSync(path.join(root, "history-review-sort.css"), "utf8")}`;
-for (const marker of ["SAVE THE NEW NATION", "SIX CHECKPOINTS", "SOLVE THE CHALLENGE", "gov-history-review-v1", "prefers-reduced-motion", "CHECK MY SORT", "dragstart"]) {
+for (const marker of ["SAVE THE NEW NATION", "SIX CHECKPOINTS", "SOLVE THE CHALLENGE", "gov-history-review-v1", "prefers-reduced-motion", "SORT COMPLETE", "dragstart", "BELONGS IN THE OTHER BOX"]) {
   if (!`${historyReviewHtml}\n${historyReviewCode}\n${historyReviewStyles}`.includes(marker)) errors.push(`History Lesson Review is missing: ${marker}`);
 }
 if (historyReviewCode.includes("Math.random")) errors.push("History Lesson Review must not randomize answers in the browser.");

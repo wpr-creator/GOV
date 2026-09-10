@@ -78,7 +78,7 @@
     const activity = active.sort;
     document.getElementById("checkpoint-label").textContent = `${active.number} · ${active.title}`;
     document.getElementById("question-title").textContent = activity.prompt;
-    document.getElementById("question-progress").textContent = "SORT ALL 8 POWERS";
+    document.getElementById("question-progress").textContent = "SORT ALL 6 POWERS";
     document.getElementById("question-progress-bar").style.width = "0%";
     feedback.hidden = true;
     nextButton.hidden = true;
@@ -132,13 +132,7 @@
       power.addEventListener("click", () => selectSortItem(power));
       bank.append(power);
     });
-    const check = document.createElement("button");
-    check.type = "button";
-    check.className = "check-sort";
-    check.textContent = "CHECK MY SORT";
-    check.disabled = true;
-    check.addEventListener("click", checkSort);
-    answers.append(directions, bank, bins, check);
+    answers.append(directions, bank, bins);
   }
 
   function selectSortItem(item) {
@@ -153,27 +147,32 @@
   }
 
   function placeItem(item, bin) {
+    if (bin.dataset.group !== item.dataset.answer) {
+      item.classList.remove("selected");
+      item.classList.add("incorrect");
+      selectedSortItem = null;
+      document.querySelectorAll(".sort-bin").forEach(target => target.classList.remove("ready"));
+      feedback.className = "feedback try-again";
+      feedback.textContent = `NOT THERE. “${item.textContent}” BELONGS IN THE OTHER BOX.`;
+      feedback.hidden = false;
+      item.focus();
+      return;
+    }
     bin.querySelector(".sorted-list").append(item);
     item.dataset.placed = bin.dataset.group;
     item.classList.remove("selected", "incorrect");
+    item.disabled = true;
     selectedSortItem = null;
     document.querySelectorAll(".sort-bin").forEach(target => target.classList.remove("ready"));
     const placed = answers.querySelectorAll(".power-card[data-placed]").length;
     document.getElementById("question-progress-bar").style.width = `${placed / active.sort.items.length * 100}%`;
-    answers.querySelector(".check-sort").disabled = placed !== active.sort.items.length;
-  }
-
-  function checkSort() {
-    const incorrect = [...answers.querySelectorAll(".power-card")].filter(item => item.dataset.placed !== item.dataset.answer);
-    if (incorrect.length) {
-      incorrect.forEach(item => item.classList.add("incorrect"));
-      feedback.className = "feedback try-again";
-      feedback.textContent = `${incorrect.length} ${incorrect.length === 1 ? "POWER IS" : "POWERS ARE"} IN THE WRONG BOX. MOVE ${incorrect.length === 1 ? "IT" : "THEM"} AND CHECK AGAIN.`;
+    if (placed !== active.sort.items.length) {
+      feedback.className = "feedback correct";
+      feedback.textContent = `CORRECT. ${placed} OF ${active.sort.items.length} POWERS SORTED.`;
       feedback.hidden = false;
       return;
     }
     answered = true;
-    answers.querySelectorAll("button").forEach(button => { button.disabled = true; });
     feedback.className = "feedback correct";
     feedback.innerHTML = "<strong>SORT COMPLETE</strong>";
     feedback.append(document.createTextNode(active.sort.feedback));

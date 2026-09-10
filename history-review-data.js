@@ -9,9 +9,7 @@ window.HISTORY_REVIEW_DATA = {
         prompt: "Under the Articles, what could Congress do? What could it not do?",
         items: [
           { text: "DECLARE WAR AND MAKE PEACE", group: "could" },
-          { text: "MAKE TREATIES AND HANDLE FOREIGN RELATIONS", group: "could" },
           { text: "COIN MONEY", group: "could" },
-          { text: "ASK STATES FOR MONEY AND SOLDIERS", group: "could" },
           { text: "COLLECT TAXES DIRECTLY", group: "could-not" },
           { text: "REGULATE TRADE BETWEEN STATES", group: "could-not" },
           { text: "ENFORCE ITS OWN DECISIONS", group: "could-not" },
