@@ -402,6 +402,11 @@ for (let sectionNumber = 1; sectionNumber <= 7; sectionNumber += 1) {
   if (!historyReader.includes(`<span>${String(sectionNumber).padStart(2, "0")}</span>`)) errors.push(`The History Lesson is missing the visible label for section ${sectionNumber}.`);
 }
 if (!historyReader.includes("history-hub.css?v=20260908-clear-sections") || !historyReader.includes("history-lesson-apg.css?v=20260908-seven-section-hub")) errors.push("The History Lesson must use the current seven-section hub design.");
+const historyPresenter = fs.readFileSync(path.join(root, "history-presenter.html"), "utf8");
+for (const marker of ["HOW MANY OF YOU HAVE STRICT PARENTS?", "moving away to <strong>SDSU</strong>", "academic probation", "Would you move back home", "Total freedom sounded perfect", "without sacrificing liberty"]) {
+  if (!historyPresenter.includes(marker)) errors.push(`The History Lesson presentation is missing its current Hook or Bridge wording: ${marker}`);
+}
+if (!historyPresenter.includes("history-presenter.css?v=20260910-sdsu-hook") || !historyPresenter.includes("history-presenter.js?v=20260910-sdsu-hook")) errors.push("The History Lesson presentation cache version is not current.");
 for (const forbidden of ["TOPIC 1.3", "TOPIC 1.4", "TOPIC 1.5", "AP CONNECTION", "READ FEDERALIST", "READ BRUTUS"]) {
   if (historyReader.includes(forbidden)) errors.push(`The CP History Lesson must not include AP-only label: ${forbidden}`);
 }
