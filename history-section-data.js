@@ -93,7 +93,7 @@ window.HISTORY_SECTION_DATA = {
     number: "07", years: "1788–91", label: "THE FINAL AGREEMENT", title: "RATIFICATION AND THE BILL OF RIGHTS", presenterTitle: "RATIFICATION AND THE BILL OF RIGHTS",
     image: "assets/history-lesson/10-rights.jpg", imageAlt: "Woodcut-style illustration of citizens receiving news of ratification and the Bill of Rights.",
     bigIdea: "The Constitution created a stronger national government. The Bill of Rights added written rules protecting individual freedoms from government power.",
-    presenterPoints: ["NINE STATES PUT THE CONSTITUTION INTO EFFECT", "MADISON PROPOSED AMENDMENTS", "TEN AMENDMENTS BECAME THE BILL OF RIGHTS", "MOST RIGHTS LATER APPLIED TO THE STATES"],
+    presenterPoints: ["NINE STATES PUT THE CONSTITUTION INTO EFFECT", "MADISON PROPOSED AMENDMENTS", "TEN AMENDMENTS BECAME THE BILL OF RIGHTS"],
     opening: "Federalists won enough support for the Constitution to take effect, but Anti-Federalist criticism shaped what happened next. Several states ratified while recommending amendments that would protect individual liberty.",
     sections: [
       { notesCue: "1788 and 1789 rows", heading: "THE CONSTITUTION TAKES EFFECT", text: "In 1788, New Hampshire became the ninth state to ratify the Constitution. That gave the Constitution enough approval to take effect. In 1789, the new Congress met and George Washington began serving as president. The stronger national government was now operating." },
