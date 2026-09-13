@@ -10,7 +10,7 @@
     "gov-6": false,
     "gov-7": false
   },
-  "exitQuestion": "Where did the quiz place your dialect?\n\nNow imagine you grew up there or somewhere other than San Diego (or CA). How might that place have shaped your POLITICAL BELIEFS?",
+  "exitQuestion": "1. What is ONE individual freedom you think the government should limit to protect everyone? Why?\nExamples: how fast people can drive, where people can smoke\n\n2. What is ONE choice you think the government should leave up to individuals? Why?\nExamples: what people wear, what adults eat or drink.",
   "exitEndpoint": "https://script.google.com/macros/s/AKfycbzbCXosor6y6izuKwbsg_CRlY6Zyy32HU40vg_pkf4-l4FD-vGNzBC32kMV-f3JeetWag/exec",
   "upcoming": [],
   "classroomUrl": "https://classroom.google.com/",

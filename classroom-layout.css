@@ -41,8 +41,6 @@
 .exit-card:has(#exit-form[hidden]) .card-heading,
 .exit-card:has(#exit-form[hidden]) #exit-status { display: none; }
 .exit-card:has(#exit-form[hidden]) .exit-question { margin: 0; padding: 0; background: none; font-size: .85rem; }
-.lesson-jump { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; margin: 1.25rem 0 .75rem; font-size: .85rem; }
-.lesson-jump select { min-height: 48px; max-width: 100%; padding: .6rem; border: 2px solid #2b4f78; background: #fff; color: var(--ink); font: inherit; }
 .checklist-note { margin: .75rem 0 1.5rem; color: var(--muted); font-size: .85rem; }
 .unit-resource-group { scroll-margin-top: 1.5rem; }
 .unit-resource-item { grid-template-columns: 48px minmax(0, 1fr); gap: .65rem; }

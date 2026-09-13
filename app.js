@@ -165,7 +165,12 @@
 
   function renderUnits() {
     unitGrid.replaceChildren();
-    data.units.forEach(unit => {
+    const displayedUnits = [...data.units].sort((unitA, unitB) => {
+      if (unitA.id === "gov-0") return 1;
+      if (unitB.id === "gov-0") return -1;
+      return data.units.indexOf(unitA) - data.units.indexOf(unitB);
+    });
+    displayedUnits.forEach(unit => {
       const state = unitState(unit);
       const card = document.createElement("article");
       card.className = "unit-card " + state;
@@ -270,24 +275,6 @@
           return rank(lessonB) - rank(lessonA);
         });
       }
-      const lessonJump = document.createElement("select");
-      lessonJump.id = `lesson-jump-${unit.id}`;
-      const jumpLabel = document.createElement("label");
-      jumpLabel.className = "lesson-jump";
-      jumpLabel.htmlFor = lessonJump.id;
-      jumpLabel.append("JUMP TO A LESSON ", lessonJump);
-      const jumpPrompt = document.createElement("option");
-      jumpPrompt.value = "";
-      jumpPrompt.textContent = "CHOOSE A LESSON";
-      lessonJump.append(jumpPrompt);
-      lessonJump.addEventListener("change", () => {
-        const destination = document.getElementById(lessonJump.value);
-        if (destination) {
-          destination.focus({ preventScroll: true });
-          destination.scrollIntoView({ behavior: "auto", block: "start" });
-        }
-      });
-      if (resourceGroupEntries.length > 1) resources.append(jumpLabel);
       const checklistNote = document.createElement("p");
       checklistNote.className = "checklist-note";
       checklistNote.textContent = "MY CHECKLIST · Stars are saved in this browser. They do not submit work to the teacher.";
@@ -297,10 +284,6 @@
         group.className = "unit-resource-group";
         group.id = `${unit.id}-lesson-${lessonIndex}`;
         group.tabIndex = -1;
-        const jumpOption = document.createElement("option");
-        jumpOption.value = group.id;
-        jumpOption.textContent = lesson;
-        lessonJump.append(jumpOption);
         if (lesson === "ASSESSMENTS") group.classList.add("assessment-group");
         if (lesson === "CONCEPT PRACTICE") group.classList.add("concept-practice-group");
         const lessonTitle = document.createElement("h2");
@@ -314,7 +297,9 @@
           ["resources", "READINGS & RESOURCES", kind => !["assessment", "assignment", "project", "activity", "activity-notes", "notes", "practice"].includes(kind)]
         ];
         categoryDefinitions.forEach(([categoryId, categoryLabel, matchesCategory]) => {
-          const categoryResources = lessonResources.filter(resource => matchesCategory(resourceKindFor(resource)));
+          const categoryResources = lessonResources
+            .filter(resource => matchesCategory(resourceKindFor(resource)))
+            .sort((resourceA, resourceB) => Number(resourceKindFor(resourceB) === "notes") - Number(resourceKindFor(resourceA) === "notes"));
           if (!categoryResources.length) return;
           const category = document.createElement("section");
           category.className = `unit-resource-category category-${categoryId}`;
@@ -1954,19 +1939,6 @@
     document.getElementById("now-title").textContent = current.title.toUpperCase();
     document.getElementById("current-action").href = `#${current.id}`;
     document.getElementById("current-action").firstChild.textContent = `OPEN ${current.number.toUpperCase()} `;
-    const currentLessonAction = document.getElementById("current-lesson-action");
-    const latestLesson = [...(current.resources || [])]
-      .filter(resource => /^\d+\.\d+/.test(resource.lesson || ""))
-      .sort((a, b) => b.lesson.localeCompare(a.lesson, undefined, { numeric: true }))
-      .find(resource => assignmentIsUnlocked(resource.id, siteContent.assignmentUrls?.[resource.id] ?? resource.url));
-    currentLessonAction.hidden = !latestLesson;
-    if (latestLesson) {
-      currentLessonAction.href = siteContent.assignmentUrls?.[latestLesson.id] ?? latestLesson.url;
-      currentLessonAction.textContent = `OPEN ${latestLesson.lesson}`;
-      currentLessonAction.onclick = () => {
-        try { sessionStorage.setItem("gov-lesson-return", JSON.stringify({ unit: current.id, lesson: latestLesson.lesson })); } catch (_) {}
-      };
-    }
     renderSiteContent();
     renderAgendaDate();
     renderUnits();
