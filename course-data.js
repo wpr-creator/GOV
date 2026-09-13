@@ -114,7 +114,8 @@ window.COURSE_DATA = {
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "SIX IDEALS REVIEW",
           url: "founding-ideals-review.html",
-          kind: "practice"
+          kind: "practice",
+          displayGroup: "CONCEPT PRACTICE"
         },
         {
           id: "declaration-text",
@@ -170,7 +171,8 @@ window.COURSE_DATA = {
           lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
           title: "ROOTS CONNECTIONS REVIEW",
           url: "roots-connections.html",
-          kind: "practice"
+          kind: "practice",
+          displayGroup: "CONCEPT PRACTICE"
         },
         {
           id: "unit-1-03-guided-notes",
@@ -191,7 +193,8 @@ window.COURSE_DATA = {
           lesson: "1.03 — THE HISTORY LESSON",
           title: "SAVE THE NEW NATION",
           url: "history-review.html",
-          kind: "practice"
+          kind: "practice",
+          displayGroup: "CONCEPT PRACTICE"
         }
       ]
     },
