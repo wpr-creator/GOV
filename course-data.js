@@ -112,7 +112,7 @@ window.COURSE_DATA = {
         {
           id: "founding-ideals-review",
           lesson: "1.01 — THE FOUNDING PROMISE",
-          title: "SIX IDEALS REVIEW",
+          title: "1.01 — THE FOUNDING PROMISE · SIX IDEALS REVIEW",
           url: "founding-ideals-review.html",
           kind: "practice",
           displayGroup: "CONCEPT PRACTICE"
@@ -169,7 +169,7 @@ window.COURSE_DATA = {
         {
           id: "roots-connections-practice",
           lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
-          title: "ROOTS CONNECTIONS REVIEW",
+          title: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY · ROOTS CONNECTIONS REVIEW",
           url: "roots-connections.html",
           kind: "practice",
           displayGroup: "CONCEPT PRACTICE"
@@ -191,7 +191,7 @@ window.COURSE_DATA = {
         {
           id: "history-review",
           lesson: "1.03 — THE HISTORY LESSON",
-          title: "SAVE THE NEW NATION",
+          title: "1.03 — THE HISTORY LESSON · SAVE THE NEW NATION",
           url: "history-review.html",
           kind: "practice",
           displayGroup: "CONCEPT PRACTICE"
