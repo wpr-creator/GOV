@@ -1886,37 +1886,31 @@
     document.getElementById("election-progress-fill").style.width = `${progress}%`;
   }
 
-  function renderPortraitRain() {
-    const portraits = [
-      "george-washington.jpg",
-      "abraham-lincoln.jpg",
-      "theodore-roosevelt.jpg",
-      "franklin-d-roosevelt.jpg",
-      "dwight-d-eisenhower.jpg",
-      "john-f-kennedy.jpg",
-      "ronald-reagan.jpg",
-      "barack-obama.jpg",
-      "george-washington.jpg",
-      "abraham-lincoln.jpg"
+  function renderLivingConstitution() {
+    const words = [
+      ["WE THE PEOPLE", "-4%", "9%", "clamp(4rem, 10vw, 9rem)", "-.025", "-3deg", "32s", "-11s"],
+      ["LIBERTY", "57%", "24%", "clamp(3.5rem, 8vw, 7rem)", ".045", "2deg", "27s", "-4s"],
+      ["CONSENT", "5%", "48%", "clamp(3rem, 7vw, 6rem)", ".04", "-2deg", "36s", "-18s"],
+      ["RIGHTS", "68%", "64%", "clamp(4rem, 9vw, 8rem)", ".035", "3deg", "30s", "-9s"],
+      ["POWER", "18%", "82%", "clamp(3.5rem, 8vw, 7rem)", ".035", "-1deg", "34s", "-15s"],
+      ["EQUALITY", "61%", "94%", "clamp(2.8rem, 6vw, 5.5rem)", ".04", "1deg", "29s", "-7s"]
     ];
-    const positions = [4, 17, 31, 46, 61, 76, 89, 11, 54, 83];
-    const sizes = [118, 92, 134, 104, 126, 88, 112, 138, 82, 102];
-    document.querySelectorAll("#home").forEach(view => {
-      const layer = document.createElement("div");
-      layer.className = "portrait-rain";
-      layer.setAttribute("aria-hidden", "true");
-      portraits.forEach((portrait, index) => {
-        const cameo = document.createElement("span");
-        cameo.style.setProperty("--portrait", `url("assets/presidents/${portrait}")`);
-        cameo.style.setProperty("--left", `${positions[index]}%`);
-        cameo.style.setProperty("--size", `${sizes[index]}px`);
-        cameo.style.setProperty("--duration", `${27 + (index % 4) * 5}s`);
-        cameo.style.setProperty("--delay", `${-index * 4.3}s`);
-        cameo.style.setProperty("--rest", `${8 + index * 9}vh`);
-        layer.appendChild(cameo);
-      });
-      view.prepend(layer);
+    const layer = document.createElement("div");
+    layer.className = "living-constitution";
+    layer.setAttribute("aria-hidden", "true");
+    words.forEach(([word, left, top, size, opacity, angle, duration, delay]) => {
+      const item = document.createElement("span");
+      item.className = "living-word";
+      item.textContent = word;
+      [["--left", left], ["--top", top], ["--size", size], ["--opacity", opacity], ["--angle", angle], ["--duration", duration], ["--delay", delay]].forEach(([property, value]) => item.style.setProperty(property, value));
+      layer.appendChild(item);
     });
+    const current = document.createElement("span");
+    current.className = "living-current-word";
+    current.id = "living-current-word";
+    current.textContent = "FOUNDATIONS";
+    layer.appendChild(current);
+    document.getElementById("home").prepend(layer);
   }
 
   async function loadConfig() {
@@ -1958,6 +1952,8 @@
       console.warn("Using default course content.", error);
     }
     const current = data.units.find(unit => unit.id === currentUnitId);
+    const currentWord = document.getElementById("living-current-word");
+    if (currentWord) currentWord.textContent = current.title;
     document.getElementById("current-unit-number").textContent = `${current.number} · PRINCIPLES OF AMERICAN DEMOCRACY`;
     document.getElementById("now-title").textContent = current.title.toUpperCase();
     document.getElementById("current-action").href = `#${current.id}`;
@@ -2434,7 +2430,7 @@
   renderFederalismMap();
   renderFoundingPower();
   renderElection2026();
-  renderPortraitRain();
+  renderLivingConstitution();
   loadConfig();
   loadHistory();
   loadPresidentFacts();
