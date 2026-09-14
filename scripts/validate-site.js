@@ -277,7 +277,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260913-living-constitution") || !html.includes("app.js?v=20260913-unit-outline") || !html.includes("course-data.js?v=20260913-unit-outline") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260913-living-constitution") || !html.includes("app.js?v=20260913-unit-outline") || !html.includes("course-data.js?v=20260913-lesson-104") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -317,7 +317,7 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|roots-connections-practice|unit-1-03-guided-notes|history-lesson|history-review";
+const expectedUnitOneResources = "founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|roots-connections-practice|unit-1-03-guided-notes|history-lesson|history-review|unit-1-04-guided-notes";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include the intended 1.01–1.03 resources in order.");
 }
@@ -426,6 +426,13 @@ const historyNotes = unitOne?.resources?.find(resource => resource.id === "unit-
 const historyNotesUrl = "https://docs.google.com/document/d/1x9UrTBVuUd6vtC31byrfgF-6sngyfiwcVbwhIAqomMk/edit?tab=t.0";
 if (historyNotes?.url !== historyNotesUrl || historyNotes?.awaitingLink || historyNotes?.note || config.assignmentUrls?.["unit-1-03-guided-notes"] !== historyNotesUrl || config.assignmentUnlocks?.["unit-1-03-guided-notes"] !== true) {
   errors.push("The open 1.03 Guided Notes card must link to the assigned document.");
+}
+const balancingLesson = unitOne?.lessons?.find(lesson => lesson[0] === "1.04 — Democracy’s Balancing Act");
+if (!balancingLesson || balancingLesson[1] !== "How should democracy balance individual freedom with the common good?") errors.push("Unit 1 must include the complete 1.04 Democracy’s Balancing Act lesson.");
+const balancingNotes = unitOne?.resources?.find(resource => resource.id === "unit-1-04-guided-notes");
+const balancingNotesUrl = "https://docs.google.com/document/d/1di2AbssTyiHpUzRStPEyUUm2jXsZW0ae8epp5KB64hg/edit?usp=sharing";
+if (balancingNotes?.lesson !== "1.04 — DEMOCRACY’S BALANCING ACT" || balancingNotes?.title !== "1.04 GUIDED NOTES" || balancingNotes?.kind !== "notes" || balancingNotes?.url !== balancingNotesUrl || config.assignmentUrls?.["unit-1-04-guided-notes"] !== balancingNotesUrl || config.assignmentUnlocks?.["unit-1-04-guided-notes"] !== true) {
+  errors.push("The open 1.04 Guided Notes card must appear in Democracy’s Balancing Act and use the assigned document.");
 }
 for (const resource of unitOne?.resources || []) {
   if (resource.note) errors.push(`Unit 1 resource ${resource.id} must use only its plain type label.`);

@@ -106,7 +106,7 @@ window.COURSE_DATA = {
         ["1.01 — The Founding Promise", "What promises define American democracy?", "Gov 12.1.3", "Connect the Declaration of Independence, the Constitution’s Preamble, and the Gettysburg Address to rights, equality, and government by the people.", "Read the three documents and complete the lesson assignments"],
         ["1.02 — The Roots of American Democracy", "Which older ideas shaped American democracy?", "Gov 12.1.1", "Connect ideas from Greece, Rome, English traditions, Locke, Montesquieu, Machiavelli, and Blackstone to American democratic ideals.", "Complete the Roots Activity"],
         ["1.03 — The History Lesson", "How did the United States replace a weak national government without creating another tyranny?", "Gov 12.1.4", "Follow the story from independence and the Articles of Confederation through the Constitutional Convention, ratification, and the Bill of Rights.", "Explain how the Constitution created a stronger government and limited its power"],
-        ["Rights and the Public Good", "Should government protect individual freedom or serve the common good?", "Gov 12.1.3", "Compare the public good with individual rights.", "Explain how a democracy needs both"]
+        ["1.04 — Democracy’s Balancing Act", "How should democracy balance individual freedom with the common good?", "Gov 12.1.3", "Examine why government sometimes limits individual freedom to protect other people and the common good.", "Explain where you think government limits should begin and end"]
       ],
       resources: [
         {
@@ -195,6 +195,13 @@ window.COURSE_DATA = {
           url: "history-review.html",
           kind: "practice",
           displayGroup: "CONCEPT PRACTICE"
+        },
+        {
+          id: "unit-1-04-guided-notes",
+          lesson: "1.04 — DEMOCRACY’S BALANCING ACT",
+          title: "1.04 GUIDED NOTES",
+          url: "https://docs.google.com/document/d/1di2AbssTyiHpUzRStPEyUUm2jXsZW0ae8epp5KB64hg/edit?usp=sharing",
+          kind: "notes"
         }
       ]
     },
