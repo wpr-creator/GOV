@@ -277,7 +277,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260913-exit-ticket-card") || !html.includes("app.js?v=20260913-exit-ticket-card") || !html.includes("course-data.js?v=20260913-concept-practice") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260913-exit-page") || !html.includes("app.js?v=20260913-exit-page") || !html.includes("course-data.js?v=20260913-concept-practice") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -526,7 +526,7 @@ for (const foundingFeature of ['id="founding-power" data-view="founding-power"',
   const source = ["founding-power-icons.svg", "founding-story", "IMAGINE YOU LIVE UNDER A KING", "DEMOCRATIC IDEALS", "HOW POWER IS LIMITED"].includes(foundingFeature) ? fs.readFileSync(path.join(root, "app.js"), "utf8") : html;
   if (!source.includes(foundingFeature)) errors.push(`The founding-power activity is missing: ${foundingFeature}`);
 }
-for (const fragment of ['data-view-link="skills"', 'id="skills" data-view="skills"', 'data-foundation-tab="presidents"', 'id="foundation-presidents"', 'id="madison" data-view="madison"']) {
+for (const fragment of ['data-view-link="exit-ticket"', 'id="exit-ticket" data-view="exit-ticket"', 'id="skills" data-view="skills"', 'data-foundation-tab="presidents"', 'id="foundation-presidents"', 'id="madison" data-view="madison"']) {
   if (!html.includes(fragment)) errors.push(`Course navigation is missing: ${fragment}`);
 }
 for (const presidentLibraryFeature of ['routeName === "presidents"', 'switchFoundationTab("presidents")', 'id="president-search"', 'id="president-grid"']) {
@@ -742,7 +742,7 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260913-exit-ticket-card") || !html.includes("styles.css?v=20260913-exit-ticket-card")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260913-exit-page") || !html.includes("styles.css?v=20260913-exit-page")) errors.push("Exit-ticket cache versions are not current.");
 if (!html.includes("classroom-layout.css?v=20260913-unit-order") || !fs.existsSync(path.join(root, "classroom-layout.css"))) errors.push("The CP classroom layout stylesheet is missing.");
 for (const marker of ["MY CHECKLIST", "new URL(resourceUrl, location.href).origin !== location.origin"]) {
   if (!appCode.includes(marker)) errors.push(`CP classroom navigation is missing: ${marker}`);
@@ -756,7 +756,8 @@ if (config.exitQuestion !== expectedExitQuestion) errors.push("The active exit t
 for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"', 'id="exit-response"', 'minlength="5"', 'class="exit-submit" type="submit" disabled', 'id="exit-status" role="status"']) {
   if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);
 }
-if (!(html.indexOf('class="now-panel"') < html.indexOf('class="dashboard-card exit-card"') && html.indexOf('class="dashboard-card exit-card"') < html.indexOf('class="home-dashboard"'))) errors.push("The exit ticket must appear directly below the current-unit card.");
+if (!(html.indexOf('class="now-panel"') < html.indexOf('id="home-exit-ticket"') && html.indexOf('id="home-exit-ticket"') < html.indexOf('class="home-dashboard"'))) errors.push("The homepage exit-ticket link must appear directly below the current-unit card.");
+if (html.includes('data-view-link="skills"') || html.includes("THINK <span>→</span> CHOOSE") || appCode.includes("CHOOSE YOUR CLASS PERIOD AND NAME.")) errors.push("The retired Skill Builders navigation and extra exit-ticket directions must remain removed.");
 for (const marker of ['fetch("content.json", { cache: "no-store" })', "populateExitStudents", "validateExitTicket", "submittedAt: new Date().toISOString()", "navigator.sendBeacon", 'type: "text/plain;charset=utf-8"', "confirmation.hidden = false"]) {
   if (!appCode.includes(marker)) errors.push(`Exit-ticket behavior changed or missing: ${marker}`);
 }

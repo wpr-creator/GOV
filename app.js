@@ -127,7 +127,7 @@
       switchFoundationTab("presidents");
       return;
     }
-    const valid = ["home", "units", "foundations", "words", "skills", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "bill-journey", "federalism-map", "founding-power"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "units", "foundations", "words", "skills", "exit-ticket", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "bill-journey", "federalism-map", "founding-power"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     if (routeName === "founding-power" && unitState(data.units.find(unit => unit.id === "gov-1")) === "locked") {
       location.hash = "units";
       return;
@@ -1786,10 +1786,11 @@
     const exitForm = document.getElementById("exit-form");
     exitForm.hidden = !exitQuestion;
     exitForm.closest(".exit-card").hidden = !exitQuestion;
+    document.getElementById("home-exit-ticket").hidden = !exitQuestion;
     document.getElementById("exit-confirmation").hidden = true;
     const exitStatus = document.getElementById("exit-status");
-    exitStatus.textContent = exitQuestion
-      ? (exitEndpoint ? "CHOOSE YOUR CLASS PERIOD AND NAME." : "THE EXIT TICKET IS TEMPORARILY UNAVAILABLE. SEE MR. ROGERS.")
+    exitStatus.textContent = exitQuestion && !exitEndpoint
+      ? "THE EXIT TICKET IS TEMPORARILY UNAVAILABLE. SEE MR. ROGERS."
       : "";
 
     const periodSelect = document.getElementById("exit-period");

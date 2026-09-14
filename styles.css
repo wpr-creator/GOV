@@ -112,11 +112,21 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .compact-course-link > a { min-height: 44px; padding: .55rem .7rem; display: inline-flex; align-items: center; gap: .3rem; color: var(--white); background: var(--black); text-decoration: none; font-size: .72rem; font-weight: 900; }
 .compact-code { grid-column: 1 / -1; margin: 0; padding: .45rem .6rem; display: flex; align-items: center; justify-content: space-between; gap: .6rem; background: var(--stone); font-size: .68rem; font-weight: 900; }
 .compact-code code { font-size: .85rem; letter-spacing: .08em; text-transform: none; user-select: all; }
-.exit-card { margin: 1.2rem 0; padding: 0; overflow: hidden; border: 3px solid var(--black); box-shadow: 9px 9px 0 var(--stone-dark); }
-.exit-heading { margin: 0; padding: 1.25rem 1.5rem; color: var(--white); background: var(--black); }
-.exit-heading .eyebrow { color: var(--stone); }
-.exit-ticket-method { margin: 0; padding: .55rem .8rem; border: 1px solid var(--slate); color: var(--white); font-size: .7rem; font-weight: 900; letter-spacing: .08em; }
-.exit-ticket-method span { padding: 0 .25rem; color: var(--stone-dark); }
+.home-exit-ticket { margin: 1.2rem 0; min-height: 112px; padding: 1.1rem 1.4rem; display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: 1.1rem; color: var(--white); background: var(--black); border: 3px solid var(--black); box-shadow: 7px 7px 0 var(--stone-dark); text-decoration: none; }
+.home-exit-ticket:hover { color: var(--black); background: var(--white); }
+.home-exit-icon { width: 58px; height: 58px; display: grid; place-items: center; color: var(--black); background: var(--white); font-family: Georgia, serif; font-size: 1.8rem; }
+.home-exit-ticket:hover .home-exit-icon { color: var(--white); background: var(--black); }
+.home-exit-ticket small, .home-exit-ticket strong { display: block; }
+.home-exit-ticket small { margin-bottom: .2rem; color: var(--stone); font-size: .68rem; font-weight: 900; letter-spacing: .12em; }
+.home-exit-ticket:hover small { color: var(--muted); }
+.home-exit-ticket strong { font-size: clamp(1.1rem, 2.3vw, 1.65rem); line-height: 1.05; }
+.home-exit-ticket > b { font-size: 2rem; }
+.exit-ticket-view { max-width: 1040px; margin: 0 auto; padding-bottom: 3rem; }
+.exit-page-header { min-height: 210px; padding: clamp(1.5rem, 5vw, 3rem); display: flex; align-items: center; justify-content: space-between; color: var(--white); background: var(--black); }
+.exit-page-header .eyebrow { color: var(--stone); }
+.exit-page-header h1 { margin: 0; font-size: clamp(3.2rem, 8vw, 6.5rem); line-height: .85; letter-spacing: -.06em; }
+.exit-page-number { color: var(--slate); font-family: Georgia, serif; font-size: clamp(5rem, 14vw, 10rem); line-height: .7; }
+.exit-card { margin: 0; padding: 0; overflow: hidden; border: 3px solid var(--black); border-top: 0; box-shadow: 9px 9px 0 var(--stone-dark); }
 .exit-question { padding: 1.5rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; background: var(--stone); }
 .exit-prompt { min-height: 190px; display: grid; grid-template-columns: 92px minmax(0, 1fr); background: var(--white); border: 2px solid var(--black); box-shadow: 5px 5px 0 var(--slate); }
 .exit-prompt-marker { padding: 1rem .55rem; display: flex; align-items: center; flex-direction: column; justify-content: center; gap: .55rem; color: var(--white); background: var(--black); text-align: center; }
@@ -716,10 +726,12 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 }
 @media (max-width: 420px) {
   .exit-identity { grid-template-columns: 1fr; }
-  .exit-heading, .exit-form-heading { align-items: flex-start; flex-direction: column; }
+  .exit-form-heading { align-items: flex-start; flex-direction: column; }
   .exit-form-heading > p { text-align: left; }
-  .exit-ticket-method { width: 100%; text-align: center; }
   .exit-prompt { grid-template-columns: 68px minmax(0, 1fr); }
+  .home-exit-ticket { grid-template-columns: 52px minmax(0, 1fr) auto; padding: .9rem; gap: .75rem; }
+  .home-exit-icon { width: 50px; height: 50px; }
+  .exit-page-number { display: none; }
   .founding-column { grid-template-columns: 1fr; }
   .brand strong { font-size: .9rem; }
   .brand small { font-size: .72rem; }
