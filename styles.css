@@ -113,7 +113,9 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .compact-code { grid-column: 1 / -1; margin: 0; padding: .45rem .6rem; display: flex; align-items: center; justify-content: space-between; gap: .6rem; background: var(--stone); font-size: .68rem; font-weight: 900; }
 .compact-code code { font-size: .85rem; letter-spacing: .08em; text-transform: none; user-select: all; }
 .exit-card { margin: 1.2rem 0; }
-.exit-question { padding: 1rem; background: var(--stone); font-weight: 750; white-space: pre-line; }
+.exit-question { padding: 1rem; background: var(--stone); font-weight: 750; line-height: 1.65; }
+.exit-question strong { color: var(--black); font-weight: 950; }
+.exit-question em { color: var(--muted); font-size: .92em; }
 .exit-card label { display: block; margin: 1rem 0 .4rem; font-size: .76rem; font-weight: 900; }
 .exit-identity { display: grid; grid-template-columns: 1fr 2fr; gap: .75rem; }
 .exit-card select, .exit-card textarea, .admin-panel textarea, .admin-panel input, .admin-panel select { width: 100%; min-height: 48px; margin-top: .4rem; padding: .8rem; border: 1px solid var(--stone-dark); background: var(--white); color: var(--black); font: 700 .95rem Arial, sans-serif; }

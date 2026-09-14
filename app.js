@@ -1757,10 +1757,22 @@
     if (lastFocused) lastFocused.focus();
   }
 
+  function formatExitQuestion(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*(.+?)\*/g, "<em>$1</em>")
+      .replace(/\n/g, "<br>");
+  }
+
   function renderSiteContent() {
     const exitQuestion = String(siteContent.exitQuestion || "").trim();
     const exitEndpoint = String(siteContent.exitEndpoint || "").trim();
-    document.getElementById("exit-question").textContent = exitQuestion || "NO EXIT TICKET TODAY.";
+    document.getElementById("exit-question").innerHTML = exitQuestion
+      ? formatExitQuestion(exitQuestion)
+      : "NO EXIT TICKET TODAY.";
     const exitForm = document.getElementById("exit-form");
     exitForm.hidden = !exitQuestion;
     exitForm.closest(".exit-card").hidden = !exitQuestion;
