@@ -199,9 +199,9 @@ window.COURSE_DATA = {
       ]
     },
     {
-      id: "gov-2", number: "Unit 2", title: "Building the Constitution",
-      question: "How was American government designed to keep power under control?",
-      standards: "Gov 12.1.4–12.1.6; 12.7.1–12.7.4",
+      id: "gov-2", number: "Unit 2", title: "The Three Branches at Work",
+      question: "How do the three branches use, share, and limit government power?",
+      standards: "Gov 12.4",
       lessons: [
         ["From the Articles to the Constitution", "Why did the United States replace its first government?", "Gov 12.1.4", "Compare the weak national government under the Articles with the stronger Constitution.", "Explain one problem the Constitution tried to solve"],
         ["Checks and Balances", "How can government control itself?", "Gov 12.1.4–12.1.5", "Use Federalist 51 to see how the branches limit one another.", "Apply one check to a government action"],

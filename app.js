@@ -165,7 +165,7 @@
 
   function renderUnits() {
     unitGrid.replaceChildren();
-    const displayedUnits = [...data.units].sort((unitA, unitB) => {
+    const displayedUnits = data.units.filter(unit => ["gov-0", "gov-1", "gov-2"].includes(unit.id)).sort((unitA, unitB) => {
       if (unitA.id === "gov-0") return 1;
       if (unitB.id === "gov-0") return -1;
       return data.units.indexOf(unitA) - data.units.indexOf(unitB);
