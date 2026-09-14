@@ -1758,13 +1758,23 @@
   }
 
   function formatExitQuestion(value) {
-    return String(value)
+    const escapeAndFormat = (text) => String(text)
       .replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
       .replaceAll(">", "&gt;")
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\*(.+?)\*/g, "<em>$1</em>")
-      .replace(/\n/g, "<br>");
+      .replace(/\*(.+?)\*/g, "<em>$1</em>");
+
+    return String(value).trim().split(/\n\s*\n/).map((block, index) => {
+      const lines = block.split("\n").map((line) => line.trim()).filter(Boolean);
+      const iconMatch = lines[0]?.match(/^(\p{Extended_Pictographic}\uFE0F?)\s*/u);
+      const icon = iconMatch?.[1] || (index === 0 ? "💭" : "⚖️");
+      const question = (lines[0] || "")
+        .replace(/^\p{Extended_Pictographic}\uFE0F?\s*/u, "")
+        .replace(/^\*\*\d+\.\s*/, "**");
+      const supportingLines = lines.slice(1).map((line) => `<p class="exit-example">${escapeAndFormat(line)}</p>`).join("");
+      return `<section class="exit-prompt"><div class="exit-prompt-marker"><span aria-hidden="true">${icon}</span><b>QUESTION ${index + 1}</b></div><div class="exit-prompt-copy"><p>${escapeAndFormat(question)}</p>${supportingLines}</div></section>`;
+    }).join("");
   }
 
   function renderSiteContent() {

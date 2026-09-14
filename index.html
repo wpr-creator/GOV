@@ -23,7 +23,7 @@
   <meta name="twitter:image:alt" content="Principles of American Democracy beside a white civic building with tall columns.">
   <title>Principles of American Democracy</title>
   <link rel="icon" href="assets/course-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20260913-exit-ticket">
+  <link rel="stylesheet" href="styles.css?v=20260913-exit-ticket-card">
   <script src="course-data.js?v=20260913-concept-practice" defer></script>
   <script src="cp-rosters.js?v=20260826-exit-ticket" defer></script>
   <script src="foundations-data.js?v=20260823-unit-1-launch" defer></script>
@@ -35,7 +35,7 @@
   <script src="federalism-map-data.js?v=20260726-map" defer></script>
   <script src="founding-power-data.js" defer></script>
   <link rel="stylesheet" href="classroom-layout.css?v=20260913-unit-order">
-  <script src="app.js?v=20260913-exit-ticket" defer></script>
+  <script src="app.js?v=20260913-exit-ticket-card" defer></script>
 <link rel="stylesheet" href="shared-navigation.css?v=20260904-usability"><script src="shared-navigation.js?v=20260904-usability" defer></script></head>
 <body>
   <a class="skip-link" href="#main">Skip to the course</a>
@@ -84,16 +84,23 @@
       </section>
 
       <article class="dashboard-card exit-card" hidden>
-        <div class="card-heading"><div><p class="eyebrow">END OF CLASS</p><h2>EXIT TICKET</h2></div></div>
-        <p class="exit-question" id="exit-question">NO EXIT TICKET TODAY.</p>
-        <form id="exit-form" hidden>
+        <div class="card-heading exit-heading">
+          <div><p class="eyebrow">END OF CLASS</p><h2>EXIT TICKET</h2></div>
+          <p class="exit-ticket-method">THINK <span>→</span> CHOOSE <span>→</span> EXPLAIN</p>
+        </div>
+        <div class="exit-question" id="exit-question">NO EXIT TICKET TODAY.</div>
+        <form id="exit-form" class="exit-form" hidden>
+          <div class="exit-form-heading">
+            <div><span aria-hidden="true">✎</span><div><p class="eyebrow">YOUR TURN</p><h3>COMPLETE YOUR TICKET</h3></div></div>
+            <p>Answer both questions in one thoughtful response.</p>
+          </div>
           <div class="exit-identity">
             <label for="exit-period">CLASS PERIOD<select id="exit-period" required><option value="">CHOOSE YOUR PERIOD</option></select></label>
             <label for="exit-student">YOUR NAME<select id="exit-student" required disabled><option value="">CHOOSE YOUR PERIOD FIRST</option></select></label>
           </div>
           <label for="exit-response">YOUR RESPONSE</label>
-          <textarea id="exit-response" rows="4" placeholder="TYPE YOUR RESPONSE…" required minlength="5"></textarea>
-          <button class="exit-submit" type="submit" disabled>SUBMIT EXIT TICKET</button>
+          <textarea id="exit-response" rows="5" placeholder="ANSWER BOTH QUESTIONS. EXPLAIN WHY…" required minlength="5"></textarea>
+          <button class="exit-submit" type="submit" disabled>SUBMIT EXIT TICKET <span aria-hidden="true">→</span></button>
         </form>
         <div class="exit-confirmation" id="exit-confirmation" hidden>
           <img src="assets/feedback/ticket-submitted.png" alt="Ticket submitted" width="1100" height="550">
