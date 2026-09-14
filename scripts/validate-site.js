@@ -277,7 +277,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260913-living-constitution") || !html.includes("app.js?v=20260913-unit-outline") || !html.includes("course-data.js?v=20260913-concept-practice-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260913-living-constitution") || !html.includes("app.js?v=20260913-unit-outline") || !html.includes("course-data.js?v=20260913-simple-practice-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -337,7 +337,7 @@ if (rootsActivity?.title !== "ROOTS OF AMERICAN DEMOCRACY" || rootsActivity?.kin
   errors.push("The open 1.02 page must be one combined Roots of American Democracy activity-and-notes card.");
 }
 const rootsPractice = unitOne?.resources?.find(resource => resource.id === "roots-connections-practice");
-if (rootsPractice?.lesson !== "1.02 — THE ROOTS OF AMERICAN DEMOCRACY" || rootsPractice?.title !== "1.02 — THE ROOTS OF AMERICAN DEMOCRACY · ROOTS CONNECTIONS REVIEW" || rootsPractice?.url !== "roots-connections.html" || rootsPractice?.kind !== "practice" || config.assignmentUrls?.["roots-connections-practice"] !== "roots-connections.html" || config.assignmentUnlocks?.["roots-connections-practice"] !== true) {
+if (rootsPractice?.lesson !== "1.02 — THE ROOTS OF AMERICAN DEMOCRACY" || rootsPractice?.title !== "1.02 — THE ROOTS OF AMERICAN DEMOCRACY" || rootsPractice?.url !== "roots-connections.html" || rootsPractice?.kind !== "practice" || config.assignmentUrls?.["roots-connections-practice"] !== "roots-connections.html" || config.assignmentUnlocks?.["roots-connections-practice"] !== true) {
   errors.push("The open Root Connections practice must appear with lesson 1.02.");
 }
 const expectedPracticeRootNames = ["ANCIENT GREECE", "ANCIENT ROME", "ENGLISH CONSTITUTIONAL TRADITIONS", "JOHN LOCKE", "MONTESQUIEU", "NICCOLÒ MACHIAVELLI", "WILLIAM BLACKSTONE"];
@@ -369,7 +369,7 @@ if (historyLesson?.url !== "history-lesson.html" || config.assignmentUrls?.["his
   errors.push("The Unit 1 History Lesson must exist and remain open.");
 }
 const historyReview = unitOne?.resources?.find(resource => resource.id === "history-review");
-if (historyReview?.lesson !== "1.03 — THE HISTORY LESSON" || historyReview?.title !== "1.03 — THE HISTORY LESSON · SAVE THE NEW NATION" || historyReview?.url !== "history-review.html" || historyReview?.kind !== "practice" || config.assignmentUrls?.["history-review"] !== "history-review.html" || config.assignmentUnlocks?.["history-review"] !== true) {
+if (historyReview?.lesson !== "1.03 — THE HISTORY LESSON" || historyReview?.title !== "1.03 — THE HISTORY LESSON" || historyReview?.url !== "history-review.html" || historyReview?.kind !== "practice" || config.assignmentUrls?.["history-review"] !== "history-review.html" || config.assignmentUnlocks?.["history-review"] !== true) {
   errors.push("The open History Lesson Review must appear as practice in lesson 1.03.");
 }
 if (historyReviewData?.checkpoints?.length !== 6) errors.push("History Lesson Review must contain six focused checkpoints.");
@@ -394,7 +394,7 @@ for (const marker of ["SAVE THE NEW NATION", "SIX CHECKPOINTS", "SOLVE THE CHALL
 }
 if (historyReviewCode.includes("Math.random")) errors.push("History Lesson Review must not randomize answers in the browser.");
 const idealsReview = unitOne?.resources?.find(resource => resource.id === "founding-ideals-review");
-if (idealsReview?.title !== "1.01 — THE FOUNDING PROMISE · SIX IDEALS REVIEW" || idealsReview?.url !== "founding-ideals-review.html" || idealsReview?.kind !== "practice" || config.assignmentUrls?.["founding-ideals-review"] !== "founding-ideals-review.html" || config.assignmentUnlocks?.["founding-ideals-review"] !== true) {
+if (idealsReview?.title !== "1.01 — THE FOUNDING PROMISE" || idealsReview?.url !== "founding-ideals-review.html" || idealsReview?.kind !== "practice" || config.assignmentUrls?.["founding-ideals-review"] !== "founding-ideals-review.html" || config.assignmentUnlocks?.["founding-ideals-review"] !== true) {
   errors.push("The open Six Ideals Review practice must appear in lesson 1.01.");
 }
 const conceptPracticeIds = ["founding-ideals-review", "roots-connections-practice", "history-review"];
