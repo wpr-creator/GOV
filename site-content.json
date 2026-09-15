@@ -10,7 +10,7 @@
     "gov-6": false,
     "gov-7": false
   },
-  "exitQuestion": "🛡️ **1. In YOUR opinion, what is one freedom the government SHOULD limit for the COMMON GOOD? Why?**\n*Examples: speed limits, smoking in public*\n\n🗽 **2. In YOUR opinion, what is one choice the government should NOT control and should leave up to individuals? Why?**\n*Examples: what you wear, what adults choose to eat.*",
+  "exitQuestion": "⚖️ **CHOOSE ONE SIDE. Answer only one question.**\n\n🛡️ **LIMIT IT:** What is one freedom the government SHOULD limit for the COMMON GOOD? Why?\n*Examples: speed limits, smoking in public*\n\n**OR**\n\n🗽 **LEAVE IT TO THE PERSON:** What is one choice the government should NOT control? Why?\n*Examples: what people wear, what adults choose to eat.*",
   "exitEndpoint": "https://script.google.com/macros/s/AKfycbzbCXosor6y6izuKwbsg_CRlY6Zyy32HU40vg_pkf4-l4FD-vGNzBC32kMV-f3JeetWag/exec",
   "upcoming": [],
   "classroomUrl": "https://classroom.google.com/",
