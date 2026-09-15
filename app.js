@@ -315,6 +315,7 @@
           card.className = "unit-resource";
           const resourceKind = resourceKindFor(resource);
           if (resourceKind) card.classList.add(`resource-${resourceKind}`);
+          if (resource.accent) card.classList.add(`resource-accent-${resource.accent}`);
           if (unlocked) {
             card.href = resourceUrl;
             if (new URL(resourceUrl, location.href).origin === location.origin) {

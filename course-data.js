@@ -114,6 +114,7 @@ window.COURSE_DATA = {
           lesson: "UNIT 1",
           title: "UNIT 1 SLIDES",
           kind: "practice",
+          accent: "red",
           url: "unit-1-slides.html",
           displayGroup: "TEST PRACTICE & RESOURCES"
         },
@@ -122,6 +123,7 @@ window.COURSE_DATA = {
           lesson: "UNIT 1",
           title: "UNIT 1 TEST REVIEW",
           kind: "practice",
+          accent: "white",
           url: "https://quizlet.com/1209089460/unit-1-test-reveiew-flash-cards/?i=4kpqec&x=1qqt",
           displayGroup: "TEST PRACTICE & RESOURCES"
         },
@@ -139,6 +141,7 @@ window.COURSE_DATA = {
           title: "1.01 — THE FOUNDING PROMISE",
           url: "founding-ideals-review.html",
           kind: "practice",
+          accent: "blue",
           displayGroup: "TEST PRACTICE & RESOURCES"
         },
         {
@@ -204,6 +207,7 @@ window.COURSE_DATA = {
           title: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
           url: "roots-connections.html",
           kind: "practice",
+          accent: "blue",
           displayGroup: "TEST PRACTICE & RESOURCES"
         },
         {
@@ -234,6 +238,7 @@ window.COURSE_DATA = {
           title: "1.03 — THE HISTORY LESSON",
           url: "history-review.html",
           kind: "practice",
+          accent: "blue",
           displayGroup: "TEST PRACTICE & RESOURCES"
         },
         {
