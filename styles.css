@@ -234,12 +234,12 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .unit-resource.resource-assignment:not(.placeholder):hover, .unit-resource.resource-project:not(.placeholder):hover, .unit-resource.resource-activity:not(.placeholder):hover, .unit-resource.resource-activity-notes:not(.placeholder):hover { background: #84202e; border-color: #84202e; }
 .unit-resource.resource-notes:not(.placeholder), .unit-resource.resource-practice:not(.placeholder) { color: #111; background: #fff; border: 4px solid #174f85; }
 .unit-resource.resource-notes:not(.placeholder):hover, .unit-resource.resource-practice:not(.placeholder):hover { background: #edf5fc; }
-.concept-practice-group .resource-accent-red { color: #fff; background: #a32638; border-color: #a32638; }
-.concept-practice-group .resource-accent-red:hover { background: #84202e; border-color: #84202e; }
-.concept-practice-group .resource-accent-white { color: #111; background: #fff; border-color: #174f85; }
-.concept-practice-group .resource-accent-white:hover { background: #edf5fc; }
-.concept-practice-group .resource-accent-blue { color: #fff; background: #174f85; border-color: #174f85; }
-.concept-practice-group .resource-accent-blue:hover { background: #113f6b; border-color: #113f6b; }
+.concept-practice-group .unit-resource.resource-accent-red:not(.placeholder) { color: #fff; background: #a32638; border-color: #a32638; }
+.concept-practice-group .unit-resource.resource-accent-red:not(.placeholder):hover { background: #84202e; border-color: #84202e; }
+.concept-practice-group .unit-resource.resource-accent-white:not(.placeholder) { color: #111; background: #fff; border-color: #174f85; }
+.concept-practice-group .unit-resource.resource-accent-white:not(.placeholder):hover { background: #edf5fc; }
+.concept-practice-group .unit-resource.resource-accent-blue:not(.placeholder) { color: #fff; background: #174f85; border-color: #174f85; }
+.concept-practice-group .unit-resource.resource-accent-blue:not(.placeholder):hover { background: #113f6b; border-color: #113f6b; }
 .unit-resource.resource-assessment:not(.placeholder) { color: #fff; background: #a32638; border: 4px solid #174f85; box-shadow: inset 0 -8px 0 #174f85; }
 .unit-resource.resource-assessment:not(.placeholder):hover { background: #84202e; }
 .unit-resource.resource-text span, .unit-resource.resource-assignment span, .unit-resource.resource-project span, .unit-resource.resource-activity span, .unit-resource.resource-activity-notes span, .unit-resource.resource-notes span, .unit-resource.resource-practice span, .unit-resource.resource-assessment span { color: inherit; }
