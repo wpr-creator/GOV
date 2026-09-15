@@ -141,7 +141,6 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .exit-form { margin: 0; padding: 1.5rem; background: var(--white); border-top: 3px solid var(--black); }
 .exit-form-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
 .exit-form-heading > div { display: flex; align-items: center; gap: .8rem; }
-.exit-form-heading > div > span { width: 48px; height: 48px; display: grid; place-items: center; color: var(--white); background: var(--black); font-family: Georgia, serif; font-size: 1.6rem; }
 .exit-form-heading h3, .exit-form-heading p { margin: 0; }
 .exit-form-heading > p { max-width: 330px; color: var(--muted); font-size: .82rem; font-weight: 700; text-align: right; }
 .exit-card label { display: block; margin: 1rem 0 .4rem; font-size: .76rem; font-weight: 900; letter-spacing: .04em; }

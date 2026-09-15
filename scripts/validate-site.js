@@ -277,7 +277,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260915-ticket-prompt") || !html.includes("app.js?v=20260915-ticket-prompt") || !html.includes("course-data.js?v=20260913-simple-practice-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260915-ticket-cleanup") || !html.includes("app.js?v=20260915-ticket-prompt") || !html.includes("course-data.js?v=20260913-simple-practice-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -749,7 +749,7 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260915-ticket-prompt") || !html.includes("styles.css?v=20260915-ticket-prompt")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260915-ticket-prompt") || !html.includes("styles.css?v=20260915-ticket-cleanup")) errors.push("Exit-ticket cache versions are not current.");
 if (!html.includes("classroom-layout.css?v=20260913-unit-order") || !fs.existsSync(path.join(root, "classroom-layout.css"))) errors.push("The CP classroom layout stylesheet is missing.");
 for (const marker of ["MY CHECKLIST", "new URL(resourceUrl, location.href).origin !== location.origin"]) {
   if (!appCode.includes(marker)) errors.push(`CP classroom navigation is missing: ${marker}`);
@@ -767,7 +767,7 @@ for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"'
   if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);
 }
 if (html.includes("Answer both questions") || html.includes("ANSWER BOTH QUESTIONS")) errors.push("The one-side exit ticket must not tell students to answer both sides.");
-if (!html.includes('<h3>YOUR RESPONSE</h3>') || !html.includes('placeholder="TYPE YOUR RESPONSE…"')) errors.push("The exit-ticket response area must use the simple one-response wording.");
+if (!html.includes('<div><h3>YOUR RESPONSE</h3></div>') || html.includes('<span aria-hidden="true">01</span>') || !html.includes('placeholder="TYPE YOUR RESPONSE…"')) errors.push("The exit-ticket response area must use the simple one-response wording without a step number.");
 if (!primaryStyles.includes(".exit-question { padding: 1.5rem; display: grid; grid-template-columns: minmax(0, 1fr);")) errors.push("A single exit-ticket prompt must span the available width.");
 if (!appCode.includes('blocks.length === 1 ? "EXIT TICKET"') || !appCode.includes('"exit-side"') || !appCode.includes('"exit-or"')) errors.push("A one-part exit ticket must use the ticket label and structured side choices.");
 if (!primaryStyles.includes(".exit-prompt::before, .exit-prompt::after") || !primaryStyles.includes(".exit-side {") || primaryStyles.includes(".exit-example {")) errors.push("The exit-ticket prompt must use the ticket design without tan line highlights.");
