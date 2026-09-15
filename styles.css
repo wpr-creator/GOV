@@ -133,9 +133,10 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .exit-question strong { color: var(--black); font-weight: 950; }
 .exit-support { margin: 0; color: var(--black); font-size: clamp(.88rem, 1.35vw, 1rem); line-height: 1.4; }
 .exit-side { padding: .8rem 1rem; background: var(--white); border: 2px solid var(--black); }
-.exit-side:nth-of-type(2) { border-left: 8px solid #9b3038; }
-.exit-side:nth-of-type(4) { border-left: 8px solid #172b3a; }
-.exit-or { padding: .45rem 0; font-weight: 950; text-align: center; }
+.exit-side-one { border-left: 8px solid #9b3038; }
+.exit-side-two { border-left: 8px solid #172b3a; }
+.exit-choice-example { padding: .4rem 1rem .15rem; color: var(--muted); font-size: .84rem; }
+.exit-or { padding: .55rem 0; font-weight: 950; text-align: center; }
 .exit-direction { margin-top: 1rem; font-weight: 900; }
 .exit-support em { font-style: italic; }
 .exit-form { margin: 0; padding: 1.5rem; background: var(--white); border-top: 3px solid var(--black); }

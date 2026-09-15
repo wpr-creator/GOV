@@ -1776,9 +1776,13 @@
       const supportingLines = lines.slice(1).map((line) => {
         const lineClass = /^\*\*OR\*\*$/i.test(line)
           ? "exit-or"
-          : /^\p{Extended_Pictographic}/u.test(line)
-            ? "exit-side"
-            : "exit-direction";
+          : /^\*\*1\./.test(line)
+            ? "exit-side exit-side-one"
+            : /^\*\*2\./.test(line)
+              ? "exit-side exit-side-two"
+              : /^\*Examples:/i.test(line)
+                ? "exit-choice-example"
+                : "exit-direction";
         return `<p class="exit-support ${lineClass}">${escapeAndFormat(line)}</p>`;
       }).join("");
       const markerLabel = blocks.length === 1 ? "EXIT TICKET" : `QUESTION ${index + 1}`;

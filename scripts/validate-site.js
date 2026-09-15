@@ -277,7 +277,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260915-ticket-cleanup") || !html.includes("app.js?v=20260915-ticket-prompt") || !html.includes("course-data.js?v=20260913-simple-practice-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260915-two-question-ticket") || !html.includes("app.js?v=20260915-two-question-ticket") || !html.includes("course-data.js?v=20260913-simple-practice-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -749,7 +749,7 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260915-ticket-prompt") || !html.includes("styles.css?v=20260915-ticket-cleanup")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260915-two-question-ticket") || !html.includes("styles.css?v=20260915-two-question-ticket")) errors.push("Exit-ticket cache versions are not current.");
 if (!html.includes("classroom-layout.css?v=20260913-unit-order") || !fs.existsSync(path.join(root, "classroom-layout.css"))) errors.push("The CP classroom layout stylesheet is missing.");
 for (const marker of ["MY CHECKLIST", "new URL(resourceUrl, location.href).origin !== location.origin"]) {
   if (!appCode.includes(marker)) errors.push(`CP classroom navigation is missing: ${marker}`);
@@ -761,15 +761,15 @@ if (config.unitUnlocks?.["gov-0"] !== false) errors.push("Unit 0 must remain vis
 if (unitTwo?.title !== "The Three Branches at Work" || unitTwo?.question !== "How do the three branches use, share, and limit government power?" || unitTwo?.standards !== "Gov 12.4") errors.push("Unit 2 must use the approved Gov 12.4 title, question, and scope.");
 if (!appCode.includes('resourceKindFor(resourceB) === "notes"') || !appCode.includes('resourceKindFor(resourceA) === "notes"')) errors.push("Guided notes must appear first in every notes-and-practice row.");
 if (!html.includes('id="current-action" href="#gov-1">OPEN UNIT 1') || html.includes("OPEN UNIT 0")) errors.push("The homepage must offer only the Unit 1 course action.");
-const expectedExitQuestion = "⚖️ **CHOOSE ONE SIDE TO ARGUE FOR.**\n🛡️ **SIDE A:** The government should limit individual freedom when doing so protects other people or the common good.\n**OR**\n🗽 **SIDE B:** The government should leave individual choices alone unless those choices directly harm another person.\n**Which side do you agree with? Explain why.**";
-if (config.exitQuestion !== expectedExitQuestion) errors.push("The active exit ticket must ask students to choose and defend one side of the individual-freedom debate.");
+const expectedExitQuestion = "🎟️ **CHOOSE ONE QUESTION TO ANSWER.**\n**1. In YOUR opinion, what is one freedom the government SHOULD limit for the COMMON GOOD? Why?**\n*Examples: speed limits, smoking in public*\n**OR**\n**2. In YOUR opinion, what is one choice the government should NOT control and should leave up to individuals? Why?**\n*Examples: what you wear, what adults choose to eat*";
+if (config.exitQuestion !== expectedExitQuestion) errors.push("The active exit ticket must let students choose one of the two approved individual-freedom questions.");
 for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"', 'id="exit-response"', 'minlength="5"', 'class="exit-submit" type="submit" disabled', 'id="exit-status" role="status"']) {
   if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);
 }
 if (html.includes("Answer both questions") || html.includes("ANSWER BOTH QUESTIONS")) errors.push("The one-side exit ticket must not tell students to answer both sides.");
 if (!html.includes('<div><h3>YOUR RESPONSE</h3></div>') || html.includes('<span aria-hidden="true">01</span>') || !html.includes('placeholder="TYPE YOUR RESPONSE…"')) errors.push("The exit-ticket response area must use the simple one-response wording without a step number.");
 if (!primaryStyles.includes(".exit-question { padding: 1.5rem; display: grid; grid-template-columns: minmax(0, 1fr);")) errors.push("A single exit-ticket prompt must span the available width.");
-if (!appCode.includes('blocks.length === 1 ? "EXIT TICKET"') || !appCode.includes('"exit-side"') || !appCode.includes('"exit-or"')) errors.push("A one-part exit ticket must use the ticket label and structured side choices.");
+if (!appCode.includes('blocks.length === 1 ? "EXIT TICKET"') || !appCode.includes('"exit-side exit-side-one"') || !appCode.includes('"exit-side exit-side-two"') || !appCode.includes('"exit-choice-example"') || !appCode.includes('"exit-or"')) errors.push("A one-part exit ticket must use the ticket label and two structured question choices.");
 if (!primaryStyles.includes(".exit-prompt::before, .exit-prompt::after") || !primaryStyles.includes(".exit-side {") || primaryStyles.includes(".exit-example {")) errors.push("The exit-ticket prompt must use the ticket design without tan line highlights.");
 if (!(html.indexOf('class="now-panel"') < html.indexOf('id="home-exit-ticket"') && html.indexOf('id="home-exit-ticket"') < html.indexOf('class="home-dashboard"'))) errors.push("The homepage exit-ticket link must appear directly below the current-unit card.");
 if (html.includes('data-view-link="skills"') || html.includes("THINK <span>→</span> CHOOSE") || appCode.includes("CHOOSE YOUR CLASS PERIOD AND NAME.")) errors.push("The retired Skill Builders navigation and extra exit-ticket directions must remain removed.");
