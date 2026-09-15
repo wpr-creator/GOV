@@ -10,7 +10,7 @@
     "gov-6": false,
     "gov-7": false
   },
-  "exitQuestion": "⚖️ **CHOOSE ONE SIDE TO ARGUE FOR.**\n\n🛡️ **SIDE A:** The government should be allowed to limit individual freedom when it protects other people or the common good.\n\n🗽 **SIDE B:** The government should leave individual choices alone unless those choices directly harm another person.\n\n**Which side do you support? Explain why and use one example.**",
+  "exitQuestion": "⚖️ **CHOOSE ONE SIDE TO ARGUE FOR.**\n🛡️ **SIDE A:** The government should limit individual freedom when doing so protects other people or the common good.\n**OR**\n🗽 **SIDE B:** The government should leave individual choices alone unless those choices directly harm another person.\n**Which side do you agree with? Explain why.**",
   "exitEndpoint": "https://script.google.com/macros/s/AKfycbzbCXosor6y6izuKwbsg_CRlY6Zyy32HU40vg_pkf4-l4FD-vGNzBC32kMV-f3JeetWag/exec",
   "upcoming": [],
   "classroomUrl": "https://classroom.google.com/",
