@@ -761,8 +761,8 @@ if (config.unitUnlocks?.["gov-0"] !== false) errors.push("Unit 0 must remain vis
 if (unitTwo?.title !== "The Three Branches at Work" || unitTwo?.question !== "How do the three branches use, share, and limit government power?" || unitTwo?.standards !== "Gov 12.4") errors.push("Unit 2 must use the approved Gov 12.4 title, question, and scope.");
 if (!appCode.includes('resourceKindFor(resourceB) === "notes"') || !appCode.includes('resourceKindFor(resourceA) === "notes"')) errors.push("Guided notes must appear first in every notes-and-practice row.");
 if (!html.includes('id="current-action" href="#gov-1">OPEN UNIT 1') || html.includes("OPEN UNIT 0")) errors.push("The homepage must offer only the Unit 1 course action.");
-const expectedExitQuestion = "⚖️ **CHOOSE ONE SIDE. Answer only one question.**\n\n🛡️ **LIMIT IT:** What is one freedom the government SHOULD limit for the COMMON GOOD? Why?\n*Examples: speed limits, smoking in public*\n\n**OR**\n\n🗽 **LEAVE IT TO THE PERSON:** What is one choice the government should NOT control? Why?\n*Examples: what people wear, what adults choose to eat.*";
-if (config.exitQuestion !== expectedExitQuestion) errors.push("The active exit ticket must ask students to choose one side of the individual-freedom question.");
+const expectedExitQuestion = "⚖️ **CHOOSE ONE SIDE TO ARGUE FOR.**\n\n🛡️ **SIDE A:** The government should be allowed to limit individual freedom when it protects other people or the common good.\n\n🗽 **SIDE B:** The government should leave individual choices alone unless those choices directly harm another person.\n\n**Which side do you support? Explain why and use one example.**";
+if (config.exitQuestion !== expectedExitQuestion) errors.push("The active exit ticket must ask students to choose and defend one side of the individual-freedom debate.");
 for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"', 'id="exit-response"', 'minlength="5"', 'class="exit-submit" type="submit" disabled', 'id="exit-status" role="status"']) {
   if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);
 }
