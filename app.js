@@ -1765,15 +1765,24 @@
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
       .replace(/\*(.+?)\*/g, "<em>$1</em>");
 
-    return String(value).trim().split(/\n\s*\n/).map((block, index) => {
+    const blocks = String(value).trim().split(/\n\s*\n/);
+    return blocks.map((block, index) => {
       const lines = block.split("\n").map((line) => line.trim()).filter(Boolean);
       const iconMatch = lines[0]?.match(/^(\p{Extended_Pictographic}\uFE0F?)\s*/u);
       const icon = iconMatch?.[1] || (index === 0 ? "💭" : "⚖️");
       const question = (lines[0] || "")
         .replace(/^\p{Extended_Pictographic}\uFE0F?\s*/u, "")
         .replace(/^\*\*\d+\.\s*/, "**");
-      const supportingLines = lines.slice(1).map((line) => `<p class="exit-example">${escapeAndFormat(line)}</p>`).join("");
-      return `<section class="exit-prompt"><div class="exit-prompt-marker"><span aria-hidden="true">${icon}</span><b>QUESTION ${index + 1}</b></div><div class="exit-prompt-copy"><p>${escapeAndFormat(question)}</p>${supportingLines}</div></section>`;
+      const supportingLines = lines.slice(1).map((line) => {
+        const lineClass = /^\*\*OR\*\*$/i.test(line)
+          ? "exit-or"
+          : /^\p{Extended_Pictographic}/u.test(line)
+            ? "exit-side"
+            : "exit-direction";
+        return `<p class="exit-support ${lineClass}">${escapeAndFormat(line)}</p>`;
+      }).join("");
+      const markerLabel = blocks.length === 1 ? "EXIT TICKET" : `QUESTION ${index + 1}`;
+      return `<section class="exit-prompt"><div class="exit-prompt-marker"><span aria-hidden="true">${icon}</span><b>${markerLabel}</b></div><div class="exit-prompt-copy"><p>${escapeAndFormat(question)}</p>${supportingLines}</div></section>`;
     }).join("");
   }
 

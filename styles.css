@@ -121,15 +121,23 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .exit-page-number { color: var(--slate); font-family: Georgia, serif; font-size: clamp(5rem, 14vw, 10rem); line-height: .7; }
 .exit-card { margin: 0; padding: 0; overflow: hidden; border: 3px solid var(--black); border-top: 0; box-shadow: 9px 9px 0 var(--stone-dark); }
 .exit-question { padding: 1.5rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; background: var(--stone); }
-.exit-prompt { min-height: 190px; display: grid; grid-template-columns: 92px minmax(0, 1fr); background: var(--white); border: 2px solid var(--black); box-shadow: 5px 5px 0 var(--slate); }
-.exit-prompt-marker { padding: 1rem .55rem; display: flex; align-items: center; flex-direction: column; justify-content: center; gap: .55rem; color: var(--white); background: var(--black); text-align: center; }
+.exit-prompt { position: relative; min-height: 190px; display: grid; grid-template-columns: 112px minmax(0, 1fr); overflow: hidden; background: var(--white); border: 3px solid var(--black); border-radius: 16px; box-shadow: 7px 7px 0 #9b3038; }
+.exit-prompt::before, .exit-prompt::after { position: absolute; z-index: 2; top: 50%; width: 22px; height: 22px; content: ""; background: var(--stone); border: 3px solid var(--black); border-radius: 50%; transform: translateY(-50%); }
+.exit-prompt::before { left: -14px; }
+.exit-prompt::after { right: -14px; }
+.exit-prompt-marker { padding: 1rem .7rem; display: flex; align-items: center; flex-direction: column; justify-content: center; gap: .55rem; color: var(--white); background: #172b3a; border-right: 3px dashed var(--white); text-align: center; }
 .exit-prompt-marker span { font-size: 2.15rem; line-height: 1; }
 .exit-prompt-marker b { font-size: .65rem; line-height: 1.15; letter-spacing: .07em; }
-.exit-prompt-copy { padding: 1.15rem; display: flex; flex-direction: column; justify-content: center; }
-.exit-prompt-copy > p:first-child { margin: 0; font-size: clamp(.95rem, 1.5vw, 1.08rem); font-weight: 700; line-height: 1.48; }
+.exit-prompt-copy { padding: clamp(1.1rem, 3vw, 1.7rem); display: flex; flex-direction: column; justify-content: center; }
+.exit-prompt-copy > p:first-child { margin: 0 0 1rem; font-size: clamp(1.05rem, 1.7vw, 1.3rem); font-weight: 900; line-height: 1.3; }
 .exit-question strong { color: var(--black); font-weight: 950; }
-.exit-example { width: fit-content; margin: .8rem 0 0; padding: .45rem .6rem; color: var(--muted); background: var(--paper); border-left: 4px solid var(--black); font-size: .82rem; line-height: 1.35; }
-.exit-example em { font-style: italic; }
+.exit-support { margin: 0; color: var(--black); font-size: clamp(.88rem, 1.35vw, 1rem); line-height: 1.4; }
+.exit-side { padding: .8rem 1rem; background: var(--white); border: 2px solid var(--black); }
+.exit-side:nth-of-type(2) { border-left: 8px solid #9b3038; }
+.exit-side:nth-of-type(4) { border-left: 8px solid #172b3a; }
+.exit-or { padding: .45rem 0; font-weight: 950; text-align: center; }
+.exit-direction { margin-top: 1rem; font-weight: 900; }
+.exit-support em { font-style: italic; }
 .exit-form { margin: 0; padding: 1.5rem; background: var(--white); border-top: 3px solid var(--black); }
 .exit-form-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
 .exit-form-heading > div { display: flex; align-items: center; gap: .8rem; }
@@ -721,7 +729,7 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .exit-identity { grid-template-columns: 1fr; }
   .exit-form-heading { align-items: flex-start; flex-direction: column; }
   .exit-form-heading > p { text-align: left; }
-  .exit-prompt { grid-template-columns: 68px minmax(0, 1fr); }
+  .exit-prompt { grid-template-columns: 76px minmax(0, 1fr); border-radius: 12px; }
   .home-exit-ticket { grid-template-columns: 52px minmax(0, 1fr) auto; padding: .9rem; gap: .75rem; }
   .home-exit-icon { width: 50px; height: 50px; }
   .exit-page-number { display: none; }
