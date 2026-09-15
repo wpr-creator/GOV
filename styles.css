@@ -120,7 +120,7 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .exit-page-header h1 { margin: 0; font-size: clamp(3.2rem, 8vw, 6.5rem); line-height: .85; letter-spacing: -.06em; }
 .exit-page-number { color: var(--slate); font-family: Georgia, serif; font-size: clamp(5rem, 14vw, 10rem); line-height: .7; }
 .exit-card { margin: 0; padding: 0; overflow: hidden; border: 3px solid var(--black); border-top: 0; box-shadow: 9px 9px 0 var(--stone-dark); }
-.exit-question { padding: 1.5rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; background: var(--stone); }
+.exit-question { padding: 1.5rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; background: var(--stone); }
 .exit-prompt { min-height: 190px; display: grid; grid-template-columns: 92px minmax(0, 1fr); background: var(--white); border: 2px solid var(--black); box-shadow: 5px 5px 0 var(--slate); }
 .exit-prompt-marker { padding: 1rem .55rem; display: flex; align-items: center; flex-direction: column; justify-content: center; gap: .55rem; color: var(--white); background: var(--black); text-align: center; }
 .exit-prompt-marker span { font-size: 2.15rem; line-height: 1; }
