@@ -110,6 +110,14 @@ window.COURSE_DATA = {
       ],
       resources: [
         {
+          id: "u1-01-slides",
+          lesson: "1.01 — THE FOUNDING PROMISE",
+          title: "1.01 LESSON SLIDES",
+          note: "SLIDE REVIEW",
+          kind: "notes",
+          url: "slides/unit-1/lesson-01/"
+        },
+        {
           id: "founding-ideals-review",
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "1.01 — THE FOUNDING PROMISE",
@@ -167,6 +175,14 @@ window.COURSE_DATA = {
           kind: "activity-notes"
         },
         {
+          id: "u1-02-slides",
+          lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
+          title: "1.02 LESSON SLIDES",
+          note: "SLIDE REVIEW",
+          kind: "notes",
+          url: "slides/unit-1/lesson-02/"
+        },
+        {
           id: "roots-connections-practice",
           lesson: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
           title: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
@@ -180,6 +196,14 @@ window.COURSE_DATA = {
           title: "1.03 GUIDED NOTES",
           url: "https://docs.google.com/document/d/1x9UrTBVuUd6vtC31byrfgF-6sngyfiwcVbwhIAqomMk/edit?tab=t.0",
           kind: "notes"
+        },
+        {
+          id: "u1-03-slides",
+          lesson: "1.03 — THE HISTORY LESSON",
+          title: "1.03 LESSON SLIDES",
+          note: "SLIDE REVIEW",
+          kind: "notes",
+          url: "slides/unit-1/lesson-03/"
         },
         {
           id: "history-lesson",
@@ -202,6 +226,14 @@ window.COURSE_DATA = {
           title: "1.04 GUIDED NOTES",
           url: "https://docs.google.com/document/d/1di2AbssTyiHpUzRStPEyUUm2jXsZW0ae8epp5KB64hg/edit?usp=sharing",
           kind: "notes"
+        },
+        {
+          id: "u1-04-slides",
+          lesson: "1.04 — DEMOCRACY’S BALANCING ACT",
+          title: "1.04 LESSON SLIDES",
+          note: "SLIDE REVIEW",
+          kind: "notes",
+          url: "slides/unit-1/lesson-04/"
         }
       ]
     },

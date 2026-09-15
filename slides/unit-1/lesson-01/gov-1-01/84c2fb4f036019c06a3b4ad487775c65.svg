@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <!--
+    Single-piece speech bubble for 1280x720 Slides.com layout.
+    Intended video area: x=0 y=0 w=405 h=720.
+    Place this SVG over the slide, then add your text box on top.
+    Fill: parchment cream #F8F6F1.
+  -->
+  <path
+    d="
+      M 505 40
+      H 1210
+      Q 1240 40 1240 70
+      V 650
+      Q 1240 680 1210 680
+      H 505
+      Q 475 680 475 650
+      V 392
+      L 420 360
+      L 475 328
+      V 70
+      Q 475 40 505 40
+      Z
+    "
+    fill="#F8F6F1"
+  />
+</svg>

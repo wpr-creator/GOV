@@ -277,7 +277,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260915-two-question-ticket") || !html.includes("app.js?v=20260915-two-question-ticket") || !html.includes("course-data.js?v=20260913-simple-practice-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260915-two-question-ticket") || !html.includes("app.js?v=20260915-two-question-ticket") || !html.includes("course-data.js?v=20260915-unit-1-slides") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -317,9 +317,17 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|roots-connections-practice|unit-1-03-guided-notes|history-lesson|history-review|unit-1-04-guided-notes";
+const expectedUnitOneResources = "u1-01-slides|founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|u1-02-slides|roots-connections-practice|unit-1-03-guided-notes|u1-03-slides|history-lesson|history-review|unit-1-04-guided-notes|u1-04-slides";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include the intended 1.01–1.03 resources in order.");
+}
+if (!fs.existsSync(path.join(root, ".nojekyll"))) errors.push("The repository root must include .nojekyll for Slides.com assets.");
+for (const lessonNumber of ["01", "02", "03", "04"]) {
+  const id = `u1-${lessonNumber}-slides`;
+  const lessonFolder = `slides/unit-1/lesson-${lessonNumber}/`;
+  const slideResource = unitOne?.resources?.find(resource => resource.id === id);
+  if (slideResource?.url !== lessonFolder || slideResource?.kind !== "notes" || slideResource?.note !== "SLIDE REVIEW" || config.assignmentUrls?.[id] !== lessonFolder || config.assignmentUnlocks?.[id] !== true) errors.push(`${id} must be an open slide-review resource in its lesson.`);
+  if (!fs.existsSync(path.join(root, lessonFolder, "index.html")) || !fs.existsSync(path.join(root, lessonFolder, "lib", "reveal.js"))) errors.push(`${id} must retain its self-contained Slides.com export.`);
 }
 const weThePeople = unitOne?.resources?.find(resource => resource.id === "we-the-people");
 const weThePeopleUrl = "https://docs.google.com/document/d/1dmSVCh_E25a9eKVJ57mPFZafeykSWMrBYqJi61CjsKI/edit?usp=sharing";
@@ -435,7 +443,7 @@ if (balancingNotes?.lesson !== "1.04 — DEMOCRACY’S BALANCING ACT" || balanci
   errors.push("The open 1.04 Guided Notes card must appear in Democracy’s Balancing Act and use the assigned document.");
 }
 for (const resource of unitOne?.resources || []) {
-  if (resource.note) errors.push(`Unit 1 resource ${resource.id} must use only its plain type label.`);
+  if (resource.note && !/^u1-0[1-4]-slides$/.test(resource.id)) errors.push(`Unit 1 resource ${resource.id} must use only its plain type label.`);
 }
 const historyReader = fs.readFileSync(path.join(root, "history-lesson.html"), "utf8");
 for (const marker of ["THE HISTORY LESSON", "ESSENTIAL QUESTION", "THE BIG IDEA", "SEVEN PARTS OF THE STORY", "FREEDOM FROM TYRANNY", "THE ARTICLES OF CONFEDERATION", "PROBLEMS UNDER THE ARTICLES", "THE CONSTITUTIONAL SOLUTION", "CONSTITUTIONAL COMPROMISES", "THE RATIFICATION DEBATE", "RATIFICATION AND THE BILL OF RIGHTS"]) {
