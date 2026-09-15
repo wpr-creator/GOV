@@ -772,9 +772,10 @@ for (const marker of ['fetch("content.json", { cache: "no-store" })', "populateE
   if (!appCode.includes(marker)) errors.push(`Exit-ticket behavior changed or missing: ${marker}`);
 }
 const exitScript = fs.readFileSync(path.join(root, "exit-ticket-script.gs"), "utf8");
-for (const marker of ["ROSTER_TAB = 'Rosters'", "studentIsOnRoster", "Student name does not match the selected period.", "1xEPilYXFU_pQKEZfGj9M2V3CZmflhHGkU3GdKBXcWOk", "Period 1B", "Period 2A", "All Responses", "writeToTab(ss, TABS[period], row)"]) {
-  if (!exitScript.includes(marker)) errors.push(`Exit-ticket collector is missing final-roster support: ${marker}`);
+for (const marker of ["ROSTER_TAB = 'Rosters'", "PERIODS = { '1B': true, '2A': true }", "studentIsOnRoster", "Student name does not match the selected period.", "1xEPilYXFU_pQKEZfGj9M2V3CZmflhHGkU3GdKBXcWOk", "LockService.getScriptLock()", "normalizeDateLabel", "findOrCreateExitTicketTab", "ss.insertSheet(tabName, 0)", "RESPONSE_HEADERS = ['Student', 'Response', 'Submitted']", "hideSupportAndLegacyTabs", "sheet.hideSheet()", "writeToExitTicketTab"]) {
+  if (!exitScript.includes(marker)) errors.push(`Exit-ticket collector is missing dated-period support: ${marker}`);
 }
+if (exitScript.includes("writeToTab(ss, TABS[period], row)") || exitScript.includes("writeToTab(ss, TABS.all, row)")) errors.push("The collector must not keep writing to the legacy permanent response tabs.");
 if (!Array.isArray(foundationCases) || foundationCases.length !== 9) errors.push(`Expected 9 student-friendly court case guides; found ${foundationCases?.length || 0}.`);
 foundationCases?.forEach((caseData, index) => {
   for (const key of ["slug", "title", "year", "topic", "question"]) {
