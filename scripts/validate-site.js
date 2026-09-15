@@ -55,6 +55,7 @@ for (const file of ["index.html", "civic-selfie.html", "presidential-yearbook.ht
 for (const file of ["history-review.html", "history-review.css", "history-review-sort.css", "history-review.js", "history-review-data.js"]) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Missing required file: ${file}`);
 }
+if (!fs.existsSync(path.join(root, "unit-1-slides.html"))) errors.push("Missing Unit 1 slides chooser page.");
 for (const socialTag of [
   'property="og:image"',
   'property="og:image:width" content="1200"',
@@ -277,7 +278,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260915-two-question-ticket") || !html.includes("app.js?v=20260915-two-question-ticket") || !html.includes("course-data.js?v=20260915-unit-1-slides") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260915-two-question-ticket") || !html.includes("app.js?v=20260915-two-question-ticket") || !html.includes("course-data.js?v=20260915-test-resources") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -317,7 +318,7 @@ if (unitTwo?.resources?.map(resource => resource.id).join("|") !== "federalism-m
   errors.push("Unit 2 must include The Federalism Map, Constitution Explorer, and Madison vs. Brutus.");
 }
 const unitOne = data.units.find(unit => unit.id === "gov-1");
-const expectedUnitOneResources = "u1-01-slides|founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|u1-02-slides|roots-connections-practice|unit-1-03-guided-notes|u1-03-slides|history-lesson|history-review|unit-1-04-guided-notes|u1-04-slides";
+const expectedUnitOneResources = "unit-1-slides|unit-1-test-review|u1-01-slides|founding-ideals-review|declaration-text|constitution-preamble|gettysburg-text|declaration-annotation|we-the-people|unit-1-guided-notes|roots-activity|u1-02-slides|roots-connections-practice|unit-1-03-guided-notes|u1-03-slides|history-lesson|history-review|unit-1-04-guided-notes|u1-04-slides";
 if (unitOne?.resources?.map(resource => resource.id).join("|") !== expectedUnitOneResources) {
   errors.push("Unit 1 must include the intended 1.01–1.03 resources in order.");
 }
@@ -405,12 +406,12 @@ const idealsReview = unitOne?.resources?.find(resource => resource.id === "found
 if (idealsReview?.title !== "1.01 — THE FOUNDING PROMISE" || idealsReview?.url !== "founding-ideals-review.html" || idealsReview?.kind !== "practice" || config.assignmentUrls?.["founding-ideals-review"] !== "founding-ideals-review.html" || config.assignmentUnlocks?.["founding-ideals-review"] !== true) {
   errors.push("The open Six Ideals Review practice must appear in lesson 1.01.");
 }
-const conceptPracticeIds = ["founding-ideals-review", "roots-connections-practice", "history-review"];
-if (!conceptPracticeIds.every(id => unitOne?.resources?.find(resource => resource.id === id)?.displayGroup === "CONCEPT PRACTICE")) errors.push("All three Unit 1 concept-practice games must appear together in the top row.");
-for (const marker of ['resource.displayGroup || resource.lesson', 'lessonA === "CONCEPT PRACTICE"', '"REVIEW UNIT CONTENT"']) {
-  if (!appCode.includes(marker)) errors.push(`The Unit 1 concept-practice row is missing: ${marker}`);
+const testResourceIds = ["unit-1-slides", "unit-1-test-review", "founding-ideals-review", "roots-connections-practice", "history-review"];
+if (!testResourceIds.every(id => unitOne?.resources?.find(resource => resource.id === id)?.displayGroup === "TEST PRACTICE & RESOURCES")) errors.push("Unit 1 test practice and resources must appear together at the top.");
+for (const marker of ['resource.displayGroup || resource.lesson', 'lessonA === "TEST PRACTICE & RESOURCES"', '"UNIT 1 MATERIALS"']) {
+  if (!appCode.includes(marker)) errors.push(`The Unit 1 test-practice section is missing: ${marker}`);
 }
-if (!appCode.includes('group.classList.add("concept-practice-group")') || !primaryStyles.includes(".concept-practice-group .unit-resource-grid { grid-template-columns: repeat(3, 1fr); }")) errors.push("The three concept-practice games must share one top row on larger screens.");
+if (!appCode.includes('group.classList.add("concept-practice-group")') || !primaryStyles.includes(".concept-practice-group .unit-resource-grid")) errors.push("The Unit 1 test-practice resources must share one responsive section.");
 for (const categoryLabel of ["ASSESSMENTS", "ASSIGNMENTS & PROJECTS", "GUIDED NOTES & PRACTICE", "READINGS & RESOURCES"]) {
   if (!appCode.includes(categoryLabel)) errors.push(`Lesson resource categories are missing: ${categoryLabel}`);
 }

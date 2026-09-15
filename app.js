@@ -261,8 +261,8 @@
       const resourceGroupEntries = [...resourceGroups.entries()];
       if (unit.id === "gov-1") {
         resourceGroupEntries.sort(([lessonA], [lessonB]) => {
-          if (lessonA === "CONCEPT PRACTICE") return -1;
-          if (lessonB === "CONCEPT PRACTICE") return 1;
+          if (lessonA === "TEST PRACTICE & RESOURCES") return -1;
+          if (lessonB === "TEST PRACTICE & RESOURCES") return 1;
           if (lessonA === "UNIT 1 PROJECT") return -1;
           if (lessonB === "UNIT 1 PROJECT") return 1;
           return lessonB.localeCompare(lessonA, undefined, { numeric: true });
@@ -285,7 +285,7 @@
         group.id = `${unit.id}-lesson-${lessonIndex}`;
         group.tabIndex = -1;
         if (lesson === "ASSESSMENTS") group.classList.add("assessment-group");
-        if (lesson === "CONCEPT PRACTICE") group.classList.add("concept-practice-group");
+        if (lesson === "TEST PRACTICE & RESOURCES") group.classList.add("concept-practice-group");
         const lessonTitle = document.createElement("h2");
         lessonTitle.textContent = lesson;
         group.append(lessonTitle);
@@ -293,7 +293,7 @@
         const categoryDefinitions = [
           ["assessments", "ASSESSMENTS", kind => kind === "assessment"],
           ["assignments", "ASSIGNMENTS & PROJECTS", kind => ["assignment", "project", "activity", "activity-notes"].includes(kind)],
-          ["notes", lesson === "CONCEPT PRACTICE" ? "REVIEW UNIT CONTENT" : "GUIDED NOTES & PRACTICE", kind => ["notes", "practice"].includes(kind)],
+          ["notes", lesson === "TEST PRACTICE & RESOURCES" ? "UNIT 1 MATERIALS" : "GUIDED NOTES & PRACTICE", kind => ["notes", "practice"].includes(kind)],
           ["resources", "READINGS & RESOURCES", kind => !["assessment", "assignment", "project", "activity", "activity-notes", "notes", "practice"].includes(kind)]
         ];
         categoryDefinitions.forEach(([categoryId, categoryLabel, matchesCategory]) => {

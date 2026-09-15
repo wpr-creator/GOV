@@ -110,6 +110,22 @@ window.COURSE_DATA = {
       ],
       resources: [
         {
+          id: "unit-1-slides",
+          lesson: "UNIT 1",
+          title: "UNIT 1 SLIDES",
+          kind: "practice",
+          url: "unit-1-slides.html",
+          displayGroup: "TEST PRACTICE & RESOURCES"
+        },
+        {
+          id: "unit-1-test-review",
+          lesson: "UNIT 1",
+          title: "UNIT 1 TEST REVIEW",
+          kind: "practice",
+          url: "https://quizlet.com/1209089460/unit-1-test-reveiew-flash-cards/?i=4kpqec&x=1qqt",
+          displayGroup: "TEST PRACTICE & RESOURCES"
+        },
+        {
           id: "u1-01-slides",
           lesson: "1.01 — THE FOUNDING PROMISE",
           title: "1.01 LESSON SLIDES",
@@ -123,7 +139,7 @@ window.COURSE_DATA = {
           title: "1.01 — THE FOUNDING PROMISE",
           url: "founding-ideals-review.html",
           kind: "practice",
-          displayGroup: "CONCEPT PRACTICE"
+          displayGroup: "TEST PRACTICE & RESOURCES"
         },
         {
           id: "declaration-text",
@@ -188,7 +204,7 @@ window.COURSE_DATA = {
           title: "1.02 — THE ROOTS OF AMERICAN DEMOCRACY",
           url: "roots-connections.html",
           kind: "practice",
-          displayGroup: "CONCEPT PRACTICE"
+          displayGroup: "TEST PRACTICE & RESOURCES"
         },
         {
           id: "unit-1-03-guided-notes",
@@ -218,7 +234,7 @@ window.COURSE_DATA = {
           title: "1.03 — THE HISTORY LESSON",
           url: "history-review.html",
           kind: "practice",
-          displayGroup: "CONCEPT PRACTICE"
+          displayGroup: "TEST PRACTICE & RESOURCES"
         },
         {
           id: "unit-1-04-guided-notes",
