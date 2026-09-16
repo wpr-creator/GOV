@@ -299,7 +299,15 @@
         categoryDefinitions.forEach(([categoryId, categoryLabel, matchesCategory]) => {
           const categoryResources = lessonResources
             .filter(resource => matchesCategory(resourceKindFor(resource)))
-            .sort((resourceA, resourceB) => Number(resourceKindFor(resourceB) === "notes") - Number(resourceKindFor(resourceA) === "notes"));
+            .sort((resourceA, resourceB) => {
+              if (categoryId !== "notes") return 0;
+              const notesPosition = resource => {
+                if (resourceKindFor(resource) === "notes" && /GUIDED NOTES/i.test(resource.title)) return 0;
+                if (resource.kindLabel === "SLIDES") return 1;
+                return 2;
+              };
+              return notesPosition(resourceA) - notesPosition(resourceB);
+            });
           if (!categoryResources.length) return;
           const category = document.createElement("section");
           category.className = `unit-resource-category category-${categoryId}`;
