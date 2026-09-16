@@ -133,6 +133,7 @@ window.COURSE_DATA = {
           title: "1.01 LESSON SLIDES",
           note: "SLIDE REVIEW",
           kind: "notes",
+          kindLabel: "SLIDES",
           url: "slides/unit-1/lesson-01/"
         },
         {
@@ -199,6 +200,7 @@ window.COURSE_DATA = {
           title: "1.02 LESSON SLIDES",
           note: "SLIDE REVIEW",
           kind: "notes",
+          kindLabel: "SLIDES",
           url: "slides/unit-1/lesson-02/"
         },
         {
@@ -223,6 +225,7 @@ window.COURSE_DATA = {
           title: "1.03 LESSON SLIDES",
           note: "SLIDE REVIEW",
           kind: "notes",
+          kindLabel: "SLIDES",
           url: "slides/unit-1/lesson-03/"
         },
         {
@@ -254,6 +257,7 @@ window.COURSE_DATA = {
           title: "1.04 LESSON SLIDES",
           note: "SLIDE REVIEW",
           kind: "notes",
+          kindLabel: "SLIDES",
           url: "slides/unit-1/lesson-04/"
         }
       ]

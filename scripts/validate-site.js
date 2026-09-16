@@ -278,7 +278,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260915-test-resource-colors-2") || !html.includes("app.js?v=20260915-test-resource-colors") || !html.includes("course-data.js?v=20260915-test-resource-colors") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260915-test-resource-colors-2") || !html.includes("app.js?v=20260915-test-resource-colors") || !html.includes("course-data.js?v=20260916-slide-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -327,7 +327,7 @@ for (const lessonNumber of ["01", "02", "03", "04"]) {
   const id = `u1-${lessonNumber}-slides`;
   const lessonFolder = `slides/unit-1/lesson-${lessonNumber}/`;
   const slideResource = unitOne?.resources?.find(resource => resource.id === id);
-  if (slideResource?.url !== lessonFolder || slideResource?.kind !== "notes" || slideResource?.note !== "SLIDE REVIEW" || config.assignmentUrls?.[id] !== lessonFolder || config.assignmentUnlocks?.[id] !== true) errors.push(`${id} must be an open slide-review resource in its lesson.`);
+  if (slideResource?.url !== lessonFolder || slideResource?.kind !== "notes" || slideResource?.kindLabel !== "SLIDES" || slideResource?.note !== "SLIDE REVIEW" || config.assignmentUrls?.[id] !== lessonFolder || config.assignmentUnlocks?.[id] !== true) errors.push(`${id} must be an open slide-review resource in its lesson and labeled SLIDES.`);
   if (!fs.existsSync(path.join(root, lessonFolder, "index.html")) || !fs.existsSync(path.join(root, lessonFolder, "lib", "reveal.js"))) errors.push(`${id} must retain its self-contained Slides.com export.`);
 }
 const weThePeople = unitOne?.resources?.find(resource => resource.id === "we-the-people");
