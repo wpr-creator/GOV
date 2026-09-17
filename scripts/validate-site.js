@@ -770,8 +770,7 @@ if (config.unitUnlocks?.["gov-0"] !== false) errors.push("Unit 0 must remain vis
 if (unitTwo?.title !== "The Three Branches at Work" || unitTwo?.question !== "How do the three branches use, share, and limit government power?" || unitTwo?.standards !== "Gov 12.4") errors.push("Unit 2 must use the approved Gov 12.4 title, question, and scope.");
 if (!appCode.includes('const notesPosition = resource =>') || !appCode.includes('/GUIDED NOTES/i.test(resource.title)') || !appCode.includes('resource.kindLabel === "SLIDES"')) errors.push("Guided notes must appear first in every notes-and-practice row, ahead of lesson slides.");
 if (!html.includes('id="current-action" href="#gov-1">OPEN UNIT 1') || html.includes("OPEN UNIT 0")) errors.push("The homepage must offer only the Unit 1 course action.");
-const expectedExitQuestion = "🎟️ **CHOOSE ONE QUESTION TO ANSWER.**\n**1. In YOUR opinion, what is one freedom the government SHOULD limit for the COMMON GOOD? Why?**\n*Examples: speed limits, smoking in public*\n**OR**\n**2. In YOUR opinion, what is one choice the government should NOT control and should leave up to individuals? Why?**\n*Examples: what you wear, what adults choose to eat*";
-if (config.exitQuestion !== expectedExitQuestion) errors.push("The active exit ticket must let students choose one of the two approved individual-freedom questions.");
+if (config.exitQuestion !== "") errors.push("The exit ticket must remain closed until a new question is posted.");
 for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"', 'id="exit-response"', 'minlength="5"', 'class="exit-submit" type="submit" disabled', 'id="exit-status" role="status"']) {
   if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);
 }
