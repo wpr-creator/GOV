@@ -278,7 +278,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260915-test-resource-colors-2") || !html.includes("app.js?v=20260916-notes-first") || !html.includes("course-data.js?v=20260916-slide-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260915-test-resource-colors-2") || !html.includes("app.js?v=20260919-unit-order") || !html.includes("course-data.js?v=20260916-slide-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -758,18 +758,20 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260916-notes-first") || !html.includes("styles.css?v=20260915-test-resource-colors-2")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260919-unit-order") || !html.includes("styles.css?v=20260915-test-resource-colors-2")) errors.push("Exit-ticket cache versions are not current.");
 if (!html.includes("classroom-layout.css?v=20260913-unit-order") || !fs.existsSync(path.join(root, "classroom-layout.css"))) errors.push("The CP classroom layout stylesheet is missing.");
 for (const marker of ["MY CHECKLIST", "new URL(resourceUrl, location.href).origin !== location.origin"]) {
   if (!appCode.includes(marker)) errors.push(`CP classroom navigation is missing: ${marker}`);
 }
 if (html.includes("current-lesson-action") || appCode.includes("currentLessonAction") || appCode.includes("lessonJump")) errors.push("Homepage lesson shortcuts and lesson-jump controls must remain removed.");
-if (!appCode.includes('if (unitA.id === "gov-0") return 1') || !appCode.includes('if (unitB.id === "gov-0") return -1')) errors.push("The Units page must place Unit 0 last.");
-if (!appCode.includes('filter(unit => ["gov-0", "gov-1", "gov-2"].includes(unit.id))')) errors.push("The Units page must show only Units 1, 2, and the closed Unit 0.");
-if (config.unitUnlocks?.["gov-0"] !== false) errors.push("Unit 0 must remain visible but closed.");
+if (!appCode.includes('const unitDisplayOrder = { "gov-2": 0, "gov-0": 1, "gov-1": 2 }')) errors.push("The Units page must order Unit 2 first, followed by Unit 0 and Unit 1.");
+if (!appCode.includes('filter(unit => ["gov-0", "gov-1", "gov-2"].includes(unit.id))')) errors.push("The Units page must show only Units 2, 0, and 1.");
+if (config.currentUnit !== "gov-2" || config.unitUnlocks?.["gov-0"] !== true || config.unitUnlocks?.["gov-1"] !== true || config.unitUnlocks?.["gov-2"] !== true) errors.push("Unit 2 must be current while Units 0 and 1 remain open.");
 if (unitTwo?.title !== "The Three Branches at Work" || unitTwo?.question !== "How do the three branches use, share, and limit government power?" || unitTwo?.standards !== "Gov 12.4") errors.push("Unit 2 must use the approved Gov 12.4 title, question, and scope.");
 if (!appCode.includes('const notesPosition = resource =>') || !appCode.includes('/GUIDED NOTES/i.test(resource.title)') || !appCode.includes('resource.kindLabel === "SLIDES"')) errors.push("Guided notes must appear first in every notes-and-practice row, ahead of lesson slides.");
-if (!html.includes('id="current-action" href="#gov-1">OPEN UNIT 1') || html.includes("OPEN UNIT 0")) errors.push("The homepage must offer only the Unit 1 course action.");
+const unitTwoClassworkUrl = "https://classroom.google.com/w/ODcxMDI4ODY2NDUy/t/all";
+if (config.unitLinks?.["gov-2"] !== unitTwoClassworkUrl || !html.includes(`id="current-action" href="${unitTwoClassworkUrl}"`) || !appCode.includes('siteContent.unitLinks?.[unit.id]')) errors.push("Unit 2 buttons must open the CP Government Google Classroom Classwork page.");
+if (!appCode.includes("const EDIT_MODE_ENABLED = false") || !appCode.includes("if (EDIT_MODE_ENABLED && local)") || appCode.includes("devKeys") || html.includes("TYPE “DEV” TO OPEN OR CLOSE")) errors.push("The hidden DEV edit command and saved local previews must remain disabled.");
 if (config.exitQuestion !== "") errors.push("The exit ticket must remain closed until a new question is posted.");
 for (const control of ['id="exit-form"', 'id="exit-period"', 'id="exit-student"', 'id="exit-response"', 'minlength="5"', 'class="exit-submit" type="submit" disabled', 'id="exit-status" role="status"']) {
   if (!html.includes(control)) errors.push(`Exit-ticket form control changed or missing: ${control}`);

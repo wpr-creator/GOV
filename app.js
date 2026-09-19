@@ -21,6 +21,7 @@
   const GITHUB_TOKEN_STORAGE_KEY = "pad-github-token-v1";
   const UNIT_ZERO_COMPLETION_KEY = "gov-unit0-completion-v1";
   const GITHUB_CONTENT_URL = "https://api.github.com/repos/wpr-creator/GOV/contents/site-content.json";
+  const EDIT_MODE_ENABLED = false;
   let currentUnitId = "gov-0";
   let exitRoster = Object.entries(window.CP_GOV_ROSTERS || {}).map(([id, students]) => ({ id, label: `Period ${id}`, students }));
   let lastFocused = null;
@@ -28,7 +29,6 @@
   const proveCaseLabels = [["miranda", "MIRANDA v. ARIZONA"], ["riley", "RILEY v. CALIFORNIA"], ["mahanoy", "MAHANOY AREA SCHOOL DISTRICT v. B.L."], ["carpenter", "CARPENTER v. UNITED STATES"], ["earls", "BOARD OF EDUCATION v. EARLS"], ["miller", "MILLER v. ALABAMA"]];
   let historyEvents = [];
   let historyIndex = 0;
-  let devKeys = "";
   let amendmentFilter = "current";
   let glossaryFilter = "current";
   const initialGlossaryTerm = new URLSearchParams(location.search).get("glossary")?.trim() || "";
@@ -165,10 +165,9 @@
 
   function renderUnits() {
     unitGrid.replaceChildren();
+    const unitDisplayOrder = { "gov-2": 0, "gov-0": 1, "gov-1": 2 };
     const displayedUnits = data.units.filter(unit => ["gov-0", "gov-1", "gov-2"].includes(unit.id)).sort((unitA, unitB) => {
-      if (unitA.id === "gov-0") return 1;
-      if (unitB.id === "gov-0") return -1;
-      return data.units.indexOf(unitA) - data.units.indexOf(unitB);
+      return unitDisplayOrder[unitA.id] - unitDisplayOrder[unitB.id];
     });
     displayedUnits.forEach(unit => {
       const state = unitState(unit);
@@ -188,7 +187,11 @@
       button.type = "button";
       button.disabled = state === "locked";
       button.textContent = state === "locked" ? "NOT OPEN YET" : state === "current" ? "START THIS UNIT →" : "OPEN UNIT →";
-      if (!button.disabled) button.addEventListener("click", () => { location.hash = unit.id; });
+      if (!button.disabled) button.addEventListener("click", () => {
+        const externalUrl = siteContent.unitLinks?.[unit.id];
+        if (externalUrl) window.open(externalUrl, "_blank", "noopener");
+        else location.hash = unit.id;
+      });
       card.append(top, title, question, standards, button);
       unitGrid.appendChild(card);
     });
@@ -1941,7 +1944,7 @@
       if (!response.ok) throw new Error("Site content unavailable");
       siteContent = await response.json();
       const local = localStorage.getItem(CONTENT_STORAGE_KEY);
-      if (local) {
+      if (EDIT_MODE_ENABLED && local) {
         const preview = JSON.parse(local);
         const previewAssignmentUrls = { ...(preview.assignmentUrls || {}) };
         const oldClassroomUrl = "https://classroom.google.com/c/ODcxMDI4ODY2NDUy";
@@ -1978,8 +1981,16 @@
     if (currentWord) currentWord.textContent = current.title;
     document.getElementById("current-unit-number").textContent = `${current.number} · PRINCIPLES OF AMERICAN DEMOCRACY`;
     document.getElementById("now-title").textContent = current.title.toUpperCase();
-    document.getElementById("current-action").href = `#${current.id}`;
-    document.getElementById("current-action").firstChild.textContent = `OPEN ${current.number.toUpperCase()} `;
+    const currentAction = document.getElementById("current-action");
+    currentAction.href = siteContent.unitLinks?.[current.id] || `#${current.id}`;
+    if (siteContent.unitLinks?.[current.id]) {
+      currentAction.target = "_blank";
+      currentAction.rel = "noopener";
+    } else {
+      currentAction.removeAttribute("target");
+      currentAction.removeAttribute("rel");
+    }
+    currentAction.firstChild.textContent = `OPEN ${current.number.toUpperCase()} `;
     renderSiteContent();
     renderAgendaDate();
     renderUnits();
@@ -2371,14 +2382,6 @@
     if (event.key === "Tab" && !foundationDialog.hidden) {
       event.preventDefault();
       foundationDialog.querySelector(".foundation-dialog-close").focus();
-    }
-    if (!event.metaKey && !event.ctrlKey && !event.altKey && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) {
-      devKeys = (devKeys + event.key.toLowerCase()).slice(-3);
-      if (devKeys === "dev") {
-        if (adminOverlay.hidden) openAdmin();
-        else closeAdmin();
-        devKeys = "";
-      }
     }
   });
   window.addEventListener("hashchange", route);
