@@ -595,6 +595,13 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
 .candidate-list h4 { margin: 0 0 .25rem; font-size: 1rem; }
 .candidate-list strong { display: block; font-size: .7rem; letter-spacing: .06em; }
 .candidate-list p { margin: .65rem 0 0; font-size: .82rem; font-weight: 650; line-height: 1.4; }
+.zip-chooser { margin-top: 1rem; }
+.zip-chooser label { display: block; margin-bottom: .35rem; font-size: .72rem; font-weight: 950; letter-spacing: .08em; }
+.zip-chooser > div { display: flex; gap: .5rem; }
+.zip-chooser input { width: 10rem; min-height: 48px; padding: .75rem; border: 2px solid var(--black); background: var(--white); font: inherit; font-weight: 900; }
+.zip-chooser button { min-height: 48px; padding: .75rem 1rem; border: 2px solid var(--black); color: var(--white); background: var(--black); font: inherit; font-size: .78rem; font-weight: 950; cursor: pointer; }
+.zip-status { margin-bottom: 0; font-size: .82rem; font-weight: 800; }
+.local-lookup-card { border-top-color: var(--blue); }
 .proposition-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
 .proposition-card { background: var(--white); border: 1px solid var(--line); border-top: 6px solid var(--black); }
 .proposition-card summary { min-height: 150px; padding: 1rem; display: grid; align-content: start; gap: .45rem; cursor: pointer; }
@@ -745,6 +752,8 @@ footer { max-width: 1240px; margin: 0 auto; padding: 1.5rem 24px 3rem; display: 
   .brand strong { font-size: .9rem; }
   .brand small { font-size: .72rem; }
   .brand img { width: 38px; height: 38px; }
+  .zip-chooser > div { align-items: stretch; flex-direction: column; }
+  .zip-chooser input { width: 100%; }
   .hero h1 { font-size: 2.65rem; }
   .hero-visual { width: 240px; }
   .path-stop b { font-size: .75rem; }

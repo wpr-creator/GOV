@@ -443,24 +443,37 @@
     const locationCard = document.createElement("section");
     locationCard.className = "ballot-location";
     const locationCopy = document.createElement("div");
-    locationCopy.innerHTML = `<p class="eyebrow">YOUR AREA</p><h2>${electionData.location.zip} · ${electionData.location.district}</h2><p>${electionData.location.note}</p>`;
-    const mapLink = document.createElement("a");
-    mapLink.href = electionData.location.mapSource;
-    mapLink.target = "_blank";
-    mapLink.rel = "noopener";
-    mapLink.textContent = "CHECK THE OFFICIAL DISTRICT MAP ↗";
-    locationCard.append(locationCopy, mapLink);
+    locationCopy.innerHTML = `
+      <p class="eyebrow">YOUR BALLOT</p>
+      <h2>START WITH YOUR ZIP CODE</h2>
+      <p>${electionData.location.note}</p>
+      <form class="zip-chooser" id="election-zip-form">
+        <label for="election-zip">YOUR ZIP CODE</label>
+        <div><input id="election-zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}" placeholder="92114" required><button type="submit">USE THIS ZIP</button></div>
+      </form>
+      <p class="zip-status" id="election-zip-status" role="status">Enter five numbers.</p>`;
+    const lookupLink = document.createElement("a");
+    lookupLink.href = electionData.location.lookupSource;
+    lookupLink.target = "_blank";
+    lookupLink.rel = "noopener";
+    lookupLink.textContent = "FIND MY EXACT BALLOT ↗";
+    locationCard.append(locationCopy, lookupLink);
 
     const races = document.createElement("section");
     races.className = "ballot-section";
     races.innerHTML = `<div class="section-heading"><div><p class="eyebrow">CANDIDATE RACES</p><h2>WHO GETS THE JOB?</h2></div><p>These short backgrounds describe public experience. They do not tell you whom to support.</p></div>`;
     const raceGrid = document.createElement("div");
     raceGrid.className = "race-grid";
+    let localRaceCard = null;
     electionData.races.forEach(race => {
       const article = document.createElement("article");
       article.className = "race-card";
-      if (race.local) article.classList.add("local-race");
-      const localLabel = race.local ? `<span class="local-label">YOUR CONGRESSIONAL RACE</span>` : "";
+      if (race.local) {
+        article.classList.add("local-race");
+        article.hidden = true;
+        localRaceCard = article;
+      }
+      const localLabel = race.local ? `<span class="local-label">ZIP 92114 EXAMPLE</span>` : "";
       article.innerHTML = `${localLabel}<p class="eyebrow">${race.office}</p><h3>${race.question}</h3><p>${race.note}</p>`;
       const candidateList = document.createElement("div");
       candidateList.className = "candidate-list";
@@ -477,11 +490,33 @@
       article.append(candidateList, source);
       raceGrid.appendChild(article);
     });
+    const localLookupCard = document.createElement("article");
+    localLookupCard.className = "race-card local-lookup-card";
+    localLookupCard.innerHTML = `<span class="local-label">YOUR LOCAL RACES</span><h3>USE YOUR ADDRESS FOR THE EXACT LIST</h3><p>ZIP codes can cross district lines. The official San Diego County lookup will show your U.S. House race and any local races or measures.</p><a href="${electionData.location.lookupSource}" target="_blank" rel="noopener">FIND MY EXACT BALLOT ↗</a>`;
+    raceGrid.appendChild(localLookupCard);
     races.appendChild(raceGrid);
+
+    const zipForm = locationCopy.querySelector("#election-zip-form");
+    const zipInput = locationCopy.querySelector("#election-zip");
+    const zipStatus = locationCopy.querySelector("#election-zip-status");
+    zipForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const zip = zipInput.value.trim();
+      if (!/^\d{5}$/.test(zip)) {
+        zipStatus.textContent = "Enter a five-digit ZIP code.";
+        return;
+      }
+      const isExampleZip = zip === electionData.location.exampleZip;
+      localRaceCard.hidden = !isExampleZip;
+      localLookupCard.hidden = isExampleZip;
+      zipStatus.textContent = isExampleZip
+        ? `${zip} is in ${electionData.location.district}. The District 52 candidates are shown below.`
+        : `${zip} selected. Use FIND MY EXACT BALLOT because a ZIP code can cross district lines.`;
+    });
 
     const propositions = document.createElement("section");
     propositions.className = "ballot-section";
-    propositions.innerHTML = `<div class="section-heading"><div><p class="eyebrow">STATEWIDE PROPOSITIONS</p><h2>VOTERS MAKE THE LAW</h2></div><p>Open a proposition to see what it does, what Yes and No mean, and the expected effect on government money.</p></div>`;
+    propositions.innerHTML = `<div class="section-heading"><div><p class="eyebrow">STATEWIDE PROPOSITIONS</p><h2>WHAT DOES EACH VOTE DO?</h2></div><p>Open one card. Read what changes, then compare Yes and No.</p></div>`;
     const featuredGrid = document.createElement("div");
     featuredGrid.className = "proposition-grid";
     electionData.propositions.forEach(proposition => {
@@ -491,13 +526,13 @@
       summary.innerHTML = `<span>PROP ${proposition.number}</span><strong>${proposition.title}</strong><small>${proposition.short}</small>`;
       const explanation = document.createElement("p");
       explanation.className = "proposition-explanation";
-      explanation.innerHTML = `<b>WHAT IT DOES</b>${proposition.explanation}`;
+      explanation.innerHTML = `<b>WHAT CHANGES?</b>${proposition.explanation}`;
       const choices = document.createElement("div");
       choices.className = "proposition-choices";
       choices.innerHTML = `<p><b>YES</b>${proposition.yes}</p><p><b>NO</b>${proposition.no}</p>`;
       const money = document.createElement("p");
       money.className = "proposition-money";
-      money.innerHTML = `<b>MONEY AND GOVERNMENT</b>${proposition.money}`;
+      money.innerHTML = `<b>COST OR SAVINGS</b>${proposition.money}`;
       const source = document.createElement("a");
       source.className = "proposition-source";
       source.href = proposition.source;

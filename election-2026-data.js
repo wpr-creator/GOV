@@ -4,10 +4,10 @@ window.ELECTION_2026_DATA = {
   registrationDeadline: "OCTOBER 19, 2026",
   ballotMailingDeadline: "OCTOBER 5, 2026",
   location: {
-    zip: "92114",
+    exampleZip: "92114",
     district: "CALIFORNIA DISTRICT 52",
-    note: "ZIP CODE 92114 IS IN CALIFORNIA’S 52ND CONGRESSIONAL DISTRICT FOR THIS ELECTION. SOME ZIP CODES CROSS DISTRICT LINES, SO VOTERS SHOULD CHECK THEIR ADDRESS ON THE OFFICIAL MAP.",
-    mapSource: "https://sdmg.senate.ca.gov/committeehome/2025-congressional-districts"
+    note: "Enter your ZIP code. Then use the official lookup for your exact ballot. A ZIP code can include more than one voting district.",
+    lookupSource: "https://www.sdvote.com/content/rov/en/sample-ballot-info-lookup.html"
   },
   races: [
     {
