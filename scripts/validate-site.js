@@ -11,6 +11,7 @@ const civicSelfieHtml = fs.readFileSync(path.join(root, "civic-selfie.html"), "u
 const presidentialYearbookHtml = fs.readFileSync(path.join(root, "presidential-yearbook.html"), "utf8");
 const config = JSON.parse(fs.readFileSync(path.join(root, "site-content.json"), "utf8"));
 const publishedRoster = JSON.parse(fs.readFileSync(path.join(root, "content.json"), "utf8"));
+const politicalHistory = JSON.parse(fs.readFileSync(path.join(root, "us-politics-events.json"), "utf8"));
 const context = { window: {} };
 vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, "course-data.js"), "utf8"), context);
@@ -278,7 +279,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260915-test-resource-colors-2") || !html.includes("app.js?v=20260919-unit-order") || !html.includes("course-data.js?v=20260916-slide-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260919-history-audit") || !html.includes("app.js?v=20260919-history-audit") || !html.includes("course-data.js?v=20260916-slide-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -758,7 +759,7 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260919-unit-order") || !html.includes("styles.css?v=20260915-test-resource-colors-2")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20260919-history-audit") || !html.includes("styles.css?v=20260919-history-audit")) errors.push("Exit-ticket cache versions are not current.");
 if (!html.includes("classroom-layout.css?v=20260913-unit-order") || !fs.existsSync(path.join(root, "classroom-layout.css"))) errors.push("The CP classroom layout stylesheet is missing.");
 for (const marker of ["MY CHECKLIST", "new URL(resourceUrl, location.href).origin !== location.origin"]) {
   if (!appCode.includes(marker)) errors.push(`CP classroom navigation is missing: ${marker}`);
@@ -944,6 +945,49 @@ for (const folder of ["", "documents", "cases", "prove-your-case"]) {
 if (!appCode.includes("navigator.sendBeacon") || !appCode.includes('mode: "no-cors"')) errors.push("Exit tickets must use an Apps Script-compatible submission request.");
 if (!appCode.includes('exitForm.closest(".exit-card").hidden = !exitQuestion')) errors.push("Closed exit ticket cards must be hidden.");
 if (!html.includes('id="exit-confirmation"') || !html.includes('assets/feedback/ticket-submitted.png') || !appCode.includes('confirmation.hidden = false') || !fs.existsSync(path.join(root, "assets", "feedback", "ticket-submitted.png"))) errors.push("A confirmed exit-ticket save must display the ticket-submitted graphic.");
+
+const expectedHistoryDates = [];
+for (let month = 0; month < 12; month += 1) {
+  const daysInMonth = new Date(Date.UTC(2024, month + 1, 0)).getUTCDate();
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    expectedHistoryDates.push(`${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`);
+  }
+}
+const actualHistoryDates = Object.keys(politicalHistory).sort();
+if (actualHistoryDates.join(",") !== expectedHistoryDates.join(",")) errors.push("Political history must cover all 366 calendar dates, including February 29.");
+const validHistoryCategories = new Set(["Bureaucracy", "Civil rights", "Congress", "Constitutional foundations", "Elections", "Federalism", "Judicial branch", "Media", "National security", "Political development", "Political participation", "Presidency"]);
+expectedHistoryDates.forEach(date => {
+  const entries = politicalHistory[date];
+  if (!Array.isArray(entries) || entries.length === 0) {
+    errors.push(`Political history has no event for ${date}.`);
+    return;
+  }
+  const event = entries[0];
+  if (!Number.isInteger(event.year) || !event.text?.trim() || !event.ap_connection?.trim() || !Number.isInteger(event.unit) || !validHistoryCategories.has(event.category) || !event.source_label?.trim() || !/^https:\/\//.test(event.source_url || "") || event.kind !== "event") {
+    errors.push(`The displayed political history entry for ${date} is incomplete or malformed.`);
+  }
+});
+for (const removedHistoryFeature of ['id="history-prev"', 'id="history-next"']) {
+  if (html.includes(removedHistoryFeature)) errors.push(`Removed political-history control remains: ${removedHistoryFeature}`);
+}
+for (const removedHistoryCode of ["history-prev", "history-next", "historyIndex"]) {
+  if (appCode.includes(removedHistoryCode)) errors.push(`Removed political-history behavior remains: ${removedHistoryCode}`);
+}
+if (primaryStyles.includes(".history-controls")) errors.push("Removed political-history control styling remains.");
+if (!appCode.includes("const event = historyEvents[0]") || !appCode.includes('fetch("us-politics-events.json", { cache: "no-store" })')) errors.push("Political history must show the audited daily entry and fetch fresh data.");
+for (const outdatedHistoryEntry of ["Russian Constitutional Crisis", "Spain cedes Louisiana to France", "Ottawa Treaty", "Nixon meets Elvis"]) {
+  if (politicalHistory && JSON.stringify(politicalHistory).includes(outdatedHistoryEntry)) errors.push(`Non-U.S. or weak political-history entry remains: ${outdatedHistoryEntry}`);
+}
+const auditedHistorySources = {
+  "01-24": "https://www.dhs.gov/homeland-security-act-2002",
+  "10-01": "https://history.house.gov/Historical-Highlights/1851-1900/The-McKinley-Tariff-of-1890/",
+  "10-04": "https://www.nasa.gov/history/sputnik/sputorig.html",
+  "12-03": "https://www.senate.gov/states/IL/timeline.htm",
+  "12-21": "https://www.nasa.gov/missions/apollo/apollo-8-mission-details/"
+};
+Object.entries(auditedHistorySources).forEach(([date, sourceUrl]) => {
+  if (politicalHistory[date]?.[0]?.source_url !== sourceUrl) errors.push(`Audited political-history replacement is missing for ${date}.`);
+});
 
 try { new vm.Script(fs.readFileSync(path.join(root, "app.js"), "utf8")); }
 catch (error) { errors.push(`Invalid app.js: ${error.message}`); }

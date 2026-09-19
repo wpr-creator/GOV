@@ -387,13 +387,13 @@
   ],
   "01-24": [
     {
-      "year": 1964,
-      "text": "The 24th Amendment was ratified, banning poll taxes in federal elections.",
-      "ap_connection": "Voting rights; amendments; political participation",
-      "unit": 1,
-      "category": "Constitutional foundations",
-      "source_label": "Research this event",
-      "source_url": "https://en.wikipedia.org/w/index.php?search=1964%20The%2024th%20Amendment%20was%20ratified%2C%20banning%20poll%20taxes%20in%20federal%20elections.",
+      "year": 2003,
+      "text": "The Department of Homeland Security became operational, beginning a major reorganization of federal agencies responsible for protecting the country.",
+      "ap_connection": "Federal bureaucracy; executive departments; national security",
+      "unit": 2,
+      "category": "Bureaucracy",
+      "source_label": "Department of Homeland Security",
+      "source_url": "https://www.dhs.gov/homeland-security-act-2002",
       "kind": "event"
     },
     {
@@ -4459,13 +4459,13 @@
   ],
   "10-01": [
     {
-      "year": 1800,
-      "text": "Spain cedes Louisiana to France via the Third Treaty of San Ildefonso.",
-      "ap_connection": "American political development; institutions; public policy",
-      "unit": 5,
-      "category": "Political development",
-      "source_label": "Wikipedia",
-      "source_url": "https://wikipedia.org/wiki/Spain",
+      "year": 1890,
+      "text": "The McKinley Tariff became law, sharply raising many import taxes and making tariff policy a major issue in the congressional elections.",
+      "ap_connection": "Congress; taxation; economic policy; elections",
+      "unit": 2,
+      "category": "Congress",
+      "source_label": "U.S. House of Representatives",
+      "source_url": "https://history.house.gov/Historical-Highlights/1851-1900/The-McKinley-Tariff-of-1890/",
       "kind": "event"
     }
   ],
@@ -4505,13 +4505,13 @@
   ],
   "10-04": [
     {
-      "year": 1993,
-      "text": "Russian Constitutional Crisis: In Moscow, tanks bombard the White House, a government building that housed the Russian parliament, while demonstrators against President Boris Yeltsin rally outside.",
-      "ap_connection": "Constitutional foundations; founding ideals; federalism",
-      "unit": 1,
-      "category": "Constitutional foundations",
-      "source_label": "Wikipedia",
-      "source_url": "https://wikipedia.org/wiki/1993_Russian_constitutional_crisis",
+      "year": 1957,
+      "text": "The Soviet Union launched Sputnik, creating political pressure in the United States for greater federal investment in science, education, defense, and the space program.",
+      "ap_connection": "National security; federal education policy; public opinion",
+      "unit": 2,
+      "category": "National security",
+      "source_label": "NASA History",
+      "source_url": "https://www.nasa.gov/history/sputnik/sputorig.html",
       "kind": "event"
     }
   ],
@@ -5395,13 +5395,13 @@
   ],
   "12-03": [
     {
-      "year": 1997,
-      "text": "In Ottawa, Ontario, Canada, representatives from 121 countries sign the Ottawa Treaty prohibiting manufacture and deployment of anti-personnel landmines. The United States, People's Republic of China, and Russia do not sign the treaty, however.",
-      "ap_connection": "American political development; institutions; public policy",
-      "unit": 5,
-      "category": "Political development",
-      "source_label": "Wikipedia",
-      "source_url": "https://wikipedia.org/wiki/Ottawa",
+      "year": 1818,
+      "text": "Illinois became the 21st state after Congress approved its admission to the Union, adding new representation in the Senate and House.",
+      "ap_connection": "Federalism; state admission; congressional representation",
+      "unit": 2,
+      "category": "Federalism",
+      "source_label": "United States Senate",
+      "source_url": "https://www.senate.gov/states/IL/timeline.htm",
       "kind": "event"
     }
   ],
@@ -5731,13 +5731,13 @@
   ],
   "12-21": [
     {
-      "year": 1970,
-      "text": "President Richard Nixon meets Elvis Presley at the White House after Presley requests a federal narcotics-agent credential.",
-      "ap_connection": "Unit 2; presidency; political culture; symbolic leadership",
+      "year": 1968,
+      "text": "NASA launched Apollo 8, advancing the federally funded space program created to meet President Kennedy’s national goal during the Cold War.",
+      "ap_connection": "Federal bureaucracy; presidential agenda; national policy",
       "unit": 2,
-      "category": "Presidency",
-      "source_label": "National Archives",
-      "source_url": "https://www.archives.gov/exhibits/nixon-met-elvis",
+      "category": "Bureaucracy",
+      "source_label": "NASA",
+      "source_url": "https://www.nasa.gov/missions/apollo/apollo-8-mission-details/",
       "kind": "event"
     }
   ],

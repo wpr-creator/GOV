@@ -28,7 +28,6 @@
   let siteContent = { currentUnit: "gov-0", unitUnlocks: {}, exitQuestion: "", upcoming: [], classroomUrl: "", agendaTitle: "AGENDA", agendaText: "COMING SOON.", assignmentUnlocks: {}, assignmentUnlockAt: {}, assignmentUrls: {}, proveCaseUnlocks: {} };
   const proveCaseLabels = [["miranda", "MIRANDA v. ARIZONA"], ["riley", "RILEY v. CALIFORNIA"], ["mahanoy", "MAHANOY AREA SCHOOL DISTRICT v. B.L."], ["carpenter", "CARPENTER v. UNITED STATES"], ["earls", "BOARD OF EDUCATION v. EARLS"], ["miller", "MILLER v. ALABAMA"]];
   let historyEvents = [];
-  let historyIndex = 0;
   let amendmentFilter = "current";
   let glossaryFilter = "current";
   const initialGlossaryTerm = new URLSearchParams(location.search).get("glossary")?.trim() || "";
@@ -2003,7 +2002,7 @@
   }
 
   function renderHistory() {
-    const event = historyEvents[historyIndex];
+    const event = historyEvents[0];
     if (!event) {
       document.getElementById("history-year").textContent = "—";
       document.getElementById("history-text").textContent = "NO POLITICAL HISTORY ENTRY IS AVAILABLE.";
@@ -2026,11 +2025,10 @@
     const key = `${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
     document.getElementById("history-date").textContent = today.toLocaleDateString("en-US", { month: "short", day: "numeric" }).toUpperCase();
     try {
-      const response = await fetch("us-politics-events.json");
+      const response = await fetch("us-politics-events.json", { cache: "no-store" });
       if (!response.ok) throw new Error("History database unavailable");
       const database = await response.json();
       historyEvents = database[key] || [];
-      historyIndex = 0;
       renderHistory();
     } catch (error) {
       console.warn("Could not load political history.", error);
@@ -2313,16 +2311,6 @@
   });
   foundationDialog.querySelector(".foundation-dialog-close").addEventListener("click", closeFoundationDialog);
   foundationDialog.addEventListener("click", event => { if (event.target === foundationDialog) closeFoundationDialog(); });
-  document.getElementById("history-prev").addEventListener("click", () => {
-    if (!historyEvents.length) return;
-    historyIndex = (historyIndex - 1 + historyEvents.length) % historyEvents.length;
-    renderHistory();
-  });
-  document.getElementById("history-next").addEventListener("click", () => {
-    if (!historyEvents.length) return;
-    historyIndex = (historyIndex + 1) % historyEvents.length;
-    renderHistory();
-  });
   document.getElementById("admin-close").addEventListener("click", closeAdmin);
   document.getElementById("admin-add-upcoming").addEventListener("click", () => addAdminUpcoming());
   document.getElementById("admin-save-preview").addEventListener("click", saveAdminPreview);

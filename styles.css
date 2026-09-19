@@ -86,9 +86,6 @@ main { max-width: 1240px; margin: 0 auto; padding: 10px 24px 80px; }
 .history-year { color: var(--stone-dark); font-size: clamp(2.5rem, 5vw, 4.25rem); line-height: 1; font-weight: 950; white-space: nowrap; }
 .history-body p { margin: 0 0 .8rem; max-width: 850px; font-size: 1.05rem; font-weight: 650; }
 .history-source { min-height: 44px; padding: .55rem 0; display: inline-flex; align-items: center; font-size: .78rem; font-weight: 900; text-transform: uppercase; }
-.history-controls { display: flex; gap: .6rem; }
-.history-controls button { min-height: 44px; padding: .65rem .85rem; border: 1px solid var(--black); background: var(--white); cursor: pointer; font-size: .75rem; font-weight: 900; }
-.history-controls button:hover { color: var(--white); background: var(--black); }
 .upcoming-list { display: grid; }
 .upcoming-row { padding: 1rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--line); }
 .upcoming-row:last-child { border-bottom: 0; }
