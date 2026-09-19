@@ -1,145 +1,183 @@
 window.ELECTION_2026_DATA = {
-  updated: "JULY 25, 2026",
+  updated: "SEPTEMBER 19, 2026",
   electionDate: "NOVEMBER 3, 2026",
   registrationDeadline: "OCTOBER 19, 2026",
   ballotMailingDeadline: "OCTOBER 5, 2026",
   location: {
     zip: "92114",
     district: "CALIFORNIA DISTRICT 52",
-    note: "ZIP CODE 92114 IS IN THE NEW 52ND CONGRESSIONAL DISTRICT FOR THE 2026 ELECTION.",
+    note: "ZIP CODE 92114 IS IN CALIFORNIA’S 52ND CONGRESSIONAL DISTRICT FOR THIS ELECTION. SOME ZIP CODES CROSS DISTRICT LINES, SO VOTERS SHOULD CHECK THEIR ADDRESS ON THE OFFICIAL MAP.",
     mapSource: "https://sdmg.senate.ca.gov/committeehome/2025-congressional-districts"
   },
   races: [
     {
       office: "CALIFORNIA GOVERNOR",
-      question: "WHO SHOULD LEAD CALIFORNIA?",
-      note: "THE GOVERNOR SIGNS OR VETOES STATE BILLS, PREPARES A STATE BUDGET, AND LEADS STATE AGENCIES.",
+      question: "WHO SHOULD LEAD CALIFORNIA’S EXECUTIVE BRANCH?",
+      note: "The governor leads most state agencies, proposes a state budget, and may sign or veto bills passed by the Legislature. The governor also directs state resources during emergencies. The term is four years.",
       candidates: [
-        { name: "XAVIER BECERRA", party: "DEMOCRATIC", fact: "FORMER CALIFORNIA ATTORNEY GENERAL AND FORMER U.S. SECRETARY OF HEALTH AND HUMAN SERVICES." },
-        { name: "STEVE HILTON", party: "REPUBLICAN", fact: "FORMER POLICY ADVISER AND TELEVISION HOST." }
+        { name: "XAVIER BECERRA", party: "DEMOCRATIC", fact: "Becerra served as U.S. secretary of health and human services and as California attorney general. Earlier, he represented a Los Angeles-area district in the U.S. House of Representatives." },
+        { name: "STEVE HILTON", party: "REPUBLICAN", fact: "Hilton worked as a policy adviser to former United Kingdom Prime Minister David Cameron and later hosted a television program on Fox News. He has not previously held elected office." }
       ],
-      source: "https://voterguide.sos.ca.gov/"
+      source: "https://voterguide.sos.ca.gov/candidates/governor-candidate-statements.htm"
     },
     {
       office: "U.S. HOUSE · DISTRICT 52",
       question: "WHO SHOULD REPRESENT THIS AREA IN CONGRESS?",
-      note: "A U.S. REPRESENTATIVE VOTES ON FEDERAL LAWS, TAXES, AND SPENDING. EACH TERM LASTS TWO YEARS.",
+      note: "A U.S. representative helps write and vote on federal laws, taxes, and spending. Each House member represents one district and serves a two-year term.",
       local: true,
       candidates: [
-        { name: "JUAN VARGAS", party: "DEMOCRATIC", fact: "CURRENT U.S. REPRESENTATIVE." },
-        { name: "JEFF BELLE", party: "REPUBLICAN", fact: "BUSINESS OWNER." }
+        { name: "JUAN VARGAS", party: "DEMOCRATIC", fact: "Vargas is the current U.S. representative for District 52. He previously served on the San Diego City Council and in the California Assembly and State Senate." },
+        { name: "JEFF BELLE", party: "REPUBLICAN", fact: "Belle’s official ballot designation is business owner. He is challenging the current representative for this seat." }
       ],
-      source: "https://ballotpedia.org/California%27s_52nd_Congressional_District_election%2C_2026"
+      source: "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/cert-list-candidates.pdf"
     }
   ],
   propositions: [
     {
       number: 1,
-      title: "VETERANS AND AFFORDABLE HOUSING",
-      short: "BORROW $11.25 BILLION FOR AFFORDABLE HOUSING AND VETERANS’ HOME LOANS.",
-      yes: "THE STATE MAY SELL THE BONDS AND FUND THE HOUSING PROGRAMS.",
-      no: "THE STATE MAY NOT SELL THESE BONDS.",
-      featured: true
+      title: "AFFORDABLE HOUSING BONDS",
+      short: "Should California borrow $11.25 billion for affordable housing and veterans’ home loans?",
+      explanation: "The money would support rental housing, veterans’ mortgages, supportive housing, preservation of affordable housing, and down-payment help.",
+      yes: "California may sell $11.25 billion in bonds and use the money for these housing programs.",
+      no: "California may not sell these bonds for the proposed housing programs.",
+      money: "The state would pay about $500 million to $600 million each year for about 25 years to repay the bonds.",
+      source: "https://voterguide.sos.ca.gov/propositions/1/index.htm"
     },
     {
       number: 2,
-      title: "STATE SAVINGS RULES",
-      short: "CHANGE HOW MUCH MONEY CALIFORNIA MAY SAVE AND WHEN IT MAY USE THOSE SAVINGS.",
-      featured: false
+      title: "A LARGER RAINY DAY FUND",
+      short: "Should California change its budget rules so it saves more money for difficult economic years?",
+      explanation: "A rainy day fund is money the state saves for emergencies or years when tax revenue falls. The measure also changes rules for paying state debt.",
+      yes: "The state changes the rules, builds larger budget reserves, and must make extra debt payments for a longer time.",
+      no: "The current rules for state savings and extra debt payments stay in place.",
+      money: "State budget reserves would likely be higher, leaving more saved money for future downturns.",
+      source: "https://voterguide.sos.ca.gov/propositions/2/index.htm"
     },
     {
       number: 3,
-      title: "SCHOOL FUNDING TAX",
-      short: "KEEP AN EXISTING TAX ON HIGH INCOMES TO SUPPORT K–12 SCHOOLS AND COMMUNITY COLLEGES.",
-      yes: "THE TAX CONTINUES WITHOUT AN END DATE.",
-      no: "THE TAX ENDS AS CURRENT LAW REQUIRES.",
-      featured: true
+      title: "TAX ON HIGH INCOMES",
+      short: "Should an existing income tax increase on high-income Californians become permanent?",
+      explanation: "The tax currently applies to individual income above about $371,000, with the amount adjusted for inflation. It is scheduled to end in 2031 and helps fund public education.",
+      yes: "The tax continues permanently instead of ending in 2031.",
+      no: "The tax continues for now but ends in 2031 as current law requires.",
+      money: "The state would keep collecting an estimated $5 billion to $15 billion each year after 2031.",
+      source: "https://voterguide.sos.ca.gov/propositions/3/index.htm"
     },
     {
       number: 4,
-      title: "PUBLIC MONEY IN CAMPAIGNS",
-      short: "ALLOW STATE AND LOCAL GOVERNMENTS TO CREATE PUBLIC CAMPAIGN-FUNDING PROGRAMS.",
-      yes: "PUBLIC CAMPAIGN-FUNDING PROGRAMS MAY BE CREATED WITH RULES AND SPENDING LIMITS.",
-      no: "THE CURRENT BAN ON PUBLIC CAMPAIGN FUNDS STAYS.",
-      featured: true
+      title: "PUBLIC FUNDING FOR CAMPAIGNS",
+      short: "Should state and local governments be allowed to create public campaign-financing programs?",
+      explanation: "Public campaign financing means government money helps qualified candidates run for office. Programs could not use money reserved for education, transportation, or public safety.",
+      yes: "State and local governments may create public campaign-financing programs with legal rules and limits.",
+      no: "The current ban remains, so the state and most local governments cannot create these programs.",
+      money: "The state estimates ongoing administrative costs of a few hundred thousand dollars each year.",
+      source: "https://voterguide.sos.ca.gov/propositions/4/index.htm"
     },
     {
       number: 5,
-      title: "RECALLING A GOVERNOR",
-      short: "CHANGE WHAT HAPPENS WHEN CALIFORNIA VOTERS REMOVE A GOVERNOR.",
-      yes: "THE LIEUTENANT GOVERNOR USUALLY TAKES OVER; VOTERS DO NOT PICK A REPLACEMENT ON THE SAME BALLOT.",
-      no: "VOTERS CONTINUE TO DECIDE BOTH REMOVAL AND REPLACEMENT ON THE SAME BALLOT.",
-      featured: true
+      title: "RECALL ELECTIONS",
+      short: "Should California change how it replaces a statewide officer who voters remove in a recall?",
+      explanation: "A recall lets voters remove an elected official before the term ends. Today, the same ballot asks whether to remove the official and who should replace that person.",
+      yes: "The recall ballot would no longer include replacement candidates. A later special election or an appointment would usually fill the vacancy, depending on the office and timing.",
+      no: "Recall ballots would continue asking voters both whether to remove the official and who should fill the vacancy.",
+      money: "The cost would depend on the office and whether another election is needed. It could change election costs by millions of dollars.",
+      source: "https://voterguide.sos.ca.gov/propositions/5/index.htm"
     },
     {
       number: 37,
       title: "MIDDLE-INCOME HOME LOANS",
-      short: "BORROW UP TO $25 BILLION FOR A STATE HOME-LOAN PROGRAM.",
-      yes: "THE STATE MAY SELL BONDS AND OFFER QUALIFYING HOMEBUYERS A LOAN TOWARD A HOME PURCHASE.",
-      no: "THE NEW BOND-FUNDED LOAN PROGRAM IS NOT CREATED.",
-      featured: true
+      short: "Should California create a loan program for some middle-income buyers of newly built homes?",
+      explanation: "Eligible buyers could receive a fixed-rate state loan for up to 17% of a qualifying new home’s price. Buyers must meet residency, income, occupancy, and down-payment rules.",
+      yes: "The state may sell up to $25 billion in bonds and create the homebuying loan program.",
+      no: "The state is not required to create this new homebuying program.",
+      money: "Homeowners’ loan payments, rather than the state budget, would repay the bonds. The state estimates no direct state or local cost.",
+      source: "https://voterguide.sos.ca.gov/propositions/37/index.htm"
     },
     {
       number: 38,
       title: "MEDICAL RESEARCH BONDS",
-      short: "BORROW $8.4 BILLION FOR IMMUNOLOGY AND IMMUNOTHERAPY RESEARCH.",
-      featured: false
+      short: "Should California borrow $8.4 billion for research using the immune system to prevent or treat disease?",
+      explanation: "Half of the money would go to one UC-affiliated nonprofit research institute. The other half would fund grants to public or nonprofit universities and institutions.",
+      yes: "California may sell $8.4 billion in bonds for immunology and immunotherapy research.",
+      no: "California may not sell these bonds for the proposed research program.",
+      money: "The state would pay about $500 million to $600 million each year for about 20 years, although research revenue could repay part of the cost.",
+      source: "https://voterguide.sos.ca.gov/propositions/38/index.htm"
     },
     {
       number: 39,
       title: "VOTER IDENTIFICATION",
-      short: "REQUIRE VOTERS TO SHOW OR PROVIDE SPECIFIC IDENTIFICATION.",
-      yes: "THE NEW IDENTIFICATION RULES TAKE EFFECT, AND THE STATE MUST OFFER FREE VOTER ID.",
-      no: "CALIFORNIA’S CURRENT VOTER-IDENTIFICATION RULES STAY.",
-      featured: true
+      short: "Should voters have to provide government-issued identification information each time they vote?",
+      explanation: "In-person voters would show government-issued identification. Mail voters would write the last four digits of an approved identification number on the ballot envelope. The state would offer free voter ID cards.",
+      yes: "The new identification requirements take effect for in-person and mail voting.",
+      no: "Current rules stay in place. Elections officials continue using a voter’s signature to confirm identity.",
+      money: "Government costs could range from tens of millions to low hundreds of millions of dollars each year, plus one-time setup costs.",
+      source: "https://voterguide.sos.ca.gov/propositions/39/index.htm"
     },
     {
       number: 40,
-      title: "TAX ON BILLIONAIRES",
-      short: "PLACE A ONE-TIME TAX OF UP TO 5% ON CERTAIN ASSETS HELD BY BILLIONAIRES.",
-      yes: "THE TAX IS COLLECTED MAINLY FOR HEALTH CARE, WITH SOME MONEY FOR FOOD AND EDUCATION.",
-      no: "THE ONE-TIME TAX IS NOT COLLECTED.",
-      featured: true
+      title: "ONE-TIME TAX ON BILLIONAIRES",
+      short: "Should California collect a one-time tax equal to 5% of certain wealth above $1 billion?",
+      explanation: "The tax would cover assets such as businesses, investments, art, and intellectual property, but not real estate or some retirement accounts. Most money would go to health care.",
+      yes: "California collects the one-time tax. The measure directs 90% of the money to health care and 10% to food assistance or education programs.",
+      no: "California does not collect this proposed one-time wealth tax.",
+      money: "The state expects tens of billions of dollars over several years, but possibly hundreds of millions of dollars or more in lost income-tax revenue each year afterward.",
+      source: "https://voterguide.sos.ca.gov/propositions/40/index.htm"
     },
     {
       number: 41,
-      title: "SPECIAL-TAX AUDITS",
-      short: "ADD AUDIT RULES FOR PROGRAMS PAID FOR BY SPECIAL TAXES.",
-      featured: false
+      title: "AUDITS OF SPECIAL-TAX PROGRAMS",
+      short: "Should programs funded by new state special taxes receive additional audits?",
+      explanation: "A special tax raises money for a stated purpose. The measure requires reviews before some tax initiatives reach voters and repeated audits after new special taxes fund programs. It also restricts excluding new tax money from the state spending limit.",
+      yes: "The new audit requirements and spending-limit rule take effect.",
+      no: "Current audit responsibilities and state spending-limit rules stay in place.",
+      money: "The total cost or savings is unknown because it depends on future taxes, audits, and programs.",
+      source: "https://voterguide.sos.ca.gov/propositions/41/index.htm"
     },
     {
       number: 42,
-      title: "LIMITS ON PROPERTY TAXES",
-      short: "BAN NEW STATE TAXES ON PERSONAL PROPERTY, INCLUDING SOME FINANCIAL ASSETS.",
-      featured: false
+      title: "LIMITS ON NEW PROPERTY TAXES",
+      short: "Should California be prohibited from creating certain new taxes on personal property or applying some taxes to past activity?",
+      explanation: "Personal property means things people own other than real estate, including investments, retirement accounts, business interests, and intellectual property.",
+      yes: "The state cannot create new taxes on owning personal property and cannot create certain taxes that apply retroactively to past activity.",
+      no: "The state keeps the option to create these taxes in the future.",
+      money: "Future state tax revenue might be lower than it otherwise would be.",
+      source: "https://voterguide.sos.ca.gov/propositions/42/index.htm"
     },
     {
       number: 43,
       title: "LOCAL SPECIAL TAXES",
-      short: "REQUIRE TWO-THIRDS OF VOTERS TO APPROVE A LOCAL TAX FOR A SPECIFIC PURPOSE.",
-      yes: "THE TWO-THIRDS RULE APPLIES EVEN WHEN VOTERS, NOT LOCAL GOVERNMENT, PLACE THE TAX ON THE BALLOT.",
-      no: "CURRENT APPROVAL RULES STAY.",
-      featured: true
+      short: "Should every voter-proposed local tax for a specific purpose require approval from two-thirds of voters?",
+      explanation: "A special tax pays for a stated purpose, such as fire protection or roads. Some voter-proposed local special taxes can currently pass with more than 50% of the vote.",
+      yes: "Beginning in 2027, these local special taxes need at least two-thirds approval, even when voters place the tax on the ballot.",
+      no: "Current approval rules stay in place, so some voter-proposed local special taxes can pass with a majority.",
+      money: "Local tax revenue might grow more slowly because some measures would need more votes to pass.",
+      source: "https://voterguide.sos.ca.gov/propositions/43/index.htm"
     },
     {
       number: 44,
       title: "COMMUNITY CLINIC SPENDING",
-      short: "REQUIRE CERTAIN COMMUNITY CLINICS TO SPEND AT LEAST 90% OF REVENUE ON PROGRAM SERVICES.",
-      featured: false
+      short: "Should certain nonprofit community clinics have to spend at least 90% of their revenue on program services?",
+      explanation: "These clinics provide primary care in medically underserved communities. Program services include patient care and other work that supports the clinic’s charitable mission.",
+      yes: "Covered clinics must meet the 90% requirement or may face penalties, with limited exceptions.",
+      no: "The new clinic spending requirement does not take effect.",
+      money: "State enforcement could cost up to the low tens of millions of dollars each year, mostly covered by fees and penalties.",
+      source: "https://voterguide.sos.ca.gov/propositions/44/index.htm"
     },
     {
       number: 45,
       title: "FASTER ENVIRONMENTAL REVIEW",
-      short: "SPEED UP ENVIRONMENTAL REVIEW FOR SOME HOUSING, TRANSPORTATION, WATER, HEALTH, AND CLEAN-ENERGY PROJECTS.",
-      yes: "QUALIFYING PROJECTS GET SHORTER REVIEWS AND MORE LIMITED COURT CHALLENGES.",
-      no: "CURRENT ENVIRONMENTAL REVIEW RULES STAY.",
-      featured: true
+      short: "Should California shorten environmental review and court timelines for certain projects?",
+      explanation: "The measure covers many housing, transportation, water, health, and clean-energy projects. It sets deadlines and limits some parts of environmental and court review.",
+      yes: "Qualifying projects use the new, faster review and court procedures.",
+      no: "Projects continue using current environmental review and court procedures.",
+      money: "Early government costs could reach or exceed $100 million each year. Longer-term costs or savings are uncertain.",
+      source: "https://voterguide.sos.ca.gov/propositions/45/index.htm"
     }
   ],
   sources: {
-    officialMeasures: "https://www.sos.ca.gov/administration/news-releases-and-advisories/2026-news-releases-and-advisories/secretary-state-shirley-n-weber-phd-assigns-numbers-november-ballot-measures-invites-arguments",
-    voterGuide: "https://www.sos.ca.gov/elections/public-display",
-    dates: "https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026/key-dates-deadlines",
-    ballotpedia: "https://ballotpedia.org/California_2026_ballot_propositions"
+    officialMeasures: "https://www.sos.ca.gov/elections/ballot-measures/qualified-ballot-measures",
+    voterGuide: "https://voterguide.sos.ca.gov/",
+    candidates: "https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026",
+    dates: "https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026/key-dates-deadlines"
   }
 };

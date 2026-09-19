@@ -453,7 +453,7 @@
 
     const races = document.createElement("section");
     races.className = "ballot-section";
-    races.innerHTML = `<div class="section-heading"><div><p class="eyebrow">CANDIDATE RACES</p><h2>WHO GETS THE JOB?</h2></div></div>`;
+    races.innerHTML = `<div class="section-heading"><div><p class="eyebrow">CANDIDATE RACES</p><h2>WHO GETS THE JOB?</h2></div><p>These short backgrounds describe public experience. They do not tell you whom to support.</p></div>`;
     const raceGrid = document.createElement("div");
     raceGrid.className = "race-grid";
     electionData.races.forEach(race => {
@@ -481,41 +481,42 @@
 
     const propositions = document.createElement("section");
     propositions.className = "ballot-section";
-    propositions.innerHTML = `<div class="section-heading"><div><p class="eyebrow">STATEWIDE PROPOSITIONS</p><h2>VOTERS MAKE THE LAW</h2></div><p>YES CHANGES THE LAW. NO KEEPS CURRENT LAW.</p></div>`;
+    propositions.innerHTML = `<div class="section-heading"><div><p class="eyebrow">STATEWIDE PROPOSITIONS</p><h2>VOTERS MAKE THE LAW</h2></div><p>Open a proposition to see what it does, what Yes and No mean, and the expected effect on government money.</p></div>`;
     const featuredGrid = document.createElement("div");
     featuredGrid.className = "proposition-grid";
-    electionData.propositions.filter(proposition => proposition.featured).forEach(proposition => {
+    electionData.propositions.forEach(proposition => {
       const details = document.createElement("details");
       details.className = "proposition-card";
       const summary = document.createElement("summary");
       summary.innerHTML = `<span>PROP ${proposition.number}</span><strong>${proposition.title}</strong><small>${proposition.short}</small>`;
+      const explanation = document.createElement("p");
+      explanation.className = "proposition-explanation";
+      explanation.innerHTML = `<b>WHAT IT DOES</b>${proposition.explanation}`;
       const choices = document.createElement("div");
       choices.className = "proposition-choices";
       choices.innerHTML = `<p><b>YES</b>${proposition.yes}</p><p><b>NO</b>${proposition.no}</p>`;
-      details.append(summary, choices);
+      const money = document.createElement("p");
+      money.className = "proposition-money";
+      money.innerHTML = `<b>MONEY AND GOVERNMENT</b>${proposition.money}`;
+      const source = document.createElement("a");
+      source.className = "proposition-source";
+      source.href = proposition.source;
+      source.target = "_blank";
+      source.rel = "noopener";
+      source.textContent = "READ THE OFFICIAL VOTER GUIDE ↗";
+      details.append(summary, explanation, choices, money, source);
       featuredGrid.appendChild(details);
     });
-
-    const more = document.createElement("section");
-    more.className = "more-propositions";
-    more.innerHTML = "<h3>ALSO ON THE BALLOT</h3>";
-    const moreList = document.createElement("ul");
-    electionData.propositions.filter(proposition => !proposition.featured).forEach(proposition => {
-      const item = document.createElement("li");
-      item.innerHTML = `<strong>PROP ${proposition.number} · ${proposition.title}</strong><span>${proposition.short}</span>`;
-      moreList.appendChild(item);
-    });
-    more.appendChild(moreList);
-    propositions.append(featuredGrid, more);
+    propositions.append(featuredGrid);
 
     const sources = document.createElement("footer");
     sources.className = "ballot-sources";
     sources.innerHTML = `<p><strong>CHECKED ${electionData.updated}</strong> · BALLOT INFORMATION CAN CHANGE BEFORE ELECTION DAY.</p>`;
     [
       ["CALIFORNIA SECRETARY OF STATE · PROPOSITIONS", electionData.sources.officialMeasures],
-      ["DRAFT OFFICIAL VOTER GUIDE", electionData.sources.voterGuide],
+      ["OFFICIAL VOTER GUIDE", electionData.sources.voterGuide],
+      ["CERTIFIED CANDIDATES", electionData.sources.candidates],
       ["ELECTION DATES", electionData.sources.dates],
-      ["BALLOTPEDIA", electionData.sources.ballotpedia]
     ].forEach(([label, url]) => {
       const link = document.createElement("a");
       link.href = url;
