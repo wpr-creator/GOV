@@ -12,23 +12,22 @@ async function test(reply, expected, cleared) {
   const elements = {
     'exit-form': { addEventListener: (_, fn) => handler = fn },
     'exit-period': { value: '1B' }, 'exit-student': { value: 'TEST ONLY' },
-    'exit-response': { value: 'A test answer never sent.' }, 'exit-status': {}
+    'exit-response': { value: 'A test answer never sent.' }, 'exit-status': {}, 'exit-confirmation': { hidden: false }
   };
   vm.runInNewContext(source.slice(start, end), {
     document: { getElementById: id => elements[id] },
     siteContent: { exitEndpoint: 'https://invalid.example', exitQuestion: 'Test question' },
-    validateExitTicket: () => {}, fetch: reply
+    Blob: class Blob {}, navigator: {}, validateExitTicket: () => {}, fetch: reply
   });
   await handler({ preventDefault() {}, currentTarget: { querySelector: () => button } });
   assert(elements['exit-status'].textContent.includes(expected));
   assert.equal(elements['exit-response'].value === '', cleared);
+  assert.equal(elements['exit-confirmation'].hidden, !cleared);
   assert.equal(button.textContent, 'SUBMIT EXIT TICKET');
 }
 (async () => {
-  await test(async () => ({ ok: true, json: async () => ({result:'success'}) }), 'SUBMITTED TO MR. ROGERS', true);
-  await test(async () => ({ ok: true, json: async () => ({result:'error'}) }), 'SAVING COULD NOT BE CONFIRMED', false);
-  await test(async () => { throw new Error('Network/CORS failure'); }, 'SAVING COULD NOT BE CONFIRMED', false);
-  await test(async () => ({ ok: true, json: async () => { throw new Error('Invalid response'); } }), 'SAVING COULD NOT BE CONFIRMED', false);
+  await test(async () => ({ ok: true }), 'SUBMITTED TO MR. ROGERS', true);
+  await test(async () => { throw new Error('Network/CORS failure'); }, 'COULD NOT BE SENT', false);
   assert(source.includes('exitForm.closest(".exit-card").hidden = !exitQuestion'));
   const visibilityStart = source.indexOf('    const exitQuestion =', source.indexOf('function renderSiteContent()'));
   const visibilityEnd = source.indexOf('    const exitStatus', visibilityStart);
@@ -36,10 +35,11 @@ async function test(reply, expected, cleared) {
     const card = {}, form = { closest: () => card }, text = {};
     vm.runInNewContext(source.slice(visibilityStart, visibilityEnd), {
       siteContent: { exitQuestion: question, exitEndpoint: 'unused' },
+      formatExitQuestion: value => value,
       document: { getElementById: id => id === 'exit-form' ? form : text }
     });
     assert.equal(card.hidden, !question);
     assert.equal(form.hidden, !question);
   }
-  console.log('Submission tests passed: confirmed save, server error, network failure, unreadable reply; no external submissions.');
+  console.log('Submission tests passed: accepted delivery and network failure; no external submissions.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

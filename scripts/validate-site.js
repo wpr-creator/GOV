@@ -993,6 +993,7 @@ for (const outdatedHistoryEntry of ["Russian Constitutional Crisis", "Spain cede
 }
 const auditedHistorySources = {
   "01-24": "https://www.dhs.gov/homeland-security-act-2002",
+  "09-20": "https://georgewbush-whitehouse.archives.gov/news/releases/2001/09/20010920-9.html",
   "10-01": "https://history.house.gov/Historical-Highlights/1851-1900/The-McKinley-Tariff-of-1890/",
   "10-04": "https://www.nasa.gov/history/sputnik/sputorig.html",
   "12-03": "https://www.senate.gov/states/IL/timeline.htm",
