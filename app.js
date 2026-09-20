@@ -461,7 +461,7 @@
 
     const races = document.createElement("section");
     races.className = "ballot-section";
-    races.innerHTML = `<div class="section-heading"><div><p class="eyebrow">CANDIDATE RACES</p><h2>WHO GETS THE JOB?</h2></div><p>These short backgrounds describe public experience. They do not tell you whom to support.</p></div>`;
+    races.innerHTML = `<div class="section-heading"><div><p class="eyebrow">CANDIDATE RACES</p><h2>WHO GETS THE JOB?</h2></div></div>`;
     const raceGrid = document.createElement("div");
     raceGrid.className = "race-grid";
     let localRaceCard = null;
@@ -516,7 +516,7 @@
 
     const propositions = document.createElement("section");
     propositions.className = "ballot-section";
-    propositions.innerHTML = `<div class="section-heading"><div><p class="eyebrow">STATEWIDE PROPOSITIONS</p><h2>WHAT DOES EACH VOTE DO?</h2></div><p>Open one card. Read what changes, then compare Yes and No.</p></div>`;
+    propositions.innerHTML = `<div class="section-heading"><div><p class="eyebrow">STATEWIDE PROPOSITIONS</p><h2>WHAT DOES EACH VOTE DO?</h2></div></div>`;
     const featuredGrid = document.createElement("div");
     featuredGrid.className = "proposition-grid";
     electionData.propositions.forEach(proposition => {
