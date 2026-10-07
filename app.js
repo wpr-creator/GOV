@@ -464,14 +464,14 @@
     races.innerHTML = `<div class="section-heading"><div><p class="eyebrow">CANDIDATE RACES</p><h2>WHO GETS THE JOB?</h2></div></div>`;
     const raceGrid = document.createElement("div");
     raceGrid.className = "race-grid";
-    let localRaceCard = null;
+    const localRaceCards = [];
     electionData.races.forEach(race => {
       const article = document.createElement("article");
       article.className = "race-card";
       if (race.local) {
         article.classList.add("local-race");
         article.hidden = true;
-        localRaceCard = article;
+        localRaceCards.push(article);
       }
       const localLabel = race.local ? `<span class="local-label">ZIP 92114 EXAMPLE</span>` : "";
       article.innerHTML = `${localLabel}<p class="eyebrow">${race.office}</p><h3>${race.question}</h3><p>${race.note}</p>`;
@@ -507,10 +507,10 @@
         return;
       }
       const isExampleZip = zip === electionData.location.exampleZip;
-      localRaceCard.hidden = !isExampleZip;
+      localRaceCards.forEach(card => { card.hidden = !isExampleZip; });
       localLookupCard.hidden = isExampleZip;
       zipStatus.textContent = isExampleZip
-        ? `${zip} is in ${electionData.location.district}. The District 52 candidates are shown below.`
+        ? `${zip} is in ${electionData.location.district}. District 52 and City Council District 4 examples are shown below.`
         : `${zip} selected. Use FIND MY EXACT BALLOT because a ZIP code can cross district lines.`;
     });
 

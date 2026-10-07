@@ -1,5 +1,5 @@
 window.ELECTION_2026_DATA = {
-  updated: "SEPTEMBER 20, 2026",
+  updated: "OCTOBER 7, 2026",
   electionDate: "NOVEMBER 3, 2026",
   registrationDeadline: "OCTOBER 19, 2026",
   ballotMailingDeadline: "OCTOBER 5, 2026",
@@ -30,6 +30,17 @@ window.ELECTION_2026_DATA = {
         { name: "JEFF BELLE", party: "REPUBLICAN", fact: "Belle’s official ballot designation is business owner. He is challenging the current representative for this seat." }
       ],
       source: "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/cert-list-candidates.pdf"
+    },
+    {
+      office: "SAN DIEGO CITY COUNCIL · DISTRICT 4",
+      question: "WHO SHOULD REPRESENT DISTRICT 4 ON THE CITY COUNCIL?",
+      note: "City Council members make local laws, approve the city budget, and represent their district. District 4 includes communities such as Encanto, Lincoln Park, Oak Park, Paradise Hills, and Valencia Park.",
+      local: true,
+      candidates: [
+        { name: "HENRY FOSTER III", party: "NONPARTISAN", fact: "Foster is the current District 4 councilmember and is seeking reelection." },
+        { name: "MARTHA ABRAHAM", party: "NONPARTISAN", fact: "Abraham’s official ballot designation is Neonatal ICU Nurse/Mother." }
+      ],
+      source: "https://www.sandiego.gov/city-clerk/elections/city/electioninfo"
     }
   ],
   propositions: [
