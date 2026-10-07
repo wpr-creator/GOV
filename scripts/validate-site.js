@@ -279,7 +279,7 @@ for (const categorySelector of [".resource-text", ".resource-assignment", ".reso
   if (!primaryStyles.includes(categorySelector)) errors.push(`The resource color key is missing: ${categorySelector}`);
 }
 if (appCode.includes("unit-start-cue")) errors.push("The removed unit start strip remains in the page renderer.");
-if (!html.includes("styles.css?v=20260920-election-language") || !html.includes("app.js?v=20261007-city-council") || !html.includes("course-data.js?v=20260916-slide-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
+if (!html.includes("styles.css?v=20260920-election-language") || !html.includes("app.js?v=20261007-default-zip") || !html.includes("course-data.js?v=20260916-slide-labels") || !html.includes("foundations-data.js?v=20260823-unit-1-launch")) {
   errors.push("The changed Unit 0 CSS and JavaScript need the current cache version.");
 }
 for (const yearbookFeature of ["THE PRESIDENTIAL YEARBOOK", "PRESIDENTIAL REVEAL", "REVEAL MY PRESIDENT", "THE FRONT", "THE BACK", "GEORGE WASHINGTON", "Created the presidential Cabinet", "./#gov-0", "./#presidents", "presidential-yearbook-color-example.png", "presidential-yearbook-word-example.png"]) {
@@ -595,7 +595,7 @@ if (data.units.find(unit => unit.id === "gov-5")?.resources?.[0]?.id !== "rights
 if (data.units.find(unit => unit.id === "gov-3")?.resources?.[0]?.id !== "california-ballot-2026") {
   errors.push("The 2026 California Ballot must be a Unit 3 resource.");
 }
-if (electionData.location?.exampleZip !== "92114" || electionData.location?.district !== "CALIFORNIA DISTRICT 52" || !electionData.location?.lookupSource?.includes("sdvote.com")) {
+if (electionData.location?.exampleZip !== "92114" || electionData.location?.defaultZip !== "92114" || electionData.location?.district !== "CALIFORNIA DISTRICT 52" || !electionData.location?.lookupSource?.includes("sdvote.com")) {
   errors.push("The 2026 ballot must use 92114 only as the District 52 example and link to the San Diego County exact-ballot lookup.");
 }
 if (electionData.races?.length !== 3 || electionData.races.some(race => race.candidates?.length !== 2)) {
@@ -615,7 +615,7 @@ electionData.propositions?.forEach(proposition => {
   }
   if (!/^https:\/\/voterguide\.sos\.ca\.gov\/propositions\//.test(proposition.source || "")) errors.push(`Proposition ${proposition.number} must link to its official voter-guide page.`);
 });
-if (!html.includes("election-2026-data.js?v=20261007-city-council") || !html.includes("app.js?v=20261007-city-council")) errors.push("The updated election files need the current cache version.");
+if (!html.includes("election-2026-data.js?v=20261007-default-zip") || !html.includes("app.js?v=20261007-default-zip")) errors.push("The updated election files need the current cache version.");
 for (const electionRendererFeature of ["WHAT CHANGES?", "COST OR SAVINGS", "READ THE OFFICIAL VOTER GUIDE", "START WITH YOUR ZIP CODE", "FIND MY EXACT BALLOT", "election-zip-form"]) {
   if (!appCode.includes(electionRendererFeature)) errors.push(`The accessible election explanation is missing: ${electionRendererFeature}`);
 }
@@ -776,7 +776,7 @@ const rosterFingerprint = crypto.createHash("sha256").update(JSON.stringify(publ
 if (rosterFingerprint !== "6db6adb3d4ca2575bee57e83f4bc8dfa050e6e806a63b49aca1c2f4aa911414f") errors.push("Published CP rosters no longer match the final supplied 1B/2A list.");
 if (publishedByPeriod["1B"]?.[0] !== "Ali, Harun F." || publishedByPeriod["1B"]?.at(-1) !== "Vargas-Toledo, Javier E.") errors.push("Period 1B first or last student is incorrect.");
 if (publishedByPeriod["2A"]?.[0] !== "Amargo, Kianna F." || publishedByPeriod["2A"]?.at(-1) !== "Wilson, Teddi R.") errors.push("Period 2A first or last student is incorrect.");
-if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20261007-city-council") || !html.includes("styles.css?v=20260920-election-language")) errors.push("Exit-ticket cache versions are not current.");
+if (!html.includes("cp-rosters.js?v=20260826-exit-ticket") || !html.includes("app.js?v=20261007-default-zip") || !html.includes("styles.css?v=20260920-election-language")) errors.push("Exit-ticket cache versions are not current.");
 if (!html.includes("classroom-layout.css?v=20260913-unit-order") || !fs.existsSync(path.join(root, "classroom-layout.css"))) errors.push("The CP classroom layout stylesheet is missing.");
 for (const marker of ["MY CHECKLIST", "new URL(resourceUrl, location.href).origin !== location.origin"]) {
   if (!appCode.includes(marker)) errors.push(`CP classroom navigation is missing: ${marker}`);

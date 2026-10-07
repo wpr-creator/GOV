@@ -5,6 +5,7 @@ window.ELECTION_2026_DATA = {
   ballotMailingDeadline: "OCTOBER 5, 2026",
   location: {
     exampleZip: "92114",
+    defaultZip: "92114",
     district: "CALIFORNIA DISTRICT 52",
     note: "Enter your ZIP code. Then use the official lookup for your exact ballot. A ZIP code can include more than one voting district.",
     lookupSource: "https://www.sdvote.com/content/rov/en/sample-ballot-info-lookup.html"

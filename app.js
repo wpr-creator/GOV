@@ -449,9 +449,9 @@
       <p>${electionData.location.note}</p>
       <form class="zip-chooser" id="election-zip-form">
         <label for="election-zip">YOUR ZIP CODE</label>
-        <div><input id="election-zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}" placeholder="92114" required><button type="submit">USE THIS ZIP</button></div>
+        <div><input id="election-zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}" value="${electionData.location.defaultZip}" required><button type="submit">USE THIS ZIP</button></div>
       </form>
-      <p class="zip-status" id="election-zip-status" role="status">Enter five numbers.</p>`;
+      <p class="zip-status" id="election-zip-status" role="status">${electionData.location.defaultZip} is the example ZIP. Check your exact ballot because ZIP codes can cross district lines.</p>`;
     const lookupLink = document.createElement("a");
     lookupLink.href = electionData.location.lookupSource;
     lookupLink.target = "_blank";
@@ -470,10 +470,9 @@
       article.className = "race-card";
       if (race.local) {
         article.classList.add("local-race");
-        article.hidden = true;
         localRaceCards.push(article);
       }
-      const localLabel = race.local ? `<span class="local-label">ZIP 92114 EXAMPLE</span>` : "";
+      const localLabel = race.local ? `<span class="local-label">ZIP ${electionData.location.exampleZip} EXAMPLE</span>` : "";
       article.innerHTML = `${localLabel}<p class="eyebrow">${race.office}</p><h3>${race.question}</h3><p>${race.note}</p>`;
       const candidateList = document.createElement("div");
       candidateList.className = "candidate-list";
@@ -508,9 +507,8 @@
       }
       const isExampleZip = zip === electionData.location.exampleZip;
       localRaceCards.forEach(card => { card.hidden = !isExampleZip; });
-      localLookupCard.hidden = isExampleZip;
       zipStatus.textContent = isExampleZip
-        ? `${zip} is in ${electionData.location.district}. District 52 and City Council District 4 examples are shown below.`
+        ? `${zip} is in ${electionData.location.district}. District 52 and City Council District 4 examples are shown below. Check your exact ballot to confirm every race.`
         : `${zip} selected. Use FIND MY EXACT BALLOT because a ZIP code can cross district lines.`;
     });
 
