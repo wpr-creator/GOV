@@ -1,6 +1,7 @@
 (function () {
   "use strict";
   const data = window.COURSE_DATA;
+  const APG_ELECTION_TRACKER_URL = "https://wpr-creator.github.io/APG/#election-2026";
   const foundations = window.FOUNDATIONS_DATA;
   const explorerSituations = window.CONSTITUTION_EXPLORER_DATA;
   const rightsCases = window.RIGHTS_REFEREE_DATA;
@@ -121,12 +122,16 @@
 
   function route() {
     const routeName = location.hash.slice(1) || "home";
+    if (routeName === "election-2026") {
+      window.location.replace(APG_ELECTION_TRACKER_URL);
+      return;
+    }
     if (routeName === "presidents") {
       showView("foundations");
       switchFoundationTab("presidents");
       return;
     }
-    const valid = ["home", "units", "foundations", "words", "skills", "exit-ticket", "madison", "constitution-explorer", "rights-referee", "election-2026", "presidential-power", "bill-journey", "federalism-map", "founding-power"].includes(routeName) || data.units.some(unit => unit.id === routeName);
+    const valid = ["home", "units", "foundations", "words", "skills", "exit-ticket", "madison", "constitution-explorer", "rights-referee", "presidential-power", "bill-journey", "federalism-map", "founding-power"].includes(routeName) || data.units.some(unit => unit.id === routeName);
     if (routeName === "founding-power" && unitState(data.units.find(unit => unit.id === "gov-1")) === "locked") {
       location.hash = "units";
       return;
@@ -2407,11 +2412,6 @@
     }
   });
   window.addEventListener("hashchange", route);
-  document.getElementById("home-election-link").addEventListener("click", event => {
-    event.preventDefault();
-    if (location.hash === "#election-2026") showView("election-2026");
-    else location.hash = "election-2026";
-  });
   document.getElementById("exit-period").addEventListener("change", populateExitStudents);
   document.getElementById("exit-student").addEventListener("change", validateExitTicket);
   document.getElementById("exit-response").addEventListener("input", validateExitTicket);

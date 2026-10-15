@@ -312,7 +312,7 @@ window.COURSE_DATA = {
           id: "california-ballot-2026",
           lesson: "UNIT 3 EXTENSION",
           title: "2026 CALIFORNIA BALLOT",
-          url: "#election-2026"
+          url: "https://wpr-creator.github.io/APG/#election-2026"
         }
       ]
     },

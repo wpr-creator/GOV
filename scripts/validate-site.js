@@ -72,10 +72,10 @@ for (const removedAgendaFeature of ['data-view-link="agenda"', 'id="agenda" data
 for (const removedHelpFeature of ['href="#help"', 'id="help" data-view="help"', 'id="history-connection"', 'WHY IT MATTERS:']) {
   if (html.includes(removedHelpFeature) || fs.readFileSync(path.join(root, "app.js"), "utf8").includes(removedHelpFeature)) errors.push(`Removed home-page clutter remains: ${removedHelpFeature}`);
 }
-for (const homeElectionFeature of ['id="election-tracker-title"', 'MIDTERM ELECTION TRACKER', 'id="election-count"', 'id="home-election-link"', 'href="#election-2026"']) {
+for (const homeElectionFeature of ['id="election-tracker-title"', 'MIDTERM ELECTION TRACKER', 'id="election-count"', 'id="home-election-link"', 'href="https://wpr-creator.github.io/APG/#election-2026"']) {
   if (!html.includes(homeElectionFeature)) errors.push(`The home-page election tracker is missing: ${homeElectionFeature}`);
 }
-for (const electionLinkBehavior of ['document.getElementById("home-election-link").addEventListener', 'showView("election-2026")']) {
+for (const electionLinkBehavior of ['const APG_ELECTION_TRACKER_URL = "https://wpr-creator.github.io/APG/#election-2026"', 'window.location.replace(APG_ELECTION_TRACKER_URL)']) {
   if (!fs.readFileSync(path.join(root, "app.js"), "utf8").includes(electionLinkBehavior)) errors.push(`The home election link behavior is missing: ${electionLinkBehavior}`);
 }
 for (const teacherAgendaFeature of ['id="admin-agenda-title"', 'id="admin-agenda-text"']) {
@@ -594,6 +594,9 @@ if (data.units.find(unit => unit.id === "gov-5")?.resources?.[0]?.id !== "rights
 }
 if (data.units.find(unit => unit.id === "gov-3")?.resources?.[0]?.id !== "california-ballot-2026") {
   errors.push("The 2026 California Ballot must be a Unit 3 resource.");
+}
+if (data.units.find(unit => unit.id === "gov-3")?.resources?.[0]?.url !== "https://wpr-creator.github.io/APG/#election-2026") {
+  errors.push("The Unit 3 election resource must link to the AP Government tracker.");
 }
 if (electionData.location?.exampleZip !== "92114" || electionData.location?.defaultZip !== "92114" || electionData.location?.district !== "CALIFORNIA DISTRICT 52" || !electionData.location?.lookupSource?.includes("sdvote.com")) {
   errors.push("The 2026 ballot must use 92114 only as the District 52 example and link to the San Diego County exact-ballot lookup.");
